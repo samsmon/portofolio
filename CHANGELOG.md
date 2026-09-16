@@ -6,7 +6,24 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [Unreleased] - 2026-09-16
+
+### Fixed
+- **[22:32 WIB] Sinkronisasi Working Tree Lokal dengan `origin/main` yang Menggagalkan `git pull` (`src/posts/`, `lib/blog/posts.js`, `routes/(site)/projects/+page.svelte`, `routes/(site)/blog/[slug]/+page.js`):**
+  - *Root cause*: lokal tertinggal 9 commit dari `origin/main` (`8d4bb07`..`89cf627`, migrasi seri AWS re/Start dari `srytmj.github.io`), sementara 115 berkas post yang sama masih tergeletak sebagai berkas untracked di `src/posts/`. Git menolak merge dengan pesan "untracked working tree files would be overwritten by merge". Salinan lokal ternyata versi pra-migrasi (masih memakai link Jekyll `/posts/:slug/` dan line ending CRLF); setelah dinormalisasi isinya identik dengan versi remote, jadi salinan lokal dipindahkan keluar repo (bukan dihapus) dan versi remote yang dipakai.
+  - Perubahan tracked yang belum di-commit di-stash, `main` di-fast-forward ke `89cf627`, lalu stash dipasang kembali. Dua konflik diselesaikan manual:
+    - `posts.js`: remote menyembunyikan post `published: false` sepenuhnya (`getAllPosts` melewatinya dan `getPostBySlug` mengembalikan `null`), sedangkan lokal menambah opsi `includeUnpublished` supaya `entries()` tetap mem-prerender draft. Dua semantik ini bertabrakan (draft akan ter-prerender sebagai 404), jadi semantik remote yang dipertahankan dan plumbing `includeUnpublished` plus field `published` yang selalu `true` dibuang. Penulisan ulang link `/posts/:slug/` menjadi `/blog/:slug` dari lokal (di `preprocessMarkdown` dan renderer link) tetap dipertahankan sebagai pengaman untuk post yang disalin dari Jekyll di masa depan.
+    - `projects/+page.svelte`: penghapusan tombol "Quick Specs" dari lokal digabung dengan `searchInput` plus shortcut Ctrl+K dari remote (`f85d09a`).
+  - Empat post template Chirpy 2019 yang di-set `published: false` di kedua sisi menyatu otomatis tanpa konflik. Gambar draft di `static/assets/img/posts/resource/` kini otomatis ter-ignore mengikuti `.gitignore` remote (`6e6555c`).
+  - *Verifikasi*: `npm run build` lolos tanpa error. Satu peringatan prerender yang sudah ada sebelum sinkronisasi ikut tercatat: `/blog/ec2-auto-scaling` (draft HOLD `2026-08-00`, `published: false`) masih ditautkan dari `/blog/ec2-auto-scaling-prediction-challenge`, sehingga tautan itu 404 di situs live.
+
 ## [Unreleased] - 2026-09-11
+
+### Removed
+- **[14:55 WIB] Tombol "Quick Specs" di Halaman `/projects` (`routes/(site)/projects/+page.svelte`):**
+  - Tombol yang membuka `ProjectModal` dihapus dari kartu proyek karena kontennya duplikat dengan halaman `Deep Dive` (`/projects/[slug]`) yang sudah lebih lengkap. Sekarang setiap kartu hanya mengarahkan ke `Deep Dive →`.
+  - State `openProject`/`openIndex`, import `ProjectModal`, dan render modal di bawah section dihapus karena tidak lagi dipakai di halaman ini (modal quick-specs di landing page `Portfolio.svelte` tidak diubah).
+  - Indeks `i` pada `{#each paginatedProjects as p, i}` juga dibuang karena hanya dipakai untuk menghitung `openIndex`.
 
 ### Added
 - **[12:40 WIB] Dockerfile & Nginx Config untuk Deployment Homelab (`Dockerfile`, `nginx.conf`):**

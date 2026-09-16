@@ -133,8 +133,11 @@ function preprocessMarkdown(content, mediaSubpath = '') {
   // Leave code block {: file='...'} to be processed by renderer
   text = text.replace(/\{:\s*(?!\s*file=['"])[^}]+\}/g, '');
 
-  // 5. Rewrite Jekyll relative links like [Text and Typography](../text-and-typography/) to /blog/:slug
-  text = text.replace(/\]\(\.\.\/([a-zA-Z0-9_-]+)\/?\)/g, '](/blog/$1)');
+  // 5. Rewrite Jekyll /posts/:slug/ links to /blog/:slug
+  text = text.replace(/\]\(\/posts\/([a-zA-Z0-9_-]+)\/?([#?][^)]*)?\)/g, '](/blog/$1$2)');
+
+  // 6. Rewrite Jekyll relative links like [Text and Typography](../text-and-typography/) to /blog/:slug
+  text = text.replace(/\]\(\.\.\/([a-zA-Z0-9_-]+)\/?([#?][^)]*)?\)/g, '](/blog/$1$2)');
 
   return text;
 }
@@ -149,7 +152,9 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
   const origLink = renderer.link;
   renderer.link = function ({ href, title, text }) {
     let cleanHref = href || '';
-    if (cleanHref.startsWith('../') && !cleanHref.includes('assets/')) {
+    if (cleanHref.startsWith('/posts/')) {
+      cleanHref = cleanHref.replace(/^\/posts\//, '/blog/').replace(/\/$/, '');
+    } else if (cleanHref.startsWith('../') && !cleanHref.includes('assets/')) {
       cleanHref = '/blog/' + cleanHref.replace(/^\.\.\//, '').replace(/\/$/, '');
     }
     const titleAttr = title ? ` title="${title}"` : '';

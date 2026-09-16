@@ -1,15 +1,12 @@
 <script>
   import { onMount, tick } from 'svelte';
   import { gsap } from 'gsap';
-  import ProjectModal from '$lib/components/ProjectModal.svelte';
   import { sectionAnim } from '$lib/scroll/sectionAnim.js';
 
   let { data } = $props();
 
   let searchQuery = $state('');
   let selectedKind = $state('all');
-  let openProject = $state(null);
-  let openIndex = $state(0);
   /** @type {HTMLInputElement | null} */ let searchInput = $state(null);
 
   const ITEMS_PER_PAGE = 6;
@@ -208,7 +205,7 @@
           No projects match the specified search query or category filter.
         </div>
       {:else}
-        {#each paginatedProjects as p, i (p.slug)}
+        {#each paginatedProjects as p (p.slug)}
           <div
             data-project-card
             class="group relative flex flex-col justify-between gap-6 rounded-none border border-transparent hover:border-current/40 hover:bg-current/[0.02] p-5 sm:p-7 sm:p-8 transition-all duration-150 hover:-translate-y-0.5 cursor-pointer"
@@ -268,19 +265,6 @@
             <!-- Links & Action Toolbar -->
             <div class="flex items-center justify-between border-t pt-4 font-mono text-[11px]" style="border-color: var(--yorha-border);">
               <div class="flex items-center gap-3">
-                <button
-                  type="button"
-                  onclick={() => {
-                    openProject = p;
-                    openIndex = (currentPage - 1) * ITEMS_PER_PAGE + i;
-                  }}
-                  class="inline-flex items-center gap-1.5 transition-colors cursor-pointer group/btn yorha-invert-hover px-2 py-0.5 border"
-                  style="border-color: var(--yorha-border); color: var(--yorha-text-primary); background-color: var(--yorha-bg);"
-                >
-                  <span>Quick Specs</span>
-                  <span class="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">↗</span>
-                </button>
-                <span style="color: var(--yorha-border);">·</span>
                 <a
                   href={`/projects/${p.slug}`}
                   class="transition-colors hover:underline"
@@ -389,15 +373,6 @@
   </footer>
 </section>
 </div>
-
-<!-- Detail Modal -->
-{#if openProject !== null}
-  <ProjectModal
-    project={openProject}
-    index={openIndex}
-    onClose={() => (openProject = null)}
-  />
-{/if}
 
 <style>
   [data-project-card]:hover [data-card-title],

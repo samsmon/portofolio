@@ -13,7 +13,9 @@ published: true
 
 Salah satu hal yang selalu bikin penasaran soal infrastruktur production itu sederhana: gimana caranya sebuah web app tetap hidup walaupun satu server-nya mati mendadak? Selama ini aku cuma baca konsepnya doang, load balancer, replikasi, failover, tapi belum pernah beneran nyusun sendiri dari nol.
 
-Jadi aku bikin [ha-webserver](https://github.com/srytmj/ha-webserver), sebuah aplikasi CRUD sederhana (data user + foto) yang di-deploy dengan arsitektur high availability penuh di AWS Free Tier. Dua EC2 web server, satu EC2 yang jadi database server sendiri, replikasi real-time ke RDS, S3 buat media, dan Application Load Balancer di depannya. Tulisan ini nyeritain gimana semuanya disusun, apa aja yang gagal di tengah jalan, dan hasil pengujiannya.
+Jadi aku bikin [ha-webserver](https://github.com/srytmj/ha-webserver), sebuah aplikasi CRUD sederhana (data user + foto) yang awalnya cuma proyek iseng dari rasa penasaran itu. Tapi versi yang ditulis di sini bukan lagi versi iseng-isengnya, ini revisi yang aku kerjain buat tugas matkul Cloud Computing di kampus, jadi challenge-nya beneran nyata, ada requirement yang harus dipenuhi, bukan cuma eksperimen bebas. Justru dari tugas inilah aku makin kepincut sama cloud computing, karena mikirin arsitektur yang tetep jalan pas ada komponen yang mati itu ternyata seru banget kalau beneran dicoba sendiri.
+
+Arsitekturnya: dua EC2 web server, satu EC2 yang jadi database server sendiri, replikasi real-time ke RDS, S3 buat media, dan Application Load Balancer di depannya. Tulisan ini nyeritain gimana semuanya disusun, apa aja yang gagal di tengah jalan, dan hasil pengujiannya.
 
 ---
 
