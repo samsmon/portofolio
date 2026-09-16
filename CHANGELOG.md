@@ -32,6 +32,12 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - Readout di pojok menampilkan persen progres decode yang sungguhan selama animasi, lalu kembali ke `01 / 02` atau `02 / 02`.
   - Durasi dan easing dari `motion.js` (`dur.lg` + `ease.draw` untuk swap, `dur.xl` + `ease.out` untuk boot), semua tween di `gsap.context`. Reduced motion, canvas yang tidak tersedia, atau file yang hilang jatuh ke dua `<img>` biasa yang bertukar seketika, dan gambar tetap ada di DOM untuk pembaca layar dan mesin pencari.
 
+- **[02:40 WIB] Perbaikan Efek Decode Potret dan Perbaikan Pasangan File (`lib/components/PortraitSwap.svelte`, `lib/content/site.js`, `static/portrait-*.jpg`):**
+  - Readout `01 / 02` / `02 / 02` dan persen progres di pojok kanan bawah dihapus; swap hover/fokus/tap tetap jalan tapi jadi hidden feature tanpa indikator visual.
+  - Urutan sel decode diganti dari sweep dominan atas-ke-bawah menjadi murni acak per sel (hash sinus tanpa bias baris).
+  - Mapping progres-ke-front diperbaiki (`0.18–0.82` menjadi `0.12–1.0`) supaya sapuan pixelate selesai persis saat tween selesai, menghapus jeda diam di ekor animasi. Tambahan: saat progres swap penuh (`p >= 1`) canvas menggambar gambar target langsung tanpa loop per-sel, dan tween boot dipaksa selesai (`q = 1`) begitu swap pertama dimulai, supaya tidak ada sel yang nyangkut belum ter-decode.
+  - File `static/portrait-illustrated.jpg` dan `static/portrait-formal.jpg` ternyata isinya kebalik dari nama filenya (yang berlabel "illustrated" adalah foto formal sungguhan, yang berlabel "formal" adalah gambar lain). Konten kedua file ditukar (`git mv`) supaya nama sesuai isi, dan `about.portrait` di `site.js` dibalik urutannya: `primary` sekarang foto formal (tampil default), `secondary` foto illustrated (nongol saat hover).
+
 ### Removed
 - **[00:08 WIB] `CustomCursor.svelte` dan `HalftonePortrait.svelte`** tidak lagi diimpor di mana pun dan dihapus dari repo; `about.working` dan `about.now` dihapus dari `site.js`.
 

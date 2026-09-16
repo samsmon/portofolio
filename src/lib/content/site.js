@@ -38,12 +38,12 @@ export const about = {
   location: 'Bandung, West Java',
   status: 'Node 01: Staging & Lab Assembly',
   // Portrait pair for the About section. `primary` is what visitors see first
-  // (the illustrated one); `secondary` wipes in on hover or tap (the formal
-  // photo). Drop both files in static/ and keep the paths absolute. If a file
+  // (the formal photo); `secondary` wipes in on hover or tap (the illustrated
+  // one). Drop both files in static/ and keep the paths absolute. If a file
   // is missing the component falls back to the auto-playing snake placeholder.
   portrait: {
-    primary: '/portrait-illustrated.jpg',
-    secondary: '/portrait-formal.jpg',
+    primary: '/portrait-formal.jpg',
+    secondary: '/portrait-illustrated.jpg',
     alt: 'Bakti Surya Atmaja'
   }
 };

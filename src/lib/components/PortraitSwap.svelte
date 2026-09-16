@@ -85,12 +85,12 @@
     rows = Math.max(4, Math.round((COLS * H) / W));
     cellW = W / COLS;
     cellH = H / rows;
-    // Scan order: mostly top to bottom, with enough noise that the front
-    // reads as a decode, not a curtain.
+    // Scan order: fully random per cell, so the decode reads as noise
+    // resolving rather than a curtain sweeping top to bottom.
     thresholds = new Float32Array(COLS * rows);
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < COLS; c++) {
-        thresholds[r * COLS + c] = clamp01((r / rows) * 0.82 + hash(r, c) * 0.18);
+        thresholds[r * COLS + c] = hash(r, c);
       }
     }
     lowA = document.createElement('canvas');
@@ -146,10 +146,21 @@
 
     g.imageSmoothingEnabled = bs <= 1.5;
     g.clearRect(0, 0, W, H);
+
+    // Fully revealed: draw the photo straight through, no per-cell grid,
+    // so nothing can linger un-decoded after a hover.
+    if (p >= 1) {
+      g.drawImage(lowB, 0, 0, lw, lh, 0, 0, W, H);
+      percent = 100;
+      return;
+    }
+
     g.drawImage(lowA, 0, 0, lw, lh, 0, 0, W, H);
 
-    // Swap front: cells past the front show the photo.
-    const f = clamp01((p - 0.18) / 0.64);
+    // Swap front: cells past the front show the photo. Starts a beat after
+    // the tween begins (boot-style delay) but finishes exactly when the
+    // tween does, so there's no dead time at the end waiting on nothing.
+    const f = clamp01((p - 0.12) / 0.88);
     if (f > 0) {
       const scale = lw / W;
       for (let r = 0; r < rows; r++) {
@@ -219,6 +230,10 @@
     if (secondaryBroken || revealed === on) return;
     revealed = on;
     if (!canvasReady || !ctx) return;
+    if (anim.q < 1) {
+      gsap.killTweensOf(anim, { q: true });
+      anim.q = 1;
+    }
     ctx.add(() => {
       gsap.to(anim, {
         p: on ? 1 : 0,
@@ -366,19 +381,5 @@
     <span class="pointer-events-none absolute -bottom-px -left-px z-10 h-3 w-3 border-b-2 border-l-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
     <span class="pointer-events-none absolute -bottom-px -right-px z-10 h-3 w-3 border-b-2 border-r-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
 
-    {#if !secondaryBroken}
-      <!-- Readout: real progress of the decode, then which frame is showing -->
-      <span
-        class="pointer-events-none absolute bottom-2 right-2 z-10 border px-1.5 py-0.5 font-mono text-label tracking-[0.2em]"
-        style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);"
-        aria-hidden="true"
-      >
-        {#if canvasReady && percent > 0 && percent < 100}
-          <span style="color: var(--yorha-accent);">{String(percent).padStart(3, '0')}%</span>
-        {:else}
-          {revealed ? '02 / 02' : '01 / 02'}
-        {/if}
-      </span>
-    {/if}
   </button>
 {/if}
