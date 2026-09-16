@@ -29,7 +29,7 @@
   </span>
 
   <!-- Sisi kanan: UTC+7 di atas, WIB di bawah -->
-  <div class="flex flex-col text-[9px] leading-tight tracking-[0.16em] uppercase">
+  <div class="flex flex-col text-label leading-tight tracking-[0.16em] uppercase">
     <span class="clock-utc">UTC+7</span>
     <span class="clock-wib font-medium">WIB</span>
   </div>

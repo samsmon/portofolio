@@ -110,7 +110,7 @@
           {resume.filename}
         </h2>
         {#if resume.lastUpdated}
-          <span class="hidden sm:inline text-[10px] uppercase tracking-widest border px-1.5 py-0.5 rounded-none" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">
+          <span class="hidden sm:inline text-label uppercase tracking-widest border px-1.5 py-0.5 rounded-none" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">
             Updated {resume.lastUpdated}
           </span>
         {/if}
@@ -161,7 +161,7 @@
             </span>
           </div>
           <p class="mt-1 text-sm font-mono uppercase tracking-[0.16em]" style="color: var(--yorha-text-muted);">
-            Full-stack Developer · Cloud & Homelab Infrastructure
+            {identity.role.join(' · ')}
           </p>
           <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] border-t pt-3" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">
             <span>contact@suryatmaja.dev</span>
@@ -189,7 +189,7 @@
           {#each stats as item}
             <div class="space-y-0.5">
               <div class="text-lg font-light" style="color: var(--yorha-text-primary);">{item.value}</div>
-              <div class="text-[9px] uppercase tracking-wider" style="color: var(--yorha-text-muted);">{item.label}</div>
+              <div class="text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">{item.label}</div>
             </div>
           {/each}
         </section>
@@ -204,7 +204,7 @@
             <div class="space-y-1.5 border-l-2 pl-4" style="border-color: var(--yorha-accent);">
               <div class="flex flex-wrap items-baseline justify-between gap-1">
                 <h4 class="text-sm font-medium" style="color: var(--yorha-text-primary);">Homelab Cluster & Cloud Infrastructure Operations</h4>
-                <span class="font-mono text-[10px]" style="color: var(--yorha-text-muted);">2022 — Present</span>
+                <span class="font-mono text-label" style="color: var(--yorha-text-muted);">2022 — Present</span>
               </div>
               <p class="text-xs font-mono" style="color: var(--yorha-text-muted);">Proxmox VE · AWS Multi-AZ · Docker · Linux (Debian) · Reverse Proxies</p>
               <ul class="mt-2 space-y-1 text-xs list-disc list-inside" style="color: var(--yorha-text-muted);">
@@ -217,7 +217,7 @@
             <div class="space-y-1.5 border-l-2 pl-4" style="border-color: var(--yorha-accent);">
               <div class="flex flex-wrap items-baseline justify-between gap-1">
                 <h4 class="text-sm font-medium" style="color: var(--yorha-text-primary);">Full-Stack Application Development</h4>
-                <span class="font-mono text-[10px]" style="color: var(--yorha-text-muted);">2020 — Present</span>
+                <span class="font-mono text-label" style="color: var(--yorha-text-muted);">2020 — Present</span>
               </div>
               <p class="text-xs font-mono" style="color: var(--yorha-text-muted);">SvelteKit · Go · TypeScript · Laravel · PostgreSQL · Redis</p>
               <ul class="mt-2 space-y-1 text-xs list-disc list-inside" style="color: var(--yorha-text-muted);">
@@ -237,19 +237,19 @@
           </h3>
           <div class="grid gap-2 sm:grid-cols-2 text-xs font-mono">
             <div class="border p-2.5 rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-              <span class="text-[10px] uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Languages & Frameworks</span>
+              <span class="text-label uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Languages & Frameworks</span>
               <span style="color: var(--yorha-text-primary);">Go, TypeScript, JavaScript, PHP, Python, SvelteKit, React, Laravel, Tailwind CSS</span>
             </div>
             <div class="border p-2.5 rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-              <span class="text-[10px] uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Cloud & Infrastructure</span>
+              <span class="text-label uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Cloud & Infrastructure</span>
               <span style="color: var(--yorha-text-primary);">AWS (EC2, VPC, ALB, S3, RDS), Docker, Proxmox VE, Linux (Debian, Ubuntu), Nginx, Cloudflare</span>
             </div>
             <div class="border p-2.5 rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-              <span class="text-[10px] uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Databases & State</span>
+              <span class="text-label uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Databases & State</span>
               <span style="color: var(--yorha-text-primary);">PostgreSQL, MySQL, Redis, SQLite, MinIO S3</span>
             </div>
             <div class="border p-2.5 rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-              <span class="text-[10px] uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Target Roles</span>
+              <span class="text-label uppercase tracking-wider block mb-1" style="color: var(--yorha-text-muted);">Target Roles</span>
               <span class="font-medium" style="color: var(--yorha-accent);">Full-stack Developer, Backend Engineer, Cloud & DevOps</span>
             </div>
           </div>

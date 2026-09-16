@@ -12,6 +12,14 @@
   behavior situs live), **konfirmasi ke user dulu** sebelum eksekusi,
   terutama sebelum commit/push. Jangan langsung gas jalan walau instruksinya
   kelihatan jelas.
+- Sebelum ngubah kode atau konten, baca `AI_GUIDELINES.md` (sistem desain,
+  konvensi kode, verifikasi, deployment) dan `CONTENT_GUIDE.md` (cara update
+  section portofolio, page projects, page blog, plus contoh prompt buat
+  agent). Konten landing page dan projects cuma diedit di
+  `src/lib/content/site.js`, artikel cuma di `src/posts/`.
+- Setiap perubahan kode wajib `npm run build` exit 0 dan dicatat di
+  `CHANGELOG.md` sebelum commit. Nambah artikel atau ngubah teks di
+  `site.js` doang nggak wajib masuk changelog.
 
 # Author session — blog AWS re/Start
 

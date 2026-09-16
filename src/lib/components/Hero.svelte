@@ -155,8 +155,8 @@
     ></div>
 
     <span
-      class="pointer-events-none absolute left-[8vw] top-10 z-10 text-label tracking-[0.35em] opacity-40 sm:left-[9vw]"
-      style="font-family: 'Space Mono', ui-monospace, monospace; color: var(--yorha-text-primary);"
+      class="pointer-events-none absolute left-[8vw] top-10 z-10 font-mono text-label tracking-[0.35em] opacity-40 sm:left-[9vw]"
+      style="color: var(--yorha-text-primary);"
       aria-hidden="true">01</span
     >
 
@@ -179,7 +179,7 @@
             style="background-color: var(--yorha-invert-bg); border-color: var(--yorha-invert-bg); color: var(--yorha-invert-text);"
           >
             <span>View projects</span>
-            <span class="text-[10px] transition-transform group-hover:translate-x-1">→</span>
+            <span class="text-label transition-transform group-hover:translate-x-1">→</span>
           </a>
 
           <!-- Secondary: the engineering journal -->
@@ -188,9 +188,9 @@
             class="group yorha-invert-hover inline-flex cursor-pointer items-center gap-2 border border-current/20 bg-current/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
             style="color: var(--yorha-text-primary);"
           >
-            <span class="text-[9px]" style="color: var(--yorha-accent);">■</span>
+            <span class="text-label" style="color: var(--yorha-accent);">■</span>
             <span>Engineering Journal</span>
-            <span class="text-[10px] transition-transform group-hover:translate-x-1">→</span>
+            <span class="text-label transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
 

@@ -276,7 +276,7 @@
         {#each sections as [label, items] (label)}
           <p
             data-m
-            class="px-4 pb-1 pt-3 font-mono text-[10px] uppercase tracking-[0.22em]"
+            class="px-4 pb-1 pt-3 font-mono text-label uppercase tracking-[0.22em]"
             style="color: var(--yorha-text-muted);"
           >
             {label}
@@ -308,7 +308,7 @@
 
       <div
         data-m
-        class="flex items-center justify-between border-t px-4 py-2.5 font-mono text-[10px] uppercase tracking-widest"
+        class="flex items-center justify-between border-t px-4 py-2.5 font-mono text-label uppercase tracking-widest"
         style="border-color: var(--yorha-border); color: var(--yorha-text-muted);"
       >
         <span>↑↓ move · ↵ open · esc close</span>

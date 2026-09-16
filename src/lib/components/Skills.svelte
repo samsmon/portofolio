@@ -15,11 +15,8 @@
   const defaultToolId = defaultTool ? defaultTool.id : null;
 
   let activeId = $state(defaultToolId);
-  // Drives the affordance hint and the mobile spec bar: both should wait for a
-  // real gesture rather than appear on load.
+  // The mobile spec bar waits for a real gesture rather than appearing on load.
   let interacted = $state(false);
-  let cardsContainerEl = $state(null);
-  let inspectorEl = $state(null);
   let showMobileInspector = $state(false);
 
   const activeTech = $derived(
@@ -57,34 +54,76 @@
   }
 </script>
 
+<!-- One spec sheet, rendered in the desktop inspector and the mobile sheet. -->
+{#snippet spec(tech)}
+  <div class="flex flex-col gap-3">
+    <div class="flex items-baseline justify-between gap-3 border-b pb-2" style="border-color: var(--yorha-border);">
+      <div>
+        <span class="block font-mono text-label uppercase tracking-widest" style="color: var(--yorha-text-muted);">Selected</span>
+        <h4 class="flex items-center gap-2 text-lg font-semibold tracking-tight">
+          <span>{tech.name}</span>
+          <span class="font-mono text-label font-normal" style="color: var(--yorha-accent);">{tech.id}</span>
+        </h4>
+      </div>
+      <div class="text-right">
+        <span class="block font-mono text-label uppercase tracking-widest" style="color: var(--yorha-text-muted);">Level</span>
+        <span class="font-mono text-label uppercase">{tech.badge}</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <div class="flex justify-between font-mono text-label" style="color: var(--yorha-text-muted);">
+        <span class="uppercase tracking-wider">Proficiency, self-assessed</span>
+        <span class="font-medium" style="color: var(--yorha-accent);">{tech.readiness}%</span>
+      </div>
+      <div
+        class="h-1.5 w-full overflow-hidden bg-current/10"
+        role="meter"
+        aria-label="Proficiency"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow={tech.readiness}
+      >
+        <div class="h-full transition-[width] duration-300" style="width: {tech.readiness}%; background-color: var(--yorha-accent);"></div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
+      <span class="font-mono text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">Role</span>
+      <p class="border-l pl-2.5 text-caption leading-relaxed" style="border-color: var(--yorha-accent-border); color: var(--yorha-text-primary);">
+        {tech.role}
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
+      <span class="font-mono text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">Used in</span>
+      <p class="pl-2.5 text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+        {tech.deployedAt}
+      </p>
+    </div>
+  </div>
+{/snippet}
+
 <Section id="skills" title={headings.skills}>
   <div class="relative flex flex-col gap-8">
-    
-    <!-- Main Grid: Left Matrix (Col 1-7 on md+) & Right Pod Inspector (Col 8-12 on md+) -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
-      
-      <!-- Left Column: Tactical Skill Cards by Layer -->
+    <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-12 lg:gap-8">
+      <!-- Left: technologies grouped by layer -->
       <div
-        bind:this={cardsContainerEl}
         onpointerleave={handleTechLeave}
-        class="md:col-span-7 flex flex-col gap-5 sm:gap-6"
+        class="flex flex-col gap-5 sm:gap-6 md:col-span-7"
         role="presentation"
       >
-        {#each stack as layer (layer.layer)}
+        {#each stack as layer, li (layer.layer)}
           <div data-anim data-skill-layer class="flex flex-col gap-2.5">
-            <!-- Domain Layer Header -->
-            <div class="w-full flex items-center justify-between border-b border-current/10 pb-2 font-mono text-[11px] tracking-[0.2em] uppercase opacity-75 group text-left">
+            <div class="flex w-full items-center justify-between border-b border-current/10 pb-2 font-mono text-label uppercase tracking-[0.2em]">
               <div class="flex items-center gap-2">
-                <span style="color: var(--yorha-text-muted);">SEC // {layer.code || '00'}</span>
-                <span class="font-medium opacity-90">{layer.layer}</span>
+                <span style="color: var(--yorha-text-muted);">{layer.code || String(li + 1).padStart(2, '0')}</span>
+                <span class="font-medium">{layer.layer}</span>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="opacity-50">{layer.items.length} UNITS</span>
-              </div>
+              <span style="color: var(--yorha-text-muted);">{layer.items.length} {layer.items.length === 1 ? 'item' : 'items'}</span>
             </div>
 
-            <!-- Chips Matrix of Layer Contents -->
-            <div class="py-1 flex flex-wrap gap-2 font-mono">
+            <div class="flex flex-wrap gap-2 py-1 font-mono">
               {#each layer.items as it (it.id)}
                 {@const isCurrent = it.id === activeTech?.id}
                 <button
@@ -92,20 +131,21 @@
                   onclick={() => selectTech(it.id, true)}
                   onpointerenter={() => handleTechEnter(it.id)}
                   onpointerleave={handleTechLeave}
-                  class="group relative inline-flex items-center gap-2 px-3 py-1.5 border transition-colors duration-150 cursor-pointer text-xs {isCurrent
+                  aria-pressed={isCurrent}
+                  class="group relative inline-flex cursor-pointer items-center gap-2 border px-3 py-1.5 text-xs transition-colors duration-150 {isCurrent
                     ? 'border-current font-semibold'
-                    : 'border-current/20 opacity-80 hover:opacity-100 hover:border-current/50'}"
+                    : 'border-current/20 opacity-80 hover:border-current/50 hover:opacity-100'}"
                   style="background-color: {isCurrent ? 'var(--yorha-surface-elevated)' : 'var(--yorha-surface)'};"
                 >
-                  <span class="w-3.5 h-3.5 flex items-center justify-center shrink-0">
+                  <span class="flex h-3.5 w-3.5 shrink-0 items-center justify-center" aria-hidden="true">
                     {#if isCurrent}
                       <span class="h-1.5 w-1.5 rounded-full" style="background-color: var(--yorha-accent);"></span>
                     {:else}
-                      <span class="text-[11px] opacity-40 leading-none">›</span>
+                      <span class="text-label leading-none opacity-40">›</span>
                     {/if}
                   </span>
                   <span class="truncate" style="color: {isCurrent ? 'var(--yorha-accent)' : 'inherit'};">{it.name}</span>
-                  <span class="px-1.5 py-0.5 border text-[9px] uppercase tracking-wider opacity-60" style="border-color: currentColor;">{it.badge}</span>
+                  <span class="border px-1.5 py-0.5 text-label uppercase tracking-wider opacity-60" style="border-color: currentColor;">{it.badge}</span>
                 </button>
               {/each}
             </div>
@@ -113,264 +153,127 @@
         {/each}
       </div>
 
-      <!-- Right Column: Tactical Diagnostic HUD Monitor (Desktop & Tablet) -->
-      <div data-anim class="hidden md:block md:col-span-5 md:sticky md:top-24">
+      <!-- Right: inspector (tablet and desktop) -->
+      <div data-anim class="hidden md:sticky md:top-24 md:col-span-5 md:block">
         <div
-          bind:this={inspectorEl}
-          class="border border-current/20 p-5 font-mono text-xs flex flex-col justify-between gap-4 relative min-h-[460px]"
+          class="relative flex min-h-[460px] flex-col justify-between gap-4 border border-current/20 p-5 font-mono text-xs"
           style="background-color: var(--yorha-surface-elevated);"
         >
-          <!-- Tactical Pod Frame Markings -->
           <span class="pointer-events-none absolute -top-px -left-px h-2.5 w-2.5 border-l-2 border-t-2 border-current/35" aria-hidden="true"></span>
           <span class="pointer-events-none absolute -top-px -right-px h-2.5 w-2.5 border-r-2 border-t-2 border-current/35" aria-hidden="true"></span>
           <span class="pointer-events-none absolute -bottom-px -left-px h-2.5 w-2.5 border-b-2 border-l-2 border-current/35" aria-hidden="true"></span>
           <span class="pointer-events-none absolute -bottom-px -right-px h-2.5 w-2.5 border-b-2 border-r-2 border-current/35" aria-hidden="true"></span>
 
-          <!-- Top Status Bar -->
           <div class="flex items-center justify-between border-b border-current/10 pb-3">
             <div class="flex items-center gap-2">
               <span
                 class="h-2 w-2 rounded-full {activeTech ? '' : 'opacity-40'}"
                 style="background-color: {activeTech ? 'var(--yorha-accent)' : 'var(--yorha-text-muted)'};"
               ></span>
-              <span class="font-bold tracking-wider text-[11px]">POD_042 // SPEC_DIAGNOSTICS</span>
+              <span class="text-label font-bold uppercase tracking-wider">Stack inspector</span>
             </div>
-            <span
-              class="text-[10px] px-1.5 py-0.5 border"
-              style="color: {activeTech ? 'var(--yorha-accent)' : 'var(--yorha-text-muted)'}; border-color: {activeTech ? 'var(--yorha-accent-border)' : 'var(--yorha-border)'}; background-color: {activeTech ? 'var(--yorha-accent-subtle)' : 'transparent'};"
-            >
-              {activeTech ? 'TELEMETRY: ONLINE' : 'STATUS: STANDBY'}
+            <span class="text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">
+              {activeTech ? 'Hover another to compare' : 'Hover a technology'}
             </span>
           </div>
 
           {#if activeTech}
-            <!-- Target Identification -->
             {#key activeTech.id}
-              <div data-inspector-body in:fade={{ duration: reduce ? 0 : 150 }} class="flex flex-col gap-3 flex-1">
-                <div class="flex items-baseline justify-between gap-2 border-b border-current/10 pb-2">
-                  <div>
-                    <span class="text-[9px] opacity-75 block tracking-widest uppercase">ACTIVE TARGET SPEC</span>
-                    <h4 class="text-base sm:text-lg font-semibold tracking-tight flex items-center gap-2">
-                      <span>{activeTech.name}</span>
-                      <span class="text-xs font-normal" style="color: var(--yorha-accent);">[{activeTech.id}]</span>
-                    </h4>
-                  </div>
-                  <div class="text-right">
-                    <span class="text-[9px] opacity-75 block tracking-widest uppercase">CLASSIFICATION</span>
-                    <span class="text-[11px] uppercase opacity-90">{activeTech.badge}</span>
-                  </div>
-                </div>
-
-                <!-- Readiness Index Bar -->
-                <div class="flex flex-col gap-1">
-                  <div class="flex justify-between text-[10px] opacity-70">
-                    <span>PRODUCTION READINESS</span>
-                    <span class="font-medium" style="color: var(--yorha-accent);">{activeTech.readiness}% // VERIFIED</span>
-                  </div>
-                  <div class="h-1.5 w-full bg-current/10 overflow-hidden">
-                    <div
-                      class="h-full transition-all duration-300"
-                      style="width: {activeTech.readiness}%; background-color: var(--yorha-accent);"
-                    ></div>
-                  </div>
-                </div>
-
-                <!-- Architectural Role -->
-                <div class="flex flex-col gap-1 border-t border-current/10 pt-2.5">
-                  <span class="text-[10px] opacity-60 uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="opacity-40">›</span> ARCHITECTURAL ROLE
-                  </span>
-                  <p class="text-[11px] opacity-90 leading-relaxed pl-2.5 border-l" style="border-color: var(--yorha-accent-border);">
-                    {activeTech.role}
-                  </p>
-                </div>
-
-                <!-- Deployment Environment -->
-                <div class="flex flex-col gap-1 border-t border-current/10 pt-2.5">
-                  <span class="text-[10px] opacity-60 uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="opacity-40">›</span> PRODUCTION DEPLOYMENT
-                  </span>
-                  <p class="text-[11px] opacity-70 leading-relaxed pl-2.5">
-                    {activeTech.deployedAt}
-                  </p>
-                </div>
-
-                <!-- CLI Console Command Telemetry -->
-                <div class="flex flex-col gap-1 border-t border-current/10 pt-2.5">
-                  <div class="flex items-center justify-between text-[10px] opacity-60">
-                    <span class="uppercase tracking-wider flex items-center gap-1.5">
-                      <span class="opacity-40">›</span> OPERATIONAL TELEMETRY
-                    </span>
-                    <span class="text-[9px] opacity-40">TTY_01</span>
-                  </div>
-                  <div class="mt-1 border border-current/15 bg-current/[0.04] p-2.5 text-[10px] font-mono leading-relaxed opacity-90 overflow-x-auto whitespace-pre-wrap select-all">
-                    <span style="color: var(--yorha-accent);">{activeTech.command}</span>
-                  </div>
-                </div>
+              <div in:fade={{ duration: reduce ? 0 : 150 }} class="flex-1">
+                {@render spec(activeTech)}
               </div>
             {/key}
           {:else}
-            <!-- Standby State (When mouse is not hovering any skill) -->
-            <div in:fade={{ duration: reduce ? 0 : 150 }} class="flex flex-col items-center justify-center flex-1 py-12 px-4 text-center gap-3 border border-dashed border-current/15 my-1">
-              <div class="h-10 w-10 border border-current/25 flex items-center justify-center font-mono text-sm opacity-60">
+            <div in:fade={{ duration: reduce ? 0 : 150 }} class="my-1 flex flex-1 flex-col items-center justify-center gap-3 border border-dashed border-current/15 px-4 py-12 text-center">
+              <div class="flex h-10 w-10 items-center justify-center border border-current/25 text-sm opacity-60">
                 <span style="color: var(--yorha-accent);">✦</span>
               </div>
-              <div class="space-y-1.5">
-                <p class="text-[11px] font-semibold tracking-widest uppercase opacity-85">
-                  [ POD_042 // STANDBY ]
-                </p>
-                <p class="text-[10.5px] opacity-50 max-w-[26ch] leading-relaxed mx-auto">
-                  Hover over a capability node to inspect architecture specifications and telemetry.
-                </p>
-              </div>
+              <p class="mx-auto max-w-[26ch] text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+                Hover a technology on the left to see where and how I use it.
+              </p>
             </div>
           {/if}
 
-          <!-- Pod Bottom Diagnostics Status -->
-          <div class="border-t border-current/10 pt-3 flex flex-wrap items-center justify-between gap-2 text-[9px] opacity-50">
-            <span>{interacted ? 'SYS_LATENCY: 0.2ms' : 'HOVER A NODE TO INSPECT'}</span>
-            <span>{activeTech ? 'MEM_FOOTPRINT: MINIMAL' : `NODES: ${allTools.length} READY`}</span>
-            <span class="opacity-80">{activeTech ? 'NODE_VERIFIED: YES' : 'TARGET: NONE'}</span>
+          <!-- Real counts only -->
+          <div class="flex flex-wrap items-center justify-between gap-2 border-t border-current/10 pt-3 text-label" style="color: var(--yorha-text-muted);">
+            <span>{allTools.length} technologies · {stack.length} layers</span>
+            <span>{activeTech ? `${activeTech.id} selected` : 'Nothing selected'}</span>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- Mobile Sticky Pod Mini Bar (< md) -->
+    <!-- Mobile: compact bar that opens the sheet -->
     {#if interacted && activeTech}
-      <div class="md:hidden sticky bottom-4 z-30 pt-1">
+      <div class="sticky bottom-4 z-30 pt-1 md:hidden">
         <button
           type="button"
           onclick={() => (showMobileInspector = true)}
-          class="w-full flex items-center justify-between px-3.5 py-2.5 border font-mono text-xs backdrop-blur-md transition-all cursor-pointer yorha-invert-hover"
+          class="yorha-invert-hover flex w-full cursor-pointer items-center justify-between border px-3.5 py-2.5 font-mono text-xs backdrop-blur-md transition-all"
           style="background-color: var(--yorha-surface-elevated); border-color: var(--yorha-border); color: var(--yorha-text-primary);"
         >
           <div class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full" style="background-color: var(--yorha-accent);"></span>
             <span class="font-semibold tracking-wider">{activeTech.name}</span>
-            <span class="text-[10px]" style="color: var(--yorha-accent);">{activeTech.readiness}%</span>
+            <span class="text-label" style="color: var(--yorha-accent);">{activeTech.readiness}%</span>
           </div>
-          <span class="text-[10px] tracking-wider uppercase border px-1.5 py-0.5" style="border-color: var(--yorha-border);">[ SPECS ↗ ]</span>
+          <span class="border px-1.5 py-0.5 text-label uppercase tracking-wider" style="border-color: var(--yorha-border);">Details ↗</span>
         </button>
       </div>
     {/if}
-
   </div>
 </Section>
 
-<!-- Mobile Tactical Pod 042 Inspector Bottom Sheet Drawer -->
+<!-- Mobile: bottom sheet with the same spec sheet -->
 {#if showMobileInspector && (activeTech || allTools[0])}
   {@const modalTech = activeTech || allTools[0]}
   <div
     use:portal
     transition:fade={{ duration: 150 }}
-    class="fixed inset-0 z-[998] flex flex-col justify-end bg-black/80 backdrop-blur-sm md:hidden p-0"
+    class="fixed inset-0 z-[998] flex flex-col justify-end p-0 backdrop-blur-sm md:hidden"
+    style="background-color: var(--yorha-backdrop);"
     onclick={() => (showMobileInspector = false)}
     role="presentation"
   >
     <div
       transition:fly={{ y: 200, duration: 200 }}
-      class="relative w-full max-h-[85vh] overflow-y-auto border-t p-5 font-mono text-xs flex flex-col gap-4 rounded-none"
+      class="relative flex max-h-[85vh] w-full flex-col gap-4 overflow-y-auto rounded-none border-t p-5 font-mono text-xs"
       style="background-color: var(--yorha-surface-elevated); border-color: var(--yorha-border); color: var(--yorha-text-primary);"
       onclick={(e) => e.stopPropagation()}
       role="dialog"
       aria-modal="true"
+      aria-label="Technology details"
       tabindex="-1"
       data-lenis-prevent
     >
-      <!-- Tactical Corner Brackets -->
       <span class="pointer-events-none absolute -top-px -left-px h-2.5 w-2.5 border-l-2 border-t-2" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
       <span class="pointer-events-none absolute -top-px -right-px h-2.5 w-2.5 border-r-2 border-t-2" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
 
-      <!-- Top Status Bar with Close Button -->
       <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--yorha-border);">
         <div class="flex items-center gap-2">
           <span class="h-2 w-2 rounded-full" style="background-color: var(--yorha-accent);"></span>
-          <span class="font-bold tracking-wider text-[11px]">POD_042 // SPEC_DIAGNOSTICS</span>
+          <span class="text-label font-bold uppercase tracking-wider">Stack inspector</span>
         </div>
         <button
           type="button"
           onclick={() => (showMobileInspector = false)}
-          class="border px-2 py-1 text-[10px] font-mono tracking-wider uppercase transition-colors yorha-invert-hover cursor-pointer"
+          class="yorha-invert-hover cursor-pointer border px-2 py-1 font-mono text-label uppercase tracking-wider transition-colors"
           style="border-color: var(--yorha-border); background-color: var(--yorha-surface); color: var(--yorha-text-primary);"
         >
-          [ ✕ CLOSE ]
+          Close
         </button>
       </div>
 
-      <!-- Target Spec Content -->
-      <div class="flex flex-col gap-3">
-        <div class="flex items-baseline justify-between gap-2 border-b pb-2" style="border-color: var(--yorha-border);">
-          <div>
-            <span class="text-[9px] opacity-75 block tracking-widest uppercase">ACTIVE TARGET SPEC</span>
-            <h4 class="text-lg font-semibold tracking-tight flex items-center gap-2">
-              <span>{modalTech.name}</span>
-              <span class="text-xs font-normal" style="color: var(--yorha-accent);">[{modalTech.id}]</span>
-            </h4>
-          </div>
-          <div class="text-right">
-            <span class="text-[9px] opacity-75 block tracking-widest uppercase">CLASSIFICATION</span>
-            <span class="text-[11px] uppercase opacity-90">{modalTech.badge}</span>
-          </div>
-        </div>
+      {@render spec(modalTech)}
 
-        <!-- Readiness Index Bar -->
-        <div class="flex flex-col gap-1">
-          <div class="flex justify-between text-[10px] opacity-70">
-            <span>PRODUCTION READINESS</span>
-            <span class="font-medium" style="color: var(--yorha-accent);">{modalTech.readiness}% // VERIFIED</span>
-          </div>
-          <div class="h-1.5 w-full bg-current/10 overflow-hidden">
-            <div
-              class="h-full transition-all duration-300"
-              style="width: {modalTech.readiness}%; background-color: var(--yorha-accent);"
-            ></div>
-          </div>
-        </div>
-
-        <!-- Architectural Role -->
-        <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
-          <span class="text-[10px] opacity-60 uppercase tracking-wider flex items-center gap-1.5">
-            <span class="opacity-40">›</span> ARCHITECTURAL ROLE
-          </span>
-          <p class="text-[11px] opacity-90 leading-relaxed pl-2.5 border-l" style="border-color: var(--yorha-accent-border);">
-            {modalTech.role}
-          </p>
-        </div>
-
-        <!-- Deployment Environment -->
-        <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
-          <span class="text-[10px] opacity-60 uppercase tracking-wider flex items-center gap-1.5">
-            <span class="opacity-40">›</span> PRODUCTION DEPLOYMENT
-          </span>
-          <p class="text-[11px] opacity-70 leading-relaxed pl-2.5">
-            {modalTech.deployedAt}
-          </p>
-        </div>
-
-        <!-- CLI Console Command Telemetry -->
-        <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
-          <div class="flex items-center justify-between text-[10px] opacity-60">
-            <span class="uppercase tracking-wider flex items-center gap-1.5">
-              <span class="opacity-40">›</span> OPERATIONAL TELEMETRY
-            </span>
-            <span class="text-[9px] opacity-40">TTY_01</span>
-          </div>
-          <div class="mt-1 border p-2.5 text-[10px] font-mono leading-relaxed opacity-90 overflow-x-auto whitespace-pre-wrap select-all" style="background-color: var(--yorha-bg); border-color: var(--yorha-border);">
-            <span style="color: var(--yorha-accent);">{modalTech.command}</span>
-          </div>
-        </div>
-
-        <button
-          type="button"
-          onclick={() => (showMobileInspector = false)}
-          class="w-full mt-2 py-2.5 border font-mono text-center text-xs tracking-wider uppercase transition-colors yorha-invert-hover cursor-pointer"
-          style="border-color: var(--yorha-border); background-color: var(--yorha-surface); color: var(--yorha-text-primary);"
-        >
-          [ RETURN TO GRID ]
-        </button>
-      </div>
+      <button
+        type="button"
+        onclick={() => (showMobileInspector = false)}
+        class="yorha-invert-hover mt-2 w-full cursor-pointer border py-2.5 text-center font-mono text-xs uppercase tracking-wider transition-colors"
+        style="border-color: var(--yorha-border); background-color: var(--yorha-surface); color: var(--yorha-text-primary);"
+      >
+        Back to the list
+      </button>
     </div>
   </div>
 {/if}

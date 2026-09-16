@@ -11,7 +11,7 @@
       <span class="font-mono text-xl sm:text-2xl font-light tracking-tight transition-colors duration-200" style="color: var(--yorha-text-primary);">
         {item.value}
       </span>
-      <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] mt-1 transition-colors duration-200" style="color: var(--yorha-text-muted);">
+      <span class="font-mono text-label sm:text-[11px] uppercase tracking-[0.16em] mt-1 transition-colors duration-200" style="color: var(--yorha-text-muted);">
         {item.label}
       </span>
     </div>

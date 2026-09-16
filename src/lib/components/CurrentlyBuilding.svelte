@@ -9,11 +9,11 @@
   <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3" style="border-color: var(--yorha-border);">
     <div class="inline-flex items-center gap-2">
       <span class="inline-flex h-2 w-2 rounded-none" style="background-color: var(--yorha-accent);"></span>
-      <span class="font-mono text-[10px] uppercase tracking-[0.2em] font-medium" style="color: var(--yorha-accent);">
+      <span class="font-mono text-label uppercase tracking-[0.2em] font-medium" style="color: var(--yorha-accent);">
         Currently Building
       </span>
     </div>
-    <span class="font-mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--yorha-text-muted);">
+    <span class="font-mono text-label uppercase tracking-[0.14em]" style="color: var(--yorha-text-muted);">
       {building.status}
     </span>
   </div>
@@ -30,7 +30,7 @@
       <div class="pt-2 flex flex-wrap gap-1.5">
         {#each building.stack as item}
           <span
-            class="font-mono text-[10px] tracking-wider px-2 py-0.5 border rounded-none transition-colors duration-200"
+            class="font-mono text-label tracking-wider px-2 py-0.5 border rounded-none transition-colors duration-200"
             style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);"
           >
             {item}

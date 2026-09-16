@@ -28,7 +28,7 @@
 <section class="wrap pt-32 pb-24 min-h-screen" style="color: var(--yorha-text-primary);">
   <!-- Top Navigation Bar: Breadcrumbs (Left) & All Projects Shortcut (Right) -->
   <div class="flex items-center justify-between gap-4 mb-8 max-w-5xl">
-    <nav aria-label="Breadcrumbs" class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] min-w-0">
+    <nav aria-label="Breadcrumbs" class="inline-flex items-center gap-2 font-mono text-label uppercase tracking-[0.2em] min-w-0">
       <a href="/" class="hover:underline transition-colors shrink-0" style="color: var(--yorha-text-muted);">Home</a>
       <span class="shrink-0" style="color: var(--yorha-text-muted);">/</span>
       <a href="/projects" class="hover:underline transition-colors shrink-0" style="color: var(--yorha-text-muted);">Projects</a>
@@ -43,7 +43,7 @@
       title="Return to all projects (Press ESC)"
     >
       <span>← [ ALL PROJECTS ]</span>
-      <kbd class="px-1.5 py-0.5 text-[9px] font-mono border rounded-none opacity-80" style="border-color: var(--yorha-border); background-color: var(--yorha-bg); color: var(--yorha-text-muted);">ESC</kbd>
+      <kbd class="px-1.5 py-0.5 text-label font-mono border rounded-none opacity-80" style="border-color: var(--yorha-border); background-color: var(--yorha-bg); color: var(--yorha-text-muted);">ESC</kbd>
     </a>
   </div>
 
@@ -51,7 +51,7 @@
   <header use:sectionAnim class="mb-12 space-y-4 max-w-4xl">
     <div class="flex flex-wrap items-center gap-3 font-mono text-xs">
       <span
-        class="px-2 py-0.5 text-[10px] uppercase tracking-widest font-medium rounded-none border"
+        class="px-2 py-0.5 text-label uppercase tracking-widest font-medium rounded-none border"
         style="border-color: var(--yorha-accent-border); background-color: var(--yorha-accent-subtle); color: var(--yorha-accent);"
       >
         {project.kind}
@@ -81,26 +81,26 @@
         <span class="inline-flex items-center gap-1.5" style="color: var(--yorha-accent);">
           <span class="w-1.5 h-1.5 bg-current animate-ping rounded-full absolute opacity-75"></span>
           <span class="w-1.5 h-1.5 bg-current rounded-full relative"></span>
-          <span class="text-[9px]">ONLINE</span>
+          <span class="text-label">ONLINE</span>
         </span>
       </div>
 
       <div>
-        <span class="text-[10px] uppercase tracking-[0.2em] block mb-1.5" style="color: var(--yorha-text-muted);">Category</span>
+        <span class="text-label uppercase tracking-[0.2em] block mb-1.5" style="color: var(--yorha-text-muted);">Category</span>
         <span class="font-medium" style="color: var(--yorha-text-primary);">{project.kind} System</span>
       </div>
 
       <div>
-        <span class="text-[10px] uppercase tracking-[0.2em] block mb-1.5" style="color: var(--yorha-text-muted);">Timeline</span>
+        <span class="text-label uppercase tracking-[0.2em] block mb-1.5" style="color: var(--yorha-text-muted);">Timeline</span>
         <span class="font-medium" style="color: var(--yorha-text-primary);">{project.year}</span>
       </div>
 
       <div>
-        <span class="text-[10px] uppercase tracking-[0.2em] block mb-2" style="color: var(--yorha-text-muted);">Technologies</span>
+        <span class="text-label uppercase tracking-[0.2em] block mb-2" style="color: var(--yorha-text-muted);">Technologies</span>
         <div class="flex flex-wrap gap-1.5">
           {#each project.stack as tech}
             <span
-              class="rounded-none border px-2 py-1 text-[10px]"
+              class="rounded-none border px-2 py-1 text-label"
               style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);"
             >
               {tech}
@@ -111,7 +111,7 @@
 
       {#if project.links && project.links.length > 0}
         <div class="border-t pt-5 mt-6" style="border-color: var(--yorha-border);">
-          <span class="text-[10px] uppercase tracking-[0.2em] block mb-2" style="color: var(--yorha-text-muted);">External Nodes</span>
+          <span class="text-label uppercase tracking-[0.2em] block mb-2" style="color: var(--yorha-text-muted);">External Nodes</span>
           <div class="flex flex-col gap-2">
             {#each project.links as link}
               <a
@@ -154,7 +154,7 @@
             {#each project.images as img, i}
               <div class="group relative overflow-hidden rounded-none border transition-colors hover:border-current/40" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
                 <!-- Fake Image Metadata Bar -->
-                <div class="absolute top-0 inset-x-0 z-10 px-2 py-1 font-mono text-[9px] uppercase tracking-widest flex items-center justify-between border-b" style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
+                <div class="absolute top-0 inset-x-0 z-10 px-2 py-1 font-mono text-label uppercase tracking-widest flex items-center justify-between border-b" style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
                   <span>IMG_DATA // ARCH_{String(i + 1).padStart(2, '0')}</span>
                   <span style="color: var(--yorha-accent);">[VIEW]</span>
                 </div>

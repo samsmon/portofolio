@@ -137,7 +137,7 @@
   <section class="wrap pt-32 pb-28 min-h-screen" style="color: var(--yorha-text-primary);">
   <!-- Header -->
   <header use:sectionAnim class="mb-12 max-w-[var(--measure)] space-y-4">
-    <div class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]" style="color: var(--yorha-text-muted);">
+    <div class="inline-flex items-center gap-2 font-mono text-label uppercase tracking-[0.2em]" style="color: var(--yorha-text-muted);">
       <a href="/" class="hover:underline transition-colors" style="color: var(--yorha-text-muted);">Home</a>
       <span>/</span>
       <span style="color: var(--yorha-text-primary);">Projects</span>
@@ -175,7 +175,7 @@
     </div>
 
     <!-- Category Filters (Tactical Brackets & Animated Hover) -->
-    <div class="flex items-center gap-2 py-1.5 font-mono text-[10px] uppercase tracking-wider overflow-x-auto sm:overflow-visible sm:flex-wrap no-scrollbar">
+    <div class="flex items-center gap-2 py-1.5 font-mono text-label uppercase tracking-wider overflow-x-auto sm:overflow-visible sm:flex-wrap no-scrollbar">
       <span class="mr-1 select-none shrink-0 inline-flex items-center gap-1.5 leading-none self-center" style="color: var(--yorha-text-muted);">
         <span class="w-1.5 h-1.5 shrink-0 block -translate-y-[0.5px]" style="background-color: var(--yorha-accent);"></span>
         <span class="leading-none">FILTER:</span>
@@ -266,7 +266,7 @@
             <!-- Tech Stack Pills (Uniformity with Portfolio) -->
             <ul class="flex flex-wrap gap-1.5">
               {#each p.stack as s}
-                <li class="rounded-none border px-2.5 py-1 font-mono text-[10px] transition-colors duration-200" style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
+                <li class="rounded-none border px-2.5 py-1 font-mono text-label transition-colors duration-200" style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
                   {s}
                 </li>
               {/each}

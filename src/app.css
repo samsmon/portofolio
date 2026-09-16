@@ -8,10 +8,12 @@
 @custom-variant dark (&:where(:root:not([data-theme='light']), :root:not([data-theme='light']) *));
 
 @theme {
-  /* fontpair.co — Epilogue (structural / display) + Baskervville (prose) */
-  --font-sans: 'Epilogue', ui-sans-serif, system-ui, sans-serif;
+  /* Three families, site-wide. Epilogue carries every heading, button and
+     uppercase label; Plus Jakarta Sans carries everything meant to be read;
+     Fira Code carries labels that must line up (dates, counts) and code. */
   --font-display: 'Epilogue', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Baskervville', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
 
   --color-ink-0: #000000;
   --color-ink-1: #0a0a0a;
@@ -45,10 +47,10 @@
 :root {
   color-scheme: dark;
 
-  /* Dedicated typography for blog posts reading view */
-  --font-blog-head: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-blog-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-blog-code: 'Fira Code', ui-monospace, monospace;
+  /* The blog reads with the same three families as the rest of the site. */
+  --font-blog-head: var(--font-display);
+  --font-blog-body: var(--font-sans);
+  --font-blog-code: var(--font-mono);
 
   /* Layout — one container, one gutter, everything aligns to them. */
   --container: 72rem;
@@ -227,26 +229,12 @@ body {
   color: var(--yorha-text-primary);
 }
 
-/* Custom Plus Cursor (YoRHa HUD) - Strictly Desktop / Mouse Only */
-@media (hover: hover) and (pointer: fine) {
-  /* Only blank the native cursor while the replacement is actually in the DOM.
-     Without the :has() guard a failed render leaves the visitor with no
-     pointer at all and no way to get it back. */
-  html.custom-cursor-active:has(.cursor-root),
-  html.custom-cursor-active:has(.cursor-root) *,
-  html.custom-cursor-active:has(.cursor-root) *::before,
-  html.custom-cursor-active:has(.cursor-root) *::after {
-    cursor: none !important;
-  }
-}
-
-@media (hover: none), (pointer: coarse) {
-  html.custom-cursor-active,
-  html.custom-cursor-active *,
-  html.custom-cursor-active *::before,
-  html.custom-cursor-active *::after {
-    cursor: auto !important;
-  }
+/* Keyboard focus is drawn as a reticle in the accent colour, everywhere. The
+   native pointer is kept: a replaced cursor is the first thing to feel dated. */
+:focus-visible {
+  outline: 2px solid var(--yorha-accent);
+  outline-offset: 2px;
+  border-radius: 0;
 }
 
 .theme-transitioning,
@@ -262,16 +250,10 @@ body {
 .yorha-invert-hover {
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-:root[data-theme='dark'] .yorha-invert-hover:hover,
-:root:not([data-theme='light']) .yorha-invert-hover:hover {
-  background-color: #dcdacf !important;
-  color: #000000 !important;
-  border-color: #dcdacf !important;
-}
-:root[data-theme='light'] .yorha-invert-hover:hover {
-  background-color: #454138 !important;
-  color: #d1d2c5 !important;
-  border-color: #454138 !important;
+.yorha-invert-hover:hover {
+  background-color: var(--yorha-invert-bg) !important;
+  color: var(--yorha-invert-text) !important;
+  border-color: var(--yorha-invert-bg) !important;
 }
 
 /* ==========================================================================
@@ -459,14 +441,15 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #000;
+  /* Follows the theme, so overscroll areas never flash black on the light theme. */
+  background: var(--yorha-bg);
 }
 
-/* Prose reads in the serif; everything structural (headings, nav, labels,
-   buttons, the uppercase micro-type) is Epilogue. */
+/* Reading text is Plus Jakarta Sans. Headings, nav, buttons and table heads
+   are Epilogue. Anything marked font-mono keeps Fira Code, uppercase or not. */
 body {
   width: 100%;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   overflow-x: clip;
 }
 
@@ -487,25 +470,24 @@ h4,
 nav,
 button,
 label,
-th,
-[class*='uppercase'] {
-  font-family: var(--font-sans);
+th {
+  font-family: var(--font-display);
 }
 
 ::selection {
-  background: #fff;
-  color: #000;
+  background: var(--yorha-invert-bg);
+  color: var(--yorha-invert-text);
 }
 
-/* Thin monochrome scrollbar */
+/* Thin scrollbar in the theme's own greys */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--yorha-surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: var(--yorha-border-highlight);
 }
 
 @media (prefers-reduced-motion: reduce) {

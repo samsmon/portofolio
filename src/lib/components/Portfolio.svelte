@@ -44,7 +44,7 @@
         data-anim
         type="button"
         onclick={() => (open = i)}
-        class="group relative flex flex-col justify-between gap-6 sm:gap-8 rounded-none border border-current/15 p-6 text-left outline-none ring-0 transition-all duration-150 hover:border-current/50 hover:bg-current/[0.03] hover:-translate-y-0.5 focus:outline-none focus:ring-0 focus-visible:outline-none sm:p-10 cursor-pointer"
+        class="group relative flex flex-col justify-between gap-6 sm:gap-8 rounded-none border border-current/15 p-6 text-left transition-all duration-150 hover:border-current/50 hover:bg-current/[0.03] hover:-translate-y-0.5 sm:p-10 cursor-pointer"
         style="background-color: var(--yorha-surface);"
       >
         <!-- Tactical Reticle Brackets on Hover -->
@@ -74,7 +74,7 @@
         <p class="max-w-[var(--measure)] text-body opacity-75">{p.summary}</p>
         <ul class="flex flex-wrap gap-2">
           {#each p.stack as s}
-            <li class="rounded-none border border-current/10 bg-current/[0.02] px-2.5 py-1 font-mono text-[10px] opacity-70 transition-colors duration-150 group-hover:border-current/30 group-hover:opacity-100">
+            <li class="rounded-none border border-current/10 bg-current/[0.02] px-2.5 py-1 font-mono text-label opacity-70 transition-colors duration-150 group-hover:border-current/30 group-hover:opacity-100">
               {s}
             </li>
           {/each}
@@ -95,7 +95,7 @@
       class="group yorha-invert-hover inline-flex items-center gap-2.5 border border-current/20 bg-current/5 px-5 py-2.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 cursor-pointer"
       class:opacity-75={isNavigating}
     >
-      <span class="text-[9px]" style="color: var(--yorha-accent);">■</span>
+      <span class="text-label" style="color: var(--yorha-accent);">■</span>
       <span>{isNavigating ? 'Navigating to Archive...' : 'Explore All Projects Archive'}</span>
       <span class="transition-transform duration-150 group-hover:translate-x-1" class:translate-x-1={isNavigating}>→</span>
     </a>

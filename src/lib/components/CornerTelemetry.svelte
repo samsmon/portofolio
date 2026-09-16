@@ -25,10 +25,10 @@
     <div
       class="flex flex-col items-start gap-0.5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] {showClock ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0 pointer-events-auto'}"
     >
-      <span class="font-serif text-caption italic tracking-wide transition-all duration-300" style="color: var(--yorha-text-primary);">
+      <span class="font-display text-caption italic tracking-wide transition-all duration-300" style="color: var(--yorha-text-primary);">
         {figure.name}
       </span>
-      <span class="text-[10px] tracking-[0.2em] uppercase transition-all duration-300" style="color: var(--yorha-text-muted);">
+      <span class="text-label tracking-[0.2em] uppercase transition-all duration-300" style="color: var(--yorha-text-muted);">
         {#if traced}{figure.coords} · {figure.id}{:else}Move to trace a figure{/if}
       </span>
     </div>
@@ -51,7 +51,7 @@
             style="background-color: var(--yorha-surface); border-color: var(--yorha-border); color: var(--yorha-text-primary);"
           >
             <span style="color: var(--yorha-accent);">←</span>
-            <span class="text-[10px] uppercase tracking-widest font-semibold whitespace-nowrap">RETURN TO HERO</span>
+            <span class="text-label uppercase tracking-widest font-semibold whitespace-nowrap">RETURN TO HERO</span>
           </button>
         </div>
       </div>

@@ -27,7 +27,7 @@
     }
 
     return new Promise((resolve) => {
-      document.startViewTransition(async () => {
+      const transition = document.startViewTransition(async () => {
         try {
           resolve();
           await navigation.complete;
@@ -36,6 +36,11 @@
           window.__lenis?.scrollTo(0, { immediate: true });
         }
       });
+      // A transition is skipped by the browser when the tab is hidden or a
+      // second navigation lands first. That is fine; it must not surface as
+      // an unhandled rejection.
+      transition.ready.catch(() => {});
+      transition.finished.catch(() => {});
     });
   });
 
@@ -76,15 +81,18 @@
 <svelte:head>
   <title>{identity.title}</title>
   <meta name="description" content={identity.tagline} />
-  <!-- OpenGraph / Social Cards -->
+  <!-- OpenGraph / Social Cards. Image URLs must be absolute: crawlers do not
+       resolve relative paths against the page. -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={identity.name} />
   <meta property="og:title" content={identity.title} />
   <meta property="og:description" content={identity.tagline} />
-  <meta property="og:image" content="/og-preview.png" />
+  <meta property="og:url" content={`${identity.url}${page.url.pathname}`} />
+  <meta property="og:image" content={`${identity.url}/og-preview.png`} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={identity.title} />
   <meta name="twitter:description" content={identity.tagline} />
-  <meta name="twitter:image" content="/og-preview.png" />
+  <meta name="twitter:image" content={`${identity.url}/og-preview.png`} />
 </svelte:head>
 
 <!-- Top Right Tactical HUD Bar: Theme Switcher & Command Palette -->
@@ -100,13 +108,13 @@
           window.dispatchEvent(new CustomEvent('open-command-palette'));
         }
       }}
-      class="group flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] opacity-70 hover:opacity-100 transition-opacity focus:outline-none"
+      class="group flex items-center gap-2 font-mono text-label uppercase tracking-[0.2em] opacity-70 hover:opacity-100 transition-opacity"
       style="color: var(--yorha-text-primary);"
     >
-      <span class="sm:hidden border border-current/20 bg-black/20 px-2 py-1 backdrop-blur-sm font-semibold tracking-wider">[ MENU ]</span>
-      <span class="hidden sm:inline">MENU</span>
-      <span class="hidden sm:flex items-center border border-current/20 bg-black/20 px-2 py-0.5 backdrop-blur-sm transition-colors group-hover:border-current/40">
-        <span>⌘K</span>
+      <span class="sm:hidden border border-current/20 px-2 py-1 backdrop-blur-sm font-semibold tracking-wider" style="background-color: var(--yorha-surface);">Menu</span>
+      <span class="hidden sm:inline">Menu</span>
+      <span class="hidden sm:flex items-center border border-current/20 px-2 py-0.5 backdrop-blur-sm transition-colors group-hover:border-current/40" style="background-color: var(--yorha-surface);">
+        <kbd class="font-mono">⌘K</kbd>
       </span>
     </button>
   {/if}

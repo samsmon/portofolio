@@ -21,9 +21,8 @@ function queueRefresh() {
 
 /**
  * Svelte action for a content section. Its `[data-anim]` descendants animate
- * in (staggered rise + fade) when the section enters the viewport and animate
- * out when it leaves: reversible in both scroll directions, every time, not
- * just on first load. A `[data-anim-line]` hairline is drawn in via scaleX,
+ * in (staggered rise + fade) the first time the section enters the viewport
+ * and then stay. A `[data-anim-line]` hairline is drawn in via scaleX,
  * `[data-anim-scan]` is the beam that sweeps along it, and
  * `[data-anim-badge]` is the section code that snaps in beside the title.
  *
@@ -111,43 +110,13 @@ export function sectionAnim(node) {
       });
     };
 
-    const hide = (dir) => {
-      if (index) {
-        gsap.to(index, {
-          yPercent: dir > 0 ? 100 : -100,
-          opacity: 0,
-          duration: dur.xs,
-          ease: ease.in,
-          overwrite: true
-        });
-      }
-
-      if (line) {
-        gsap.to(line, {
-          scaleX: 0,
-          duration: dur.sm,
-          ease: ease.in,
-          overwrite: true
-        });
-      }
-
-      gsap.to(items, {
-        opacity: 0,
-        y: dir * 14,
-        filter: 'blur(2px)',
-        duration: dur.xs,
-        ease: ease.in,
-        overwrite: true
-      });
-    };
-
+    // Sections reveal once and then stay put. Re-hiding content as the
+    // visitor scrolls back up reads as restless after the first pass.
     const st = ScrollTrigger.create({
       trigger: node,
       start: 'top 88%',
-      end: 'bottom top',
-      onEnter: show,
-      onEnterBack: show,
-      onLeaveBack: () => hide(1)
+      once: true,
+      onEnter: show
     });
 
     // Section already within or past the viewport on mount: enter straight away.

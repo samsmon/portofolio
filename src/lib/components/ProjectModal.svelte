@@ -82,13 +82,13 @@
 
     <!-- Tactical Top Toolbar -->
     <header class="flex items-center justify-between border-b px-4 py-3 sm:px-6 shrink-0 font-mono" style="border-color: var(--yorha-border); background-color: var(--yorha-bg);">
-      <div class="flex items-center gap-2.5 text-[11px] uppercase tracking-wider">
-        <span class="inline-block h-2 w-2 rounded-none animate-pulse" style="background-color: var(--yorha-accent);"></span>
-        <span class="font-medium truncate max-w-[170px] sm:max-w-none" style="color: var(--yorha-text-primary);">POD // SPEC_{num}</span>
-        <span class="border px-1.5 py-0.5 text-[9px] shrink-0" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">[{project.kind}]</span>
+      <div class="flex items-center gap-2.5 text-label uppercase tracking-wider">
+        <span class="inline-block h-2 w-2 rounded-none" style="background-color: var(--yorha-accent);"></span>
+        <span class="font-medium truncate max-w-[170px] sm:max-w-none" style="color: var(--yorha-text-primary);">Project {num}</span>
+        <span class="border px-1.5 py-0.5 text-label shrink-0" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">{project.kind}</span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="hidden sm:inline font-mono text-[10px] tracking-widest" style="color: var(--yorha-text-muted);">[ ESC TO DISMISS ]</span>
+        <span class="hidden sm:inline font-mono text-label tracking-widest" style="color: var(--yorha-text-muted);">Esc to close</span>
         <button
           type="button"
           onclick={close}
@@ -111,7 +111,7 @@
         data-lenis-prevent
       >
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-[0.25em] block" style="color: var(--yorha-text-muted);">
+          <span class="font-mono text-label uppercase tracking-[0.25em] block" style="color: var(--yorha-text-muted);">
             UNIT_INDEX
           </span>
           <p class="font-mono text-4xl sm:text-5xl font-bold tracking-tight mt-1" style="color: var(--yorha-text-primary);">
@@ -120,7 +120,7 @@
         </div>
 
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-[0.25em] block mb-1" style="color: var(--yorha-accent);">
+          <span class="font-mono text-label uppercase tracking-[0.25em] block mb-1" style="color: var(--yorha-accent);">
             SYSTEM_NAME
           </span>
           <h2
@@ -134,22 +134,22 @@
 
         <dl class="flex flex-col gap-2.5 font-mono text-xs border-t border-b py-4" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">
           <div class="flex items-baseline justify-between gap-3">
-            <dt class="tracking-[0.18em] text-[10px] uppercase" style="color: var(--yorha-text-muted);">YEAR</dt>
+            <dt class="tracking-[0.18em] text-label uppercase" style="color: var(--yorha-text-muted);">YEAR</dt>
             <dd class="m-0 font-medium text-[11px]" style="color: var(--yorha-text-primary);">{project.year}</dd>
           </div>
           <div class="flex items-baseline justify-between gap-3">
-            <dt class="tracking-[0.18em] text-[10px] uppercase" style="color: var(--yorha-text-muted);">CLASSIFICATION</dt>
+            <dt class="tracking-[0.18em] text-label uppercase" style="color: var(--yorha-text-muted);">CLASSIFICATION</dt>
             <dd class="m-0 font-medium text-[11px]" style="color: var(--yorha-text-primary);">{project.kind}</dd>
           </div>
         </dl>
 
         {#if project.stack?.length}
           <div class="space-y-2">
-            <span class="font-mono text-[10px] uppercase tracking-[0.2em] block" style="color: var(--yorha-text-muted);">CORE_STACK</span>
+            <span class="font-mono text-label uppercase tracking-[0.2em] block" style="color: var(--yorha-text-muted);">CORE_STACK</span>
             <div class="flex flex-wrap gap-1.5">
               {#each project.stack as s}
                 <span
-                  class="rounded-none border px-2 py-0.5 font-mono text-[10px]"
+                  class="rounded-none border px-2 py-0.5 font-mono text-label"
                   style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);"
                 >
                   {s}
@@ -217,7 +217,7 @@
 
         {#if project.links?.length}
           <div class="flex flex-col gap-2 pt-4 border-t" style="border-color: var(--yorha-border);">
-            <span class="font-mono text-[10px] uppercase tracking-widest mb-1" style="color: var(--yorha-accent);">SYSTEM_ENDPOINTS</span>
+            <span class="font-mono text-label uppercase tracking-widest mb-1" style="color: var(--yorha-accent);">SYSTEM_ENDPOINTS</span>
             {#each project.links as link}
               <a
                 href={link.href}

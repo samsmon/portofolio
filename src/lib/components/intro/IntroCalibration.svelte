@@ -233,7 +233,7 @@
   </div>
 
   <div
-    class="pointer-events-none absolute bottom-8 font-mono text-[9px] uppercase tracking-[0.3em] opacity-40"
+    class="pointer-events-none absolute bottom-8 font-mono text-label uppercase tracking-[0.3em] opacity-40"
   >
     [ CLICK OR SPACE TO BYPASS ]
   </div>

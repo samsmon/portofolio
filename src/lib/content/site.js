@@ -5,7 +5,7 @@ export const identity = {
   display: ['Surya', 'Atmaja'], // hero headline — two stacked lines
   // Hero role, under the name. Two lines so it says the whole picture — not
   // just an app dev, but the cloud + self-hosted infra it runs on.
-  role: ['Full-stack developer', 'Cloud & homelab infrastructure'],
+  role: ['Full-stack developer', 'Cloud infrastructure & automation'],
   // The constellation lines, set small on the right of the hero like a margin
   // note. One entry per line so the wrap is deliberate, not ragged.
   trivia: [
@@ -13,7 +13,10 @@ export const identity = {
     "It's the lines between them that make a shape worth naming."
   ],
   title: 'Surya Atmaja - Full stack Developer', // browser tab
-  tagline: 'Full-stack developer. I build web apps and run the infrastructure they scale on.'
+  tagline: 'Full-stack developer. I build web apps and run the infrastructure they scale on.',
+  // Canonical origin. Used for absolute Open Graph image URLs, the sitemap and
+  // robots.txt. Change this if the site ever moves.
+  url: 'https://suryatmaja.dev'
 };
 
 // Section headings. The nav labels stay literal (About / Skills / Portfolio /
@@ -32,17 +35,17 @@ export const about = {
     'Most of what I build runs on my own homelab. I reach for AWS when a project needs it (managed databases, email, object storage at scale), not by default.',
     'I like systems that stay small and boring to run, and automating anything that would otherwise be done by hand.'
   ],
-  working: [
-    "If it's manual twice, it gets scripted.",
-    'Small PRs, boring deploys.',
-    'Fewer moving parts beats clever.'
-  ],
-  now: 'Tinkering with the homelab and reading about distributed systems.',
   location: 'Bandung, West Java',
   status: 'Node 01: Staging & Lab Assembly',
-  // Portrait: set to '/portrait.jpg' (drop the photo in static/) to render it
-  // as a halftone dot field. null = show the auto-playing snake placeholder.
-  portrait: null
+  // Portrait pair for the About section. `primary` is what visitors see first
+  // (the illustrated one); `secondary` wipes in on hover or tap (the formal
+  // photo). Drop both files in static/ and keep the paths absolute. If a file
+  // is missing the component falls back to the auto-playing snake placeholder.
+  portrait: {
+    primary: '/portrait-illustrated.jpg',
+    secondary: '/portrait-formal.jpg',
+    alt: 'Bakti Surya Atmaja'
+  }
 };
 
 export const availability = {

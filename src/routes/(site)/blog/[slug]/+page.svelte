@@ -8,9 +8,16 @@
   import { prefersReducedMotion } from '$lib/utils/device.js';
   import { portal } from '$lib/actions/portal.js';
   import { blogTheme } from '$lib/blog/blogTheme.js';
+  import { identity } from '$lib/content/site.js';
 
   let { data } = $props();
   const post = $derived(data.post);
+  // ISO timestamp for article:published_time; empty when the front matter
+  // date cannot be parsed so prerendering never throws on a bad date.
+  const publishedIso = $derived.by(() => {
+    const t = post.rawDate ? new Date(post.rawDate).getTime() : NaN;
+    return Number.isNaN(t) ? '' : new Date(t).toISOString();
+  });
 
   // Article entrance and search-modal tweens are registered here so leaving
   // the reader reverts them in one call.
@@ -266,7 +273,7 @@
         gsap.fromTo(
           '[data-article-anim]',
           { y: 12, opacity: 0 },
-          { y: 0, opacity: 1, duration: dur.xs, ease: ease.ui, clearProps: 'all' }
+          { y: 0, opacity: 1, duration: dur.xs, ease: ease.ui, clearProps: 'transform,opacity' }
         );
       });
     }
@@ -368,10 +375,30 @@
 </script>
 
 <svelte:head>
-  <title>{post.title} — Bakti Surya Atmaja</title>
+  <title>{post.title} — {identity.name}</title>
   {#if post.description}
     <meta name="description" content={post.description} />
   {/if}
+  <link rel="canonical" href={`${identity.url}/blog/${post.slug}`} />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={post.title} />
+  {#if post.description}
+    <meta property="og:description" content={post.description} />
+  {/if}
+  <meta property="og:url" content={`${identity.url}/blog/${post.slug}`} />
+  <meta property="og:image" content={`${identity.url}/og-preview.png`} />
+  {#if publishedIso}
+    <meta property="article:published_time" content={publishedIso} />
+  {/if}
+  {#each post.tags || [] as tag}
+    <meta property="article:tag" content={tag} />
+  {/each}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={post.title} />
+  {#if post.description}
+    <meta name="twitter:description" content={post.description} />
+  {/if}
+  <meta name="twitter:image" content={`${identity.url}/og-preview.png`} />
 </svelte:head>
 
 <div class="blog-reading-view min-h-screen pt-24 sm:pt-28 pb-28 yorha-tech-bg-reader">
@@ -439,14 +466,14 @@
               <!-- Row 1: Category -->
               {#if post.categories && post.categories.length > 0}
                 <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <span class="text-[10px] uppercase tracking-wider font-semibold shrink-0 sm:w-24" style="color: var(--blog-accent);">
+                  <span class="text-label uppercase tracking-wider font-semibold shrink-0 sm:w-24" style="color: var(--blog-accent);">
                     [ CATEGORY ]
                   </span>
                   <div class="flex flex-wrap items-center gap-1.5">
                     {#each post.categories as cat, idx}
                       <a
                         href={`/blog?category=${encodeURIComponent(cat)}`}
-                        class="group relative font-mono text-[10px] uppercase tracking-wider px-2.5 py-1 border rounded-none transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer hover:border-[var(--blog-accent)]"
+                        class="group relative font-mono text-label uppercase tracking-wider px-2.5 py-1 border rounded-none transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer hover:border-[var(--blog-accent)]"
                         style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
                       >
                         <span class="pointer-events-none absolute -top-px -left-px h-1.5 w-1.5 border-l border-t opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
@@ -454,7 +481,7 @@
                         <span class="relative z-10 transition-colors group-hover:text-[var(--blog-accent)]">{cat}</span>
                       </a>
                       {#if idx < post.categories.length - 1}
-                        <span class="text-[10px] opacity-40 font-mono">/</span>
+                        <span class="text-label opacity-40 font-mono">/</span>
                       {/if}
                     {/each}
                   </div>
@@ -464,14 +491,14 @@
               <!-- Row 2: Tags -->
               {#if post.tags && post.tags.length > 0}
                 <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <span class="text-[10px] uppercase tracking-wider font-semibold shrink-0 sm:w-24" style="color: var(--blog-text-muted);">
+                  <span class="text-label uppercase tracking-wider font-semibold shrink-0 sm:w-24" style="color: var(--blog-text-muted);">
                     [ TAGS ]
                   </span>
                   <div class="flex flex-wrap items-center gap-1.5">
                     {#each post.tags as tag}
                       <a
                         href={`/blog?tag=${encodeURIComponent(tag)}`}
-                        class="group relative font-mono text-[10px] px-2.5 py-1 border rounded-none transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer hover:border-[var(--blog-accent)]"
+                        class="group relative font-mono text-label px-2.5 py-1 border rounded-none transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer hover:border-[var(--blog-accent)]"
                         style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);"
                       >
                         <span class="pointer-events-none absolute -top-px -left-px h-1.5 w-1.5 border-l border-t opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
@@ -510,14 +537,14 @@
                   <span class="pointer-events-none absolute -bottom-px -left-px h-2 w-2 border-b-2 border-l-2 opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
                   <span class="pointer-events-none absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
 
-                  <div class="font-mono text-[10px] uppercase tracking-wider flex items-center gap-1.5 transition-colors" style="color: var(--blog-text-muted);">
+                  <div class="font-mono text-label uppercase tracking-wider flex items-center gap-1.5 transition-colors" style="color: var(--blog-text-muted);">
                     <span class="transition-transform duration-200 group-hover:-translate-x-1" style="color: var(--blog-accent);">←</span>
                     <span>Newer Article</span>
                   </div>
                   <div class="text-sm font-semibold transition-colors line-clamp-2" style="color: var(--blog-text-primary);">
                     {newerPost.title}
                   </div>
-                  <div class="font-mono text-[10px]" style="color: var(--blog-text-muted);">
+                  <div class="font-mono text-label" style="color: var(--blog-text-muted);">
                     {newerPost.date}
                   </div>
                 </a>
@@ -536,14 +563,14 @@
                   <span class="pointer-events-none absolute -bottom-px -left-px h-2 w-2 border-b-2 border-l-2 opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
                   <span class="pointer-events-none absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
 
-                  <div class="font-mono text-[10px] uppercase tracking-wider flex items-center justify-end gap-1.5 transition-colors" style="color: var(--blog-text-muted);">
+                  <div class="font-mono text-label uppercase tracking-wider flex items-center justify-end gap-1.5 transition-colors" style="color: var(--blog-text-muted);">
                     <span>Previous Article</span>
                     <span class="transition-transform duration-200 group-hover:translate-x-1" style="color: var(--blog-accent);">→</span>
                   </div>
                   <div class="text-sm font-semibold transition-colors line-clamp-2" style="color: var(--blog-text-primary);">
                     {olderPost.title}
                   </div>
-                  <div class="font-mono text-[10px]" style="color: var(--blog-text-muted);">
+                  <div class="font-mono text-label" style="color: var(--blog-text-muted);">
                     {olderPost.date}
                   </div>
                 </a>
@@ -580,7 +607,7 @@
           <div class="space-y-8 pb-8">
             <!-- 1. Recently Updated Posts -->
             <div class="space-y-3">
-              <div class="flex items-center justify-between border-b pb-2 font-mono text-[10px] uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
+              <div class="flex items-center justify-between border-b pb-2 font-mono text-label uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
                 <span class="font-bold" style="color: var(--blog-text-primary);">[ RECENTLY UPDATED ]</span>
                 <span>latest</span>
               </div>
@@ -606,7 +633,7 @@
                     <div class="text-xs font-semibold transition-colors duration-150 line-clamp-2 leading-snug group-hover:text-[var(--blog-accent)]" style="color: var(--blog-text-primary);">
                       {rPost.title}
                     </div>
-                    <div class="mt-2 flex items-center justify-between font-mono text-[10px]" style="color: var(--blog-text-muted);">
+                    <div class="mt-2 flex items-center justify-between font-mono text-label" style="color: var(--blog-text-muted);">
                       <time datetime={rPost.date}>{rPost.date}</time>
                       <div class="flex items-center gap-1">
                         <span>{rPost.readingTime}</span>
@@ -621,7 +648,7 @@
             <!-- 2. Trending Topics (Trending Tags) -->
             {#if trendingTags.length > 0}
               <div class="space-y-3 pt-2">
-                <div class="flex items-center justify-between border-b pb-2 font-mono text-[10px] uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
+                <div class="flex items-center justify-between border-b pb-2 font-mono text-label uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
                   <span class="font-bold" style="color: var(--blog-text-primary);">[ TRENDING TOPICS ]</span>
                   <span>top {trendingTags.length}</span>
                 </div>
@@ -638,7 +665,7 @@
                       <span class="pointer-events-none absolute -bottom-px -right-px h-1.5 w-1.5 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
 
                       <span class="transition-colors group-hover:text-[var(--blog-text-primary)]">#{t.name}</span>
-                      <span class="text-[9px] opacity-60 transition-colors group-hover:opacity-100" style="color: var(--blog-accent);">[{t.count}]</span>
+                      <span class="text-label opacity-60 transition-colors group-hover:opacity-100" style="color: var(--blog-accent);">[{t.count}]</span>
                     </a>
                   {/each}
                 </div>
@@ -650,7 +677,7 @@
           <div class="sticky top-20 space-y-6 pt-4 border-t" style="border-color: var(--blog-border);">
             <!-- 3. Contents (Table of Contents / TOC with ScrollSpy) -->
             <div class="space-y-3">
-              <div class="flex items-center justify-between border-b pb-2 font-mono text-[10px] uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
+              <div class="flex items-center justify-between border-b pb-2 font-mono text-label uppercase tracking-widest" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
                 <span class="font-bold" style="color: var(--blog-text-primary);">[ CONTENTS ]</span>
                 <span>{post.toc?.length || 0} sections</span>
               </div>
@@ -722,7 +749,7 @@
       </div>
 
       <!-- Real-time Results Info Bar -->
-      <div class="px-4 py-2 border-b flex items-center justify-between font-mono text-[10px] uppercase" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
+      <div class="px-4 py-2 border-b flex items-center justify-between font-mono text-label uppercase" style="border-color: var(--blog-border); color: var(--blog-text-muted);">
         <span>{filteredPosts.length} article{filteredPosts.length === 1 ? '' : 's'} found</span>
         <span>Use ↑ ↓ to navigate · Enter to select</span>
       </div>
@@ -745,14 +772,14 @@
                 <span class="font-semibold text-sm transition-colors" style="color: var(--blog-text-primary);">
                   {item.title}
                 </span>
-                <span class="font-mono text-[10px] shrink-0" style="color: var(--blog-text-muted);">{item.date}</span>
+                <span class="font-mono text-label shrink-0" style="color: var(--blog-text-muted);">{item.date}</span>
               </div>
               {#if item.description}
                 <p class="text-xs line-clamp-1 mt-1 font-sans" style="color: var(--blog-text-muted);">
                   {item.description}
                 </p>
               {/if}
-              <div class="mt-2 flex flex-wrap items-center gap-2 font-mono text-[10px]" style="color: var(--blog-text-muted);">
+              <div class="mt-2 flex flex-wrap items-center gap-2 font-mono text-label" style="color: var(--blog-text-muted);">
                 {#if item.categories && item.categories.length > 0}
                   <span class="uppercase" style="color: var(--blog-accent);">{item.categories.join(' / ')}</span>
                   <span>·</span>
@@ -826,7 +853,7 @@
         <button
           type="button"
           onclick={() => (isMobileTocOpen = false)}
-          class="border px-2 py-1 text-[10px] font-mono tracking-wider uppercase transition-colors yorha-invert-hover cursor-pointer"
+          class="border px-2 py-1 text-label font-mono tracking-wider uppercase transition-colors yorha-invert-hover cursor-pointer"
           style="border-color: var(--blog-border); background-color: var(--blog-bg); color: var(--blog-text-primary);"
         >
           [ ✕ CLOSE ]

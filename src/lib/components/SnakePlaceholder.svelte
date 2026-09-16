@@ -138,7 +138,14 @@
     function render() {
       ctx.clearRect(0, 0, W, H);
 
-      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      // Draw in the theme's text colour so the field reads on both the black
+      // and the cream background.
+      const ink =
+        getComputedStyle(document.documentElement).getPropertyValue('--yorha-text-primary').trim() ||
+        '#dcdacf';
+      ctx.fillStyle = ink;
+
+      ctx.globalAlpha = 0.5;
       for (const f of food) {
         ctx.beginPath();
         ctx.arc(f.x * cell + cell / 2, f.y * cell + cell / 2, cell * 0.15, 0, 7);
@@ -149,9 +156,10 @@
       for (let i = snake.length - 1; i >= 0; i--) {
         const s = snake[i];
         const t = 1 - i / snake.length;
-        ctx.fillStyle = `rgba(255,255,255,${(0.3 + t * 0.65).toFixed(3)})`;
+        ctx.globalAlpha = 0.3 + t * 0.65;
         ctx.fillRect(s.x * cell + pad, s.y * cell + pad, cell - 2 * pad, cell - 2 * pad);
       }
+      ctx.globalAlpha = 1;
     }
 
     function frame(now) {
