@@ -1,6 +1,8 @@
 <script>
   import { onMount, tick } from 'svelte';
   import { gsap } from 'gsap';
+  import { ease, dur, stagger } from '$lib/motion.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
   import { sectionAnim } from '$lib/scroll/sectionAnim.js';
 
   let { data } = $props();
@@ -12,22 +14,16 @@
   const ITEMS_PER_PAGE = 6;
   let currentPage = $state(1);
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
+  // Every grid entrance is registered in this context so leaving the page
+  // reverts them in one call. The first run comes from the search $effect.
+  /** @type {gsap.Context | null} */ let ctx = null;
 
   onMount(() => {
     window.scrollTo(0, 0);
     window.__lenis?.scrollTo(0, { immediate: true });
 
-    // Initial animation
-    if (!reduce) {
-      gsap.fromTo(
-        '[data-project-card]',
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out', clearProps: 'transform,opacity' }
-      );
-    }
+    ctx = gsap.context(() => {});
 
     function onKey(e) {
       if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
@@ -36,7 +32,11 @@
       }
     }
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      ctx?.revert();
+      ctx = null;
+    };
   });
 
   // Explicit handler when category filter is clicked
@@ -58,12 +58,22 @@
     if (reduce) return;
     await tick();
     requestAnimationFrame(() => {
-      gsap.killTweensOf('[data-project-card]');
-      gsap.fromTo(
-        '[data-project-card]',
-        { y: 16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.35, stagger: 0.04, ease: 'power2.out', clearProps: 'transform,opacity' }
-      );
+      if (!ctx) return;
+      ctx.add(() => {
+        gsap.killTweensOf('[data-project-card]');
+        gsap.fromTo(
+          '[data-project-card]',
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: dur.sm,
+            stagger: stagger.base,
+            ease: ease.ui,
+            clearProps: 'transform,opacity'
+          }
+        );
+      });
     });
   }
 

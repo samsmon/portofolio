@@ -5,10 +5,9 @@
   import { portal } from '$lib/actions/portal.js';
   import { contact, projects } from '$lib/content/site.js';
   import { trivia } from '$lib/palette/trivia.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
 
   let show = $state(false);
   let query = $state('');

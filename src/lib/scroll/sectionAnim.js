@@ -1,10 +1,8 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ease, dur, stagger } from '$lib/motion.js';
+import { ease, dur, stagger, media } from '$lib/motion.js';
 
 gsap.registerPlugin(ScrollTrigger);
-
-if (typeof window !== 'undefined') window.__st = ScrollTrigger;
 
 // One shared refresh after a burst of sections mount, so triggers land in the
 // right place relative to the pinned hero.
@@ -21,250 +19,170 @@ function queueRefresh() {
   }, 350);
 }
 
-const reduced = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 /**
  * Svelte action for a content section. Its `[data-anim]` descendants animate
  * in (staggered rise + fade) when the section enters the viewport and animate
- * out when it leaves — reversible in both scroll directions, every time, not
- * just on first load. A `[data-anim-line]` element is drawn in via scaleX.
+ * out when it leaves: reversible in both scroll directions, every time, not
+ * just on first load. A `[data-anim-line]` hairline is drawn in via scaleX,
+ * `[data-anim-scan]` is the beam that sweeps along it, and
+ * `[data-anim-badge]` is the section code that snaps in beside the title.
+ *
+ * Everything lives inside a gsap.matchMedia context keyed on the visitor's
+ * reduced-motion preference, so flipping that preference at the OS level
+ * reverts the tweens and ScrollTriggers and rebuilds the section in the other
+ * mode without a reload.
  *
  * @param {HTMLElement} node
  */
 export function sectionAnim(node) {
   const items = [...node.querySelectorAll('[data-anim]')];
-  const words = [...node.querySelectorAll('[data-anim-word]')];
-  const titles = [...node.querySelectorAll('[data-anim-title]')];
   const line = node.querySelector('[data-anim-line]');
   const scan = node.querySelector('[data-anim-scan]');
   const index = node.querySelector('[data-anim-badge]') || node.querySelector('[data-anim-index]');
 
-  if (reduced()) {
-    gsap.set(items, { opacity: 1, y: 0, filter: 'none' });
-    gsap.set(words, { yPercent: 0, x: 0, rotate: 0, opacity: 1 });
-    gsap.set(titles, { yPercent: 0, opacity: 1 });
-    if (index) gsap.set(index, { yPercent: 0, x: 0, opacity: 1 });
-    if (line) gsap.set(line, { scaleX: 1 });
-    if (scan) gsap.set(scan, { display: 'none' });
-    return {};
-  }
+  const mm = gsap.matchMedia();
 
-  // Initial state: directional split offsets for kinetic typography
-  words.forEach((w) => {
-    const isLeft = w.dataset.dir === 'left';
-    gsap.set(w, {
-      yPercent: 125,
-      x: isLeft ? -24 : 24,
-      rotate: isLeft ? -3 : 3,
-      opacity: 0
-    });
-  });
-
-  gsap.set(titles, { yPercent: 125, opacity: 0 });
-  if (index) gsap.set(index, { yPercent: 120, opacity: 0 });
-  if (line) gsap.set(line, { scaleX: 0, transformOrigin: 'left center' });
-  if (scan) gsap.set(scan, { opacity: 0, x: -100 });
-  gsap.set(items, { opacity: 0, y: 32, filter: 'blur(4px)' });
-
-  const show = () => {
-    // 1. Kinetic word split — punchy opposing vector entrance
-    if (words.length) {
-      gsap.to(words, {
-        yPercent: 0,
-        x: 0,
-        rotate: 0,
-        opacity: 1,
-        duration: 0.85,
-        stagger: 0.05,
-        ease: 'power4.out',
-        overwrite: true
-      });
+  mm.add({ reduce: media.reduce, motion: media.motion }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      // Everything already sits in its resting state. The beam is the one
+      // element that is only ever meant to be seen mid-sweep, so park it.
+      if (scan) gsap.set(scan, { display: 'none' });
+      return;
     }
 
-    if (titles.length) {
-      gsap.to(titles, {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power4.out',
-        overwrite: true
-      });
-    }
+    let alive = true;
 
-    // 2. Technical section badge snaps in
-    if (index) {
-      gsap.to(index, {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.7,
-        ease: 'power3.out',
-        delay: 0.08,
-        overwrite: true
-      });
-    }
+    // Initial (hidden) state.
+    if (index) gsap.set(index, { yPercent: 120, opacity: 0 });
+    if (line) gsap.set(line, { scaleX: 0, transformOrigin: 'left center' });
+    if (scan) gsap.set(scan, { opacity: 0, x: -100 });
+    gsap.set(items, { opacity: 0, y: 32, filter: 'blur(4px)' });
 
-    // 3. Precision hairline draws in
-    if (line) {
-      gsap.to(line, {
-        scaleX: 1,
-        duration: 0.85,
-        ease: 'power3.out',
-        delay: 0.04,
-        overwrite: true
-      });
-    }
-
-    // 4. Luminous scanline beam sweeps across the hairline
-    if (scan) {
-      const sweepDistance = node.clientWidth ? Math.max(node.clientWidth, 1200) : 1200;
-      gsap.fromTo(
-        scan,
-        { x: -120, opacity: 1 },
-        {
-          x: sweepDistance,
-          opacity: 0,
-          duration: 0.95,
-          ease: 'power2.inOut',
+    const show = () => {
+      // 1. Technical section badge snaps in
+      if (index) {
+        gsap.to(index, {
+          yPercent: 0,
+          opacity: 1,
+          duration: dur.md,
+          ease: ease.ui,
+          delay: 0.08,
           overwrite: true
-        }
-      );
-    }
+        });
+      }
 
-    // 5. Content items rise with optical unblur and crisp spring
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.4,
-      stagger: 0.05,
-      ease: 'power2.out',
-      overwrite: true,
-      clearProps: 'filter'
-    });
-  };
+      // 2. Precision hairline draws in
+      if (line) {
+        gsap.to(line, {
+          scaleX: 1,
+          duration: dur.lg,
+          ease: ease.ui,
+          delay: 0.04,
+          overwrite: true
+        });
+      }
 
-  const hide = (dir) => {
-    words.forEach((w) => {
-      const isLeft = w.dataset.dir === 'left';
-      gsap.to(w, {
-        yPercent: dir > 0 ? 120 : -120,
-        x: isLeft ? -14 : 14,
+      // 3. Luminous scanline beam sweeps across the hairline
+      if (scan) {
+        const sweepDistance = node.clientWidth ? Math.max(node.clientWidth, 1200) : 1200;
+        gsap.fromTo(
+          scan,
+          { x: -120, opacity: 1 },
+          {
+            x: sweepDistance,
+            opacity: 0,
+            duration: dur.lg,
+            ease: ease.draw,
+            overwrite: true
+          }
+        );
+      }
+
+      // 4. Content items rise with optical unblur
+      gsap.to(items, {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        duration: dur.sm,
+        stagger: stagger.base,
+        ease: ease.ui,
+        overwrite: true,
+        clearProps: 'filter'
+      });
+    };
+
+    const hide = (dir) => {
+      if (index) {
+        gsap.to(index, {
+          yPercent: dir > 0 ? 100 : -100,
+          opacity: 0,
+          duration: dur.xs,
+          ease: ease.in,
+          overwrite: true
+        });
+      }
+
+      if (line) {
+        gsap.to(line, {
+          scaleX: 0,
+          duration: dur.sm,
+          ease: ease.in,
+          overwrite: true
+        });
+      }
+
+      gsap.to(items, {
         opacity: 0,
-        duration: 0.4,
-        ease: 'power3.in',
+        y: dir * 14,
+        filter: 'blur(2px)',
+        duration: dur.xs,
+        ease: ease.in,
         overwrite: true
       });
+    };
+
+    const st = ScrollTrigger.create({
+      trigger: node,
+      start: 'top 88%',
+      end: 'bottom top',
+      onEnter: show,
+      onEnterBack: show,
+      onLeaveBack: () => hide(1)
     });
 
-    if (titles.length) {
-      gsap.to(titles, {
-        yPercent: dir > 0 ? 120 : -120,
-        opacity: 0,
-        duration: 0.35,
-        ease: 'power3.in',
-        overwrite: true
-      });
-    }
-
-    if (index) {
-      gsap.to(index, {
-        yPercent: dir > 0 ? 100 : -100,
-        opacity: 0,
-        duration: 0.3,
-        ease: 'power2.in',
-        overwrite: true
-      });
-    }
-
-    if (line) {
-      gsap.to(line, {
-        scaleX: 0,
-        duration: 0.35,
-        ease: 'power2.in',
-        overwrite: true
-      });
-    }
-
-    gsap.to(items, {
-      opacity: 0,
-      y: dir * 14,
-      filter: 'blur(2px)',
-      duration: 0.22,
-      ease: 'power2.in',
-      overwrite: true
+    // Section already within or past the viewport on mount: enter straight away.
+    requestAnimationFrame(() => {
+      if (alive && st.progress > 0) show();
     });
-  };
 
-  const st = ScrollTrigger.create({
-    trigger: node,
-    start: 'top 88%',
-    end: 'bottom top',
-    onEnter: show,
-    onEnterBack: show,
-    onLeaveBack: () => hide(1)
+    queueRefresh();
+
+    let ro;
+    if (typeof ResizeObserver !== 'undefined') {
+      let resizeTimer;
+      ro = new ResizeObserver(() => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          ScrollTrigger.refresh();
+          if (typeof window !== 'undefined') {
+            window.__lenis?.resize();
+          }
+        }, 50);
+      });
+      ro.observe(node);
+    }
+
+    // Tweens and the ScrollTrigger are reverted by the matchMedia context
+    // itself; only the observer needs a manual teardown.
+    return () => {
+      alive = false;
+      ro?.disconnect();
+    };
   });
-
-  // If section is already within or past viewport on initial mount, trigger entrance immediately
-  requestAnimationFrame(() => {
-    if (st.progress > 0) {
-      show();
-    }
-  });
-
-  queueRefresh();
-
-  let ro;
-  if (typeof ResizeObserver !== 'undefined') {
-    let resizeTimer;
-    ro = new ResizeObserver(() => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-        if (typeof window !== 'undefined') {
-          window.__lenis?.resize();
-        }
-      }, 50);
-    });
-    ro.observe(node);
-  }
 
   return {
     destroy() {
-      if (ro) ro.disconnect();
-      st.kill();
-      gsap.killTweensOf([...items, ...words, ...titles]);
-      if (index) gsap.killTweensOf(index);
-      if (line) gsap.killTweensOf(line);
-      if (scan) gsap.killTweensOf(scan);
-    }
-  };
-}
-
-/**
- * Springy GSAP hover for a card. Scale only — leaves `y`/`opacity` free for
- * the entrance animation on the same element.
- *
- * @param {HTMLElement} node
- */
-export function cardHover(node) {
-  if (reduced()) return {};
-  const enter = () =>
-    gsap.to(node, { scale: 1.025, duration: dur.sm, ease: ease.ui, overwrite: 'auto' });
-  const leave = () =>
-    gsap.to(node, { scale: 1, duration: dur.md, ease: ease.ui, overwrite: 'auto' });
-  node.addEventListener('pointerenter', enter);
-  node.addEventListener('pointerleave', leave);
-  node.addEventListener('focusin', enter);
-  node.addEventListener('focusout', leave);
-  return {
-    destroy() {
-      node.removeEventListener('pointerenter', enter);
-      node.removeEventListener('pointerleave', leave);
-      node.removeEventListener('focusin', enter);
-      node.removeEventListener('focusout', leave);
-      gsap.killTweensOf(node);
+      mm.revert();
     }
   };
 }

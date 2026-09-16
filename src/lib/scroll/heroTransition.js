@@ -1,23 +1,25 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ease } from '$lib/motion.js';
+import { ease, media } from '$lib/motion.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Hero → content scroll choreography. Client-only.
+ * Hero to content scroll choreography. Client-only.
  *
  * mode:
- *  - 'full'    : pin the hero for ~1.4 viewports, scrub the shader shrink/fade
- *                and distort the name away. Desktop / capable devices.
- *  - 'lite'    : same pin + scrub but gentler, no name distortion. Mid devices.
- *  - 'static'  : NO pin (pinning is the expensive part). Hero just scrolls
- *                away while the overlay cross-fades. Potato / reduced-motion.
+ *  - 'full'   : pin the hero and scrub the overlay away. Desktop / capable devices.
+ *  - 'lite'   : same pin + scrub with gentler distances. Mid devices.
+ *  - 'static' : NO pin (pinning is the expensive part). The hero just scrolls
+ *               away while the overlay cross-fades. Low-end / reduced-motion.
+ *
+ * The pinned modes are built inside gsap.matchMedia, so the pin distance and
+ * scrub lag follow the viewport bucket live: crossing a breakpoint reverts and
+ * rebuilds the timeline instead of keeping the numbers measured at mount.
  *
  * @param {{
  *   pinTarget: HTMLElement,
  *   trigger: HTMLElement,
- *   nameEl: HTMLElement,
  *   overlayEl: HTMLElement,
  *   mode: 'full' | 'lite' | 'static',
  *   onProgress: (p: number) => void
@@ -25,35 +27,38 @@ gsap.registerPlugin(ScrollTrigger);
  * @returns {() => void} cleanup
  */
 export function createHeroTransition(cfg) {
-  const { pinTarget, trigger, nameEl, overlayEl, mode, onProgress } = cfg;
+  const { pinTarget, trigger, overlayEl, mode, onProgress } = cfg;
 
   if (mode === 'static') {
-    const st = ScrollTrigger.create({
-      trigger,
-      start: 'top top',
-      end: 'bottom top',
-      onUpdate: (self) => {
-        const p = self.progress;
-        onProgress(p);
-        overlayEl.style.opacity = String(Math.max(0, 1 - p * 1.6));
-        overlayEl.style.transform = `translateY(${p * -20}px)`;
-      }
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger,
+        start: 'top top',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          const p = self.progress;
+          onProgress(p);
+          overlayEl.style.opacity = String(Math.max(0, 1 - p * 1.6));
+          overlayEl.style.transform = `translateY(${p * -20}px)`;
+        }
+      });
     });
-    return () => st.kill();
+    return () => ctx.revert();
   }
 
   const gentle = mode === 'lite';
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1024;
-  const endDistance = isMobile ? '+=40%' : isTablet ? '+=60%' : (gentle ? '+=75%' : '+=90%');
+  const mm = gsap.matchMedia();
 
-  const ctx = gsap.context(() => {
+  mm.add({ mobile: media.mobile, tablet: media.tablet, desktop: media.desktop }, (ctx) => {
+    const { mobile, tablet } = ctx.conditions;
+    const endDistance = mobile ? '+=40%' : tablet ? '+=60%' : gentle ? '+=75%' : '+=90%';
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger,
         start: 'top top',
         end: endDistance,
-        scrub: isMobile ? 0.3 : 0.6,
+        scrub: mobile ? 0.3 : 0.6,
         pin: pinTarget,
         pinSpacing: true,
         anticipatePin: 1,
@@ -66,7 +71,7 @@ export function createHeroTransition(cfg) {
     });
 
     // Fade + lift the whole overlay (name + sub-line together) so it dissolves
-    // as one. No scale — on a large left-aligned headline the shrink read as a
+    // as one. No scale: on a large left-aligned headline the shrink read as a
     // glitch rather than a transition.
     tl.to(
       overlayEl,
@@ -80,11 +85,11 @@ export function createHeroTransition(cfg) {
     );
   });
 
-  // Pin spacer changes document height — recalc every trigger once it's laid out.
+  // Pin spacer changes document height: recalc every trigger once it's laid out.
   ScrollTrigger.refresh();
   requestAnimationFrame(() => ScrollTrigger.refresh());
 
-  return () => ctx.revert();
+  return () => mm.revert();
 }
 
 export { ScrollTrigger, gsap };

@@ -3,27 +3,38 @@
   import { gsap } from 'gsap';
   import { portal } from '$lib/actions/portal.js';
   import { ease, dur } from '$lib/motion.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
   import { resume, identity, about, availability, stats, stack } from '$lib/content/site.js';
 
   /** @type {{ onClose: () => void }} */
   let { onClose } = $props();
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
 
   /** @type {HTMLElement} */ let backdrop;
   /** @type {HTMLElement} */ let panel;
+  /** @type {gsap.Context | null} */ let ctx = null;
   let restoreFocus;
   let closing = false;
+  let closed = false;
+
+  // onClose unmounts the modal; make sure it runs exactly once whether the
+  // exit tween completes or the safety timeout fires first.
+  function finish() {
+    if (closed) return;
+    closed = true;
+    onClose();
+  }
 
   function close() {
     if (closing) return;
     closing = true;
-    if (reduce) return onClose();
-    gsap.to(panel, { autoAlpha: 0, y: 16, duration: dur.xs, ease: ease.in });
-    gsap.to(backdrop, { autoAlpha: 0, duration: dur.xs, ease: ease.in, onComplete: onClose });
-    setTimeout(onClose, 300);
+    if (reduce || !ctx) return finish();
+    ctx.add(() => {
+      gsap.to(panel, { autoAlpha: 0, y: 16, duration: dur.xs, ease: ease.in });
+      gsap.to(backdrop, { autoAlpha: 0, duration: dur.xs, ease: ease.in, onComplete: finish });
+    });
+    setTimeout(finish, 300);
   }
 
   function key(e) {
@@ -42,13 +53,22 @@
   onMount(() => {
     restoreFocus = document.activeElement;
 
-    if (!reduce) {
-      gsap.from(backdrop, { autoAlpha: 0, duration: 0.16 });
-      gsap.from(panel, { autoAlpha: 0, y: 8, duration: 0.18, ease: 'power2.out', clearProps: 'transform,opacity' });
-    }
+    ctx = gsap.context(() => {
+      if (reduce) return;
+      gsap.from(backdrop, { autoAlpha: 0, duration: dur.xs, ease: ease.ui });
+      gsap.from(panel, {
+        autoAlpha: 0,
+        y: 8,
+        duration: dur.xs,
+        ease: ease.ui,
+        clearProps: 'transform,opacity'
+      });
+    }, backdrop);
 
     tick().then(() => panel?.querySelector('button')?.focus());
     return () => {
+      ctx?.revert();
+      ctx = null;
       /** @type {HTMLElement} */ (restoreFocus)?.focus?.();
     };
   });

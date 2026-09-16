@@ -1,8 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
-  import { gsap } from 'gsap';
-  import { ease, dur } from '$lib/motion.js';
   import { sectionAnim } from '$lib/scroll/sectionAnim.js';
 
   let { data } = $props();
@@ -16,10 +13,6 @@
       goto('/projects');
     }
   }
-
-  onMount(() => {
-    // No layout animations needed
-  });
 </script>
 
 <svelte:window onkeydown={handleKeyDown} />
@@ -78,7 +71,7 @@
   <!-- Technical Spec Grid -->
   <div class="grid gap-12 lg:grid-cols-[280px_1fr] max-w-5xl border-t pt-10" style="border-color: var(--yorha-border);">
     <!-- Sidebar: Tactical System Specs -->
-    <aside data-project-anim class="group relative border border-current/15 p-5 sm:p-7 space-y-6 font-mono text-xs transition-colors hover:border-current/40" style="background-color: var(--yorha-surface);">
+    <aside class="group relative border border-current/15 p-5 sm:p-7 space-y-6 font-mono text-xs transition-colors hover:border-current/40" style="background-color: var(--yorha-surface);">
       
       <!-- Top Sweep Line -->
       <span class="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" style="background-color: var(--yorha-accent);" aria-hidden="true"></span>
@@ -138,7 +131,7 @@
     </aside>
 
     <!-- Main Content: Architecture Breakdown & Gallery -->
-    <div data-project-anim class="space-y-10">
+    <div class="space-y-10">
       <!-- Detail Paragraphs -->
       <div class="space-y-4">
         <h2 class="font-mono text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--yorha-accent);">

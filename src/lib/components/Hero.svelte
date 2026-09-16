@@ -1,11 +1,10 @@
 <script>
   import { onMount, tick } from 'svelte';
   import { gsap } from 'gsap';
-  import HeroCanvas from './HeroCanvas.svelte';
   import HeroName from './HeroName.svelte';
   import StaticHero from './StaticHero.svelte';
   import { identity } from '$lib/content/site.js';
-  import { ease, dur } from '$lib/motion.js';
+  import { ease, dur, stagger } from '$lib/motion.js';
   import { detectTier, prefersReducedMotion } from '$lib/utils/device.js';
   import { setConstellationFigure } from '$lib/stores/constellation.svelte.js';
 
@@ -15,6 +14,12 @@
   let tier = $state('static');
   let reducedMotion = $state(false);
   let mounted = $state(false);
+
+  // The WebGL scene module is fetched only after the tier check says the
+  // device can run it, so Three.js and Threlte never ship in the landing page
+  // bundle for the CSS-only tier. Until it arrives, StaticHero fills the frame.
+  /** @type {import('svelte').Component | null} */
+  let HeroCanvas = $state(null);
 
   // Scroll-driven: 1 = hero fully expanded, 0 = collapsed. Flows into the
   // Threlte scene as a plain prop. `dormant` frees the GPU once past the hero.
@@ -45,17 +50,29 @@
   /** @type {HTMLElement} */ let section;
   /** @type {HTMLElement} */ let pinInner;
   /** @type {HTMLElement} */ let overlay;
-  /** @type {HTMLElement} */ let nameWrap;
 
-  const useCanvas = $derived(mounted && (tier === 'full' || tier === 'lite'));
+  const useCanvas = $derived(
+    mounted && HeroCanvas !== null && (tier === 'full' || tier === 'lite')
+  );
   const mode = $derived(reducedMotion ? 'static' : tier);
 
   onMount(() => {
+    let alive = true;
     tier = detectTier();
     reducedMotion = prefersReducedMotion();
     // Hold the supporting lines back so they can arrive after the name.
     if (!reducedMotion) gsap.set(overlay?.querySelectorAll('[data-reveal]') ?? [], { autoAlpha: 0 });
     mounted = true;
+
+    if (tier === 'full' || tier === 'lite') {
+      import('./HeroCanvas.svelte').then((m) => {
+        if (alive) HeroCanvas = m.default;
+      });
+    }
+
+    return () => {
+      alive = false;
+    };
   });
 
   // Fade the role line then the trivia in, once the hero is actually on screen
@@ -73,7 +90,7 @@
     gsap.fromTo(
       targets,
       { autoAlpha: 0, y: 12 },
-      { autoAlpha: 1, y: 0, duration: dur.lg, ease: ease.out, stagger: 0.22, delay: 0.15 }
+      { autoAlpha: 1, y: 0, duration: dur.lg, ease: ease.out, stagger: stagger.slow, delay: 0.15 }
     );
   });
 
@@ -94,7 +111,6 @@
       cleanup = createHeroTransition({
         pinTarget: pinInner,
         trigger: section,
-        nameEl: nameWrap,
         overlayEl: overlay,
         mode: m,
         onProgress: (p) => {
@@ -148,7 +164,7 @@
       bind:this={overlay}
       class="pointer-events-none absolute inset-0 z-10 flex flex-col justify-center gap-12 px-[8vw] sm:px-[9vw] lg:flex-row lg:items-center lg:justify-between lg:gap-16"
     >
-      <div bind:this={nameWrap} class="shrink-0">
+      <div class="shrink-0">
         <HeroName display={identity.display} role={identity.role} />
       </div>
       <div

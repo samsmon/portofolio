@@ -2,14 +2,15 @@
   import { onMount, tick } from 'svelte';
   import { page } from '$app/state';
   import { gsap } from 'gsap';
-  import { ease, dur } from '$lib/motion.js';
-
+  import { ease, dur, stagger } from '$lib/motion.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
   let { data } = $props();
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
+  // Every list entrance is registered in this context so leaving the page
+  // reverts them in one call instead of leaving tweens on detached cards.
+  /** @type {gsap.Context | null} */ let ctx = null;
 
   // Tab navigation state: 'home' | 'categories' | 'tags' | 'archive'
   let activeTab = $state('home');
@@ -62,6 +63,7 @@
 
     if (typeof window === 'undefined') return;
     hasMounted = true;
+    ctx = gsap.context(() => {});
 
     function onKey(e) {
       if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
@@ -74,6 +76,8 @@
     return () => {
       window.__lenis?.start();
       window.removeEventListener('keydown', onKey);
+      ctx?.revert();
+      ctx = null;
     };
   });
 
@@ -231,6 +235,7 @@
 
     if (reduce) return;
     requestAnimationFrame(() => {
+      if (!ctx) return;
       const selectors = [
         '[data-home-card]',
         '[data-category-card]',
@@ -240,14 +245,24 @@
         '[data-archive-group]'
       ];
       
-      for (const sel of selectors) {
-        gsap.killTweensOf(sel);
-        gsap.fromTo(
-          sel,
-          { y: sel === '[data-tag-pill]' ? 12 : 18, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.35, stagger: sel === '[data-tag-pill]' ? 0.015 : 0.04, ease: 'power2.out', clearProps: 'all' }
-        );
-      }
+      ctx.add(() => {
+        for (const sel of selectors) {
+          const dense = sel === '[data-tag-pill]';
+          gsap.killTweensOf(sel);
+          gsap.fromTo(
+            sel,
+            { y: dense ? 12 : 18, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: dur.sm,
+              stagger: dense ? stagger.tight : stagger.base,
+              ease: ease.ui,
+              clearProps: 'all'
+            }
+          );
+        }
+      });
     });
   });
 </script>

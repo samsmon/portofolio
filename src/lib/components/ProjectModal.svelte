@@ -3,13 +3,12 @@
   import { fade, fly } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
   import { portal } from '$lib/actions/portal.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
   /** @type {{ project: any, index?: number, onClose: () => void }} */
   let { project, index = 0, onClose } = $props();
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
 
   const num = String(index + 1).padStart(2, '0');
   const paras = project.detail ?? [project.summary];

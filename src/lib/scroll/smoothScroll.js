@@ -1,6 +1,7 @@
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { media } from '$lib/motion.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export function initSmoothScroll() {
   if (typeof window === 'undefined') return () => {};
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {};
+  if (window.matchMedia(media.reduce).matches) return () => {};
 
   const lenis = new Lenis({
     lerp: 0.14,
@@ -36,7 +37,6 @@ export function initSmoothScroll() {
   gsap.ticker.lagSmoothing(500, 33);
 
   window.__lenis = lenis;
-  window.__gsap = gsap;
 
   return () => {
     lenis.off('scroll', ScrollTrigger.update);

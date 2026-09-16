@@ -3,10 +3,9 @@
   import { portal } from '$lib/actions/portal.js';
   import Section from './Section.svelte';
   import { stack, headings } from '$lib/content/site.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
 
   const allTools = stack.flatMap((l) => l.items);
   const defaultTool = allTools.reduce(

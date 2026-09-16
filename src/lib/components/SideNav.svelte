@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
   import { ease, dur } from '$lib/motion.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
   /** @type {{ activeId?: string }} */
   let { activeId = '' } = $props();
@@ -16,11 +17,12 @@
     { key: 'blog', label: 'Blog', num: '06', external: false }
   ];
 
-  const reduce = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion;
 
   /** @type {HTMLElement} */ let nav;
+  // Every tween on the rail is registered in this context so unmounting the
+  // layout reverts them in one call instead of leaking half-finished tweens.
+  /** @type {gsap.Context | null} */ let ctx = null;
   let mounted = $state(false);
 
   // The rail lives in the left gutter, and that gutter only exists once the
@@ -43,109 +45,120 @@
     sync();
     mq.addEventListener('change', sync);
 
-    // Hidden until a section is in view (the hero shows nothing).
-    // Maintain yPercent: -50 so vertical centering is never overwritten by GSAP.
-    gsap.set(nav, { autoAlpha: 0, xPercent: -10, yPercent: -50 });
-    gsap.set(nav.querySelector('[data-star]'), { opacity: 0.6, transformOrigin: '50% 50%' });
+    ctx = gsap.context(() => {
+      // Hidden until a section is in view (the hero shows nothing).
+      // Maintain yPercent: -50 so vertical centering is never overwritten by GSAP.
+      gsap.set(nav, { autoAlpha: 0, xPercent: -10, yPercent: -50 });
+      gsap.set(nav.querySelector('[data-star]'), { opacity: 0.6, transformOrigin: '50% 50%' });
+    }, nav);
     mounted = true;
 
-    return () => mq.removeEventListener('change', sync);
+    return () => {
+      mq.removeEventListener('change', sync);
+      ctx?.revert();
+      ctx = null;
+    };
   });
 
   $effect(() => {
-    if (!mounted || !nav) return;
+    if (!mounted || !nav || !ctx) return;
     const active = activeId;
     const open = expanded;
     const d = reduce() ? 0 : dur.md;
     const visible = active !== '';
 
-    gsap.to(nav, {
-      autoAlpha: visible ? 1 : 0,
-      xPercent: visible ? 0 : -10,
-      yPercent: -50,
-      duration: d,
-      ease: ease.out,
-      overwrite: true
-    });
-
-    for (const el of nav.children) {
-      const home = el.dataset.key === 'home';
-      const on = el.dataset.key === active;
-      const num = el.querySelector('[data-num]');
-      const labelWrap = el.querySelector('[data-label-wrap]');
-      const label = el.querySelector('[data-label]');
-
-      // Collapsed, every number shows: it is the only thing left to navigate
-      // by. Expanded, the number belongs to the active row only.
-      const showNum = !open || on;
-
-      gsap.to(el, {
-        // The star sits at a fixed offset (roughly the label column centre) so
-        // it never drifts when a wide item like "04 Portfolio" unfolds. With
-        // the labels collapsed there is no label column to align to.
-        x: home ? (open ? 28 : 0) : on ? 14 : 0,
+    ctx.add(() => {
+      gsap.to(nav, {
+        autoAlpha: visible ? 1 : 0,
+        xPercent: visible ? 0 : -10,
+        yPercent: -50,
         duration: d,
         ease: ease.out,
-        overwrite: 'auto'
+        overwrite: true
       });
 
-      if (num)
-        gsap.to(num, {
-          width: showNum ? 'auto' : 0,
-          marginRight: showNum && open ? 8 : 0,
-          autoAlpha: showNum ? (on ? 1 : 0.5) : 0,
+      for (const el of nav.children) {
+        const home = el.dataset.key === 'home';
+        const on = el.dataset.key === active;
+        const num = el.querySelector('[data-num]');
+        const labelWrap = el.querySelector('[data-label-wrap]');
+        const label = el.querySelector('[data-label]');
+
+        // Collapsed, every number shows: it is the only thing left to navigate
+        // by. Expanded, the number belongs to the active row only.
+        const showNum = !open || on;
+
+        gsap.to(el, {
+          // The star sits at a fixed offset (roughly the label column centre) so
+          // it never drifts when a wide item like "04 Portfolio" unfolds. With
+          // the labels collapsed there is no label column to align to.
+          x: home ? (open ? 28 : 0) : on ? 14 : 0,
           duration: d,
-          ease: 'power3.out',
+          ease: ease.out,
           overwrite: 'auto'
         });
 
-      if (labelWrap)
-        gsap.to(labelWrap, {
-          width: open ? 'auto' : 0,
-          autoAlpha: open ? 1 : 0,
-          duration: d,
-          ease: 'power3.out',
-          overwrite: 'auto'
-        });
+        if (num)
+          gsap.to(num, {
+            width: showNum ? 'auto' : 0,
+            marginRight: showNum && open ? 8 : 0,
+            autoAlpha: showNum ? (on ? 1 : 0.5) : 0,
+            duration: d,
+            ease: ease.ui,
+            overwrite: 'auto'
+          });
 
-      if (label)
-        gsap.to(label, {
-          opacity: on ? 1 : 0.4,
-          fontWeight: on ? 600 : 400,
-          duration: d * 0.7,
-          overwrite: 'auto'
-        });
-    }
+        if (labelWrap)
+          gsap.to(labelWrap, {
+            width: open ? 'auto' : 0,
+            autoAlpha: open ? 1 : 0,
+            duration: d,
+            ease: ease.ui,
+            overwrite: 'auto'
+          });
+
+        if (label)
+          gsap.to(label, {
+            opacity: on ? 1 : 0.4,
+            fontWeight: on ? 600 : 400,
+            duration: d * 0.7,
+            ease: ease.ui,
+            overwrite: 'auto'
+          });
+      }
+    });
   });
 
   function hover(el, entering) {
-    if (reduce()) return;
+    if (reduce() || !ctx) return;
     const key = el.dataset.key;
 
-    if (key === 'home') {
-      // Stays put, just spins in place + brightens.
-      gsap.to(el.querySelector('[data-star]'), {
-        rotation: entering ? 180 : 0,
-        opacity: entering ? 1 : 0.6,
-        duration: dur.md,
+    ctx.add(() => {
+      if (key === 'home') {
+        // Stays put, just spins in place + brightens.
+        gsap.to(el.querySelector('[data-star]'), {
+          rotation: entering ? 180 : 0,
+          opacity: entering ? 1 : 0.6,
+          duration: dur.md,
+          ease: ease.ui,
+          overwrite: 'auto'
+        });
+        return;
+      }
+
+      const isActive = key === activeId;
+      gsap.to(el.querySelector('[data-label]'), {
+        opacity: entering || isActive ? 1 : 0.4,
+        duration: dur.xs,
         ease: ease.ui,
         overwrite: 'auto'
       });
-      return;
-    }
-
-    const isActive = key === activeId;
-    gsap.to(el.querySelector('[data-label]'), {
-      opacity: entering || isActive ? 1 : 0.4,
-      duration: dur.xs,
-      ease: ease.ui,
-      overwrite: 'auto'
-    });
-    gsap.to(el, {
-      x: isActive ? 14 : entering ? 6 : 0,
-      duration: dur.sm,
-      ease: ease.ui,
-      overwrite: 'auto'
+      gsap.to(el, {
+        x: isActive ? 14 : entering ? 6 : 0,
+        duration: dur.sm,
+        ease: ease.ui,
+        overwrite: 'auto'
+      });
     });
   }
 

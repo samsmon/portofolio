@@ -5,11 +5,16 @@
   import { goto } from '$app/navigation';
   import { gsap } from 'gsap';
   import { ease, dur } from '$lib/motion.js';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
   import { portal } from '$lib/actions/portal.js';
   import { blogTheme } from '$lib/blog/blogTheme.js';
 
   let { data } = $props();
   const post = $derived(data.post);
+
+  // Article entrance and search-modal tweens are registered here so leaving
+  // the reader reverts them in one call.
+  /** @type {gsap.Context | null} */ let ctx = null;
   const recentPosts = $derived(data.recentPosts || []);
   const trendingTags = $derived(data.trendingTags || []);
   const allPosts = $derived(data.allPosts || []);
@@ -38,7 +43,7 @@
 
     // Buffer padding so active item isn't flush against top/bottom boundary
     const pad = 36;
-    const prefersReduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduce = prefersReducedMotion();
     const behavior = prefersReduce ? 'auto' : 'smooth';
 
     if (linkRelativeTop < pad) {
@@ -82,27 +87,31 @@
     await tick();
     if (searchInputRef) searchInputRef.focus();
 
-    if (modalCardRef) {
-      gsap.fromTo(
-        modalCardRef,
-        { opacity: 0, y: -16, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: ease.out }
-      );
+    if (modalCardRef && ctx) {
+      ctx.add(() => {
+        gsap.fromTo(
+          modalCardRef,
+          { opacity: 0, y: -16, scale: 0.98 },
+          { opacity: 1, y: 0, scale: 1, duration: dur.xs, ease: ease.out }
+        );
+      });
     }
   }
 
   // Close search modal
   function closeSearch() {
-    if (modalCardRef) {
-      gsap.to(modalCardRef, {
-        opacity: 0,
-        y: -10,
-        scale: 0.98,
-        duration: 0.15,
-        ease: ease.out,
-        onComplete: () => {
-          isSearchOpen = false;
-        }
+    if (modalCardRef && ctx) {
+      ctx.add(() => {
+        gsap.to(modalCardRef, {
+          opacity: 0,
+          y: -10,
+          scale: 0.98,
+          duration: dur.xs,
+          ease: ease.in,
+          onComplete: () => {
+            isSearchOpen = false;
+          }
+        });
       });
     } else {
       isSearchOpen = false;
@@ -252,13 +261,14 @@
     });
 
     // 6. Subtle entrance animation
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduce) {
-      gsap.fromTo(
-        '[data-article-anim]',
-        { y: 12, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.25, ease: 'power2.out', clearProps: 'all' }
-      );
+    if (!prefersReducedMotion() && ctx) {
+      ctx.add(() => {
+        gsap.fromTo(
+          '[data-article-anim]',
+          { y: 12, opacity: 0 },
+          { y: 0, opacity: 1, duration: dur.xs, ease: ease.ui, clearProps: 'all' }
+        );
+      });
     }
 
     // 7. Render mermaid diagrams for the active article
@@ -282,10 +292,13 @@
 
   onMount(() => {
     if (!browser) return;
+    ctx = gsap.context(() => {});
     window.addEventListener('keydown', handleGlobalKeyDown);
 
     return () => {
       window.removeEventListener('keydown', handleGlobalKeyDown);
+      ctx?.revert();
+      ctx = null;
     };
   });
 

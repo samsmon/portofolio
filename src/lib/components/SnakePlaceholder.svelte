@@ -1,9 +1,8 @@
 <script>
   import { onMount } from 'svelte';
+  import { prefersReducedMotion } from '$lib/utils/device.js';
 
-  const reduce =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = prefersReducedMotion();
 
   /** @type {HTMLCanvasElement} */
   let canvas;
