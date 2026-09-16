@@ -26,6 +26,12 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - `clearProps: 'all'` di blog index dan reader diganti `'transform,opacity'` sesuai aturan lama yang sempat terlewat; nilai `'all'` menghapus inline style warna tema pada pill tag setelah animasi masuk.
   - Baris peran di hero diganti menjadi "Full-stack developer / Cloud infrastructure & automation" (`identity.role`), kartu sosial dibuat ulang dengan teks yang sama, dan baris peran di `ResumeModal` yang sebelumnya hardcoded kini membaca `identity.role` supaya tidak bisa lepas sinkron lagi.
 
+- **[01:25 WIB] Potret About Jadi Animasi Decode Berbasis Canvas (`lib/components/PortraitSwap.svelte`):**
+  - Wipe clip-path sederhana diganti koreografi "data decode" di satu `<canvas>`: saat frame masuk viewport, ilustrasi menajam dari blok piksel hitam di belakang garis scan hijau (sekali, lewat ScrollTrigger `once`). Saat hover, fokus keyboard, atau tap di perangkat tanpa hover, gambar dipikselkan sampai seukuran sel grid 22 kolom, front scan berjalan dari atas mengganti sel demi sel ke foto formal dengan kilatan aksen di sel yang sedang berpindah dan tiga baris yang tergeser sesaat, lalu foto menajam kembali. Meninggalkan frame memutar urutan yang sama terbalik.
+  - Urutan sel deterministik (hash sinus per sel, dominan atas ke bawah dengan noise 18%) supaya setiap decode terasa sama tapi tidak seperti tirai. Warna aksen dan latar dibaca dari token tema dan digambar ulang saat tema berganti.
+  - Readout di pojok menampilkan persen progres decode yang sungguhan selama animasi, lalu kembali ke `01 / 02` atau `02 / 02`.
+  - Durasi dan easing dari `motion.js` (`dur.lg` + `ease.draw` untuk swap, `dur.xl` + `ease.out` untuk boot), semua tween di `gsap.context`. Reduced motion, canvas yang tidak tersedia, atau file yang hilang jatuh ke dua `<img>` biasa yang bertukar seketika, dan gambar tetap ada di DOM untuk pembaca layar dan mesin pencari.
+
 ### Removed
 - **[00:08 WIB] `CustomCursor.svelte` dan `HalftonePortrait.svelte`** tidak lagi diimpor di mana pun dan dihapus dari repo; `about.working` dan `about.now` dihapus dari `site.js`.
 
