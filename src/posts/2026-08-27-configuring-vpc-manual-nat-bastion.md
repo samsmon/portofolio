@@ -34,6 +34,8 @@ flowchart TD
     PrivInst -.->|"internet-bound traffic"| NATGW
 ```
 
+![Arsitektur lab VPC dengan bastion server dan NAT gateway](/assets/img/posts/resource/vpc-configuration-lab/architecture.png)
+
 | Public Route Table | | Private Route Table | |
 |---|---|---|---|
 | Destination | Target | Destination | Target |

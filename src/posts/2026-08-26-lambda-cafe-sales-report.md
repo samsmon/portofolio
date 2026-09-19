@@ -25,6 +25,8 @@ flowchart LR
     Topic -->|"⑥ email"| Email["Email admin"]
 ```
 
+![Arsitektur lab Lambda laporan penjualan café](/assets/img/posts/resource/lambda-cafe-sales-report-lab/architecture.png)
+
 Dua Lambda function saling manggil: `salesAnalysisReport` (yang di-trigger CloudWatch Event tiap jam 8 malam) manggil `salesAnalysisReportDataExtractor` buat narik data dari database, terus hasilnya diformat jadi laporan dan dipublish ke SNS topic yang udah di-subscribe email admin.
 
 ## IAM Role: Siapa Boleh Ngapain

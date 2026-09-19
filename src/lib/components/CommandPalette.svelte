@@ -180,11 +180,13 @@
     show = false;
   }
 
-  // /blog and /projects have their own local search input bound to Ctrl+K;
-  // the global palette stays out of the way on those routes.
+  // Only the /blog and /projects LISTING pages have their own local search
+  // input bound to Ctrl+K; the global palette stays out of the way there.
+  // Detail pages (/blog/[slug], /projects/[slug]) don't have a local Ctrl+K
+  // handler of their own, so the global palette should still respond there.
   function scopedElsewhere() {
     const path = page.url.pathname;
-    return path.startsWith('/blog') || path.startsWith('/projects');
+    return path === '/blog' || path === '/projects';
   }
 
   function onKey(e) {

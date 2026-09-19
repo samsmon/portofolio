@@ -260,7 +260,10 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
     `;
   };
 
-  // Responsive, lazy loaded images
+  // Responsive, lazy loaded images. Official AWS architecture screenshots (sourced
+  // from assets/img/posts/resource/) are gated behind a "Secret Source" reveal toggle,
+  // since the post body already has a hand-drawn Mermaid/prose walkthrough of the same
+  // architecture and this is an optional deep-dive, not primary content.
   renderer.image = function ({ href, title, text }) {
     let cleanHref = href || '';
     if (mediaSubpath && !cleanHref.startsWith('http') && !cleanHref.startsWith('/')) {
@@ -273,11 +276,27 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
     }
     const titleAttr = title ? `title="${title}"` : '';
     const altAttr = text ? `alt="${text}"` : '';
+    const imgTag = `<img src="${cleanHref}" ${altAttr} ${titleAttr} loading="lazy" decoding="async" class="mx-auto rounded-lg border border-white/10 max-h-[550px] w-auto object-contain" />`;
+    const captionTag = text ? `<figcaption class="mt-2.5 text-center font-mono text-[11px] text-ash-2">${text}</figcaption>` : '';
+
+    const isOfficialSource = /\/assets\/img\/posts\/resource\//.test(cleanHref);
+    if (!isOfficialSource) {
+      return `<figure class="my-8">${imgTag}${captionTag}</figure>`;
+    }
+
     return `
-      <figure class="my-8">
-        <img src="${cleanHref}" ${altAttr} ${titleAttr} loading="lazy" decoding="async" class="mx-auto rounded-lg border border-white/10 max-h-[550px] w-auto object-contain" />
-        ${text ? `<figcaption class="mt-2.5 text-center font-mono text-[11px] text-ash-2">${text}</figcaption>` : ''}
-      </figure>
+      <details class="secret-source my-8 rounded-none border transition-all duration-300" style="border-color: var(--blog-border); background-color: var(--blog-code-bg);">
+        <summary class="cursor-pointer select-none list-none px-4 py-3 font-mono text-[11px] uppercase tracking-wider flex items-center gap-2" style="color: var(--blog-text-muted);">
+          <span class="secret-source-caret transition-transform duration-200">▸</span>
+          <span>[ SECRET SOURCE ] Lihat arsitektur asli dari AWS</span>
+        </summary>
+        <div class="px-4 pb-5 pt-1 border-t" style="border-color: var(--blog-border);">
+          <figure class="my-0">${imgTag}${captionTag}</figure>
+        </div>
+      </details>
+      <style>
+        .secret-source[open] .secret-source-caret { transform: rotate(90deg); }
+      </style>
     `;
   };
 

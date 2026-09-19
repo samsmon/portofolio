@@ -6,7 +6,18 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
-## [Unreleased] - 2026-09-17
+## [Unreleased] - 2026-09-20
+
+### Added
+- **[01:02 WIB] Toggle "Secret Source" untuk Gambar Arsitektur AWS Resmi (`lib/blog/posts.js`, 3 post Labs):**
+  - Renderer gambar markdown (`marked`) sekarang mendeteksi path `/assets/img/posts/resource/...` (gambar arsitektur resmi dari AWS docs) dan otomatis membungkusnya jadi elemen `<details>` collapsible berlabel `[ SECRET SOURCE ] Lihat arsitektur asli dari AWS`, tertutup secara default. Berlaku otomatis ke semua post yang sudah pakai gambar resource ini, tidak perlu ubah markdown satu per satu.
+  - Tiga post Labs yang sebelumnya cuma punya diagram Mermaid tangan (tanpa gambar resmi) ditambahkan gambar arsitektur AWS resminya lewat toggle ini: `2026-08-26-lambda-cafe-sales-report.md`, `2026-08-27-configuring-vpc-manual-nat-bastion.md`, `2026-08-28-troubleshooting-vpc-flow-logs.md`.
+
+### Fixed
+- **[01:02 WIB] Ctrl+K Mati di Halaman Post Individual (`lib/components/CommandPalette.svelte`):**
+  - `scopedElsewhere()` sebelumnya memblokir Command Palette global di semua path yang diawali `/blog` atau `/projects` (termasuk halaman detail post/proyek), padahal cuma halaman listing (`/blog`, `/projects`) yang punya search lokal sendiri terikat Ctrl+K. Halaman detail post sendiri sengaja tidak punya handler Ctrl+K (pakai tombol `/`), jadi Ctrl+K di sana tidak direspon sama sekali. Diperbaiki jadi exact-match path, bukan `startsWith`, supaya Command Palette global merespon di halaman detail.
+- **[01:02 WIB] Warna Judul Post Hardcode Hitam/Putih di Light Mode (`routes/(site)/blog/[slug]/+page.svelte`):**
+  - Highlight stamp pada judul post memakai `bg-white` + `color: #000000` hardcoded, tidak mengikuti tema. Diganti pakai token `var(--yorha-invert-bg)` / `var(--yorha-invert-text)` yang sama dipakai elemen invert lain di situs, sehingga di light/sepia mode judul kini tampil krem-di-atas-coklat-tua sesuai palet tema, bukan kotak putih-hitam yang kontras dengan seluruh halaman.
 
 ### Changed
 - **[00:08 WIB] Polesan Desain Menyeluruh: Tipografi, Telemetri Asli, Potret Hover-Swap, Blog Index, dan Penataan Ulang About/Contact (`app.css`, `routes/+layout.svelte`, `app.html`, `lib/components/*`, `routes/(site)/blog/+page.svelte`, `lib/content/site.js`):**

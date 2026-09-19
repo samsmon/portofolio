@@ -449,7 +449,7 @@
           </div>
 
           <h1 class="blog-heading text-xl sm:text-2xl md:text-3xl lg:text-h1 font-bold tracking-tight leading-snug sm:leading-tight">
-            <span class="bg-white text-black px-1.5 sm:px-2 py-0.5 box-decoration-clone inline" style="color: #000000;">
+            <span class="px-1.5 sm:px-2 py-0.5 box-decoration-clone inline" style="background-color: var(--yorha-invert-bg); color: var(--yorha-invert-text);">
               {post.title}
             </span>
           </h1>

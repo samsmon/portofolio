@@ -40,6 +40,8 @@ flowchart LR
     Bucket -->|"analisa dari"| CLIHost
 ```
 
+![Arsitektur lab troubleshooting VPC dengan flow logs](/assets/img/posts/resource/vpc-troubleshooting-lab-intro/architecture.png)
+
 Instruksi dari senior (Mateo dan Olivia): cek route table, NACL, dan security group, terus bikin **VPC Flow Log** buat nangkep traffic IP di dalam VPC, dan analisa data flow log-nya buat nemuin akar masalahnya.
 
 ## Setup: Bikin VPC Flow Logs
