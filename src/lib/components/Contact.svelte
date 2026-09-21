@@ -157,7 +157,7 @@
     <div data-anim class="mt-8 sm:mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 sm:gap-5">
       <!-- Email -->
       <div
-        class="group relative flex flex-col justify-between border border-current/15 p-5 sm:p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-current/40"
+        class="group relative flex flex-col justify-center border border-current/15 p-5 sm:p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-current/40"
         style="background-color: var(--yorha-surface);"
       >
         <span class="pointer-events-none absolute top-[-1px] left-[-1px] h-2.5 w-2.5 border-l-2 border-t-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>

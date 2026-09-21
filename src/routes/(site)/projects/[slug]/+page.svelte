@@ -1,14 +1,18 @@
 <script>
   import { goto } from '$app/navigation';
   import { sectionAnim } from '$lib/scroll/sectionAnim.js';
+  import ImageLightbox from '$lib/components/ImageLightbox.svelte';
 
   let { data } = $props();
   const project = $derived(data.project);
   const prevProject = $derived(data.prevProject);
   const nextProject = $derived(data.nextProject);
 
+  /** @type {number | null} */
+  let lightboxIndex = $state(null);
+
   function handleKeyDown(e) {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && lightboxIndex === null) {
       e.preventDefault();
       goto('/projects');
     }
@@ -152,8 +156,14 @@
           </h2>
           <div class="grid gap-4 sm:grid-cols-2">
             {#each project.images as img, i}
-              <div class="group relative overflow-hidden rounded-none border transition-colors hover:border-current/40" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-                <!-- Fake Image Metadata Bar -->
+              <button
+                type="button"
+                onclick={() => (lightboxIndex = i)}
+                class="group relative block w-full overflow-hidden rounded-none border text-left transition-colors hover:border-current/40 cursor-pointer"
+                style="background-color: var(--yorha-surface); border-color: var(--yorha-border);"
+                aria-label={`View ${project.title} diagram ${i + 1} full size`}
+              >
+                <!-- Image Metadata Bar (also the click affordance) -->
                 <div class="absolute top-0 inset-x-0 z-10 px-2 py-1 font-mono text-label uppercase tracking-widest flex items-center justify-between border-b" style="background-color: var(--yorha-bg); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
                   <span>IMG_DATA // ARCH_{String(i + 1).padStart(2, '0')}</span>
                   <span style="color: var(--yorha-accent);">[VIEW]</span>
@@ -174,10 +184,19 @@
                   loading="lazy"
                   class="w-full h-full object-cover rounded-none mt-6 opacity-90 group-hover:opacity-100 transition-opacity"
                 />
-              </div>
+              </button>
             {/each}
           </div>
         </div>
+      {/if}
+
+      {#if lightboxIndex !== null}
+        <ImageLightbox
+          images={project.images}
+          index={lightboxIndex}
+          alt={project.title}
+          onClose={() => (lightboxIndex = null)}
+        />
       {/if}
 
       <!-- Bottom Pager -->

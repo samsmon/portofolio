@@ -6,6 +6,14 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [Unreleased] - 2026-09-21
+
+### Added
+- **Lightbox Gambar di Modal Project (`lib/components/ProjectModal.svelte`):** gambar di dalam modal detail project (dipicu dari section portofolio landing page) sekarang bisa diklik untuk membuka `ImageLightbox` full-size, menyamakan perilaku dengan halaman detail project (`routes/(site)/projects/[slug]/+page.svelte`) yang sudah lebih dulu punya fitur ini. Sebelumnya import dan state `lightboxIndex` sudah ada tapi belum tersambung ke elemen manapun.
+
+### Changed
+- **Konten Kartu Email Dipusatkan Vertikal (`lib/components/Contact.svelte`):** kartu Email di section Contact diganti dari `justify-between` menjadi `justify-center`, supaya konten tidak menempel ke atas dan meninggalkan ruang kosong janggal di bawah saat kartu Profiles di sebelahnya lebih tinggi.
+
 ## [Unreleased] - 2026-09-20
 
 ### Added

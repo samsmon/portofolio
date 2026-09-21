@@ -4,6 +4,7 @@
   import { cubicOut } from 'svelte/easing';
   import { portal } from '$lib/actions/portal.js';
   import { prefersReducedMotion } from '$lib/utils/device.js';
+  import ImageLightbox from '$lib/components/ImageLightbox.svelte';
 
   /** @type {{ project: any, index?: number, onClose: () => void }} */
   let { project, index = 0, onClose } = $props();
@@ -15,6 +16,9 @@
   const lead = paras[0];
   const rest = paras.slice(1);
   const images = project.images ?? [];
+
+  /** @type {number | null} */
+  let lightboxIndex = $state(null);
 
   /** @type {HTMLElement} */ let panel;
   let restoreFocus;
@@ -188,14 +192,20 @@
         </p>
 
         {#if images[0]}
-          <div class="relative w-full shrink-0 overflow-hidden rounded-none border p-2" style="background-color: var(--yorha-bg); border-color: var(--yorha-border);">
+          <button
+            type="button"
+            onclick={() => (lightboxIndex = 0)}
+            class="group relative block w-full shrink-0 cursor-pointer overflow-hidden rounded-none border p-2 text-left transition-colors hover:border-current/40"
+            style="background-color: var(--yorha-bg); border-color: var(--yorha-border);"
+            aria-label={`View ${project.title} image 1 full size`}
+          >
             <img
               src={images[0]}
               alt={`${project.title}, 1`}
               loading="lazy"
-              class="block h-auto w-full object-contain"
+              class="block h-auto w-full object-contain opacity-90 transition-opacity group-hover:opacity-100"
             />
-          </div>
+          </button>
         {/if}
 
         {#each rest as para}
@@ -205,14 +215,20 @@
         {/each}
 
         {#each images.slice(1) as img, i}
-          <div class="relative w-full shrink-0 overflow-hidden rounded-none border p-2" style="background-color: var(--yorha-bg); border-color: var(--yorha-border);">
+          <button
+            type="button"
+            onclick={() => (lightboxIndex = i + 1)}
+            class="group relative block w-full shrink-0 cursor-pointer overflow-hidden rounded-none border p-2 text-left transition-colors hover:border-current/40"
+            style="background-color: var(--yorha-bg); border-color: var(--yorha-border);"
+            aria-label={`View ${project.title} image ${i + 2} full size`}
+          >
             <img
               src={img}
               alt={`${project.title}, ${i + 2}`}
               loading="lazy"
-              class="block h-auto w-full object-contain"
+              class="block h-auto w-full object-contain opacity-90 transition-opacity group-hover:opacity-100"
             />
-          </div>
+          </button>
         {/each}
 
         {#if project.links?.length}
@@ -237,6 +253,15 @@
     </div>
   </div>
 </div>
+
+{#if lightboxIndex !== null}
+  <ImageLightbox
+    {images}
+    index={lightboxIndex}
+    alt={project.title}
+    onClose={() => (lightboxIndex = null)}
+  />
+{/if}
 
 <style>
   div[role="dialog"] {
