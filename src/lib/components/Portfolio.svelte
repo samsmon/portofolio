@@ -3,7 +3,7 @@
   import Section from './Section.svelte';
   import ProjectModal from './ProjectModal.svelte';
   import CurrentlyBuilding from './CurrentlyBuilding.svelte';
-  import { projects, headings } from '$lib/content/site.js';
+  import { projects, headings, building } from '$lib/content/site.js';
 
   /** @type {number | null} */
   let open = $state(null);
@@ -34,9 +34,11 @@
 
 <Section id="portfolio" title={headings.portfolio}>
   <!-- Currently Building Spotlight -->
-  <div data-anim class="mb-10">
-    <CurrentlyBuilding />
-  </div>
+  {#if building}
+    <div data-anim class="mb-10">
+      <CurrentlyBuilding />
+    </div>
+  {/if}
 
   <div class="grid gap-6 sm:grid-cols-2">
     {#each projects.slice(0, 4) as p, i}

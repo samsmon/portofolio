@@ -8,6 +8,9 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ## [Unreleased] - 2026-09-21
 
+### Changed
+- **Pore.js Selesai, Spotlight "Currently Building" Disembunyikan (`lib/content/site.js`, `lib/components/Portfolio.svelte`):** Pore.js sudah kelar dikerjain, jadi deskripsinya di project list diubah dari "masih 70%, in development" jadi selesai. `export const building` diset `null` (bukan dihapus, biar gampang diisi lagi kalau ada project baru yang lagi dikerjain), dan `Portfolio.svelte` sekarang cuma render section spotlight-nya kalau `building` ada isinya, jadi nggak ada section kosong nongol pas nggak ada yang lagi dibangun.
+
 ### Added
 - **Lightbox Gambar di Modal Project (`lib/components/ProjectModal.svelte`):** gambar di dalam modal detail project (dipicu dari section portofolio landing page) sekarang bisa diklik untuk membuka `ImageLightbox` full-size, menyamakan perilaku dengan halaman detail project (`routes/(site)/projects/[slug]/+page.svelte`) yang sudah lebih dulu punya fitur ini. Sebelumnya import dan state `lightboxIndex` sudah ada tapi belum tersambung ke elemen manapun.
 - **Empat Project Baru dari Ekosistem Yado (`lib/content/site.js`, `static/projects/*.png`):** `White Archive` (sudah usang) diganti empat project baru berdasarkan screenshot repo `samsmon/yado`, `samsmon/sso.yado`, `samsmon/malas`, dan `samsmon/pore-js`: **Yado** (launcher/portal SSO-gated ke semua service homelab dengan status page live), **SSO · Yado** (identity provider OAuth2 + PKCE), **Malas** (library manager manga/light novel: katalog, koleksi, wishlist, loan tracking), dan **Pore.js** (web reader source-agnostic client-side untuk manga/EPUB/PDF/CBZ, masih 70% progress). Gambar galeri tiap project diambil dari screenshot yang disediakan user, disimpan sebagai PNG di `static/projects/`.

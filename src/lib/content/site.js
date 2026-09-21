@@ -62,12 +62,10 @@ export const stats = [
   { value: '99.9%', label: 'Target Uptime' }
 ];
 
-export const building = {
-  project: 'Pore.js',
-  tagline: 'Source-agnostic web reader for manga, comics, and books, built from scratch with its own pagination engine and no backend',
-  status: 'In active development',
-  stack: ['JavaScript', 'Canvas API', 'EPUB.js', 'PDF.js']
-};
+// Currently Building spotlight on the landing page. Set to null when nothing
+// is actively in progress; the section hides itself instead of showing stale
+// or empty state.
+export const building = null;
 
 export const engineTrivia = {
   title: 'Engine Architecture & Safety Nets',
@@ -393,7 +391,7 @@ export const projects = [
     detail: [
       'Opens EPUB, PDF, CBZ/ZIP, or a raw folder of images entirely client-side. Nothing is uploaded anywhere: the file stays in the browser for the whole session.',
       'One reader, many reading modes: right-to-left double-page manga spreads, continuous-scroll webtoon, reflowable EPUB with adjustable typography, vertical Japanese (tategaki), right-to-left Arabic prose, pre-paginated fixed-layout EPUB, and PDF rendering with a searchable text layer.',
-      'The reading engine that powers Malas under the hood. Still in active development (~70%): the pagination math for mixed aspect-ratio scans is the hard part.'
+      'The reading engine that powers Malas under the hood. The hardest part turned out to be pagination math for mixed aspect-ratio scans, getting double-page spreads to split cleanly regardless of source resolution.'
     ],
     stack: ['JavaScript', 'Canvas API', 'EPUB.js', 'PDF.js'],
     images: ['/projects/pore-js-1.png', '/projects/pore-js-2.png'],
