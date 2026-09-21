@@ -1,7 +1,7 @@
 ---
 title: "AWS Elastic Beanstalk: Upload Kode, Sisanya Di-handle"
 description: "Rangkuman materi Elastic Beanstalk, PaaS-nya AWS yang ngurusin deployment, load balancing, sampe auto scaling otomatis begitu kita upload kode."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, elastic beanstalk, paas]

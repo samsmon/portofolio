@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 5 Hari 4: Sesi Latihan Soal Sertifikasi CCP"
 description: "Sesi penuh latihan soal gaya ujian CCP, ngebahas ulang konsep-konsep yang udah dipelajari sambil dijelasin jebakan-jebakan khas soal ujian."
-author: srytmj
+author: samsmon
 date: 2026-09-03 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ccp, latihan soal, ujian]

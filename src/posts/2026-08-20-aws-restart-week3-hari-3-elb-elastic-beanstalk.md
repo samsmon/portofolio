@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 3 Hari 3: Elastic Beanstalk, Troubleshooting LAMP, dan ELB"
 description: "Hari ketiga minggu ketiga, dari kenalan Elastic Beanstalk, lab troubleshooting server LAMP yang sengaja dirusak, sampe konsep Elastic Load Balancing lewat analogi SPBU."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, elastic beanstalk, load balancing]

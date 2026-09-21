@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 6 Hari 3: Materi AI Hari Pertama"
 description: "Masuk unit AI, hari pertama full teori. Taksonomi AI/ML/deep learning/generative AI, data buat ML, responsible AI dan guardrails, sampe ekonomi deploy AI."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ai, machine learning]

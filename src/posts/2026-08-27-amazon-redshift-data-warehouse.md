@@ -1,7 +1,7 @@
 ---
 title: "Amazon Redshift: Data Warehouse buat Analitik Skala Besar"
 description: "Rangkuman materi Redshift, kenapa analitik nggak boleh dihajar langsung di database transaksi, arsitektur 3-tier data warehouse, sampe kolom vs baris di storage."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, redshift, data warehouse, database]

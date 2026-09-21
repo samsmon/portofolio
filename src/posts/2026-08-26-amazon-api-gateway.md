@@ -1,7 +1,7 @@
 ---
 title: "Amazon API Gateway: Pintu Depan buat Semua Request"
 description: "Rangkuman materi API Gateway, dari throttling, caching, sampe X-Ray tracing buat nyari lemotnya request di mana."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, api gateway, serverless]

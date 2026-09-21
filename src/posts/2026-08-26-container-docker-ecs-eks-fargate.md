@@ -1,7 +1,7 @@
 ---
 title: "Container di AWS: Docker, ECS, EKS, dan Fargate"
 description: "Rangkuman materi container, dari kenapa container lebih hemat dibanding VM, sampe pilihan orkestrasi ECS vs EKS dan hosting EC2 vs Fargate."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, container, docker, ecs, eks, fargate]

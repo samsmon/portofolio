@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting LAMP Stack yang Sengaja Dirusak"
 description: "Lab troubleshooting deployment LAMP stack via AWS CLI yang scriptnya sengaja ada bug, dari salah AMI ID sampe port yang belum kebuka."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, lamp, troubleshooting, cli, labs]

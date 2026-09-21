@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting Web Server: systemctl, Urutan Cek Jaringan, dan HTTPS"
 description: "Lab trial-error bikin web server manual dan lewat VPC wizard, belajar analogi systemctl enable vs start, urutan troubleshooting dari routing table sampe security group, dan kenapa HTTPS butuh sertifikat."
-author: srytmj
+author: samsmon
 date: 2026-08-07 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, troubleshooting, https, labs]

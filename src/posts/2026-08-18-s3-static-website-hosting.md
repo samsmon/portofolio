@@ -1,7 +1,7 @@
 ---
 title: "Hosting Static Website Modal S3 Doang"
 description: "Rangkuman materi S3 static website hosting, dari konsepnya sampe lab bikin website café pake AWS CLI dan script otomatis buat update-nya."
-author: srytmj
+author: samsmon
 date: 2026-08-18 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, s3, static website, cli, labs]

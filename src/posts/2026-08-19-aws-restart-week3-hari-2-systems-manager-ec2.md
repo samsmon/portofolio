@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 3 Hari 2: Systems Manager dan EC2 Deep Dive"
 description: "Hari kedua minggu ketiga, dari kenalan Systems Manager buat kelola instance tanpa remote manual, sampe bikin EC2 lewat console dan CLI pake pola bastion host."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, systems manager, ec2]

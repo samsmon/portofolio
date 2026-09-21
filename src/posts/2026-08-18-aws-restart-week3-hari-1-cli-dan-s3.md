@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 3 Hari 1: Kenalan AWS CLI dan Deploy Static Website ke S3"
 description: "Hari pertama minggu ketiga, dari install AWS CLI dari nol di Red Hat instance sampe deploy static website ke S3 buat nyimpen media."
-author: srytmj
+author: samsmon
 date: 2026-08-18 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, cli, s3]

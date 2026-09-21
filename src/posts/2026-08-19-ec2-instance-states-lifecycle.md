@@ -1,7 +1,7 @@
 ---
 title: "EC2 Instance States, Hibernation, dan Lifecycle"
 description: "Rangkuman materi state EC2 instance, gimana hibernation kerja, dan kenapa instance sebaiknya didesain buat gampang dibangun-bongkar ulang."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ec2]

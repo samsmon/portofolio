@@ -1,7 +1,7 @@
 ---
 title: "AWS Systems Manager: Kelola Instance Tanpa SSH"
 description: "Rangkuman materi Systems Manager, dari Run Command, Session Manager, Patch Manager, sampe Parameter Store, plus lab install aplikasi tanpa remote manual."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, systems manager, automation, session manager, labs]

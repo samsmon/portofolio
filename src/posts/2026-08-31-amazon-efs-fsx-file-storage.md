@@ -1,7 +1,7 @@
 ---
 title: "Amazon EFS dan FSx: File Storage buat Linux dan Windows"
 description: "Materi EFS (file storage buat Linux, protokol NFS) dan FSx (buat Windows, mirip Samba server), dari high availability sampe lifecycle management."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, efs, fsx, file storage]

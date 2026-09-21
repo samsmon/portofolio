@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Hari 3: Public vs Private IP dan Kenalan VPC"
 description: "Hari ketiga bahas kenapa IP public bisa berubah-ubah tapi IP private tetep sama, sampe kenalan sama konsep VPC dan subnet."
-author: srytmj
+author: samsmon
 date: 2026-08-05 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, networking, vpc]

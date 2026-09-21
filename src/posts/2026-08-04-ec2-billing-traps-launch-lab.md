@@ -1,7 +1,7 @@
 ---
 title: "EC2: Launch Instance Pertama dan Jebakan-Jebakan Billing"
 description: "Lab pertama launch EC2 instance, sekalian bongkar jebakan-jebakan billing yang gampang kelewat: storage yang dibulatin, harga OS yang beda-beda, sampe monitoring interval yang ternyata berbayar."
-author: srytmj
+author: samsmon
 date: 2026-08-04 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, billing, labs]

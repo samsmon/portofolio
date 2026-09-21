@@ -1,7 +1,7 @@
 ---
 title: "EC2 Instance Metadata, User Data, dan Best Practices"
 description: "Rangkuman materi metadata EC2, cara pake instance metadata di user data script, dan best practice keamanan buat instance."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ec2, security]

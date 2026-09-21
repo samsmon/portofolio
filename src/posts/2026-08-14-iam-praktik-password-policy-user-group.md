@@ -1,7 +1,7 @@
 ---
 title: "IAM Praktik: Password Policy, User, Group, dan Konflik Allow vs Deny"
 description: "Praktik langsung IAM, dari setting password policy custom, ngetes 3 user dengan permission beda, sampe cara resolve konflik kalau ada policy allow dan deny yang bentrok."
-author: srytmj
+author: samsmon
 date: 2026-08-14 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, iam, security, labs]

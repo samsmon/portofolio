@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 2 Hari 2: Lanjutan SQL dan Bikin RDS/Aurora Pertama"
 description: "Lanjutan SQL yang lebih dalam, terus lompat ke lab paling panjang sejauh ini: bikin RDS/Aurora dari nol dan nyambungin ke web app."
-author: srytmj
+author: samsmon
 date: 2026-08-11 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, database, rds, aurora]

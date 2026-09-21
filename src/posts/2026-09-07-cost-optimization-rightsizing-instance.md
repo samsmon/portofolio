@@ -1,7 +1,7 @@
 ---
 title: "Lab Cost Optimization: Rightsizing Instance Setelah Migrasi Database"
 description: "Lab hitung penghematan setelah downsize instance café dari t2.small ke t2.micro pasca migrasi database ke RDS, pakai AWS Pricing Calculator buat before-after."
-author: srytmj
+author: samsmon
 date: 2026-09-07 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cost optimization, rds, ec2, labs]

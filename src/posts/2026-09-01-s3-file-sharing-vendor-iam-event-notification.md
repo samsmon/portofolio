@@ -1,7 +1,7 @@
 ---
 title: "Lab S3 File Sharing: IAM Policy buat Vendor dan Event Notification"
 description: "Lab kasih akses vendor foto produk café ke S3 bucket pakai IAM policy yang dibatasin ketat, terus setup notifikasi SNS otomatis tiap ada foto masuk atau kehapus."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, s3, iam, sns, labs]

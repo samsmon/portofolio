@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 4 Hari 5: Security VPC Berlapis dan Lab Troubleshooting"
 description: "Materi keamanan VPC berlapis dan bastion host, ditutup lab troubleshooting VPC pakai flow logs, nmap, sampe nyari entry NACL yang nge-block traffic."
-author: srytmj
+author: samsmon
 date: 2026-08-28 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, vpc, security, troubleshooting]

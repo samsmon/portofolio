@@ -1,7 +1,7 @@
 ---
 title: "CloudFormation Lanjutan: Parameter, Intrinsic Function, dan Wait Condition"
 description: "Materi CloudFormation lebih dalam, dari AllowedValues di parameter, intrinsic function (Ref, Fn::Select, Fn::GetAtt, pseudo parameter), sampe cfn-init vs user data biasa."
-author: srytmj
+author: samsmon
 date: 2026-09-08 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cloudformation, iac, yaml]

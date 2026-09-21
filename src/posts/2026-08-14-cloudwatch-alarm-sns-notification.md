@@ -1,7 +1,7 @@
 ---
 title: "CloudWatch Alarm + SNS: Notifikasi Email Otomatis Kalau CPU Kelewat Batas"
 description: "Bikin alarm CloudWatch yang kirim email lewat SNS kalau CPU EC2 kelewat 60%, di-stress-test langsung sampe alarm-nya beneran bunyi, plus obrolan CloudWatch vs Grafana."
-author: srytmj
+author: samsmon
 date: 2026-08-14 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cloudwatch, monitoring, labs]

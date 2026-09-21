@@ -1,7 +1,7 @@
 ---
 title: "AWS Storage Gateway: Jembatan Storage On-Premises ke Cloud"
 description: "Rangkuman materi Storage Gateway, solusi hybrid storage buat on-premises yang kekurangan kapasitas, dari file gateway sampe tape gateway."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, storage gateway, hybrid, storage]

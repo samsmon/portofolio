@@ -1,7 +1,7 @@
 ---
 title: "EC2 Instance Store: Storage Sementara yang Nempel Fisik"
 description: "Materi Instance Store, block storage gratis yang nempel langsung ke hardware EC2, cepet banget tapi datanya hilang kalau instance restart atau mati."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ec2, instance store, storage]

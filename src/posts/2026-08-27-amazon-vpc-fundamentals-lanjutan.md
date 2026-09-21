@@ -1,7 +1,7 @@
 ---
 title: "VPC Lanjutan: CIDR Notation, Route Table, ENI, dan DNS Options"
 description: "Materi VPC lebih dalam, dari cara baca CIDR notation, gimana route table nentuin arah traffic, elastic network interface, sampe split-horizon DNS."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, vpc, networking]

@@ -1,7 +1,7 @@
 ---
 title: "Cloud Computing: Service Model, Deployment, dan Scaling"
 description: "Rangkuman fondasi cloud computing, dari kenapa nyewa infrastruktur lebih masuk akal daripada beli sendiri, model layanan IaaS/PaaS/SaaS/FaaS, sampe trade-off scaling vertikal vs horizontal."
-author: srytmj
+author: samsmon
 date: 2026-08-03 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cloud computing, fundamentals]

@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 2 Hari 1: Database Manual di EC2 Pakai MySQL"
 description: "Hari pertama minggu kedua, full lab database dari nol: install MySQL di EC2, DDL, DML, sampe SELECT query dasar."
-author: srytmj
+author: samsmon
 date: 2026-08-10 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, database, mysql]

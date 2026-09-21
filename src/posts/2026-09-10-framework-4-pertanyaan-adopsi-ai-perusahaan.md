@@ -1,7 +1,7 @@
 ---
 title: "4 Pertanyaan Sebelum Perusahaan Adopsi AI: Cost, Objective, SDM, Privacy"
 description: "Framework dari instruktur buat jawab pertanyaan train model AI sendiri vs pakai model existing, urutannya cost, objective, SDM, baru privacy, yang nentuin pakai AI lokal atau frontier model."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, strategy, foundation model]

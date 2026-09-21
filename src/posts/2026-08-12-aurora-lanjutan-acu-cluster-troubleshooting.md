@@ -1,7 +1,7 @@
 ---
 title: "Aurora Lanjutan: ACU, Cluster, dan Troubleshooting Koneksi Database"
 description: "Lanjutan Aurora, dari konsep Aurora Capacity Unit, penamaan cluster, backtrack, sampe cara runut troubleshooting kalau koneksi ke database time out."
-author: srytmj
+author: samsmon
 date: 2026-08-12 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, rds, aurora, database, labs]

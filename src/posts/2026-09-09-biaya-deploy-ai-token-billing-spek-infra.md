@@ -1,7 +1,7 @@
 ---
 title: "Biaya Deploy AI: Token Billing vs Sewa GPU, dan Kenapa Perusahaan Bikin Model Sendiri"
 description: "Rangkuman materi soal ekonomi AI, dari billing token masuk/keluar, spek infra buat model besar, sampe alasan perusahaan gede rela bakar duit bikin model AI sendiri."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, cost, gpu, foundation model]

@@ -1,7 +1,7 @@
 ---
 title: "KMS: Bikin Kunci Enkripsi, Encrypt dan Decrypt Data Lewat CLI"
 description: "Belajar KMS dari nol, bedanya symmetric vs asymmetric key, bikin kunci sendiri, sampe encrypt-decrypt file lewat AWS Encryption SDK CLI."
-author: srytmj
+author: samsmon
 date: 2026-08-13 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, kms, security, encryption, labs]

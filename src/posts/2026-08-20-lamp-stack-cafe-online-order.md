@@ -1,7 +1,7 @@
 ---
 title: "Case Study: Bikin Fitur Online Order Pakai LAMP Stack"
 description: "Case study kenapa website static harus dinaikin ke LAMP stack begitu butuh fitur online ordering, dan gimana keputusan itu ngubah kebutuhan infrastrukturnya."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, lamp, ec2, case study]

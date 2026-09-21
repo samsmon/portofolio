@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 6 Hari 4: Materi AI Hari Kedua"
 description: "Hari kedua materi AI, dari deep dive teknik labeling data, klasifikasi-regresi-clustering, ukuran model vs biaya, vector database dan RAG, sampe framework 4 pertanyaan adopsi AI."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ai, machine learning]

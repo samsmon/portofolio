@@ -1,7 +1,7 @@
 ---
 title: "EC2 Auto Scaling: Launch Template dan Lifecycle Hooks"
 description: "Rangkuman materi Auto Scaling, dari launch template, lifecycle hooks, sampe cara menghindari thrashing biar scaling nggak kebablasan."
-author: srytmj
+author: samsmon
 date: 2026-08-00 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ec2, auto-scaling]

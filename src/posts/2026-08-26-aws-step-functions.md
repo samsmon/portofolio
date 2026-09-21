@@ -1,7 +1,7 @@
 ---
 title: "AWS Step Functions: Rapper Gratis buat Orkestrasi Workflow"
 description: "Rangkuman materi Step Functions, gimana dia jadi pembungkus workflow drag-and-drop yang gratis, bayarnya di service yang dipanggil di dalamnya."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, step functions, serverless, orchestration]

@@ -1,7 +1,7 @@
 ---
 title: "Elastic Load Balancing: Analogi SPBU sampe Path-Based Routing"
 description: "Konsep ELB yang dijelasin lewat analogi karyawan SPBU, bedanya High Availability sama Fault Tolerance, sampe gimana path-based routing jadi dasar arsitektur microservice."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, elb, load balancer, microservice]

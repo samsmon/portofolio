@@ -1,7 +1,7 @@
 ---
 title: "Amazon CloudWatch: Metric, Alarm, dan Kenapa Monitoring Itu Wajib"
 description: "Rangkuman materi monitoring dan security overview, konsep metric/alarm/event di CloudWatch, namespace, custom metric, sampe bedanya SES dan SNS buat notifikasi."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cloudwatch, monitoring, alarm]

@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 5 Hari 5: Cost Management, Incident Response, dan Resource Tagging"
 description: "Materi cost management dan support plans, ditutup dua lab seru: investigasi website kena hack pakai CloudTrail/Athena, dan resource tagging management pakai CLI."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, cost management, cloudtrail, tagging]

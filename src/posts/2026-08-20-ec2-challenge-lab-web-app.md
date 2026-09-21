@@ -1,7 +1,7 @@
 ---
 title: "Challenge Lab: Bikin Web App di EC2 dari Nol"
 description: "Challenge lab tanpa step-by-step, cuma dikasih requirement level tinggi: bikin VPC, subnet, internet gateway, sampe EC2 instance yang jalanin web server sendiri."
-author: srytmj
+author: samsmon
 date: 2026-08-20 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, vpc, challenge lab, labs]

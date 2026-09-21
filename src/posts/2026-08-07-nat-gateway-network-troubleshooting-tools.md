@@ -1,7 +1,7 @@
 ---
 title: "NAT Gateway dan Tools Troubleshooting Jaringan: ping, traceroute, netstat, curl"
 description: "Kenapa resource di private subnet masih bisa akses internet lewat NAT Gateway, trade-off satu NAT per region vs per AZ, plus tools dasar buat troubleshooting jaringan dari command line."
-author: srytmj
+author: samsmon
 date: 2026-08-07 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, networking, nat gateway, troubleshooting]

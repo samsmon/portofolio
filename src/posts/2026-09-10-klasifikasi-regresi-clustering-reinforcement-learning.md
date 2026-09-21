@@ -1,7 +1,7 @@
 ---
 title: "Klasifikasi, Regresi, dan Reinforcement Learning: Bedah Detail 3 Metode Machine Learning"
 description: "Lanjutan materi AI hari kedua, bedah lebih dalam soal binary vs multi-class classification, beda estimasi dan prediksi di regresi, clustering, anomaly detection, sampe reinforcement learning ala Tesla."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, machine learning, supervised learning, unsupervised learning]

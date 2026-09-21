@@ -1,7 +1,7 @@
 ---
 title: "Setup Domain & Cloudflare Tunnel untuk AWS EC2"
 description: "Dari zero ke live production domain: cara pointing suryatmaja.dev ke AWS EC2 t3.micro pakai Cloudflare Tunnel tanpa expose public IP."
-author: srytmj
+author: samsmon
 date: 2026-06-20 00:00:00 +0700
 categories: [Cloud, AWS]
 tags: [cloudflare, aws, ec2, domain, dns, tunnel, laravel]

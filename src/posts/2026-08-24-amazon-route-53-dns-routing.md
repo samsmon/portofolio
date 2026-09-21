@@ -1,7 +1,7 @@
 ---
 title: "Amazon Route 53: DNS dan Macem-Macem Routing Policy"
 description: "Rangkuman materi Route 53, dari cara kerja DNS dan 8 routing policy-nya, sampe lab bikin failover routing pake health check dan CloudWatch alarm."
-author: srytmj
+author: samsmon
 date: 2026-08-24 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, route 53, dns, networking, high availability, labs]

@@ -1,7 +1,7 @@
 ---
 title: "AWS CLI: --query, --filter, dan --dry-run"
 description: "Rangkuman materi opsi-opsi AWS CLI yang paling sering kepake, plus case study café soal kenapa developer sering pilih CLI daripada console."
-author: srytmj
+author: samsmon
 date: 2026-08-18 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cli, automation, labs]

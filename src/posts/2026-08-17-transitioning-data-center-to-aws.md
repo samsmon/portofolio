@@ -1,7 +1,7 @@
 ---
 title: "Activity: Migrasi Data Center Korporat ke AWS"
 description: "Belajar mandiri, latihan mapping komponen data center tradisional (web server, load balancer, SAN, LDAP) ke servis AWS yang setara."
-author: srytmj
+author: samsmon
 date: 2026-08-17 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, migration, self-study]

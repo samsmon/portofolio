@@ -1,7 +1,7 @@
 ---
 title: "Database Manual di EC2: DDL, DML, dan SELECT Query Dasar"
 description: "Sebelum lompat ke RDS, belajar dulu database dari cara paling manual, install MySQL sendiri di EC2, DDL, DML, sampe SELECT query dan gotcha-gotcha SQL yang gampang bikin salah."
-author: srytmj
+author: samsmon
 date: 2026-08-10 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, database, mysql, sql, labs]

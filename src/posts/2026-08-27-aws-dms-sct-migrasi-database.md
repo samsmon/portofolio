@@ -1,7 +1,7 @@
 ---
 title: "AWS DMS dan SCT: Migrasi Database Tanpa Downtime"
 description: "Rangkuman materi Database Migration Service, bedanya migrasi homogen vs heterogen, kenapa dumping doang nggak cukup, dan konsep CDC."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, dms, sct, database, migration]

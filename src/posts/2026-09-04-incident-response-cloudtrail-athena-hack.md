@@ -1,7 +1,7 @@
 ---
 title: "Lab Incident Response: Investigasi Website Di-hack Pakai CloudTrail dan Athena"
 description: "Lab simulasi website kena hack, dari setup CloudTrail, investigasi manual pakai grep/jq, sampe pakai Athena buat query log, dan mitigasi manual."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cloudtrail, athena, security, incident response, labs]

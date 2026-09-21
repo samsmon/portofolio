@@ -1,7 +1,7 @@
 ---
 title: "Amazon CloudFront: CDN yang Bikin Website Ngebut"
 description: "Rangkuman materi CloudFront dari AWS re/Start, gimana CDN kerja lewat edge location dan kenapa itu bikin website berasa lebih cepet."
-author: srytmj
+author: samsmon
 date: 2026-08-24 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cloudfront, cdn, networking]

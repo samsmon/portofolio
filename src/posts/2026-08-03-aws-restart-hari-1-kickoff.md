@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Hari 1: Kickoff dan Sprint 7 Minggu"
 description: "Catatan hari pertama ikut AWS re/Start batch 15, dari kickoff sampai kenalan konsep dasar cloud computing."
-author: srytmj
+author: samsmon
 date: 2026-08-03 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, cloud computing]

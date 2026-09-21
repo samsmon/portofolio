@@ -1,7 +1,7 @@
 ---
 title: "CloudWatch Logs dan EventBridge: Barang Bukti yang Nggak Boleh Diedit"
 description: "Materi CloudWatch Logs (kenapa log itu harus 'suci', metric filter) dan EventBridge (dulu CloudWatch Events), plus bedanya CloudTrail vs CloudWatch yang sering ketuker."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cloudwatch, logs, eventbridge, cloudtrail]

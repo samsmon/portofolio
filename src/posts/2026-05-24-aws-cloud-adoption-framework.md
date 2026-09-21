@@ -1,7 +1,7 @@
 ---
 title: "Pindah ke AWS? Kenalan Dulu sama AWS CAF"
 description: "Sebelum migrasi ke cloud, organisasi butuh pedoman yang matang. AWS CAF hadir buat itu, dengan 6 perspektif yang mencakup sisi bisnis sampai teknis."
-author: srytmj
+author: samsmon
 date: 2026-05-24 00:00:00 +0700
 categories: [Cloud Computing, AWS]
 tags: [cloud, aws, caf, migrasi, cloud-adoption]

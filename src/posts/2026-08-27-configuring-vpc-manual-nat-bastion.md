@@ -1,7 +1,7 @@
 ---
 title: "Lab Configuring a VPC: Bastion Server dan NAT Gateway"
 description: "Lab bikin VPC dari nol dengan public/private subnet, internet gateway, NAT gateway, dan bastion server, sampe tes koneksi internet dari private instance."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, vpc, nat, bastion, labs]

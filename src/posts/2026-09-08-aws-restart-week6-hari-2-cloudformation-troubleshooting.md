@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 6 Hari 2: CloudFormation Lanjutan dan Troubleshooting Mendalam"
 description: "Materi CloudFormation lebih dalam (intrinsic function, wait condition, rollback), ditutup lab troubleshooting yang paling berharga: typo, drift, dan retain resource."
-author: srytmj
+author: samsmon
 date: 2026-09-08 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, cloudformation, troubleshooting, drift]

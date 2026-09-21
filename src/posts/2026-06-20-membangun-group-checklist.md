@@ -1,7 +1,7 @@
 ---
 title: "Membangun Realtime Checklist App dengan Bun, Hono, dan Alpine.js"
 description: "Cerita di balik group-checklist: dari ide sederhana sampai live di AWS EC2 + Cloudflare, lengkap dengan gotcha JWT di Bun, Alpine.js reactivity, dan WebSocket room management."
-author: srytmj
+author: samsmon
 date: 2026-06-20 12:00:00 +0700
 categories: [Project, Web Development]
 tags: [bun, hono, postgresql, alpine.js, websocket, typescript, aws, ec2, cloudflare, nginx, neon]
@@ -13,7 +13,7 @@ published: true
 
 Jadi setiap kali aku punya tugas kelompok, pasti kami bagi-bagi tugasnya lewat chat, terus kami bikin checklist di notes atau Google Docs, terus nggak ada yang tahu siapa yang sudah ngerjain apa. Atau lebih parahnya satu orang update checklist-nya, yang lain nggak tahu. Bolak-balik nanya di chat.
 
-Dari frustrasi itu, aku bikin [group-checklist](https://github.com/srytmj/group-checklist) — aplikasi checklist kolaboratif yang realtime. Kalau satu orang centang item, semua orang di halaman yang sama langsung lihat update-nya tanpa reload. Live di [checky.suryatmaja.dev](https://checky.suryatmaja.dev).
+Dari frustrasi itu, aku bikin [group-checklist](https://github.com/samsmon/group-checklist) — aplikasi checklist kolaboratif yang realtime. Kalau satu orang centang item, semua orang di halaman yang sama langsung lihat update-nya tanpa reload. Live di [checky.suryatmaja.dev](https://checky.suryatmaja.dev).
 
 Ini cerita di balik proses membangunnya.
 
@@ -331,7 +331,7 @@ Untuk inisiasi server baru dari awal, tinggal jalankan satu skrip:
 ssh -i your-key.pem ubuntu@<EC2_IP>
 
 # Clone repo
-git clone https://github.com/srytmj/group-checklist.git
+git clone https://github.com/samsmon/group-checklist.git
 cd group-checklist
 
 # Jalankan setup wizard
@@ -395,6 +395,6 @@ Beberapa hal yang aku catat dari project ini:
 
 Project ini awalnya cuma pengen solve masalah kecil: checklist yang bisa dilihat bareng secara realtime. Tapi proses membangunnya ngajarin banyak hal, mulai dari gotcha runtime-level sampai keputusan schema yang impactful di jangka panjang.
 
-Kalau kamu penasaran lihat hasilnya, bisa langsung buka [checky.suryatmaja.dev](https://checky.suryatmaja.dev). Source code-nya public di [github.com/srytmj/group-checklist](https://github.com/srytmj/group-checklist).
+Kalau kamu penasaran lihat hasilnya, bisa langsung buka [checky.suryatmaja.dev](https://checky.suryatmaja.dev). Source code-nya public di [github.com/samsmon/group-checklist](https://github.com/samsmon/group-checklist).
 
 Dan kalau kamu lagi build sesuatu dengan Bun dan Hono, semoga catatan gotcha di atas bisa menghemat beberapa jam debugging. wkwkw.

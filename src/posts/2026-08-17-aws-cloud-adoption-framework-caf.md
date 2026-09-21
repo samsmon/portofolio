@@ -1,7 +1,7 @@
 ---
 title: "AWS Cloud Adoption Framework (CAF): 6 Perspektif Migrasi Cloud"
 description: "Belajar mandiri soal AWS CAF, framework buat nyusun rencana migrasi ke cloud yang matang, dari sisi bisnis, orang, sampe teknis."
-author: srytmj
+author: samsmon
 date: 2026-08-17 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, caf, self-study]

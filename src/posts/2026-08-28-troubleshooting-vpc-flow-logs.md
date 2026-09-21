@@ -1,7 +1,7 @@
 ---
 title: "Lab Troubleshooting a VPC: Flow Logs, Route Table, dan NACL"
 description: "Lab nyari kenapa website café nggak bisa diakses padahal instance-nya nyala, dari cek route table, security group, sampe NACL, ditutup analisa VPC Flow Logs."
-author: srytmj
+author: samsmon
 date: 2026-08-28 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, vpc, flow logs, troubleshooting, labs]

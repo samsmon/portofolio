@@ -1,7 +1,7 @@
 ---
 title: "Amazon RDS dan Aurora: Multi-AZ, Security Group Chaining, dan Failover Otomatis"
 description: "Lab paling panjang sejauh ini: bikin RDS/Aurora dari nol, ngerti bedanya primary-secondary, security group chaining, sampe nyambungin ke web app beneran."
-author: srytmj
+author: samsmon
 date: 2026-08-11 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, rds, aurora, database, vpc, labs]

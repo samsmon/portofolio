@@ -1,7 +1,7 @@
 ---
 title: "RESTful API: Konsep Dasar yang Ternyata Sering Kepake Diam-Diam"
 description: "Rangkuman materi REST API dari AWS re/Start, mulai dari prinsip desainnya sampe format request/response dan HTTP status code."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, api, rest, networking]

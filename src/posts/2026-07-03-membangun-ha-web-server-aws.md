@@ -1,7 +1,7 @@
 ---
 title: "Bikin Web Server High Availability di AWS: EC2, RDS, S3, dan Load Balancer"
 description: "Cerita bikin arsitektur high availability di AWS Free Tier: dua EC2 web server di belakang Application Load Balancer, database server on instance yang direplikasi real-time ke RDS, S3 buat media storage, sampai simulasi failover."
-author: srytmj
+author: samsmon
 date: 2026-07-03 00:00:00 +0700
 categories: [Project, Cloud]
 tags: [aws, ec2, rds, mysql, s3, load balancer, high availability, php, replication]
@@ -13,7 +13,7 @@ published: true
 
 Salah satu hal yang selalu bikin penasaran soal infrastruktur production itu sederhana: gimana caranya sebuah web app tetap hidup walaupun satu server-nya mati mendadak? Selama ini aku cuma baca konsepnya doang, load balancer, replikasi, failover, tapi belum pernah beneran nyusun sendiri dari nol.
 
-Jadi aku bikin [ha-webserver](https://github.com/srytmj/ha-webserver), sebuah aplikasi CRUD sederhana (data user + foto) yang awalnya cuma proyek iseng dari rasa penasaran itu. Tapi versi yang ditulis di sini bukan lagi versi iseng-isengnya, ini revisi yang aku kerjain buat tugas matkul Cloud Computing di kampus, jadi challenge-nya beneran nyata, ada requirement yang harus dipenuhi, bukan cuma eksperimen bebas. Justru dari tugas inilah aku makin kepincut sama cloud computing, karena mikirin arsitektur yang tetep jalan pas ada komponen yang mati itu ternyata seru banget kalau beneran dicoba sendiri.
+Jadi aku bikin [ha-webserver](https://github.com/samsmon/ha-webserver), sebuah aplikasi CRUD sederhana (data user + foto) yang awalnya cuma proyek iseng dari rasa penasaran itu. Tapi versi yang ditulis di sini bukan lagi versi iseng-isengnya, ini revisi yang aku kerjain buat tugas matkul Cloud Computing di kampus, jadi challenge-nya beneran nyata, ada requirement yang harus dipenuhi, bukan cuma eksperimen bebas. Justru dari tugas inilah aku makin kepincut sama cloud computing, karena mikirin arsitektur yang tetep jalan pas ada komponen yang mati itu ternyata seru banget kalau beneran dicoba sendiri.
 
 Arsitekturnya: dua EC2 web server, satu EC2 yang jadi database server sendiri, replikasi real-time ke RDS, S3 buat media, dan Application Load Balancer di depannya. Tulisan ini nyeritain gimana semuanya disusun, apa aja yang gagal di tengah jalan, dan hasil pengujiannya.
 
@@ -314,4 +314,4 @@ Arsitektur ini masih jauh dari kelas produksi beneran. Beberapa hal yang menurut
 
 Project ini ngajarin aku banyak hal yang selama ini cuma aku baca teorinya doang. Ternyata bikin sistem yang "tetap hidup pas ada yang mati" itu nggak butuh tools mahal, cukup paham konsep replikasi, load balancing, dan disiplin di security group. AWS Free Tier ternyata cukup buat ngebuktiin semuanya secara nyata.
 
-Kalau kamu penasaran lihat kodenya, source-nya ada di [github.com/srytmj/ha-webserver](https://github.com/srytmj/ha-webserver).
+Kalau kamu penasaran lihat kodenya, source-nya ada di [github.com/samsmon/ha-webserver](https://github.com/samsmon/ha-webserver).

@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 2 Hari 3: Aurora Lanjutan dan Kenalan DynamoDB"
 description: "Lanjutan Aurora dengan koneksi manual dan konsep ACU, terus lompat ke dunia NoSQL lewat DynamoDB, plus drama troubleshooting koneksi database yang time out."
-author: srytmj
+author: samsmon
 date: 2026-08-12 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, aurora, dynamodb, nosql]

@@ -1,7 +1,7 @@
 ---
 title: "Lab Resource Tagging: Filter JMESPath dan Stop/Terminate Otomatis"
 description: "Lab manage resource pakai tag lewat CLI, dari filter JMESPath buat query presisi, script stopinator buat matiin server by tag, sampe terminate instance yang nggak punya tag."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, tagging, cli, jmespath, labs]

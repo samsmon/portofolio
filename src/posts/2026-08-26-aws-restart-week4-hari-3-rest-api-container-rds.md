@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 4 Hari 3: REST API, API Gateway, Step Functions, Container, RDS, dan Lambda"
 description: "Sesi padat teori: fondasi REST API, API Gateway, Step Functions, container/ECS/EKS/Fargate, lab migrasi database ke RDS pakai CLI, dan lab Lambda laporan penjualan café."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, api, container, rds]

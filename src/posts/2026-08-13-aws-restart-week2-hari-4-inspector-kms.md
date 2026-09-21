@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 2 Hari 4: Amazon Inspector, Patch Manager, dan KMS"
 description: "Hari padat soal security: scan vulnerability pake Inspector, lanjutan system hardening pake Patch Manager, sampe encrypt-decrypt data pake KMS."
-author: srytmj
+author: samsmon
 date: 2026-08-13 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, security, inspector, kms]

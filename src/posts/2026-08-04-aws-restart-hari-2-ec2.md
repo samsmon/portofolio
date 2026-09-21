@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Hari 2: EC2 dan Jebakan-Jebakan Billing"
 description: "Hari kedua full praktek launch EC2 instance, sekalian nemu beberapa jebakan billing yang gampang kelewat kalau nggak hati-hati."
-author: srytmj
+author: samsmon
 date: 2026-08-04 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ec2]

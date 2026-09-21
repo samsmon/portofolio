@@ -1,7 +1,7 @@
 ---
 title: "Lab AWS Lambda: Laporan Penjualan Café Otomatis Harian"
 description: "Lab bikin 2 Lambda function yang saling manggil buat generate laporan penjualan café harian, dari Lambda layer, IAM role, sampe trigger terjadwal via EventBridge."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, lambda, serverless, labs, sns]

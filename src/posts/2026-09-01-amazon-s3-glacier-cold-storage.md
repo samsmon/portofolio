@@ -1,7 +1,7 @@
 ---
 title: "Amazon S3 Glacier: Storage Paling Murah buat Data yang Jarang Diakses"
 description: "Rangkuman materi S3 Glacier, terminologi vault dan archive, 3 tier retrieval (instant, flexible, deep archive), sampe kenapa harganya paling murah tapi retrieve-nya lama."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, s3, glacier, storage, archive]

@@ -1,7 +1,7 @@
 ---
 title: "Bikin VPC Manual: CIDR, Internet Gateway, Routing Table, NACL vs Security Group"
 description: "Lab paling berat minggu pertama, bikin VPC dari nol pakai CIDR hitung manual, subnet, internet gateway, routing table, sampe bedanya NACL yang stateless dan security group yang stateful."
-author: srytmj
+author: samsmon
 date: 2026-08-06 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, vpc, networking, security, labs]

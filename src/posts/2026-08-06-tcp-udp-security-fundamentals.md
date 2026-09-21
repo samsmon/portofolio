@@ -1,7 +1,7 @@
 ---
 title: "TCP vs UDP dan Security Fundamentals: CIA Triad, Ancaman, dan Shared Responsibility"
 description: "Bedanya TCP dan UDP pakai analogi minum di tumbler vs galon, plus fondasi security: CIA triad, jenis-jenis ancaman, dan model shared responsibility yang wajib dihafal buat ujian CCP."
-author: srytmj
+author: samsmon
 date: 2026-08-06 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, networking, security, fundamentals]

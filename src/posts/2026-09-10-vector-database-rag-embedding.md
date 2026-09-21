@@ -1,7 +1,7 @@
 ---
 title: "Vector Database dan RAG: Cara AI 'Nyontek' Data yang Dia Nggak Tahu"
 description: "Rangkuman materi AI hari kedua soal embedding, tokenization, vector database, dan cara kerja RAG buat nambahin knowledge ke model tanpa training ulang."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, rag, vector database, embedding]

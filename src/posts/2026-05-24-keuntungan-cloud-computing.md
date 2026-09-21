@@ -1,7 +1,7 @@
 ---
 title: "6 Keuntungan Cloud Computing yang Bikin Perusahaan Ninggalin On-Premise"
 description: "Kenapa banyak perusahaan mulai beralih ke cloud? Ini 6 alasan utamanya, dari soal biaya sampai ekspansi global."
-author: srytmj
+author: samsmon
 date: 2026-05-24 00:00:00 +0700
 categories: [Cloud Computing, AWS]
 tags: [cloud, aws, keuntungan, auto-scaling, efisiensi]

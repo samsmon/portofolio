@@ -1,7 +1,7 @@
 ---
 title: "Persiapan Ujian CCP: Rangkuman Konsep Penting"
 description: "Kumpulan catatan konsep yang sering keluar di ujian CCP, dari urutan pricing model EC2, aturan IAM roles, scope resource AWS, sampe perbandingan service yang gampang ketuker."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ccp, ujian, pricing, iam]

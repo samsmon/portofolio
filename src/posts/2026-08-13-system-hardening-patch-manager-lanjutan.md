@@ -1,7 +1,7 @@
 ---
 title: "System Hardening Lanjutan: Tagging, Patch Baseline Custom, dan Jebakan Spasi"
 description: "Lanjutan praktek Patch Manager, dari tagging server buat targeting patching, bikin patch baseline custom buat Windows, sampe jebakan spasi yang bikin compliance nggak pas."
-author: srytmj
+author: samsmon
 date: 2026-08-13 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, systems manager, security, automation, labs]

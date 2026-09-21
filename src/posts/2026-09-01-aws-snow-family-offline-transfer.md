@@ -1,7 +1,7 @@
 ---
 title: "AWS Snow Family: Migrasi Data Tanpa Internet, Pakai Kurir"
 description: "Rangkuman materi Snow Family, solusi migrasi data raksasa lewat perangkat fisik yang dianter kurir, buat kondisi internet lambat atau deadline ketat."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, snow family, snowball, migration, offline]

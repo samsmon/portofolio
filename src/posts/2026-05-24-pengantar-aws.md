@@ -1,7 +1,7 @@
 ---
 title: "Pengantar AWS: Layanan Web, Kategori, dan Cara Pakainya"
 description: "Kenalan sama AWS dari nol: apa itu layanan web, gimana cara AWS bekerja, layanan apa aja yang ada, dan 3 cara buat berinteraksi sama AWS."
-author: srytmj
+author: samsmon
 date: 2026-05-24 00:00:00 +0700
 categories: [Cloud Computing, AWS]
 tags: [cloud, aws, ec2, vpc, s3, iam, pengantar]

@@ -87,7 +87,7 @@ Data: `export const projects` di `site.js`. Setiap objek:
   detail: ['Paragraf 1', 'Paragraf 2', 'Paragraf 3'],   // halaman detail
   stack: ['Proxmox VE', 'Docker', 'Terraform'],
   images: ['/projects/homelab-1.svg', '/projects/homelab-2.svg'],  // file di static/projects/
-  links: [{ label: 'Repo', href: 'https://github.com/srytmj/...' }]
+  links: [{ label: 'Repo', href: 'https://github.com/samsmon/...' }]
 }
 ```
 
@@ -117,7 +117,7 @@ Sesuaikan persis dengan artikel yang sudah ada:
 ---
 title: "Judul Artikel"
 description: "Satu kalimat ringkasan, dipakai di kartu dan meta description."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, rag]
@@ -184,7 +184,7 @@ Tambahkan proyek baru ke projects di src/lib/content/site.js:
 slug "lab-monitoring", title "Lab Monitoring Stack", kind "Infrastructure", year "2026",
 summary "<satu kalimat>", detail tiga paragraf dari catatan berikut: <catatan>.
 Stack: Prometheus, Grafana, Loki, Docker. Gambar sudah ada di static/projects/lab-monitoring-1.svg.
-Link: Repo -> https://github.com/srytmj/lab-monitoring. Taruh di urutan ke-3 supaya tampil di landing page.
+Link: Repo -> https://github.com/samsmon/lab-monitoring. Taruh di urutan ke-3 supaya tampil di landing page.
 Cek /projects dan /projects/lab-monitoring lewat npm run build, lalu minta konfirmasi sebelum commit.
 ```
 

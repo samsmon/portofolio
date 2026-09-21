@@ -1,7 +1,7 @@
 ---
 title: "VPC Connectivity Options: NAT, Peering, VPN, Transit Gateway, dan Endpoint"
 description: "Rangkuman opsi konektivitas VPC, dari NAT gateway vs NAT instance, kenapa VPC peering nggak transitif, sampe bedanya interface endpoint dan gateway endpoint."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, vpc, networking, nat, vpn, transit gateway]

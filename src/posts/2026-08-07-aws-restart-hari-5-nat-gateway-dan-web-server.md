@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Hari 5: NAT Gateway dan Nyoba Bikin Web Server"
 description: "Nutup minggu pertama dengan NAT gateway, lanjutan lab VPC dari kemarin, sampe trial-error bikin web server manual dan otomatis."
-author: srytmj
+author: samsmon
 date: 2026-08-07 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, networking, ec2]

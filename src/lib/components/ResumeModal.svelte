@@ -166,7 +166,7 @@
           <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] border-t pt-3" style="border-color: var(--yorha-border); color: var(--yorha-text-muted);">
             <span>contact@suryatmaja.dev</span>
             <span>·</span>
-            <span>github.com/srytmj</span>
+            <span>github.com/samsmon</span>
             <span>·</span>
             <span>linkedin.com/in/suryatmaja</span>
             <span>·</span>
@@ -221,7 +221,7 @@
               </div>
               <p class="text-xs font-mono" style="color: var(--yorha-text-muted);">SvelteKit · Go · TypeScript · Laravel · PostgreSQL · Redis</p>
               <ul class="mt-2 space-y-1 text-xs list-disc list-inside" style="color: var(--yorha-text-muted);">
-                <li>Built <strong>White Archive</strong>: responsive digital preservation web platform with automated data backup pipelines and lightweight client performance.</li>
+                <li>Built <strong>Yado</strong>: SSO-gated self-hosted service launcher and status page fronting a homelab of 35+ containers.</li>
                 <li>Designed <strong>Realtime Group Checklist</strong>: multi-client collaboration system using WebSockets and Redis pub/sub synchronization.</li>
                 <li>Developed enterprise point-of-sale accounting systems with double-entry ledgers and audit log tracking.</li>
                 <li>Implemented concurrency-safe banking CLI system with transactional journaling and integrity constraints.</li>

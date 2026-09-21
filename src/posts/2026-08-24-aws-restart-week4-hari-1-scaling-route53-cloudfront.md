@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 4 Hari 1: Prediction Challenge, Route 53, dan CloudFront"
 description: "Hari pertama minggu keempat, resmi masuk 3 minggu terakhir program. Latihan step scaling, materi Route 53 sampe lab failover routing, dan CloudFront."
-author: srytmj
+author: samsmon
 date: 2026-08-24 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, auto-scaling, route53, cloudfront]

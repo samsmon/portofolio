@@ -1,7 +1,7 @@
 ---
 title: "Lab Monitoring Infrastructure: CloudWatch Agent, Alarm, dan AWS Config"
 description: "Lab install CloudWatch Agent tanpa SSH manual pakai Systems Manager, bikin alarm dari log custom, notifikasi real-time via EventBridge, dan compliance check pakai AWS Config."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cloudwatch, systems manager, eventbridge, config, labs]

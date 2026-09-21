@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 6 Hari 1: AMI Strategy, Rightsizing, dan CloudFormation Pertama"
 description: "Masuk minggu keenam, hari terakhir sisa ~10 hari. Materi AMI building strategy, lab rightsizing instance, dan mulai kenalan sama CloudFormation."
-author: srytmj
+author: samsmon
 date: 2026-09-07 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ami, cloudformation, cost optimization]

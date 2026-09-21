@@ -1,7 +1,7 @@
 ---
 title: "DynamoDB dan NoSQL Dasar: Partition Key, Sort Key, dan Query vs Scan"
 description: "Kenalan sama NoSQL lewat DynamoDB, dari partition key dan sort key, sifat schema-less-nya, sampe kenapa Query jauh lebih murah daripada Scan."
-author: srytmj
+author: samsmon
 date: 2026-08-12 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, dynamodb, nosql, database, labs]

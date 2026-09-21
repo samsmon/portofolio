@@ -1,7 +1,7 @@
 ---
 title: "IAM: Bedanya Policy, Permission, dan Role"
 description: "Rangkuman materi IAM policy dan role, cara evaluasi policy di AWS, sampe kenapa nggak boleh pake root account buat kerjaan harian."
-author: srytmj
+author: samsmon
 date: 2026-08-18 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, iam, security]

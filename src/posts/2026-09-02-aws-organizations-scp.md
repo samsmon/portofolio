@@ -1,7 +1,7 @@
 ---
 title: "AWS Organizations dan SCP: Ngatur Banyak Akun Sekaligus"
 description: "Rangkuman materi Organizations, konsep OU bersarang, cara kerja inheritance SCP yang suka bikin bingung, dan consolidated billing."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, organizations, scp, iam, billing]

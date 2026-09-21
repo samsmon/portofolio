@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Hari 4: TCP vs UDP, Security Fundamentals, dan Lab VPC Manual"
 description: "Hari terpadat sejauh ini, dari analogi tumbler vs galon buat TCP/UDP, security fundamentals, sampe lab bikin VPC manual dari nol."
-author: srytmj
+author: samsmon
 date: 2026-08-06 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, networking, security, vpc]

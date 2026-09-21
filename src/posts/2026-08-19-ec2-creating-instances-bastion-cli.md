@@ -1,7 +1,7 @@
 ---
 title: "Bikin EC2 Instance Lewat Console vs CLI, Pake Bastion Host"
 description: "Lab bikin 2 EC2 instance dengan cara berbeda: satu lewat console jadi bastion host, satu lagi lewat AWS CLI jadi web server, sekalian kenalan sama pola bastion host."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ec2, cli, bastion host, labs]

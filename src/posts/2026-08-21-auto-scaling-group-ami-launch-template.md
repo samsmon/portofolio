@@ -1,7 +1,7 @@
 ---
 title: "Auto Scaling Group: dari AMI Matang sampe Load Test"
 description: "Lab bikin Auto Scaling Group dari nol, mulai dari jadiin server yang udah matang jadi AMI, bikin launch template, sampe stress test buat mancing scaling-nya jalan."
-author: srytmj
+author: samsmon
 date: 2026-08-21 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, auto-scaling, ec2, labs]

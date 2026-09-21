@@ -1,7 +1,7 @@
 ---
 title: "AI, ML, Deep Learning, dan Generative AI: Taksonomi dan Konsep Dasar"
 description: "Rangkuman materi AI hari pertama, dari hierarki AI > ML > deep learning > generative AI, evolusi nama, foundation model vs model biasa, sampe kenapa menghafal beda dari belajar."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, machine learning, deep learning, generative ai]

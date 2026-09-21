@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 5 Hari 3: CloudWatch Logs/Events, Athena, Organizations, dan Tagging"
 description: "CloudWatch Logs dan EventBridge, Athena buat query serverless, AWS Organizations dan SCP, tagging dan cost management, ditutup lab monitoring infrastruktur lengkap."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, cloudwatch, organizations, tagging]

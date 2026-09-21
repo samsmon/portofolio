@@ -1,7 +1,7 @@
 ---
 title: "Jaringan Komputer Dasar: Client-Server, NIC, Kabel, Switch, dan Router"
 description: "Fondasi networking sebelum masuk VPC, dari konsep client-server, MAC address di NIC, jenis-jenis kabel jaringan, sampe bedanya switch managed vs unmanaged dan kerjanya router."
-author: srytmj
+author: samsmon
 date: 2026-08-05 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, networking, fundamentals]

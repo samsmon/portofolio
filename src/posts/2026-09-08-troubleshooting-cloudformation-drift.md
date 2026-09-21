@@ -1,7 +1,7 @@
 ---
 title: "Lab Troubleshooting CloudFormation: Typo, Drift, dan Retain Resource"
 description: "Lab debug stack yang gagal gara-gara typo di user data, deteksi drift setelah edit manual, sampe cara delete stack tapi tetap nyimpen S3 bucket."
-author: srytmj
+author: samsmon
 date: 2026-09-08 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cloudformation, troubleshooting, drift, labs]

@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 5 Hari 2: S3 Glacier, Storage Gateway, Snow Family, dan CloudWatch"
 description: "Masuk minggu kelima. Materi S3 Glacier, Storage Gateway, lab file sharing dengan vendor, Transfer Family, Snow Family, ditutup overview monitoring CloudWatch."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, s3, glacier, storage gateway, cloudwatch]

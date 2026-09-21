@@ -63,10 +63,10 @@ export const stats = [
 ];
 
 export const building = {
-  project: 'White Archive v2',
-  tagline: 'Self-hosted media asset pipeline with automatic transcode and Zero-Trust auth',
+  project: 'Pore.js',
+  tagline: 'Source-agnostic web reader for manga, comics, and books, built from scratch with its own pagination engine and no backend',
   status: 'In active development',
-  stack: ['Laravel', 'PostgreSQL', 'Docker', 'Tailscale']
+  stack: ['JavaScript', 'Canvas API', 'EPUB.js', 'PDF.js']
 };
 
 export const engineTrivia = {
@@ -103,7 +103,7 @@ export const stack = [
         readiness: 95,
         detail: 'Declarative multi-tier provisioning, immutable state management, CI/CD execution.',
         role: 'Infrastructure as Code (IaC) for AWS and self-hosted Proxmox nodes. Zero manual resource drift.',
-        deployedAt: 'White Archive infra, Homelab virtualization, Automated VPC topologies',
+        deployedAt: 'Yado ecosystem infra, Homelab virtualization, Automated VPC topologies',
         command: '$ terraform plan -out=tfplan.binary\n[EXEC] Plan: 6 to add, 0 to change, 0 to destroy. State locked.'
       },
       {
@@ -123,7 +123,7 @@ export const stack = [
         readiness: 94,
         detail: 'Object storage, presigned URLs, S3-compatible self-hosted buckets, and offsite backups.',
         role: 'Blob and media archival with lifecycle policies, bucket versioning, and client-side encryption.',
-        deployedAt: 'White Archive media repository, homelab restic backup repositories',
+        deployedAt: 'Malas cover storage, homelab backup repositories',
         command: '$ mc admin info myminio\nUptime: 48d | Standard Storage: 1.8 TB | Health: GREEN [100% OK]'
       },
       {
@@ -159,8 +159,8 @@ export const stack = [
         readiness: 96,
         detail: 'Bare-metal Type-1 hypervisor, LXC unprivileged containers, QEMU KVM VMs, ZFS pool management.',
         role: 'Self-hosted compute cluster running 24/7. Hosts media nodes, staging APIs, and isolated lab networks.',
-        deployedAt: 'Primary Homelab Node (16 Cores / 64GB RAM / Dual 2.5GbE NICs)',
-        command: '$ pvesh get /cluster/status\nNode: pve-node01 | State: Online | VMs: 8 | LXC: 14 | Memory: 42.1%'
+        deployedAt: 'Primary Homelab Node (Intel i5-7500 / 32GB RAM, 35+ containers)',
+        command: '$ pvesh get /cluster/status\nNode: pve | State: Online | LXC: 3 hosts | Memory: 22.1%'
       },
       {
         id: 'SYS-02',
@@ -251,7 +251,7 @@ export const stack = [
         readiness: 96,
         detail: 'Robust enterprise backends, background queue workers, Eloquent ORM, Sanctum auth.',
         role: 'Primary web application framework. Handles complex relational models, jobs, and secure APIs.',
-        deployedAt: 'White Archive backend, client business platforms, custom SaaS portals',
+        deployedAt: 'Client business platforms, custom SaaS portals',
         command: '$ php artisan queue:work redis --tries=3\n[2026-09-09 11:45:01] Processing: App\\Jobs\\ProcessMediaArchive\n[2026-09-09 11:45:03] Processed:  App\\Jobs\\ProcessMediaArchive (2.18s)'
       },
       {
@@ -303,23 +303,52 @@ export const stack = [
 // get object-fit: cover). `detail` is an array of paragraphs.
 export const projects = [
   {
-    slug: 'white-archive',
-    title: 'White Archive',
+    slug: 'yado',
+    title: 'Yado',
     kind: 'Platform',
-    year: '2025',
+    year: '2026',
     summary:
-      'A media archive platform: upload, transcode, catalogue, and control who can access each file.',
+      'The entry point to every self-hosted service running on my homelab: one launcher, single sign-on, and a live status page.',
     detail: [
-      'Creators upload large media files. The system transcodes them in the background, catalogues them, and applies per-file access rules.',
-      'Backend is Laravel with PostgreSQL. It runs on my homelab behind a reverse proxy, with S3-compatible object storage and off-site encrypted backups. Deploys run from GitHub Actions.',
-      'The parts I spent the most time on: resumable uploads, and keeping the transcode queue from falling behind.'
+      '宿 (yado) means "a place to stay." It is the front door to my homelab: a launcher with search, drag-and-drop shortcut groups, and a room directory listing every service currently running (production, staging, or in development).',
+      'Every room behind it is gated by the same SSO identity provider, so signing into Yado signs you into the whole network. A public status page shows 90-day uptime and incident history sourced from real health probes, not a static badge.',
+      'Replaces what used to be White Archive as the project I spend the most homelab time on. It grew out of needing one honest front page for services that used to just be a list of bookmarks.'
     ],
-    stack: ['Laravel', 'PostgreSQL', 'Docker', 'MinIO', 'Terraform', 'GitHub Actions'],
-    images: ['/projects/white-archive-1.svg', '/projects/white-archive-2.svg'],
-    links: [
-      { label: 'Live', href: '#' },
-      { label: 'Case study', href: '#' }
-    ]
+    stack: ['SvelteKit', 'OAuth2', 'Docker', 'Tailscale', 'Nginx Proxy Manager'],
+    images: ['/projects/yado-1.png', '/projects/yado-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/yado' }]
+  },
+  {
+    slug: 'malas',
+    title: 'Malas',
+    kind: 'Web app',
+    year: '2026',
+    summary:
+      'A personal manga and light novel library manager: catalogue, collection tracking, wishlist, and loan status in one place.',
+    detail: [
+      'Tracks a real physical and digital collection: which volumes are owned, reading progress per series, an overdue-aware loan tracker for lent-out volumes, and a wishlist separate from the owned catalogue.',
+      'The catalogue supports manga, light novels, one-shots, doujinshi, manhwa, and manhua, each filterable by genre, status, and type, with a genre-taste breakdown built from the collection itself.',
+      'Sits behind the Yado SSO gateway, and its search and cover-heavy grid views are the part I iterated on the most: fast filtering over 100+ series without feeling like a spreadsheet.'
+    ],
+    stack: ['SvelteKit', 'PostgreSQL', 'OAuth2', 'Docker'],
+    images: ['/projects/malas-1.png', '/projects/malas-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/malas' }]
+  },
+  {
+    slug: 'homelab-dashboard',
+    title: 'Homelab Dashboard',
+    kind: 'Web app',
+    year: '2026',
+    summary:
+      'The command center for my homelab: live fleet, network, storage, and backup telemetry, plus AI agent usage tracking, in one dashboard.',
+    detail: [
+      'Owner-POV overview of the whole node: CPU/RAM load, Tailscale mesh peers, SSL certificate renewal countdowns, and a disaster-recovery panel, all refreshed from live telemetry rather than a cron job that updates a static page.',
+      'Drills into every Docker host and its containers (start, stop, restart, open a shell, follow logs), and a storage tab with SMART health, read/write throughput, and a disconnect watchdog for the external DAS enclosures.',
+      'Also tracks usage for the AI coding agents running on the box itself: turns per day, 5-hour rolling quota windows, and a 7-day burn-rate chart per agent, since that turned out to be worth watching as closely as CPU.'
+    ],
+    stack: ['SvelteKit', 'Docker Engine API', 'Proxmox API', 'Tailscale', 'WebSocket'],
+    images: ['/projects/homelab-dashboard-1.png', '/projects/homelab-dashboard-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/homelab-dashboard' }]
   },
   {
     slug: 'homelab',
@@ -327,16 +356,48 @@ export const projects = [
     kind: 'Infrastructure',
     year: 'Since 2024',
     summary:
-      'A mini-PC cluster node running containerised services behind a Zero-Trust Tailscale mesh, with automatic TLS, monitoring, and off-site encrypted backups.',
+      'A single-node Proxmox homelab running 35+ containers behind a Tailscale mesh, with DAS storage, nightly backups, and its own monitoring dashboard.',
     detail: [
-      'Physical Node: Intel 4-Core mini-PC with 16GB RAM running Debian Linux and Proxmox hypervisor. Network connectivity via 2.5 GbE LAN and a Tailscale Zero Trust mesh network (*.ts.net) with MagicDNS.',
-      'Workloads: Over 15 containerised services managed via Docker Compose and GitOps. Ingress is routed through a reverse proxy with automated Let’s Encrypt TLS certificates.',
-      'Storage & Backups: System on NVMe with automated nightly encrypted snapshots pushed to an offsite S3-compatible vault via restic.',
-      'Telemetry & Observability: Prometheus and Netdata scrape node metrics; Grafana renders cluster health boards with Uptime Kuma monitoring service endpoints.'
+      'Physical node: an Intel Core i5-7500 mini-PC/SFF box with 32GB RAM running Proxmox VE as the hypervisor. Split into three Docker hosts by role (a main docker-host for general services, a dedicated host for the Yado family of apps, and a small dev-host for scratch work), plus an apps-host LXC, for 35+ containers total.',
+      'Network: a Tailscale mesh ties the node, my machines, and a couple of always-on peers together, with SSL termination and auto-renewing Let’s Encrypt certificates handled by Nginx Proxy Manager in front of everything.',
+      'Storage: the Proxmox root SSD plus three external DAS enclosures (media, cloud, and music volumes) add up to about 3.8TB, with live SMART health checks and a canary watchdog that flags a drive the moment it disconnects. Nightly vzdump snapshots land on a dedicated backup volume.',
+      'This is the box that everything else on this page, Yado, SSO, Malas, and White Archive before it, actually runs on. No public repo for the infrastructure config itself since it is tightly coupled to this specific hardware, but the Homelab Dashboard project above is the tool I built to watch it.'
     ],
-    stack: ['Proxmox VE', 'Tailscale ZTNA', 'Docker', 'Terraform', 'GitHub Actions', 'Prometheus', 'Grafana'],
-    images: ['/projects/homelab-1.svg', '/projects/homelab-2.svg'],
-    links: [{ label: 'Notes', href: 'https://blog.suryatmaja.dev' }]
+    stack: ['Proxmox VE', 'Docker', 'Tailscale', 'Nginx Proxy Manager', 'vzdump'],
+    images: ['/projects/homelab-1.png', '/projects/homelab-2.png'],
+    links: []
+  },
+  {
+    slug: 'sso-yado',
+    title: 'SSO · Yado',
+    kind: 'Platform',
+    year: '2026',
+    summary:
+      'Centralized OAuth2 identity provider securing every service in the Yado network with a single login.',
+    detail: [
+      'A standalone identity provider implementing the OAuth2 Authorization Code flow with PKCE (S256), so client apps never see or store passwords.',
+      'Handles user accounts, active session management, two-factor security, and per-application client registration from one admin dashboard. Every other service (Yado, Malas, and anything added later) authenticates against it instead of rolling its own auth.',
+      'Built to be boring on purpose: fewer places where login state can drift out of sync, fewer secrets to rotate.'
+    ],
+    stack: ['OAuth2', 'PKCE', 'Node.js', 'PostgreSQL', 'Docker'],
+    images: ['/projects/sso-yado-1.png', '/projects/sso-yado-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/sso.yado' }]
+  },
+  {
+    slug: 'pore-js',
+    title: 'Pore.js',
+    kind: 'Library',
+    year: '2026',
+    summary:
+      'A source-agnostic web reader for manga, comics, and books, built from scratch with its own pagination engine and no backend.',
+    detail: [
+      'Opens EPUB, PDF, CBZ/ZIP, or a raw folder of images entirely client-side. Nothing is uploaded anywhere: the file stays in the browser for the whole session.',
+      'One reader, many reading modes: right-to-left double-page manga spreads, continuous-scroll webtoon, reflowable EPUB with adjustable typography, vertical Japanese (tategaki), right-to-left Arabic prose, pre-paginated fixed-layout EPUB, and PDF rendering with a searchable text layer.',
+      'The reading engine that powers Malas under the hood. Still in active development (~70%): the pagination math for mixed aspect-ratio scans is the hard part.'
+    ],
+    stack: ['JavaScript', 'Canvas API', 'EPUB.js', 'PDF.js'],
+    images: ['/projects/pore-js-1.png', '/projects/pore-js-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/pore-js' }]
   },
   {
     slug: 'ha-web-server-aws',
@@ -353,7 +414,7 @@ export const projects = [
     stack: ['AWS EC2', 'Amazon RDS', 'Amazon S3', 'ALB', 'PHP', 'MySQL', 'Apache'],
     images: ['/projects/placeholder-1.svg'],
     links: [
-      { label: 'Repo', href: 'https://github.com/srytmj/ha-webserver' },
+      { label: 'Repo', href: 'https://github.com/samsmon/ha-webserver' },
       { label: 'Case Study', href: '/projects/ha-web-server-aws' }
     ]
   },
@@ -373,7 +434,7 @@ export const projects = [
     images: ['/projects/placeholder-2.svg'],
     links: [
       { label: 'Case Study', href: '/projects/realtime-group-checklist' },
-      { label: 'GitHub', href: 'https://github.com/srytmj' }
+      { label: 'GitHub', href: 'https://github.com/samsmon/group-checklist' }
     ]
   },
   {
@@ -389,7 +450,7 @@ export const projects = [
     ],
     stack: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS'],
     images: ['/projects/placeholder-1.svg'],
-    links: [{ label: 'Repo', href: 'https://github.com/srytmj/laravel-pos-accounting' }]
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/laravel-pos-accounting' }]
   },
   {
     slug: 'atm-cli-banking-system',
@@ -404,7 +465,7 @@ export const projects = [
     ],
     stack: ['Java', 'OOP', 'CLI Architecture'],
     images: ['/projects/placeholder-2.svg'],
-    links: [{ label: 'Repo', href: 'https://github.com/srytmj/oop-banking-cli' }]
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/oop-banking-cli' }]
   }
 ];
 
@@ -413,7 +474,7 @@ export const contact = {
   email: 'contact@suryatmaja.dev',
   links: [
     { label: 'Blog', href: '/blog' },
-    { label: 'GitHub', href: 'https://github.com/srytmj' },
+    { label: 'GitHub', href: 'https://github.com/samsmon' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/suryatmaja/' },
     { label: 'Instagram', href: 'https://www.instagram.com/symjaaa/' },
     { label: 'Email', href: 'mailto:contact@suryatmaja.dev' }

@@ -1,7 +1,7 @@
 ---
 title: "Amankan dan Troubleshoot VPC: Layered Defense sampe Bastion Host"
 description: "Rangkuman materi security VPC berlapis (route table, NACL, security group, firewall OS), pola bastion host yang proper, sampe checklist troubleshooting koneksi."
-author: srytmj
+author: samsmon
 date: 2026-08-28 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, vpc, security, networking, troubleshooting]

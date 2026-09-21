@@ -1,7 +1,7 @@
 ---
 title: "AWS Lambda: Ngoding Tanpa Mikirin Server"
 description: "Rangkuman materi serverless computing dan AWS Lambda, dari perbandingan sama deployment tradisional sampe konsep Lambda layers."
-author: srytmj
+author: samsmon
 date: 2026-08-24 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, lambda, serverless]

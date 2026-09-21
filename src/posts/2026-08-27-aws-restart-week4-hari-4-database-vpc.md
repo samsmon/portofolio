@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 4 Hari 4: Redshift, DMS, dan Lab Configuring a VPC"
 description: "Materi Redshift dan DMS/SCT buat migrasi database, lanjut ke unit baru AWS Networking, ditutup lab bikin VPC manual dengan bastion server dan NAT gateway."
-author: srytmj
+author: samsmon
 date: 2026-08-27 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, redshift, dms, vpc]

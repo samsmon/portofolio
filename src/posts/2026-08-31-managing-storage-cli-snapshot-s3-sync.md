@@ -1,7 +1,7 @@
 ---
 title: "Lab Managing Storage: Snapshot Terjadwal dan S3 Sync via CLI"
 description: "Lab bikin EBS snapshot pakai CLI, otomasi retention pakai cron dan script Python, sampe sync file ke S3 dengan versioning dan restore dari version ID."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, ebs, s3, cli, snapshot, versioning, labs]

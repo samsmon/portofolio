@@ -1,7 +1,7 @@
 ---
 title: "Infrastructure as Code: Kenalan dengan JSON dan YAML"
 description: "Rangkuman materi dasar IaC, kenapa JSON dan YAML jadi bahasa deklaratif buat CloudFormation, dan kenapa YAML lebih disukai dari sisi keterbacaan."
-author: srytmj
+author: samsmon
 date: 2026-09-07 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, iac, cloudformation, json, yaml]

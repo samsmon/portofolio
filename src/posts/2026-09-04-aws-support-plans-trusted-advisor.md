@@ -1,7 +1,7 @@
 ---
 title: "AWS Support Plans dan Trusted Advisor: Kapan Worth Dibayar"
 description: "Rangkuman materi support plan (basic, bisnis, enterprise), Trusted Advisor sebagai konsultan virtual, dan hitung-hitungan kenapa TAM itu mahal buat individu."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, support plan, trusted advisor, cost]

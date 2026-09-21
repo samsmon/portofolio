@@ -1,7 +1,7 @@
 ---
 title: "Configuration Management: Kenapa Konfigurasi Harus Seragam"
 description: "Overview singkat configuration management, kenapa 1000 server harus 'serasa satu server', dan perbandingan istilah template di Ansible, OpsWorks, dan Puppet."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, configuration management, automation, devops]

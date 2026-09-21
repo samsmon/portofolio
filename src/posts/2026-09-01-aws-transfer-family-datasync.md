@@ -1,7 +1,7 @@
 ---
 title: "AWS Transfer Family dan DataSync: Migrasi Data via Internet"
 description: "Rangkuman materi Transfer Family (SFTP/FTPS/FTP) dan DataSync, dua opsi migrasi data yang masih bergantung kecepatan internet."
-author: srytmj
+author: samsmon
 date: 2026-09-01 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, transfer family, datasync, sftp, migration]

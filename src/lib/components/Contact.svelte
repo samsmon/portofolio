@@ -230,7 +230,7 @@
 
         <div class="mt-6 flex flex-col gap-2 border-t border-current/10 pt-4">
           <a
-            href="https://github.com/srytmj"
+            href="https://github.com/samsmon"
             target="_blank"
             rel="noopener noreferrer"
             class="group/item flex items-center justify-between border border-current/15 bg-current/[0.02] px-3 py-2 font-mono transition-all hover:border-current/40 hover:bg-current/5"
@@ -239,7 +239,7 @@
               <span class="text-label" style="color: var(--yorha-accent);">■</span>
               <div class="flex flex-col">
                 <span class="text-xs font-semibold tracking-tight">GitHub</span>
-                <span class="text-label select-all" style="color: var(--yorha-text-muted);">github.com/srytmj</span>
+                <span class="text-label select-all" style="color: var(--yorha-text-muted);">github.com/samsmon</span>
               </div>
             </div>
             <span class="text-label uppercase tracking-wider transition-transform group-hover/item:translate-x-1" style="color: var(--yorha-accent);">Open →</span>

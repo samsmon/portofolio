@@ -1,7 +1,7 @@
 ---
 title: "Infrastructure as Code: SDK, CloudFormation, dan OpsWorks"
 description: "Rangkuman materi tooling automation AWS, dari SDK buat akses programmatic, CloudFormation buat provisioning lewat template, sampe OpsWorks buat configuration management."
-author: srytmj
+author: samsmon
 date: 2026-08-19 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, iac, cloudformation, opsworks, sdk]

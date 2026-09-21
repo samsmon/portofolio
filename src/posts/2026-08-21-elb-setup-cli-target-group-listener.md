@@ -1,7 +1,7 @@
 ---
 title: "Bikin Load Balancer via CLI: Target Group, Listener, Health Check"
 description: "Praktek bikin Application Load Balancer pakai AWS CLI dari nol, urutannya target group dulu baru load balancer, sampe verifikasi target health."
-author: srytmj
+author: samsmon
 date: 2026-08-21 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, elb, cli, labs]

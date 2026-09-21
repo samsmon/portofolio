@@ -1,7 +1,7 @@
 ---
 title: "AWS Well-Architected Framework: Cost Optimization, Sustainability, dan Reliability"
 description: "Belajar mandiri soal Well-Architected Framework, 6 pillar buat evaluasi arsitektur cloud, plus bedanya reliability dan availability dan cara ngitung uptime."
-author: srytmj
+author: samsmon
 date: 2026-08-17 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, well-architected, self-study]

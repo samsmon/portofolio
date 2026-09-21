@@ -1,7 +1,7 @@
 ---
 title: "Latihan Mikir Kayak Auto Scaling: Prediction Challenge"
 description: "Latihan mikir gimana Auto Scaling group bakal nambah/ngurangin instance berdasarkan CPU utilization, sambil ngerti kenapa warmup period penting banget."
-author: srytmj
+author: samsmon
 date: 2026-08-24 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ec2, auto-scaling]

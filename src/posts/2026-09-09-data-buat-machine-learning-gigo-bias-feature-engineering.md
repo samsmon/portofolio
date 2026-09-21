@@ -1,7 +1,7 @@
 ---
 title: "Data buat Machine Learning: GIGO, Bias, dan Feature Engineering"
 description: "Rangkuman materi soal data di ML, dari prinsip garbage in garbage out, data bias/imbalanced, feature engineering, sampe kenapa 50% waktu data scientist habis di data prep."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, machine learning, data]

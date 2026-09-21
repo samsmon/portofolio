@@ -1,7 +1,7 @@
 ---
 title: "Keputusan yang Tepat"
 description: "Sebuah titik balik tentang alasan mengapa saya akhirnya memutuskan untuk membangun ruang digital ini sebagai backup otak dan dokumentasi hidup."
-author: srytmj
+author: samsmon
 date: 2026-05-19 23:30:00 +0700
 categories: [Personal, Refleksi]
 tags: [productivity, jurnal, portfolio]

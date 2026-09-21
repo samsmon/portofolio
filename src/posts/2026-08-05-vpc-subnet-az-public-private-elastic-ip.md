@@ -1,7 +1,7 @@
 ---
 title: "VPC, Subnet, AZ, dan Kenapa IP Public Bisa Berubah-Ubah"
 description: "Struktur hierarki VPC-Subnet-AZ di AWS, plus lab investigasi kenapa IP public instance berubah pas di-stop tapi tetap sama pas di-reboot, dan gimana Elastic IP jadi solusinya."
-author: srytmj
+author: samsmon
 date: 2026-08-05 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, vpc, networking, ip address, labs]

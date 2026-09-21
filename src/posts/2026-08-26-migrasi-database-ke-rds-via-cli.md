@@ -1,7 +1,7 @@
 ---
 title: "Migrasi Database Lokal ke RDS Pakai CLI"
 description: "Lab bikin RDS MariaDB dari nol pakai AWS CLI, terus migrasi data dari database lokal di EC2 ke RDS lewat mysqldump, sampe monitoring koneksinya via CloudWatch."
-author: srytmj
+author: samsmon
 date: 2026-08-26 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, rds, cli, mariadb, labs, migration]

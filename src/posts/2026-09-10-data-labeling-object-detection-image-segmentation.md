@@ -1,7 +1,7 @@
 ---
 title: "Data Labeling dan Object Detection: dari Hierarki Folder sampai Image Segmentation"
 description: "Rangkuman materi AI hari kedua, soal teknik labeling data buat supervised learning, dari hierarki folder, data annotation, sampe cerita skripsi instruktur bikin deteksi masker tahun 2019."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, machine learning, computer vision, data labeling]

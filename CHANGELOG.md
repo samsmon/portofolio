@@ -10,9 +10,18 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ### Added
 - **Lightbox Gambar di Modal Project (`lib/components/ProjectModal.svelte`):** gambar di dalam modal detail project (dipicu dari section portofolio landing page) sekarang bisa diklik untuk membuka `ImageLightbox` full-size, menyamakan perilaku dengan halaman detail project (`routes/(site)/projects/[slug]/+page.svelte`) yang sudah lebih dulu punya fitur ini. Sebelumnya import dan state `lightboxIndex` sudah ada tapi belum tersambung ke elemen manapun.
+- **Empat Project Baru dari Ekosistem Yado (`lib/content/site.js`, `static/projects/*.png`):** `White Archive` (sudah usang) diganti empat project baru berdasarkan screenshot repo `samsmon/yado`, `samsmon/sso.yado`, `samsmon/malas`, dan `samsmon/pore-js`: **Yado** (launcher/portal SSO-gated ke semua service homelab dengan status page live), **SSO · Yado** (identity provider OAuth2 + PKCE), **Malas** (library manager manga/light novel: katalog, koleksi, wishlist, loan tracking), dan **Pore.js** (web reader source-agnostic client-side untuk manga/EPUB/PDF/CBZ, masih 70% progress). Gambar galeri tiap project diambil dari screenshot yang disediakan user, disimpan sebagai PNG di `static/projects/`.
+- **Project "Homelab Dashboard" (`lib/content/site.js`, `static/projects/homelab-dashboard-*.png`):** ditambahkan sebagai project baru berdasarkan repo `samsmon/homelab-dashboard`, menjelaskan command center monitoring homelab (fleet Docker/LXC, network mesh, storage & DAS watchdog, backup vitals, tracking usage AI coding agent).
 
 ### Changed
 - **Konten Kartu Email Dipusatkan Vertikal (`lib/components/Contact.svelte`):** kartu Email di section Contact diganti dari `justify-between` menjadi `justify-center`, supaya konten tidak menempel ke atas dan meninggalkan ruang kosong janggal di bawah saat kartu Profiles di sebelahnya lebih tinggi.
+- **Detail Project "Homelab" Ditulis Ulang (`lib/content/site.js`, `static/projects/homelab-*.png`):** deskripsi diperbarui pakai spek nyata dari dashboard homelab (Intel i5-7500, 32GB RAM, 3 Docker host, DAS 3.8TB, backup vzdump), tanpa link repo sesuai permintaan user (infra config-nya tidak dipublikasikan). Gambar galeri diganti screenshot asli.
+- **Spotlight "Currently Building" Diganti ke Pore.js (`lib/content/site.js`):** sebelumnya "White Archive v2" (proyek yang sudah dihentikan), sekarang menunjuk ke Pore.js yang masih aktif dikembangkan.
+- **Referensi "White Archive" Dibersihkan (`lib/content/site.js`, `lib/components/ResumeModal.svelte`):** deployedAt di Stack Inspector dan satu poin riwayat kerja di CV diarahkan ulang ke project yang masih aktif (Yado, Malas) alih-alih project yang sudah usang.
+- **Username GitHub `srytmj` → `samsmon` di Seluruh Repo:** rebranding username baru, mencakup front matter `author:` di semua post blog, link GitHub di `site.js`/`Contact.svelte`/`ResumeModal.svelte`, serta referensi di `CLAUDE.md` dan `CONTENT_GUIDE.md`.
+
+### Removed
+- **Project "White Archive" (`lib/content/site.js`, `static/projects/white-archive-*.svg`):** dihapus dari daftar project, digantikan project-project Yado di atas. File SVG placeholder lama ikut dihapus.
 
 ## [Unreleased] - 2026-09-20
 
@@ -79,7 +88,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ### Fixed
 - **[22:32 WIB] Sinkronisasi Working Tree Lokal dengan `origin/main` yang Menggagalkan `git pull` (`src/posts/`, `lib/blog/posts.js`, `routes/(site)/projects/+page.svelte`, `routes/(site)/blog/[slug]/+page.js`):**
-  - *Root cause*: lokal tertinggal 9 commit dari `origin/main` (`8d4bb07`..`89cf627`, migrasi seri AWS re/Start dari `srytmj.github.io`), sementara 115 berkas post yang sama masih tergeletak sebagai berkas untracked di `src/posts/`. Git menolak merge dengan pesan "untracked working tree files would be overwritten by merge". Salinan lokal ternyata versi pra-migrasi (masih memakai link Jekyll `/posts/:slug/` dan line ending CRLF); setelah dinormalisasi isinya identik dengan versi remote, jadi salinan lokal dipindahkan keluar repo (bukan dihapus) dan versi remote yang dipakai.
+  - *Root cause*: lokal tertinggal 9 commit dari `origin/main` (`8d4bb07`..`89cf627`, migrasi seri AWS re/Start dari `samsmon.github.io`), sementara 115 berkas post yang sama masih tergeletak sebagai berkas untracked di `src/posts/`. Git menolak merge dengan pesan "untracked working tree files would be overwritten by merge". Salinan lokal ternyata versi pra-migrasi (masih memakai link Jekyll `/posts/:slug/` dan line ending CRLF); setelah dinormalisasi isinya identik dengan versi remote, jadi salinan lokal dipindahkan keluar repo (bukan dihapus) dan versi remote yang dipakai.
   - Perubahan tracked yang belum di-commit di-stash, `main` di-fast-forward ke `89cf627`, lalu stash dipasang kembali. Dua konflik diselesaikan manual:
     - `posts.js`: remote menyembunyikan post `published: false` sepenuhnya (`getAllPosts` melewatinya dan `getPostBySlug` mengembalikan `null`), sedangkan lokal menambah opsi `includeUnpublished` supaya `entries()` tetap mem-prerender draft. Dua semantik ini bertabrakan (draft akan ter-prerender sebagai 404), jadi semantik remote yang dipertahankan dan plumbing `includeUnpublished` plus field `published` yang selalu `true` dibuang. Penulisan ulang link `/posts/:slug/` menjadi `/blog/:slug` dari lokal (di `preprocessMarkdown` dan renderer link) tetap dipertahankan sebagai pengaman untuk post yang disalin dari Jekyll di masa depan.
     - `projects/+page.svelte`: penghapusan tombol "Quick Specs" dari lokal digabung dengan `searchInput` plus shortcut Ctrl+K dari remote (`f85d09a`).
@@ -425,9 +434,9 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
     - Menggantinya dengan braket sudut CSS presisi (`h-2.5 w-2.5 border-l-2 border-t-2`) berkoordinat tepat di `-top-px -left-px` yang 100% menempel pas (*flush*) pada setiap sudut elemen kartu portfolio, proyek, modal, konsol, dan kontak tanpa distorsi visual.
 - **[12:30 WIB] Overhaul Section Contact — YoRHa Minimalist Black Box Transceiver & Combo Typography (`Contact.svelte`, `About.svelte`, `site.js`):**
   - Mengimplementasikan **Konsep 3 (Minimalist YoRHa Black Box Transceiver)** pada section Kontak (`SEC // 05`) dengan frame tajam `rounded-none`, zero-shadow, dan sudut reticle bidik militer `[ ┌ ┐ └ ┘ ]`.
-  - Menghadirkan **Giant Direct Frequency HUD** dengan alamat email monospace berukuran besar (`srytmj@gmail.com`), status buffer aktif berdenyut hijau neon (`[ BUFFER_STATUS: ACTIVE ]`), dan tombol salin taktis `[ ┌ COPY ADDRESS ┘ ]` dengan feedback instan `[ ┌ COPIED TO BUFFER ┘ ]`.
+  - Menghadirkan **Giant Direct Frequency HUD** dengan alamat email monospace berukuran besar (`samsmon@gmail.com`), status buffer aktif berdenyut hijau neon (`[ BUFFER_STATUS: ACTIVE ]`), dan tombol salin taktis `[ ┌ COPY ADDRESS ┘ ]` dengan feedback instan `[ ┌ COPIED TO BUFFER ┘ ]`.
   - Mengintegrasikan **4-Grid Tactical Relay Nodes**:
-    - `ENDPOINT_01 // GITHUB [srytmj]` (`PROTOCOL: GIT+SSH`)
+    - `ENDPOINT_01 // GITHUB [samsmon]` (`PROTOCOL: GIT+SSH`)
     - `ENDPOINT_02 // LINKEDIN [suryatmaja]` (`PROTOCOL: BGP_PEER`)
     - `ENDPOINT_03 // INSTAGRAM [@symjaaa]` (`PROTOCOL: SOCIAL_FEED`) — menghubungkan profil personal Instagram `https://www.instagram.com/symjaaa/`.
     - `ENDPOINT_04 // AVAILABILITY TELEMETRY` (`STATUS: OPEN FOR COMMISSIONS // UTC+7 / WIB`).
@@ -625,7 +634,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - Menampilkan dokumen CV teknis responsif (Bakti Surya Atmaja, Full-stack & Cloud Infrastructure) langsung di dalam modal tanpa memicu download otomatis dari browser.
   - Dilengkapi tombol eksplisit `[ DOWNLOAD PDF ]` dan `[ PRINT / SAVE ]`.
 - **Native SvelteKit Blog Engine (`/blog` & `/blog/[slug]`):**
-  - Migrasi 18 artikel teknis dari repositori Jekyll `srytmj.github.io` ke `src/posts/`.
+  - Migrasi 18 artikel teknis dari repositori Jekyll `samsmon.github.io` ke `src/posts/`.
   - Integrasi rendering diagram Mermaid.js dinamis dengan dark monochrome theme.
   - Parser Markdown kustom (`src/lib/blog/posts.js`) dengan estimasi reading time, lazy image loading, dan header file tabs (`{: file='...'}`).
   - Tombol copy kode interaktif pada setiap blok kode.

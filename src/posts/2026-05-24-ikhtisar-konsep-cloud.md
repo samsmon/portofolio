@@ -1,7 +1,7 @@
 ---
 title: "Ikhtisar Konsep Cloud Computing"
 description: "Pengenalan komputasi cloud: definisi, model layanan (IaaS, PaaS, SaaS, CaaS, FaaS), model deployment, serta perbandingan infrastruktur tradisional dengan AWS."
-author: srytmj
+author: samsmon
 date: 2026-05-24 08:00:00 +0700
 categories: [Cloud Computing, AWS]
 tags: [cloud, aws, iaas, paas, saas, infrastruktur]

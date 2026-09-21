@@ -1,7 +1,7 @@
 ---
 title: "Lab CloudFormation: Deploy, Update, dan Delete Stack Pertama"
 description: "Lab pertama CloudFormation, dari nulis template YAML buat VPC dan security group, deploy jadi stack, update nambah S3 dan EC2, sampe delete."
-author: srytmj
+author: samsmon
 date: 2026-09-07 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, cloudformation, iac, yaml, labs]

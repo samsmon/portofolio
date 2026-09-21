@@ -1,7 +1,7 @@
 ---
 title: "AWS Overview: Kategori Servis, dan Bedanya Console, CLI, SDK"
 description: "Kenalan sama kategori-kategori servis AWS (compute, storage, database, networking), plus tiga cara akses AWS: Management Console, CLI, dan SDK, masing-masing buat kebutuhan apa."
-author: srytmj
+author: samsmon
 date: 2026-08-04 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, fundamentals]

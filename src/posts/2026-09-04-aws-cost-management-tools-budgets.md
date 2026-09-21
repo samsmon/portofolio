@@ -1,7 +1,7 @@
 ---
 title: "Cost Management di AWS: Cost Explorer, Budgets, dan Billing Alarm"
 description: "Rangkuman materi cost management, dari Cost & Usage Report, Cost Explorer buat visualisasi, AWS Budgets yang cuma notifikasi doang, sampe strategi cost reduction."
-author: srytmj
+author: samsmon
 date: 2026-09-04 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, cost management, budgets, billing]

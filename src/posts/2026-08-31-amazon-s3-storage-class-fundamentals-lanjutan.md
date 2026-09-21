@@ -1,7 +1,7 @@
 ---
 title: "S3 Storage Class dan Fundamentals Lanjutan: Versioning, Presigned URL, Object Lock"
 description: "Materi S3 lebih dalam, decision tree milih storage class yang tepat, konsep encapsulation objek, sampe versioning, presigned URL, CORS, dan object lock."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, s3, storage class, versioning, security]

@@ -1,7 +1,7 @@
 ---
 title: "AMI Building Strategy: Simplicity vs Flexibility"
 description: "Rangkuman materi strategi bikin AMI, trade-off antara full-baked image (simplicity) vs JOS/bootstrap minimal (flexibility), dan kenapa copy AMI antar region itu berbayar."
-author: srytmj
+author: samsmon
 date: 2026-09-07 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ami, ec2, launch template]

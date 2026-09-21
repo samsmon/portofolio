@@ -1,7 +1,7 @@
 ---
 title: "Ukuran Model vs Kepintaran: Kenapa Model Gede Nggak Selalu Menang"
 description: "Rangkuman materi AI hari kedua soal hubungan ukuran model dengan knowledge dan biaya, kenapa model kecil yang spesialis bisa ngalahin model gede yang general, sampe stack layanan AI AWS."
-author: srytmj
+author: samsmon
 date: 2026-09-10 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, foundation model, sagemaker, bedrock, cost]

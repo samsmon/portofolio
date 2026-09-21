@@ -1,7 +1,7 @@
 ---
 title: "Arsitektur LLM: Transformer, Base vs Instruct vs Reasoning Model, dan Parameter Inference"
 description: "Rangkuman materi AI hari ketiga soal arsitektur transformer di balik LLM, bedanya base model, instruct model, dan reasoning model, parameter inference (temperature, top-p), quantization, dan context engineering."
-author: srytmj
+author: samsmon
 date: 2026-09-11 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, llm, transformer, prompt engineering]

@@ -1,7 +1,7 @@
 ---
 title: "Pengenalan Quality Assurance (QA) di Industri Software Development"
 description: "Modul komprehensif untuk memulai karier di bidang Quality Assurance, mencakup konsep dasar, alur kerja, hingga tools yang digunakan di industri."
-author: srytmj
+author: samsmon
 date: 2026-05-20 23:00:00 +0700
 categories: [Software Engineering, Quality Assurance]
 tags: [qa, testing, software-development, sdlc, bug]

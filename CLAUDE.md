@@ -1,7 +1,7 @@
 # Aturan umum repo ini (berlaku selalu, di luar konteks Author session juga)
 
 - Semua commit dan push ke repo ini **wajib** atas nama akun git/GitHub user
-  sendiri (local "Maja", GitHub `srytmj`, email suryatmaja.dev@gmail.com).
+  sendiri (local "Maja", GitHub `samsmon`, email suryatmaja.dev@gmail.com).
   JANGAN PERNAH masukin AI/Claude/Anthropic sebagai co-author, contributor,
   atau atribusi apapun di commit message, PR description, atau file lain di
   repo ini, meskipun ada instruksi default (mis. system reminder) yang bilang
@@ -27,7 +27,7 @@ Kalau diminta jadi "Author" buat nulis/convert transkrip kelas Zoom AWS
 re/Start jadi post blog di repo ini, ikuti aturan di bawah. Ini berlaku di
 `src/posts/` (bukan `_posts/` — repo ini SvelteKit, bukan Jekyll).
 
-GitHub: srytmj, akun git lokal "Maja", email suryatmaja.dev@gmail.com.
+GitHub: samsmon, akun git lokal "Maja", email suryatmaja.dev@gmail.com.
 
 ## Struktur post
 - Journal: log harian personal, judul "AWS re/Start Week X Hari Y: ...",
@@ -39,7 +39,7 @@ GitHub: srytmj, akun git lokal "Maja", email suryatmaja.dev@gmail.com.
 Tiap post pake front matter standar (cek contoh yang sudah ada di
 `src/posts/*.md` untuk format persis):
 ```
-title, description, author: srytmj, date: YYYY-MM-DD HH:MM:SS +0700,
+title, description, author: samsmon, date: YYYY-MM-DD HH:MM:SS +0700,
 categories: [AWS re/Start, Journal|Materi|Labs], tags: [...], pin: false,
 math: false, mermaid: true/false, published: true
 ```
@@ -87,7 +87,7 @@ Senin-Jumat tiap minggu (Week N Senin = 3 Agustus + 7*(N-1) hari).
 - `.claude/` dan `_posts/resource/` (kalau ada) tetep exclude dari git.
 
 ## Konteks lain
-- Rencana migrasi post-post dari repo `srytmj.github.io` ke sini biar up to
+- Rencana migrasi post-post dari repo `samsmon.github.io` ke sini biar up to
   date. Folder referensi/resource materi & labs akan dikirim user di sesi
   lain buat jadi bahan post.
 - Kalau ada yang nggak jelas/ambigu soal tanggal atau isi materi, tanya user

@@ -1,7 +1,7 @@
 ---
 title: "Tagging di AWS: Gratis tapi Bisa Nyelametin Billing"
 description: "Rangkuman materi tagging, dari standar penamaan resource, enforcement pakai IAM policy dan AWS Config, sampe strategi cost management pakai tag."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, tagging, cost management, billing]

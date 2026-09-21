@@ -1,7 +1,7 @@
 ---
 title: "Responsible AI, Guardrails, dan Bahaya Prompt Injection"
 description: "Rangkuman materi responsible AI, cara kerja guardrails sebagai filter di depan LLM, dan kenapa nanya kode ke AI itu berarti kasih data kita buat training."
-author: srytmj
+author: samsmon
 date: 2026-09-09 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ai, guardrails, security, responsible ai]

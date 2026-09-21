@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 5 Hari 1: EBS Lanjutan, Instance Store, EFS/FSx, dan S3 Storage Class"
 description: "Sesi teori paling padat sejauh ini: EBS deep-dive, Instance Store, EFS/FSx, S3 storage class dan versioning, ditutup lab CLI snapshot terjadwal dan S3 sync."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, ebs, efs, s3, storage]

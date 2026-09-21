@@ -1,7 +1,7 @@
 ---
 title: "Amazon Athena: Query S3 Tanpa Bikin Cluster"
 description: "Rangkuman singkat materi Athena, service ETL serverless buat query data langsung di S3 pakai SQL, tanpa perlu provisioning cluster Hadoop/Spark."
-author: srytmj
+author: samsmon
 date: 2026-09-02 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, athena, s3, query, serverless]

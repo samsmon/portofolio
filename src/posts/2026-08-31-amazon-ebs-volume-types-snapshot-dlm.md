@@ -1,7 +1,7 @@
 ---
 title: "Amazon EBS Lanjutan: Tipe Volume, Snapshot Incremental, dan DLM"
 description: "Materi lanjutan EBS, dari tipe-tipe volume (gp, io, hdd), mekanisme snapshot yang ternyata incremental bukan full backup, sampe otomasi retention pakai Data Lifecycle Manager."
-author: srytmj
+author: samsmon
 date: 2026-08-31 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, ebs, snapshot, storage]

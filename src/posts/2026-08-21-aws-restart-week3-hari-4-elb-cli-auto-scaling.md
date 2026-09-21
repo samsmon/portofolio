@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 3 Hari 4: ELB via CLI dan Auto Scaling Group"
 description: "Hari keempat minggu ketiga, review komponen load balancer, bikin ELB pakai CLI, sampe lab berat bikin Auto Scaling Group dari AMI matang."
-author: srytmj
+author: samsmon
 date: 2026-08-21 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, elb, auto-scaling]

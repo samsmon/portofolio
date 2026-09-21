@@ -1,7 +1,7 @@
 ---
 title: "Network dan System Hardening: Firewall Zones, IPS, dan SLA Uptime"
 description: "Cara ngamanin jaringan lewat network discovery, firewall trusted/untrusted zone, arsitektur multi-tier, sampe system hardening dan cara ngitung SLA uptime data center."
-author: srytmj
+author: samsmon
 date: 2026-08-07 00:00:00 +0700
 categories: [AWS re/Start, Materi]
 tags: [aws, security, networking, hardening]

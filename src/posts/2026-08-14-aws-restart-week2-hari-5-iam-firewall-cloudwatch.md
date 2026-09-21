@@ -1,7 +1,7 @@
 ---
 title: "AWS re/Start Week 2 Hari 5: IAM Praktik, Network Firewall, dan CloudWatch Alarm"
 description: "Hari terakhir Week 2, dari praktik langsung IAM policy pake 3 user beda, block malware pake Network Firewall, sampe bikin alarm CloudWatch yang notif ke email."
-author: srytmj
+author: samsmon
 date: 2026-08-14 00:00:00 +0700
 categories: [AWS re/Start, Journal]
 tags: [aws, re-start, iam, security, cloudwatch]

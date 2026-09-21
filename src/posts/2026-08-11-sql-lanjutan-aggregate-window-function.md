@@ -1,7 +1,7 @@
 ---
 title: "SQL Lanjutan: BETWEEN, LIKE, Aggregate Function, dan Window Function"
 description: "Lanjutan materi SQL yang lebih dalam, dari BETWEEN dan LIKE, function agregat kayak SUM/AVG/COUNT, sampai window function RANK OVER PARTITION yang lumayan tricky."
-author: srytmj
+author: samsmon
 date: 2026-08-11 00:00:00 +0700
 categories: [AWS re/Start, Labs]
 tags: [aws, database, mysql, sql, labs]
