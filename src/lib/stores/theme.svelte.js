@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 
-const STORAGE_KEY = 'yorha-theme';
+const STORAGE_KEY = 'tactical-theme';
 
 function updateFaviconAndThemeColor(theme) {
   if (!browser) return;
@@ -57,7 +57,7 @@ class ThemeManager {
     document.documentElement.classList.add('theme-transitioning');
     this.set(next);
 
-    window.dispatchEvent(new CustomEvent('yorha-theme-change', { detail: { theme: next } }));
+    window.dispatchEvent(new CustomEvent('tactical-theme-change', { detail: { theme: next } }));
 
     setTimeout(() => {
       document.documentElement.classList.remove('theme-transitioning');

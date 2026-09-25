@@ -47,17 +47,17 @@
         type="button"
         onclick={() => (open = i)}
         class="group relative flex flex-col justify-between gap-6 sm:gap-8 rounded-none border border-current/15 p-6 text-left transition-all duration-150 hover:border-current/50 hover:bg-current/[0.03] hover:-translate-y-0.5 sm:p-10 cursor-pointer"
-        style="background-color: var(--yorha-surface);"
+        style="background-color: var(--tactical-surface);"
       >
         <!-- Tactical Reticle Brackets on Hover -->
-        <span class="pointer-events-none absolute -top-px -left-px h-2 w-2 border-l-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-        <span class="pointer-events-none absolute -top-px -right-px h-2 w-2 border-r-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-        <span class="pointer-events-none absolute -bottom-px -left-px h-2 w-2 border-b-2 border-l-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-        <span class="pointer-events-none absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -top-px -left-px h-2 w-2 border-l-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -top-px -right-px h-2 w-2 border-r-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -bottom-px -left-px h-2 w-2 border-b-2 border-l-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+        <span class="pointer-events-none absolute -bottom-px -right-px h-2 w-2 border-b-2 border-r-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
 
         <span
           class="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"
-          style="background-color: var(--yorha-accent);"
+          style="background-color: var(--tactical-accent);"
           aria-hidden="true"
         ></span>
         <div class="flex items-start justify-between gap-4">
@@ -69,7 +69,7 @@
           </div>
           <span
             class="transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            style="color: var(--yorha-accent);"
+            style="color: var(--tactical-accent);"
             aria-hidden="true">↗</span
           >
         </div>
@@ -94,10 +94,10 @@
     <a
       href="/projects"
       onclick={handleExploreClick}
-      class="group yorha-invert-hover inline-flex items-center gap-2.5 border border-current/20 bg-current/5 px-5 py-2.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 cursor-pointer"
+      class="group tactical-invert-hover inline-flex items-center gap-2.5 border border-current/20 bg-current/5 px-5 py-2.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 cursor-pointer"
       class:opacity-75={isNavigating}
     >
-      <span class="text-label" style="color: var(--yorha-accent);">■</span>
+      <span class="text-label" style="color: var(--tactical-accent);">■</span>
       <span>{isNavigating ? 'Navigating to Archive...' : 'Explore All Projects Archive'}</span>
       <span class="transition-transform duration-150 group-hover:translate-x-1" class:translate-x-1={isNavigating}>→</span>
     </a>

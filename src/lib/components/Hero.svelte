@@ -128,7 +128,7 @@
   });
 </script>
 
-<section bind:this={section} class="relative" style="background-color: var(--yorha-bg);" data-hero>
+<section bind:this={section} class="relative" style="background-color: var(--tactical-bg);" data-hero>
   <div
     bind:this={pinInner}
     class="relative flex h-[100svh] w-full items-center justify-center overflow-hidden"
@@ -156,7 +156,7 @@
 
     <span
       class="pointer-events-none absolute left-[8vw] top-10 z-10 font-mono text-label tracking-[0.35em] opacity-40 sm:left-[9vw]"
-      style="color: var(--yorha-text-primary);"
+      style="color: var(--tactical-text-primary);"
       aria-hidden="true">01</span
     >
 
@@ -176,7 +176,7 @@
           <a
             href="/projects"
             class="group inline-flex cursor-pointer items-center gap-2 border px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
-            style="background-color: var(--yorha-invert-bg); border-color: var(--yorha-invert-bg); color: var(--yorha-invert-text);"
+            style="background-color: var(--tactical-invert-bg); border-color: var(--tactical-invert-bg); color: var(--tactical-invert-text);"
           >
             <span>View projects</span>
             <span class="text-label transition-transform group-hover:translate-x-1">→</span>
@@ -185,10 +185,10 @@
           <!-- Secondary: the engineering journal -->
           <a
             href="/blog"
-            class="group yorha-invert-hover inline-flex cursor-pointer items-center gap-2 border border-current/20 bg-current/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
-            style="color: var(--yorha-text-primary);"
+            class="group tactical-invert-hover inline-flex cursor-pointer items-center gap-2 border border-current/20 bg-current/5 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
+            style="color: var(--tactical-text-primary);"
           >
-            <span class="text-label" style="color: var(--yorha-accent);">■</span>
+            <span class="text-label" style="color: var(--tactical-accent);">■</span>
             <span>Engineering Journal</span>
             <span class="text-label transition-transform group-hover:translate-x-1">→</span>
           </a>
@@ -196,7 +196,7 @@
 
         <div
           class="flex flex-col gap-2.5 border-t border-current/15 pt-3.5 font-sans text-[11px] leading-[1.6] opacity-70 lg:text-right tracking-wide"
-          style="color: var(--yorha-text-primary);"
+          style="color: var(--tactical-text-primary);"
         >
           {#each identity.trivia as line}
             <p class="text-balance">{line}</p>
@@ -207,7 +207,7 @@
 
     <!-- Bottom atmospheric blend into the content section background -->
     <div
-      class="pointer-events-none absolute bottom-0 left-0 right-0 h-40 z-[5] bg-gradient-to-b from-transparent via-[var(--yorha-bg)]/50 to-[var(--yorha-bg)]"
+      class="pointer-events-none absolute bottom-0 left-0 right-0 h-40 z-[5] bg-gradient-to-b from-transparent via-[var(--tactical-bg)]/50 to-[var(--tactical-bg)]"
       aria-hidden="true"
     ></div>
 
@@ -215,7 +215,7 @@
       href="#about"
       aria-label="Scroll down to content"
       class="scroll-beacon absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 p-2 group"
-      style="color: var(--yorha-text-primary);"
+      style="color: var(--tactical-text-primary);"
     >
       <div class="relative h-10 w-[1px] overflow-hidden bg-current opacity-25 transition-opacity duration-300 group-hover:opacity-60">
         <div class="beacon-beam absolute left-0 w-full bg-gradient-to-b from-transparent via-current to-transparent"></div>
@@ -227,7 +227,7 @@
 <style>
   .beacon-beam {
     height: 16px;
-    box-shadow: 0 0 8px 1px var(--yorha-accent-border), 0 0 16px 2px var(--yorha-accent-subtle);
+    box-shadow: 0 0 8px 1px var(--tactical-accent-border), 0 0 16px 2px var(--tactical-accent-subtle);
     animation: flowDown 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
   @keyframes flowDown {

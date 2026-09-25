@@ -3,7 +3,7 @@
   let { display, role } = $props();
 </script>
 
-<div class="flex max-w-[52rem] select-none flex-col items-start text-left" style="color: var(--yorha-text-primary);">
+<div class="flex max-w-[52rem] select-none flex-col items-start text-left" style="color: var(--tactical-text-primary);">
   <h1
     data-reveal
     class="text-display font-black uppercase leading-[0.82] tracking-[-0.03em]"

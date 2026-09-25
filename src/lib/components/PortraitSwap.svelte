@@ -67,8 +67,8 @@
 
   function readTokens() {
     const cs = getComputedStyle(document.documentElement);
-    accent = cs.getPropertyValue('--yorha-accent').trim() || accent;
-    bg = cs.getPropertyValue('--yorha-bg').trim() || bg;
+    accent = cs.getPropertyValue('--tactical-accent').trim() || accent;
+    bg = cs.getPropertyValue('--tactical-bg').trim() || bg;
   }
 
   function fit() {
@@ -325,7 +325,7 @@
     type="button"
     bind:this={root}
     class="group relative block aspect-[3/4] w-full overflow-hidden rounded-none border cursor-pointer"
-    style="border-color: var(--yorha-border); background-color: var(--yorha-surface);"
+    style="border-color: var(--tactical-border); background-color: var(--tactical-surface);"
     aria-pressed={revealed}
     aria-label={revealed ? 'Showing the photo. Switch back to the illustration.' : 'Showing the illustration. Switch to the photo.'}
     onpointerenter={() => {
@@ -376,10 +376,10 @@
     {/if}
 
     <!-- Corner reticles, only while the frame is active -->
-    <span class="pointer-events-none absolute -top-px -left-px z-10 h-3 w-3 border-l-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-    <span class="pointer-events-none absolute -top-px -right-px z-10 h-3 w-3 border-r-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-    <span class="pointer-events-none absolute -bottom-px -left-px z-10 h-3 w-3 border-b-2 border-l-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-    <span class="pointer-events-none absolute -bottom-px -right-px z-10 h-3 w-3 border-b-2 border-r-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute -top-px -left-px z-10 h-3 w-3 border-l-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute -top-px -right-px z-10 h-3 w-3 border-r-2 border-t-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute -bottom-px -left-px z-10 h-3 w-3 border-b-2 border-l-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+    <span class="pointer-events-none absolute -bottom-px -right-px z-10 h-3 w-3 border-b-2 border-r-2 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
 
   </button>
 {/if}

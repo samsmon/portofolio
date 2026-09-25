@@ -141,7 +141,7 @@
       // Draw in the theme's text colour so the field reads on both the black
       // and the cream background.
       const ink =
-        getComputedStyle(document.documentElement).getPropertyValue('--yorha-text-primary').trim() ||
+        getComputedStyle(document.documentElement).getPropertyValue('--tactical-text-primary').trim() ||
         '#dcdacf';
       ctx.fillStyle = ink;
 
@@ -219,7 +219,7 @@
 
 <div
   class="relative aspect-[3/4] w-full overflow-hidden rounded-none border"
-  style="border-color: var(--yorha-border); background-color: var(--yorha-surface);"
+  style="border-color: var(--tactical-border); background-color: var(--tactical-surface);"
 >
   <canvas bind:this={canvas} class="h-full w-full" aria-hidden="true"></canvas>
   <span class="sr-only">Auto-playing snake — placeholder for a portrait</span>

@@ -40,12 +40,12 @@
     text-shadow: none;
   }
   .clock-time {
-    color: var(--yorha-text-primary, var(--blog-text-primary));
+    color: var(--tactical-text-primary, var(--blog-text-primary));
   }
   .clock-utc {
-    color: var(--yorha-text-muted, var(--blog-text-muted));
+    color: var(--tactical-text-muted, var(--blog-text-muted));
   }
   .clock-wib {
-    color: var(--yorha-accent, var(--blog-accent));
+    color: var(--tactical-accent, var(--blog-accent));
   }
 </style>

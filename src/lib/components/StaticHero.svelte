@@ -2,7 +2,7 @@
   CSS-only hero fallback: no WebGL, no JS. A quiet star field for low-end /
   no-WebGL / slow-network / reduced-motion devices and for SSR.
 -->
-<div class="absolute inset-0 overflow-hidden" style="background-color: var(--yorha-bg);" aria-hidden="true">
+<div class="absolute inset-0 overflow-hidden" style="background-color: var(--tactical-bg);" aria-hidden="true">
   <div class="stars stars-a"></div>
   <div class="stars stars-b"></div>
   <div

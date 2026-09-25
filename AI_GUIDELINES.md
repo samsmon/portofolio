@@ -7,19 +7,19 @@ Panduan operasional untuk **AI coding agent** (Claude Code, Cursor, Copilot, dan
 ## 1. Identitas dan sistem desain
 
 - **Pemilik tunggal**: Bakti Surya Atmaja (Maja), full-stack developer yang juga mengurus infrastruktur cloud dan homelab tempat aplikasinya berjalan.
-- **Bahasa desain**: HUD taktis ala YoRHa (NieR: Automata) dipadukan langit rasi bintang interaktif. Tenang, monokrom, satu aksen, jujur.
+- **Bahasa desain**: HUD taktis (Tactical HUD) dipadukan langit rasi bintang interaktif. Tenang, monokrom, satu aksen, jujur.
 
 ### Token warna (`src/app.css`)
 
 | Token | Tactical (gelap, default) | Archive (terang) |
 | --- | --- | --- |
-| `--yorha-bg` | `#000000` | `#d1d2c5` |
-| `--yorha-surface` / `-elevated` | `#080808` / `#0f0f0f` | `#c5c6b8` / `#bcbdad` |
-| `--yorha-text-primary` | `#dcdacf` | `#454138` |
-| `--yorha-text-muted` | `#767569` | `#59564c` |
-| `--yorha-border` | `#1e1e1e` | `#b4b5a6` |
-| `--yorha-accent` | `#34d399` | `#c7634b` |
-| `--yorha-invert-bg` / `-text` | `#dcdacf` / `#000000` | `#454138` / `#d1d2c5` |
+| `--tactical-bg` | `#000000` | `#d1d2c5` |
+| `--tactical-surface` / `-elevated` | `#080808` / `#0f0f0f` | `#c5c6b8` / `#bcbdad` |
+| `--tactical-text-primary` | `#dcdacf` | `#454138` |
+| `--tactical-text-muted` | `#767569` | `#59564c` |
+| `--tactical-border` | `#1e1e1e` | `#b4b5a6` |
+| `--tactical-accent` | `#34d399` | `#c7634b` |
+| `--tactical-invert-bg` / `-text` | `#dcdacf` / `#000000` | `#454138` / `#d1d2c5` |
 
 Tema dipilih lewat atribut `data-theme` di `<html>` (di-stamp sebelum cat pertama oleh skrip di `app.html`), bukan `prefers-color-scheme`. Varian Tailwind `dark:` sudah dipetakan ke atribut itu. Blog memakai token `--blog-*` yang nilainya paralel. Komponen wajib memakai variabel; dilarang menulis hex baru.
 
@@ -33,7 +33,7 @@ Tema dipilih lewat atribut `data-theme` di `<html>` (di-stamp sebelum cat pertam
 
 - `rounded-none` di semua elemen. Tanpa `box-shadow` dan `text-shadow`.
 - Hairline `border-current/15` sampai `/20`, reticle sudut aksen saat hover, garis atas `scale-x` saat hover pada kartu.
-- Tekstur halaman: cross grid 3px lewat kelas `yorha-tech-bg`.
+- Tekstur halaman: cross grid 3px lewat kelas `tactical-tech-bg`.
 - Fokus keyboard: aturan global `:focus-visible` menggambar outline aksen. Jangan menambahkan `outline-none` atau `ring-0` pada elemen interaktif.
 
 ### Kejujuran telemetri

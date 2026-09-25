@@ -25,10 +25,10 @@
     <div
       class="flex flex-col items-start gap-0.5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] {showClock ? 'opacity-0 -translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0 pointer-events-auto'}"
     >
-      <span class="font-display text-caption italic tracking-wide transition-all duration-300" style="color: var(--yorha-text-primary);">
+      <span class="font-display text-caption italic tracking-wide transition-all duration-300" style="color: var(--tactical-text-primary);">
         {figure.name}
       </span>
-      <span class="text-label tracking-[0.2em] uppercase transition-all duration-300" style="color: var(--yorha-text-muted);">
+      <span class="text-label tracking-[0.2em] uppercase transition-all duration-300" style="color: var(--tactical-text-muted);">
         {#if traced}{figure.coords} · {figure.id}{:else}Move to trace a figure{/if}
       </span>
     </div>
@@ -47,10 +47,10 @@
             type="button"
             onclick={returnToMainPage}
             title="Return to Hero"
-            class="flex items-center gap-2 px-3 py-1.5 border transition-colors yorha-invert-hover cursor-pointer font-mono"
-            style="background-color: var(--yorha-surface); border-color: var(--yorha-border); color: var(--yorha-text-primary);"
+            class="flex items-center gap-2 px-3 py-1.5 border transition-colors tactical-invert-hover cursor-pointer font-mono"
+            style="background-color: var(--tactical-surface); border-color: var(--tactical-border); color: var(--tactical-text-primary);"
           >
-            <span style="color: var(--yorha-accent);">←</span>
+            <span style="color: var(--tactical-accent);">←</span>
             <span class="text-label uppercase tracking-widest font-semibold whitespace-nowrap">RETURN TO HERO</span>
           </button>
         </div>

@@ -44,10 +44,10 @@
 
 <Hero {heroReady} />
 
-<div class="relative z-10 yorha-tech-bg" style="background-color: var(--yorha-bg);">
+<div class="relative z-10 tactical-tech-bg" style="background-color: var(--tactical-bg);">
   <!-- Seamless Grid Dissolve Mask: Top 260px smoothly dissolves the 3px tech grid in -->
   <div
-    class="pointer-events-none absolute top-0 left-0 right-0 h-56 sm:h-72 z-0 bg-gradient-to-b from-[var(--yorha-bg)] via-[var(--yorha-bg)]/85 to-transparent"
+    class="pointer-events-none absolute top-0 left-0 right-0 h-56 sm:h-72 z-0 bg-gradient-to-b from-[var(--tactical-bg)] via-[var(--tactical-bg)]/85 to-transparent"
     aria-hidden="true"
   ></div>
 

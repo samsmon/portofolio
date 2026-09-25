@@ -53,7 +53,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 - **[01:02 WIB] Ctrl+K Mati di Halaman Post Individual (`lib/components/CommandPalette.svelte`):**
   - `scopedElsewhere()` sebelumnya memblokir Command Palette global di semua path yang diawali `/blog` atau `/projects` (termasuk halaman detail post/proyek), padahal cuma halaman listing (`/blog`, `/projects`) yang punya search lokal sendiri terikat Ctrl+K. Halaman detail post sendiri sengaja tidak punya handler Ctrl+K (pakai tombol `/`), jadi Ctrl+K di sana tidak direspon sama sekali. Diperbaiki jadi exact-match path, bukan `startsWith`, supaya Command Palette global merespon di halaman detail.
 - **[01:02 WIB] Warna Judul Post Hardcode Hitam/Putih di Light Mode (`routes/(site)/blog/[slug]/+page.svelte`):**
-  - Highlight stamp pada judul post memakai `bg-white` + `color: #000000` hardcoded, tidak mengikuti tema. Diganti pakai token `var(--yorha-invert-bg)` / `var(--yorha-invert-text)` yang sama dipakai elemen invert lain di situs, sehingga di light/sepia mode judul kini tampil krem-di-atas-coklat-tua sesuai palet tema, bukan kotak putih-hitam yang kontras dengan seluruh halaman.
+  - Highlight stamp pada judul post memakai `bg-white` + `color: #000000` hardcoded, tidak mengikuti tema. Diganti pakai token `var(--tactical-invert-bg)` / `var(--tactical-invert-text)` yang sama dipakai elemen invert lain di situs, sehingga di light/sepia mode judul kini tampil krem-di-atas-coklat-tua sesuai palet tema, bukan kotak putih-hitam yang kontras dengan seluruh halaman.
 
 ### Changed
 - **[00:08 WIB] Polesan Desain Menyeluruh: Tipografi, Telemetri Asli, Potret Hover-Swap, Blog Index, dan Penataan Ulang About/Contact (`app.css`, `routes/+layout.svelte`, `app.html`, `lib/components/*`, `routes/(site)/blog/+page.svelte`, `lib/content/site.js`):**
@@ -148,14 +148,14 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - *Solusi*: gerbang dibuat eksplisit melalui flag `cleared`. Timeline hanya menjeda dirinya bila gerbang belum dibuka, dan `clearGate()` selalu mampu melanjutkannya dari sisi mana pun. Ditambahkan failsafe `MAX_WAIT_MS` 2000ms yang membuka gerbang secara paksa bila `window.load` tidak kunjung datang karena font atau gambar yang macet.
   - Menambahkan penjagaan `document.hidden`: tab yang dibuka di latar belakang memiliki `requestAnimationFrame` yang dibekukan browser, sehingga timeline akan diam dengan scroll halaman terkunci sampai pengunjung berpindah ke tab itu. Kini intro langsung menyerahkan kendali ke Hero.
   - Durasi total dipangkas dari sekitar 3,5 detik menjadi sekitar 2,1 detik, dan waktu tampil minimum diturunkan dari 1200ms ke 700ms.
-  - Seluruh warna overlay dipindahkan dari `neutral-50` dan `white` yang hardcoded ke token `--yorha-bg` dan `--yorha-text-primary`, sehingga intro selalu sewarna tema yang sedang aktif.
+  - Seluruh warna overlay dipindahkan dari `neutral-50` dan `white` yang hardcoded ke token `--tactical-bg` dan `--tactical-text-primary`, sehingga intro selalu sewarna tema yang sedang aktif.
   - Tombol bypass kini juga menerima `Enter` dan mendeteksi `e.code` bernilai `Space`, bukan hanya `e.key` berupa spasi.
 - **[01:56 WIB] Custom Cursor Ter-mount Ganda, Tidak Ikut Tema, dan Berisiko Menghilangkan Pointer (`(site)/+layout.svelte`, `CustomCursor.svelte`, `app.css`):**
   - `CustomCursor` ter-mount dua kali pada seluruh halaman `(site)`, yaitu di root layout dan di site layout, menghasilkan dua elemen kursor beserta dua set listener `mousemove`. Mount duplikat di site layout dihapus.
-  - SVG crosshair yang sebelumnya dikunci `text-white` kini mewarisi `var(--yorha-text-primary)`, dan halo `drop-shadow` memakai `var(--yorha-bg)`. Pada tema Bunker yang berlatar krem, kursor putih praktis tidak terlihat.
+  - SVG crosshair yang sebelumnya dikunci `text-white` kini mewarisi `var(--tactical-text-primary)`, dan halo `drop-shadow` memakai `var(--tactical-bg)`. Pada tema Bunker yang berlatar krem, kursor putih praktis tidak terlihat.
   - Aturan `cursor: none` global kini dijaga `:has(.cursor-root)`, sehingga penunjuk bawaan hanya disembunyikan selama elemen penggantinya benar-benar ada di DOM. Sebelumnya satu kegagalan render membuat pengunjung kehilangan pointer sepenuhnya tanpa jalan keluar.
 - **[01:56 WIB] Kontras Teks Mikro di Bawah Ambang WCAG AA (`app.css`, `About.svelte`, `Skills.svelte`, `Contact.svelte`):**
-  - *Terukur*: `--yorha-text-muted` versi gelap `#686760` hanya mencapai rasio 3,70:1 di atas `#000000`, dan versi terang `#7d796c` hanya 2,85:1 di atas `#d1d2c5`. Padahal token itu justru dipakai untuk label berukuran 9 sampai 11 piksel.
+  - *Terukur*: `--tactical-text-muted` versi gelap `#686760` hanya mencapai rasio 3,70:1 di atas `#000000`, dan versi terang `#7d796c` hanya 2,85:1 di atas `#d1d2c5`. Padahal token itu justru dipakai untuk label berukuran 9 sampai 11 piksel.
   - Token dinaikkan menjadi `#767569` (4,52:1) untuk mode gelap dan digelapkan menjadi `#59564c` (4,80:1) untuk mode terang, termasuk pasangan `--blog-text-muted`.
   - Label 9-10px yang duduk di `opacity-50` (`ACTIVE TARGET SPEC`, `CLASSIFICATION`, alamat GitHub dan LinkedIn, baris `LOC:`) dinaikkan ke `opacity-75`.
 - **[01:56 WIB] Penghitung Kunjungan Memanggil API Setiap Mount dengan Logika Cache Mati (`Contact.svelte`):**
@@ -171,7 +171,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - Membersihkan `const words` hasil `$derived` yang tidak terpakai di `Section.svelte` dan `Contact.svelte`, serta kelas mati `bg-black` pada panel CommandPalette yang sudah tertimpa `background-color` inline.
 
 ### Added
-- **[01:20 WIB] Sistem Opening Sequence Baru Berbasis Kalibrasi Optik YoRHa (`lib/components/intro/`, `(site)/+page.svelte`):**
+- **[01:20 WIB] Sistem Opening Sequence Baru Berbasis Kalibrasi Optik Tactical (`lib/components/intro/`, `(site)/+page.svelte`):**
   - Menambahkan direktori `src/lib/components/intro/` berisi tiga konsep opening sequence: `IntroCalibration.svelte` (dipakai di produksi), `IntroTacticalCalibration.svelte`, dan `IntroConstellation.svelte`.
   - `IntroCalibration.svelte` menjalankan koreografi lima fase murni tanpa teks: scanline vertikal menyapu layar, reticle HUD dan crosshair menyala, rotasi ratchet 45 derajat dengan pulsa aperture radar, double-pulse lock-on, lalu shutter expansion yang membuka empat sudut bracket ke luar layar.
   - Timeline disinkronkan dengan status muat browser sungguhan (`window.load`) plus durasi tampil minimum 1200ms, sehingga intro tidak selesai sebelum halaman benar-benar siap.
@@ -202,7 +202,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - **Corner bracket menjadi umpan balik hover**: delapan bracket permanen pada dua kartu Contact kini hanya muncul saat hover, mengikuti pola kartu proyek. Bingkai Pod 042 diturunkan dari `border-current` penuh menjadi `border-current/35`.
   - **Bayangan dibersihkan**: empat pelanggaran aturan zero-shadow di `Skills.svelte` (`shadow-xs`, `shadow-sm`, `shadow-lg`, `shadow-2xl`) dihapus.
 - **[01:56 WIB] Hero Memperoleh Aksi Utama (`Hero.svelte`):**
-  - Menambahkan tombol primer `View projects` menuju `/projects` dengan gaya blok terbalik (`--yorha-invert-bg`), berdampingan dengan tombol `Engineering Journal` yang kini berperan sebagai aksi sekunder. Sebelumnya satu-satunya aksi di atas lipatan adalah tautan ke blog, padahal tugas pertama sebuah portofolio adalah menawarkan karyanya.
+  - Menambahkan tombol primer `View projects` menuju `/projects` dengan gaya blok terbalik (`--tactical-invert-bg`), berdampingan dengan tombol `Engineering Journal` yang kini berperan sebagai aksi sekunder. Sebelumnya satu-satunya aksi di atas lipatan adalah tautan ke blog, padahal tugas pertama sebuah portofolio adalah menawarkan karyanya.
 - **[01:56 WIB] Pod 042 Terbuka dengan Isi, dan Interaksi Rasi Bintang Dijelaskan (`Skills.svelte`, `stores/constellation.svelte.js`, `CornerTelemetry.svelte`):**
   - Inspector Pod 042 kini terbuka pada kapabilitas dengan `readiness` tertinggi, bukan bingkai kosong bertuliskan STANDBY setinggi 460px. Baris status bawah menampilkan `HOVER A NODE TO INSPECT` sampai pengunjung benar-benar menyentuh sebuah node, dan bilah spesifikasi mobile hanya muncul setelah ketukan yang disengaja.
   - Store rasi bintang memperoleh flag `traced`. Selama belum ada figur yang tersingkap, HUD sudut kiri bawah menampilkan `Move to trace a figure` alih-alih koordinat langit. Interaksi paling mahal secara teknis di proyek ini sebelumnya sama sekali tidak punya petunjuk keberadaan.
@@ -232,7 +232,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
     - Menghapus ketergantungan pada query selector manual DOM dan race condition `tick()` / Svelte 5 DOM node reuse, sehingga setiap kali pengguna mengklik tombol filter `ALL`, `INFRASTRUCTURE`, `AUTOMATION`, `SYSTEMS`, dsb., kartu-kartu proyek dijamin 100% meluncur masuk secara berurutan (*staggered cascade*) dengan sangat mulus.
   - **Kerapian Bilah Navigasi Sidebar Halaman Blog Desktop (`blog/+page.svelte`)**:
     - Memperbaiki kontainer `<nav>` dengan menambahkan `lg:items-stretch lg:overflow-visible` serta menerapkan `lg:w-full px-3.5 py-2.5` pada tombol navigasi sidebar (`01 Home`, `02 Categories`, `03 Tags`, `04 Archive`).
-    - *Root cause*: Sebelumnya `<nav>` memiliki `items-center` yang membuat tombol menyusut selebar teksnya masing-masing di layar desktop monitor, tampak tidak rata dan bergerigi di tengah kolom. Sekarang seluruh tombol membentang penuh 100% dari tepi ke tepi kolom sidebar dengan panah `→` rata kanan sempurna dan presisi taktis khas konsol komando YoRHa.
+    - *Root cause*: Sebelumnya `<nav>` memiliki `items-center` yang membuat tombol menyusut selebar teksnya masing-masing di layar desktop monitor, tampak tidak rata dan bergerigi di tengah kolom. Sekarang seluruh tombol membentang penuh 100% dari tepi ke tepi kolom sidebar dengan panah `→` rata kanan sempurna dan presisi taktis khas konsol komando Tactical.
   - **Animasi Masuk Berirama (*Staggered Cascade*) pada Seluruh Filter Node Halaman Blog (`blog/+page.svelte`)**:
     - **Filter Tag Cepat & Paginasi Beranda (`Home View`)**: Membungkus daftar kartu dengan `{#key `${homeFilterTag}-${currentPage}-${searchQuery}`}` dan menyematkan `in:fly={{ y: reduce ? 0 : 18, duration: reduce ? 0 : 250, delay: reduce ? 0 : i * 35, easing: cubicOut }}` serta membersihkan `transition-all duration-200`. Saat memilih tag cepat (`[ all ]`, `[ linux ]`, `[ devops ]`, dsb.) atau berpindah halaman paginasi, kartu artikel meluncur masuk berurutan secara nyata.
     - **Grid Kategori & Subgroup Filter (`Categories View`)**: Menambahkan animasi masuk `in:fly` berurutan pada kartu kategori, serta membungkus daftar artikel subkategori dengan `{#key `${selectedCategory.name}-${selectedSubcategory}`}` sehingga saat mengklik filter subgroup (`All`, subkategori tertentu), artikel yang cocok langsung mengalir masuk dengan animasi staggered.
@@ -280,7 +280,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 ### Added
 - **[19:38 WIB] Pemisahan Baris Mandiri untuk Kategori & Tags di Halaman Blog Reader (`blog/[slug]/+page.svelte`):**
   - Memisahkan elemen metadata kategori dan tags artikel ke dalam **2 baris terpisah secara mandiri** (`2 dedicated rows`) pada semua resolusi layar (smartphone, tablet, dan desktop).
-  - **Baris 1: `[ CATEGORY ]`**: Menampilkan chip kategori interaktif yang terhubung langsung ke filter tab Kategori di `/blog?category=...`, lengkap dengan styling YoRHa invert-hover.
+  - **Baris 1: `[ CATEGORY ]`**: Menampilkan chip kategori interaktif yang terhubung langsung ke filter tab Kategori di `/blog?category=...`, lengkap dengan styling Tactical invert-hover.
   - **Baris 2: `[ TAGS ]`**: Menampilkan deretan badge tag interaktif dengan format `#{tag}` yang terhubung langsung ke filter tab Tags di `/blog?tag=...`.
   - Merapikan baris paling atas header artikel sehingga murni hanya menampilkan tanggal dan estimasi waktu baca (`date · readingTime`) secara bersih tanpa terjejali teks kategori.
   - Menyelaraskan posisi awal badge pada layar tablet dan desktop menggunakan lebar tetap `sm:w-24`, dengan fleksibilitas pembungkusan otomatis (*natural wrapping*) di layar smartphone.
@@ -382,22 +382,22 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 - **[17:28 WIB] Perbaikan Bug Border Putih Kartu Proyek Akibat clearProps GSAP (`projects/+page.svelte`, `Skills.svelte`):**
   - **Penyebab**: Fungsi `clearProps: 'all'` pada animasi filter kartu menghapus seluruh atribut `style` inline (`border-color` dan `background-color`), sehingga border kartu jatuh ke warna teks bawaan Tailwind (`currentColor` = putih terang).
-  - **Solusi**: Mengubah seluruh `clearProps: 'all'` menjadi `clearProps: 'transform,opacity'` pada handler filter dan search `$effect`, serta menambahkan aturan scoped CSS `:global([data-card-anim])` untuk mengunci warna border kartu ke `var(--yorha-border)`.
+  - **Solusi**: Mengubah seluruh `clearProps: 'all'` menjadi `clearProps: 'transform,opacity'` pada handler filter dan search `$effect`, serta menambahkan aturan scoped CSS `:global([data-card-anim])` untuk mengunci warna border kartu ke `var(--tactical-border)`.
 
 - **[17:14 WIB] Perbaikan Bug Scroll Delay Tech Skills & Transisi Latar Belakang Hero ke About (`sectionAnim.js`, `Skills.svelte`, `Hero.svelte`, `+page.svelte`):**
   - **Perbaikan Scroll Delay pada Filter Kategori**:
     - Menambahkan `ResizeObserver` pada action `sectionAnim` agar setiap perubahan tinggi elemen section langsung memperbarui koordinat `ScrollTrigger` dan batas scroll `Lenis`.
     - Menambahkan pemanggilan langsung `ScrollTrigger.refresh()` dan `window.__lenis?.resize()` di `Skills.svelte` saat filter diklik sehingga seksi Portfolio langsung muncul tepat waktu tanpa jeda.
   - **Transisi Latar Belakang Hero ke About yang Mulus**:
-    - Menambahkan gradien transisi vertikal lembut di bagian bawah pin Hero (`Hero.svelte`) yang membaurkan canvas 3D ke latar belakang YoRHa.
-    - Menambahkan batas taktis YoRHa HUD (`SYS_ENGAGE // SECTOR_02_MONITOR`) dengan indikator pulsa amber di antara Hero dan About.
+    - Menambahkan gradien transisi vertikal lembut di bagian bawah pin Hero (`Hero.svelte`) yang membaurkan canvas 3D ke latar belakang Tactical.
+    - Menambahkan batas taktis Tactical HUD (`SYS_ENGAGE // SECTOR_02_MONITOR`) dengan indikator pulsa amber di antara Hero dan About.
     - Menambahkan *grid dissolve mask* setinggi ~260px di bagian atas kontainer konten agar kisi grid 3px meluruh masuk secara bertahap tanpa potongan garis tajam.
 
 - **[17:04 WIB] Pembaruan Pola Grid Latar Belakang Menjadi Exact Cross Grid 3px (`src/app.css`, `+page.svelte`, `projects/+page.svelte`, `blog/+page.svelte`):**
   - Mengubah pola background kisi garis menjadi *exact cross grid* dua lapis (`linear-gradient` vertikal & horizontal 1px) dengan ukuran kotak mikro rapat **3px x 3px**.
   - Mengonfigurasi variabel `--cross-line` pada Dark Mode (`rgba(255, 255, 255, 0.07)`) dan Light Mode (`rgba(0, 0, 0, 0.06)`).
   - Memastikan background grid membentang penuh 100% (*edge-to-edge*) pada halaman `/projects` dan `/blog` tanpa terpotong batas kontainer `.wrap`.
-  - Memberikan latar belakang solid (`var(--yorha-surface)`) pada seluruh kartu keahlian dan panel diagnostik Pod 042 agar pola grid tidak tembus di belakang teks.
+  - Memberikan latar belakang solid (`var(--tactical-surface)`) pada seluruh kartu keahlian dan panel diagnostik Pod 042 agar pola grid tidak tembus di belakang teks.
   - Menjaga *radial vignette mask* pada pembaca artikel blog agar area teks tetap bersih dan nyaman dibaca.
 - **[12:59 WIB] Auto-Scroll Table of Contents (TOC) di Blog Reader Mengikuti Progres Baca Pengguna (`blog/[slug]/+page.svelte`):**
   - **Auto-Follow Heading Aktif pada Daftar Isi Panjang**:
@@ -451,8 +451,8 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - **Perbaikan Bug Sudut Reticle Melayang / Kelewatan (Pixel-Perfect Corner Reticles)**:
     - Mengeliminasi ketidaksejajaran vertikal sudut reticle atas yang sebelumnya melayang/kelewatan akibat karakter teks Unicode (`┌ ┐ └ ┘`) yang terpengaruh font baseline dan line-height.
     - Menggantinya dengan braket sudut CSS presisi (`h-2.5 w-2.5 border-l-2 border-t-2`) berkoordinat tepat di `-top-px -left-px` yang 100% menempel pas (*flush*) pada setiap sudut elemen kartu portfolio, proyek, modal, konsol, dan kontak tanpa distorsi visual.
-- **[12:30 WIB] Overhaul Section Contact — YoRHa Minimalist Black Box Transceiver & Combo Typography (`Contact.svelte`, `About.svelte`, `site.js`):**
-  - Mengimplementasikan **Konsep 3 (Minimalist YoRHa Black Box Transceiver)** pada section Kontak (`SEC // 05`) dengan frame tajam `rounded-none`, zero-shadow, dan sudut reticle bidik militer `[ ┌ ┐ └ ┘ ]`.
+- **[12:30 WIB] Overhaul Section Contact — Tactical Minimalist Black Box Transceiver & Combo Typography (`Contact.svelte`, `About.svelte`, `site.js`):**
+  - Mengimplementasikan **Konsep 3 (Minimalist Tactical Black Box Transceiver)** pada section Kontak (`SEC // 05`) dengan frame tajam `rounded-none`, zero-shadow, dan sudut reticle bidik militer `[ ┌ ┐ └ ┘ ]`.
   - Menghadirkan **Giant Direct Frequency HUD** dengan alamat email monospace berukuran besar (`samsmon@gmail.com`), status buffer aktif berdenyut hijau neon (`[ BUFFER_STATUS: ACTIVE ]`), dan tombol salin taktis `[ ┌ COPY ADDRESS ┘ ]` dengan feedback instan `[ ┌ COPIED TO BUFFER ┘ ]`.
   - Mengintegrasikan **4-Grid Tactical Relay Nodes**:
     - `ENDPOINT_01 // GITHUB [samsmon]` (`PROTOCOL: GIT+SSH`)
@@ -464,8 +464,8 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
     - `font-serif` (**Baskervville**): Teks pengantar naratif prose, kutipan reflektif, dan deskripsi isi kartu bernuansa editorial sastra.
     - `font-mono` (**Space Mono / Fira Code**): Kode indeks, alamat email, frekuensi transmisi, status telemetri, dan footer.
   - Memperbarui `About.svelte` agar paragraf narasi `{about.intro}` dan `{about.body}` secara konsisten mengadopsi `font-serif` (Baskervville).
-- **[12:14 WIB] Overhaul Modal Proyek, Resume Modal & Command Palette ke Estetika Taktis YoRHa (`ProjectModal.svelte`, `ResumeModal.svelte`, `CommandPalette.svelte`):**
-  - Mengubah seluruh modal detail proyek, modal resume CV, dan command palette (Ctrl+K) menjadi **`rounded-none`** dan zero-shadow murni dengan sudut bidik reticle militer YoRHa `[ ┌ ┐ └ ┘ ]`.
+- **[12:14 WIB] Overhaul Modal Proyek, Resume Modal & Command Palette ke Estetika Taktis Tactical (`ProjectModal.svelte`, `ResumeModal.svelte`, `CommandPalette.svelte`):**
+  - Mengubah seluruh modal detail proyek, modal resume CV, dan command palette (Ctrl+K) menjadi **`rounded-none`** dan zero-shadow murni dengan sudut bidik reticle militer Tactical `[ ┌ ┐ └ ┘ ]`.
   - Mengimplementasikan top toolbar taktis `POD // SPEC_INSPECTOR_{num}` pada modal proyek lengkap dengan lampu indikator telemetri berdenyut hijau neon (`animate-pulse`), badge klasifikasi militer, panduan `[ ESC TO DISMISS ]`, serta tombol exit berbingkai kotak.
   - Memisahkan tampilan modal proyek menjadi 2 kolom taktis: kolom kiri berisi index telemetri (`UNIT_INDEX`, `SYSTEM_NAME`, spesifikasi `YEAR`, `CLASSIFICATION`, `CORE_STACK`), dan kolom kanan berisi narrative logs, border aksen emerald vertikal, galeri preview tajam, serta link terminal `[ ↗ LINK ]`.
   - Menghilangkan seluruh scale bounce / distorsi skala pada transisi buka-tutup modal dan command palette; transisi kini berjalan serempak dan instan (`duration: 0.16s - 0.18s`, `y: 8px -> 0`, zero stagger).
@@ -473,8 +473,8 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - Mengubah seluruh kartu proyek di halaman `/projects` menjadi **`rounded-none`**, menghapus bayangan besar `shadow-[0_16px_36px_rgba(...)]`, dan menambahkan reticle brackets `[ ┌ ┐ └ ┘ ]` saat hover.
   - Menyelaraskan tombol filter kategori dengan penanda reticle `┌ ┘` dan search bar bergaya konsol.
   - Menghapus benturan ganda handler klik dan `$effect` pencarian serta menghilangkan springy scale bounce `1.025` di `Portfolio.svelte`; filter kini berganti seketika (`y: 4 -> 0` dalam 0.16s, zero delay).
-- **[11:15 WIB] Overhaul Section Skills — YoRHa Tactical Tech Matrix & Pod 042 Diagnostic HUD (`Skills.svelte` & `site.js`):**
-  - Mengubah section Skills yang sebelumnya sepi menjadi split-view 2 kolom interaktif bergaya sistem operasi Bunker/Pod YoRHa (NieR: Automata).
+- **[11:15 WIB] Overhaul Section Skills — Tactical Tactical Tech Matrix & Pod 042 Diagnostic HUD (`Skills.svelte` & `site.js`):**
+  - Mengubah section Skills yang sebelumnya sepi menjadi split-view 2 kolom interaktif bergaya sistem operasi Bunker/Pod Tactical (NieR: Automata).
   - Menyediakan filter kluster taktis: `[ ALL CAPABILITIES ]`, `[ 01 // CLOUD & AUTOMATION ]`, `[ 02 // SYSTEMS & VIRT ]`, `[ 03 // NETWORKING ]`, dan `[ 04 // APP RUNTIME ]`.
   - Memperluas katalog dari sekadar web dev menjadi 18 unit keahlian riil Network, Homelab, Cloud, dan Systems Engineering (MikroTik RouterOS, Proxmox VE, WireGuard/Tailscale, Cloudflare Zero Trust, VLANs, Terraform, Docker, AWS, SvelteKit, Laravel, PostgreSQL, Redis).
   - Setiap kartu memiliki reticle brackets sudut `[ ┌ ┐ └ ┘ ]`, ID taktis unik, badge klasifikasi militer, dan mini readiness bar.
@@ -483,8 +483,8 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
   - Menghapus seluruh efek domino / `stagger` delay bertingkat di seluruh komponen: filter `Skills.svelte`, katalog `projects/+page.svelte`, artikel & paginasi `blog/+page.svelte`, halaman detail `projects/[slug]`, `blog/[slug]`, `CommandPalette.svelte`, `ProjectModal.svelte`, dan scroll reveal `sectionAnim.js`.
   - Menggantinya dengan transisi serempak yang *clean*, instan, dan *snappy* (`y: 4-8px -> 0`, `opacity: 0 -> 1`, `duration: 0.16s - 0.22s`, `ease: power2.out`) tanpa distorsi `scale` atau jeda tunggu antar kartu.
   - Memformalkan aturan ketat zero-stagger ke dalam `AI_GUIDELINES.md` agar agen AI di masa depan tidak mengulangi animasi delay bertingkat.
-- **[09:45 WIB] YoRHa Tactical Reticle Favicon Upgrade (`static/favicon.svg` & `src/app.html`):**
-  - Mengganti favicon dengan ikon SVG reticle bidik militer YoRHa bersudut tajam (`┌ ┐ └ ┘`), sumbu crosshair aksial, dan node inti neon emerald (`#34D399`) yang konsisten dengan tema sci-fi android.
+- **[09:45 WIB] Tactical Tactical Reticle Favicon Upgrade (`static/favicon.svg` & `src/app.html`):**
+  - Mengganti favicon dengan ikon SVG reticle bidik militer Tactical bersudut tajam (`┌ ┐ └ ┘`), sumbu crosshair aksial, dan node inti neon emerald (`#34D399`) yang konsisten dengan tema sci-fi android.
 - **[09:10 WIB] Shortcut Akses Cepat Blog di Hero Section (`src/lib/components/Hero.svelte`):**
   - Menambahkan link navigasi taktis `[ ↗ ] ENGINEERING JOURNAL` tepat di atas kutipan trivia `"Every point of light..."` pada section pertama (Hero) sehingga pengunjung dapat langsung melompat ke blog tanpa perlu scroll ke bawah.
 - **[08:40 WIB] Badge Telemetri Visitor Counter di Kontak (`src/lib/components/Contact.svelte`):**
@@ -492,7 +492,7 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 - **[08:15 WIB] Transisi Pergantian Tema Sutra (Silk-Smooth Transition) (`blogTheme.js` & `app.css`):**
   - Mengeliminasi delay artifisial 120ms dan lapisan veil gelap yang sebelumnya memicu kedipan visual; kini peralihan antara OLED Black dan Warm Sepia berjalan instan dengan interpolasi kurva halus `cubic-bezier(0.16, 1, 0.3, 1)` berdurasi 380ms yang sangat nyaman di mata.
 - **[07:30 WIB] Dokumentasi Komprehensif AI Guidelines (`AI_GUIDELINES.md` & `README.md`):**
-  - Menyusun panduan operasional lengkap untuk AI agent dan developer masa depan mencakup arsitektur, standar penulisan Svelte 5 Runes, styling tokens YoRHa, skema frontmatter artikel blog, integrasi layanan homelab, dan alur deployment.
+  - Menyusun panduan operasional lengkap untuk AI agent dan developer masa depan mencakup arsitektur, standar penulisan Svelte 5 Runes, styling tokens Tactical, skema frontmatter artikel blog, integrasi layanan homelab, dan alur deployment.
 - **[06:45 WIB] Tombol Theme Ikon Murni Tanpa Border Kotak (Borderless Google Icons):**
   - Menghilangkan border kotak pada `<ThemeToggle />` (`border-0 bg-transparent`) sehingga tampil bersih dan elegan dengan Google Material Symbols `dark_mode` dan `light_mode` serta animasi tilt mikro saat di-hover.
 - **[06:15 WIB] Pemindahan Posisi Bagian Stats Langsung di Bawah Menu Navigasi (`blog/+page.svelte`):**

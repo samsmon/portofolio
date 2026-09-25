@@ -401,7 +401,7 @@
   <meta name="twitter:image" content={`${identity.url}/og-preview.png`} />
 </svelte:head>
 
-<div class="blog-reading-view min-h-screen pt-24 sm:pt-28 pb-28 yorha-tech-bg-reader">
+<div class="blog-reading-view min-h-screen pt-24 sm:pt-28 pb-28 tactical-tech-bg-reader">
   <div class="wrap relative z-10">
     <!-- Top Navigation / Breadcrumb & Quick Search Trigger (Non-Sticky, Traditional Flow) -->
     <nav
@@ -423,7 +423,7 @@
         <button
           type="button"
           onclick={openSearch}
-          class="flex items-center gap-2 px-2.5 py-1 border text-[11px] font-mono transition-all duration-150 cursor-pointer rounded-none yorha-invert-hover"
+          class="flex items-center gap-2 px-2.5 py-1 border text-[11px] font-mono transition-all duration-150 cursor-pointer rounded-none tactical-invert-hover"
           style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
           title="Quick Search Articles (Press /)"
         >
@@ -449,7 +449,7 @@
           </div>
 
           <h1 class="blog-heading text-xl sm:text-2xl md:text-3xl lg:text-h1 font-bold tracking-tight leading-snug sm:leading-tight">
-            <span class="px-1.5 sm:px-2 py-0.5 box-decoration-clone inline" style="background-color: var(--yorha-invert-bg); color: var(--yorha-invert-text);">
+            <span class="px-1.5 sm:px-2 py-0.5 box-decoration-clone inline" style="background-color: var(--tactical-invert-bg); color: var(--tactical-invert-text);">
               {post.title}
             </span>
           </h1>
@@ -592,7 +592,7 @@
           <button
             type="button"
             onclick={scrollToTop}
-            class="inline-flex items-center gap-1.5 transition-colors cursor-pointer yorha-invert-hover px-2 py-0.5 border rounded-none"
+            class="inline-flex items-center gap-1.5 transition-colors cursor-pointer tactical-invert-hover px-2 py-0.5 border rounded-none"
             style="border-color: var(--blog-border); color: var(--blog-text-primary); background-color: var(--blog-surface);"
           >
             <span>[ ↑ Top of Article ]</span>
@@ -740,7 +740,7 @@
         <button
           type="button"
           onclick={closeSearch}
-          class="font-mono text-xs px-2 py-1 border transition-colors cursor-pointer rounded-none yorha-invert-hover"
+          class="font-mono text-xs px-2 py-1 border transition-colors cursor-pointer rounded-none tactical-invert-hover"
           style="border-color: var(--blog-border); color: var(--blog-text-muted);"
           title="Close (Esc)"
         >
@@ -808,7 +808,7 @@
     <button
       type="button"
       onclick={() => (isMobileTocOpen = true)}
-      class="px-3 py-2.5 font-mono text-xs backdrop-blur-md cursor-pointer transition-all rounded-none yorha-invert-hover border shadow-lg"
+      class="px-3 py-2.5 font-mono text-xs backdrop-blur-md cursor-pointer transition-all rounded-none tactical-invert-hover border shadow-lg"
       style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
       title="Table of Contents"
     >
@@ -818,7 +818,7 @@
   <button
     type="button"
     onclick={scrollToTop}
-    class="px-3 py-2.5 font-mono text-xs backdrop-blur-md cursor-pointer transition-all rounded-none yorha-invert-hover border shadow-lg"
+    class="px-3 py-2.5 font-mono text-xs backdrop-blur-md cursor-pointer transition-all rounded-none tactical-invert-hover border shadow-lg"
     style="background-color: var(--blog-surface); border-color: var(--blog-accent); color: var(--blog-accent);"
     title="Back to top"
   >
@@ -853,7 +853,7 @@
         <button
           type="button"
           onclick={() => (isMobileTocOpen = false)}
-          class="border px-2 py-1 text-label font-mono tracking-wider uppercase transition-colors yorha-invert-hover cursor-pointer"
+          class="border px-2 py-1 text-label font-mono tracking-wider uppercase transition-colors tactical-invert-hover cursor-pointer"
           style="border-color: var(--blog-border); background-color: var(--blog-bg); color: var(--blog-text-primary);"
         >
           [ ✕ CLOSE ]

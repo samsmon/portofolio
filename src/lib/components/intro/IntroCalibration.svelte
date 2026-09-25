@@ -4,7 +4,7 @@
   import { ease } from '$lib/motion.js';
 
   /**
-   * YoRHa Optical Calibration.
+   * Tactical Optical Calibration.
    * Scanline -> reticle ignition -> 45deg ratchet -> radar ping -> shutter open.
    * Zero text. Colours come from the theme tokens, so the overlay matches
    * whichever theme the visitor already has (see the data-theme stamp in
@@ -179,7 +179,7 @@
 <div
   bind:this={root}
   class="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center overflow-hidden select-none"
-  style="background-color: var(--yorha-bg); color: var(--yorha-text-primary);"
+  style="background-color: var(--tactical-bg); color: var(--tactical-text-primary);"
   role="presentation"
   aria-hidden="true"
 >

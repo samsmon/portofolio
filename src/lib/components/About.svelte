@@ -25,12 +25,12 @@
 
         <div class="flex min-w-0 flex-col justify-center gap-1.5 font-mono text-label tracking-[0.16em]">
           {#if about.status}
-            <div class="inline-flex items-center gap-2 leading-none" style="color: var(--yorha-text-primary);">
-              <span class="h-2 w-2 shrink-0 rounded-full" style="background-color: var(--yorha-accent);"></span>
+            <div class="inline-flex items-center gap-2 leading-none" style="color: var(--tactical-text-primary);">
+              <span class="h-2 w-2 shrink-0 rounded-full" style="background-color: var(--tactical-accent);"></span>
               <span class="leading-none">{about.status}</span>
             </div>
           {/if}
-          <div class="uppercase" style="color: var(--yorha-text-muted);">
+          <div class="uppercase" style="color: var(--tactical-text-muted);">
             {about.location}
           </div>
         </div>
@@ -42,7 +42,7 @@
       <p
         data-anim
         class="max-w-[var(--measure)] text-balance text-lead font-medium leading-relaxed"
-        style="color: var(--yorha-text-primary);"
+        style="color: var(--tactical-text-primary);"
       >
         {about.intro}
       </p>
@@ -50,7 +50,7 @@
         <p
           data-anim
           class="max-w-[var(--measure)] text-body leading-relaxed"
-          style="color: var(--yorha-text-primary); opacity: 0.85;"
+          style="color: var(--tactical-text-primary); opacity: 0.85;"
         >
           {para}
         </p>

@@ -80,14 +80,14 @@
           <span
             data-anim-badge
             class="block font-mono text-label font-medium tracking-[0.25em] uppercase will-change-transform"
-            style="color: var(--yorha-text-muted);"
+            style="color: var(--tactical-text-muted);"
           >
             SEC // 05
           </span>
         </div>
       </div>
 
-      <div class="relative mt-3 h-px w-full overflow-hidden" style="background-color: var(--yorha-border);">
+      <div class="relative mt-3 h-px w-full overflow-hidden" style="background-color: var(--tactical-border);">
         <span
           data-anim-line
           class="absolute inset-y-0 left-0 h-full w-full origin-left bg-gradient-to-r from-current/50 via-current/25 to-transparent"
@@ -103,15 +103,15 @@
 
     <!-- Intro and journal link -->
     <div data-anim class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
-      <p class="max-w-[var(--measure)] text-lead leading-relaxed" style="color: var(--yorha-text-primary); opacity: 0.85;">
+      <p class="max-w-[var(--measure)] text-lead leading-relaxed" style="color: var(--tactical-text-primary); opacity: 0.85;">
         {contact.body}
       </p>
 
       <a
         href="/blog"
-        class="yorha-invert-hover group inline-flex items-center gap-2 self-start sm:self-auto border border-current/20 bg-current/5 px-4 py-2.5 font-mono text-label uppercase tracking-[0.2em] transition-all duration-150 shrink-0"
+        class="tactical-invert-hover group inline-flex items-center gap-2 self-start sm:self-auto border border-current/20 bg-current/5 px-4 py-2.5 font-mono text-label uppercase tracking-[0.2em] transition-all duration-150 shrink-0"
       >
-        <span style="color: var(--yorha-accent);">■</span>
+        <span style="color: var(--tactical-accent);">■</span>
         <span>Engineering journal</span>
         <span class="transition-transform group-hover:translate-x-1">→</span>
       </a>
@@ -124,31 +124,31 @@
         class="mt-8 sm:mt-10 grid gap-5 border-t border-current/10 pt-6 md:grid-cols-[1fr_auto] md:items-end"
       >
         <div class="space-y-3">
-          <div class="inline-flex items-center gap-2.5 font-display text-h3 font-semibold tracking-tight" style="color: var(--yorha-text-primary);">
+          <div class="inline-flex items-center gap-2.5 font-display text-h3 font-semibold tracking-tight" style="color: var(--tactical-text-primary);">
             <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-              <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background-color: var(--yorha-accent);"></span>
-              <span class="relative inline-flex h-2 w-2 rounded-full" style="background-color: var(--yorha-accent);"></span>
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background-color: var(--tactical-accent);"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full" style="background-color: var(--tactical-accent);"></span>
             </span>
             <span>{availability.status}</span>
           </div>
 
           <dl class="grid gap-x-8 gap-y-2 font-mono text-caption sm:grid-cols-[auto_1fr]">
-            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--yorha-text-muted);">Type</dt>
-            <dd style="color: var(--yorha-text-primary);">{availability.type}</dd>
-            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--yorha-text-muted);">Location</dt>
-            <dd style="color: var(--yorha-text-primary);">{availability.location}</dd>
-            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--yorha-text-muted);">Roles</dt>
-            <dd style="color: var(--yorha-text-primary);">{availability.roles.join(' · ')}</dd>
+            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--tactical-text-muted);">Type</dt>
+            <dd style="color: var(--tactical-text-primary);">{availability.type}</dd>
+            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--tactical-text-muted);">Location</dt>
+            <dd style="color: var(--tactical-text-primary);">{availability.location}</dd>
+            <dt class="text-label uppercase tracking-[0.2em] sm:pt-0.5" style="color: var(--tactical-text-muted);">Roles</dt>
+            <dd style="color: var(--tactical-text-primary);">{availability.roles.join(' · ')}</dd>
           </dl>
         </div>
 
         <button
           type="button"
           onclick={() => (showResume = true)}
-          class="yorha-invert-hover inline-flex items-center justify-center gap-2 border border-current/20 bg-current/5 px-5 py-3 font-mono text-label uppercase tracking-[0.18em] transition-all duration-150 cursor-pointer"
+          class="tactical-invert-hover inline-flex items-center justify-center gap-2 border border-current/20 bg-current/5 px-5 py-3 font-mono text-label uppercase tracking-[0.18em] transition-all duration-150 cursor-pointer"
         >
           <span>View resume / CV</span>
-          <span style="color: var(--yorha-accent);">↗</span>
+          <span style="color: var(--tactical-accent);">↗</span>
         </button>
       </div>
     {/if}
@@ -158,7 +158,7 @@
       <!-- Email -->
       <div
         class="group relative flex flex-col justify-center border border-current/15 p-5 sm:p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-current/40"
-        style="background-color: var(--yorha-surface);"
+        style="background-color: var(--tactical-surface);"
       >
         <span class="pointer-events-none absolute top-[-1px] left-[-1px] h-2.5 w-2.5 border-l-2 border-t-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
         <span class="pointer-events-none absolute top-[-1px] right-[-1px] h-2.5 w-2.5 border-r-2 border-t-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
@@ -166,17 +166,17 @@
         <span class="pointer-events-none absolute bottom-[-2px] right-[-1px] h-2.5 w-2.5 border-b-2 border-r-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
         <span
           class="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"
-          style="background-color: var(--yorha-accent);"
+          style="background-color: var(--tactical-accent);"
           aria-hidden="true"
         ></span>
 
         <div>
-          <div class="flex items-center justify-between font-mono text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">
+          <div class="flex items-center justify-between font-mono text-label uppercase tracking-wider" style="color: var(--tactical-text-muted);">
             <span>01</span>
             <span>Email</span>
           </div>
           <h3 class="mt-3 font-display text-lg font-semibold tracking-tight">Write to me directly</h3>
-          <p class="mt-2 text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+          <p class="mt-2 text-caption leading-relaxed" style="color: var(--tactical-text-muted);">
             Fastest channel for infrastructure work, cloud contracts, or a quick question.
           </p>
         </div>
@@ -185,7 +185,7 @@
           <a
             href={'mailto:' + contact.email}
             class="font-mono text-sm font-medium tracking-tight hover:underline select-all truncate"
-            style="color: var(--yorha-accent);"
+            style="color: var(--tactical-accent);"
           >
             {contact.email}
           </a>
@@ -194,8 +194,8 @@
             onclick={copyEmail}
             aria-label="Copy email address"
             aria-live="polite"
-            class="w-full yorha-invert-hover inline-flex items-center justify-center gap-2 border px-3 py-2 font-mono text-label uppercase tracking-[0.16em] transition-all cursor-pointer {copied ? 'border-current font-semibold' : 'border-current/20 bg-current/5 hover:border-current/50'}"
-            style={copied ? 'color: var(--yorha-accent);' : ''}
+            class="w-full tactical-invert-hover inline-flex items-center justify-center gap-2 border px-3 py-2 font-mono text-label uppercase tracking-[0.16em] transition-all cursor-pointer {copied ? 'border-current font-semibold' : 'border-current/20 bg-current/5 hover:border-current/50'}"
+            style={copied ? 'color: var(--tactical-accent);' : ''}
           >
             <span>{copied ? 'Copied' : 'Copy address'}</span>
           </button>
@@ -205,7 +205,7 @@
       <!-- Profiles -->
       <div
         class="group relative flex flex-col justify-between border border-current/15 p-5 sm:p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-current/40"
-        style="background-color: var(--yorha-surface);"
+        style="background-color: var(--tactical-surface);"
       >
         <span class="pointer-events-none absolute top-[-1px] left-[-1px] h-2.5 w-2.5 border-l-2 border-t-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
         <span class="pointer-events-none absolute top-[-1px] right-[-1px] h-2.5 w-2.5 border-r-2 border-t-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
@@ -213,17 +213,17 @@
         <span class="pointer-events-none absolute bottom-[-2px] right-[-1px] h-2.5 w-2.5 border-b-2 border-r-2 border-transparent group-hover:border-current/70 transition-colors" aria-hidden="true"></span>
         <span
           class="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"
-          style="background-color: var(--yorha-accent);"
+          style="background-color: var(--tactical-accent);"
           aria-hidden="true"
         ></span>
 
         <div>
-          <div class="flex items-center justify-between font-mono text-label uppercase tracking-wider" style="color: var(--yorha-text-muted);">
+          <div class="flex items-center justify-between font-mono text-label uppercase tracking-wider" style="color: var(--tactical-text-muted);">
             <span>02</span>
             <span>Profiles</span>
           </div>
           <h3 class="mt-3 font-display text-lg font-semibold tracking-tight">Code and career</h3>
-          <p class="mt-2 text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+          <p class="mt-2 text-caption leading-relaxed" style="color: var(--tactical-text-muted);">
             Public repositories, and the longer version of the story on LinkedIn.
           </p>
         </div>
@@ -236,13 +236,13 @@
             class="group/item flex items-center justify-between border border-current/15 bg-current/[0.02] px-3 py-2 font-mono transition-all hover:border-current/40 hover:bg-current/5"
           >
             <div class="flex items-center gap-2.5">
-              <span class="text-label" style="color: var(--yorha-accent);">■</span>
+              <span class="text-label" style="color: var(--tactical-accent);">■</span>
               <div class="flex flex-col">
                 <span class="text-xs font-semibold tracking-tight">GitHub</span>
-                <span class="text-label select-all" style="color: var(--yorha-text-muted);">github.com/samsmon</span>
+                <span class="text-label select-all" style="color: var(--tactical-text-muted);">github.com/samsmon</span>
               </div>
             </div>
-            <span class="text-label uppercase tracking-wider transition-transform group-hover/item:translate-x-1" style="color: var(--yorha-accent);">Open →</span>
+            <span class="text-label uppercase tracking-wider transition-transform group-hover/item:translate-x-1" style="color: var(--tactical-accent);">Open →</span>
           </a>
 
           <a
@@ -252,13 +252,13 @@
             class="group/item flex items-center justify-between border border-current/15 bg-current/[0.02] px-3 py-2 font-mono transition-all hover:border-current/40 hover:bg-current/5"
           >
             <div class="flex items-center gap-2.5">
-              <span class="text-label" style="color: var(--yorha-accent);">■</span>
+              <span class="text-label" style="color: var(--tactical-accent);">■</span>
               <div class="flex flex-col">
                 <span class="text-xs font-semibold tracking-tight">LinkedIn</span>
-                <span class="text-label select-all" style="color: var(--yorha-text-muted);">linkedin.com/in/suryatmaja</span>
+                <span class="text-label select-all" style="color: var(--tactical-text-muted);">linkedin.com/in/suryatmaja</span>
               </div>
             </div>
-            <span class="text-label uppercase tracking-wider transition-transform group-hover/item:translate-x-1" style="color: var(--yorha-accent);">Open →</span>
+            <span class="text-label uppercase tracking-wider transition-transform group-hover/item:translate-x-1" style="color: var(--tactical-accent);">Open →</span>
           </a>
         </div>
       </div>
@@ -274,21 +274,21 @@
       data-anim
       class="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-t border-current/10 pt-4 sm:pt-6 font-mono text-label uppercase tracking-[0.22em]"
     >
-      <span style="color: var(--yorha-text-muted);">© {year} {identity.name}</span>
+      <span style="color: var(--tactical-text-muted);">© {year} {identity.name}</span>
 
       <div class="flex flex-wrap items-center gap-3">
         {#if availability}
           <span
             class="inline-flex items-center gap-2 border px-3 py-1.5 select-none"
-            style="border-color: var(--yorha-accent-border); background-color: var(--yorha-accent-subtle); color: var(--yorha-accent);"
+            style="border-color: var(--tactical-accent-border); background-color: var(--tactical-accent-subtle); color: var(--tactical-accent);"
           >
-            <span class="h-1.5 w-1.5 shrink-0 rounded-full" style="background-color: var(--yorha-accent);"></span>
+            <span class="h-1.5 w-1.5 shrink-0 rounded-full" style="background-color: var(--tactical-accent);"></span>
             <span class="font-medium leading-none">{availability.status} · UTC+7</span>
           </span>
         {/if}
 
         {#if visitorCount && visitorCount > 1000}
-          <span class="inline-flex items-center border border-current/15 bg-current/[0.02] px-2.5 py-1.5 leading-none" style="color: var(--yorha-text-muted);">
+          <span class="inline-flex items-center border border-current/15 bg-current/[0.02] px-2.5 py-1.5 leading-none" style="color: var(--tactical-text-muted);">
             Visited by {visitorCount.toLocaleString()}
           </span>
         {/if}

@@ -309,7 +309,7 @@
     aria-pressed={active}
     class="group relative shrink-0 cursor-pointer select-none rounded-none border px-3 py-1 font-mono text-label uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 {active ? 'font-medium' : 'hover:border-current/60'}"
     style={active
-      ? 'background-color: var(--yorha-invert-bg); color: var(--yorha-invert-text); border-color: var(--yorha-invert-bg);'
+      ? 'background-color: var(--tactical-invert-bg); color: var(--tactical-invert-text); border-color: var(--tactical-invert-bg);'
       : 'background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);'}
   >
     <span class="pointer-events-none absolute -top-px -left-px h-1.5 w-1.5 border-l border-t transition-opacity duration-150 {active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}" style="border-color: var(--blog-accent);" aria-hidden="true"></span>
@@ -318,7 +318,7 @@
   </button>
 {/snippet}
 
-<div class="yorha-tech-bg w-full min-h-screen">
+<div class="tactical-tech-bg w-full min-h-screen">
   <section class="wrap pt-24 pb-20 lg:pt-28">
     <!-- Breadcrumb and header -->
     <header data-blog-header class="mb-8 space-y-3 border-b pb-5" style="border-color: var(--blog-border);">
@@ -371,7 +371,7 @@
               aria-current={active ? 'page' : undefined}
               class="group relative flex shrink-0 cursor-pointer select-none items-center justify-between rounded-none border px-3.5 py-2.5 text-left transition-all duration-200 lg:w-full {active
                 ? 'font-semibold hover:translate-x-1 active:translate-x-0'
-                : 'yorha-invert-hover hover:translate-x-0.5 active:translate-x-0'}"
+                : 'tactical-invert-hover hover:translate-x-0.5 active:translate-x-0'}"
               style={active
                 ? 'background-color: var(--blog-accent-subtle); color: var(--blog-text-primary); border-color: var(--blog-accent);'
                 : 'background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);'}
@@ -469,7 +469,7 @@
                   type="button"
                   disabled={currentPage === 1}
                   onclick={() => goToPage(currentPage - 1)}
-                  class="yorha-invert-hover inline-flex cursor-pointer items-center gap-1.5 rounded-none border px-3 py-1.5 transition-colors disabled:pointer-events-none disabled:opacity-30"
+                  class="tactical-invert-hover inline-flex cursor-pointer items-center gap-1.5 rounded-none border px-3 py-1.5 transition-colors disabled:pointer-events-none disabled:opacity-30"
                   style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);"
                 >
                   <span aria-hidden="true">←</span>
@@ -483,9 +483,9 @@
                       type="button"
                       onclick={() => goToPage(pageNum)}
                       aria-current={isPageActive ? 'page' : undefined}
-                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-none border font-mono text-xs transition-colors {isPageActive ? '' : 'yorha-invert-hover'}"
+                      class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-none border font-mono text-xs transition-colors {isPageActive ? '' : 'tactical-invert-hover'}"
                       style={isPageActive
-                        ? 'background-color: var(--yorha-invert-bg); color: var(--yorha-invert-text); border-color: var(--yorha-invert-bg); font-weight: 600;'
+                        ? 'background-color: var(--tactical-invert-bg); color: var(--tactical-invert-text); border-color: var(--tactical-invert-bg); font-weight: 600;'
                         : 'background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);'}
                     >
                       {pageNum}
@@ -497,7 +497,7 @@
                   type="button"
                   disabled={currentPage === totalPages}
                   onclick={() => goToPage(currentPage + 1)}
-                  class="yorha-invert-hover inline-flex cursor-pointer items-center gap-1.5 rounded-none border px-3 py-1.5 transition-colors disabled:pointer-events-none disabled:opacity-30"
+                  class="tactical-invert-hover inline-flex cursor-pointer items-center gap-1.5 rounded-none border px-3 py-1.5 transition-colors disabled:pointer-events-none disabled:opacity-30"
                   style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-muted);"
                 >
                   <span>Next</span>
@@ -568,7 +568,7 @@
                     <button
                       type="button"
                       onclick={backToCategories}
-                      class="yorha-invert-hover flex cursor-pointer items-center gap-1.5 rounded-none border px-2.5 py-1 font-mono text-xs transition-all duration-150"
+                      class="tactical-invert-hover flex cursor-pointer items-center gap-1.5 rounded-none border px-2.5 py-1 font-mono text-xs transition-all duration-150"
                       style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
                     >
                       <span aria-hidden="true">←</span>
@@ -622,7 +622,7 @@
                     type="button"
                     data-tag-pill
                     onclick={() => selectTag(t.name)}
-                    class="yorha-invert-hover group inline-flex cursor-pointer items-center gap-2 rounded-none border px-3 py-2 transition-colors duration-150"
+                    class="tactical-invert-hover group inline-flex cursor-pointer items-center gap-2 rounded-none border px-3 py-2 transition-colors duration-150"
                     style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
                   >
                     <span class="font-medium">#{t.name}</span>
@@ -638,7 +638,7 @@
                   <button
                     type="button"
                     onclick={backToTags}
-                    class="yorha-invert-hover flex cursor-pointer items-center gap-1.5 rounded-none border px-2.5 py-1 font-mono text-xs transition-all duration-150"
+                    class="tactical-invert-hover flex cursor-pointer items-center gap-1.5 rounded-none border px-2.5 py-1 font-mono text-xs transition-all duration-150"
                     style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
                   >
                     <span aria-hidden="true">←</span>

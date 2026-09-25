@@ -40,77 +40,77 @@
   });
 </script>
 
-<div class="border rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border); color: var(--yorha-text-muted);">
+<div class="border rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border); color: var(--tactical-text-muted);">
   <button
     type="button"
     onclick={() => (isOpen = !isOpen)}
     class="w-full text-left p-4 flex flex-wrap items-center justify-between gap-3 cursor-pointer group rounded-none"
-    style="color: var(--yorha-text-primary);"
+    style="color: var(--tactical-text-primary);"
     aria-expanded={isOpen}
   >
     <div class="flex flex-wrap items-center gap-3 font-mono text-label">
-      <span class="inline-flex items-center gap-1.5 tracking-[0.16em] uppercase" style="color: var(--yorha-accent);">
-        <span class="h-1.5 w-1.5 rounded-none" style="background-color: var(--yorha-accent);"></span>
+      <span class="inline-flex items-center gap-1.5 tracking-[0.16em] uppercase" style="color: var(--tactical-accent);">
+        <span class="h-1.5 w-1.5 rounded-none" style="background-color: var(--tactical-accent);"></span>
         Engine telemetry
       </span>
-      <span aria-hidden="true" style="color: var(--yorha-border);">·</span>
+      <span aria-hidden="true" style="color: var(--tactical-border);">·</span>
       <span>
-        Tier <span class="uppercase font-medium" style="color: var(--yorha-accent);">{tier}</span>
+        Tier <span class="uppercase font-medium" style="color: var(--tactical-accent);">{tier}</span>
       </span>
       {#if fps}
-        <span style="color: var(--yorha-text-muted);">{fps} fps</span>
+        <span style="color: var(--tactical-text-muted);">{fps} fps</span>
       {/if}
-      <span aria-hidden="true" style="color: var(--yorha-border);">·</span>
-      <span style="color: var(--yorha-text-muted);">Build {buildLabel}</span>
+      <span aria-hidden="true" style="color: var(--tactical-border);">·</span>
+      <span style="color: var(--tactical-text-muted);">Build {buildLabel}</span>
     </div>
 
-    <div class="inline-flex items-center gap-2 font-mono text-label uppercase tracking-[0.16em]" style="color: var(--yorha-text-muted);">
+    <div class="inline-flex items-center gap-2 font-mono text-label uppercase tracking-[0.16em]" style="color: var(--tactical-text-muted);">
       <span>{isOpen ? 'Close' : 'Inspect'}</span>
       <span class="transition-transform duration-300" class:rotate-180={isOpen} aria-hidden="true">↓</span>
     </div>
   </button>
 
   {#if isOpen}
-    <div transition:slide={{ duration: 320, easing: cubicOut }} class="border-t p-5 space-y-6" style="border-color: var(--yorha-border); background-color: var(--yorha-bg);">
+    <div transition:slide={{ duration: 320, easing: cubicOut }} class="border-t p-5 space-y-6" style="border-color: var(--tactical-border); background-color: var(--tactical-bg);">
       <div>
-        <div class="font-mono text-label uppercase tracking-[0.2em] mb-3" style="color: var(--yorha-text-muted);">
+        <div class="font-mono text-label uppercase tracking-[0.2em] mb-3" style="color: var(--tactical-text-muted);">
           Your device, as this page sees it
         </div>
         <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-caption font-mono">
-          <div class="p-2.5 border rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-            <dt class="text-label uppercase" style="color: var(--yorha-text-muted);">Render tier</dt>
-            <dd class="uppercase font-medium" style="color: var(--yorha-text-primary);">{tier}</dd>
+          <div class="p-2.5 border rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border);">
+            <dt class="text-label uppercase" style="color: var(--tactical-text-muted);">Render tier</dt>
+            <dd class="uppercase font-medium" style="color: var(--tactical-text-primary);">{tier}</dd>
           </div>
-          <div class="p-2.5 border rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-            <dt class="text-label uppercase" style="color: var(--yorha-text-muted);">CPU threads</dt>
-            <dd style="color: var(--yorha-text-primary);">{cores}</dd>
+          <div class="p-2.5 border rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border);">
+            <dt class="text-label uppercase" style="color: var(--tactical-text-muted);">CPU threads</dt>
+            <dd style="color: var(--tactical-text-primary);">{cores}</dd>
           </div>
-          <div class="p-2.5 border rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-            <dt class="text-label uppercase" style="color: var(--yorha-text-muted);">Memory class</dt>
-            <dd style="color: var(--yorha-text-primary);">{memory}</dd>
+          <div class="p-2.5 border rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border);">
+            <dt class="text-label uppercase" style="color: var(--tactical-text-muted);">Memory class</dt>
+            <dd style="color: var(--tactical-text-primary);">{memory}</dd>
           </div>
-          <div class="p-2.5 border rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-            <dt class="text-label uppercase" style="color: var(--yorha-text-muted);">Network / motion</dt>
-            <dd style="color: var(--yorha-text-primary);">{connection}{reducedMotion ? ' · reduced' : ''}</dd>
+          <div class="p-2.5 border rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border);">
+            <dt class="text-label uppercase" style="color: var(--tactical-text-muted);">Network / motion</dt>
+            <dd style="color: var(--tactical-text-primary);">{connection}{reducedMotion ? ' · reduced' : ''}</dd>
           </div>
         </dl>
       </div>
 
       <div class="space-y-3">
-        <div class="font-mono text-label uppercase tracking-[0.2em]" style="color: var(--yorha-text-muted);">
+        <div class="font-mono text-label uppercase tracking-[0.2em]" style="color: var(--tactical-text-muted);">
           {engineTrivia.title}
         </div>
-        <p class="text-caption max-w-[var(--measure)]" style="color: var(--yorha-text-muted);">
+        <p class="text-caption max-w-[var(--measure)]" style="color: var(--tactical-text-muted);">
           {engineTrivia.overview}
         </p>
 
         <div class="grid gap-3 sm:grid-cols-3 pt-2">
           {#each engineTrivia.items as item}
-            <div class="p-3 border space-y-1.5 rounded-none" style="background-color: var(--yorha-surface); border-color: var(--yorha-border);">
-              <span class="font-mono text-label font-medium block" style="color: var(--yorha-accent);">
+            <div class="p-3 border space-y-1.5 rounded-none" style="background-color: var(--tactical-surface); border-color: var(--tactical-border);">
+              <span class="font-mono text-label font-medium block" style="color: var(--tactical-accent);">
                 {item.label}
               </span>
-              <p class="text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+              <p class="text-caption leading-relaxed" style="color: var(--tactical-text-muted);">
                 {item.desc}
               </p>
             </div>

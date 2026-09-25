@@ -16,7 +16,7 @@
   aria-label={isLight ? 'Switch to Tactical (dark) theme' : 'Switch to Archive (light) theme'}
   aria-pressed={isLight}
   class="group inline-flex items-center gap-1.5 px-2 py-1 border-0 bg-transparent opacity-80 hover:opacity-100 transition-opacity duration-150 cursor-pointer font-mono text-label uppercase tracking-wider select-none {className}"
-  style="color: var(--yorha-accent);"
+  style="color: var(--tactical-accent);"
   title={isLight ? 'Archive theme active. Switch to Tactical.' : 'Tactical theme active. Switch to Archive.'}
 >
   <!-- Inline icons: no icon font request just for two glyphs. -->

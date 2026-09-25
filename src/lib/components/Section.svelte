@@ -30,13 +30,13 @@
             <span
               data-anim-badge
               class="block font-mono text-[11px] font-medium tracking-[0.25em] uppercase will-change-transform"
-              style="color: var(--yorha-text-muted);"
+              style="color: var(--tactical-text-muted);"
             >
               {sectionCodes[id] ?? 'SEC // 00'}
             </span>
           </div>
         </div>
-        <div class="relative mt-3 h-px w-full overflow-hidden" style="background-color: var(--yorha-border);">
+        <div class="relative mt-3 h-px w-full overflow-hidden" style="background-color: var(--tactical-border);">
           <span
             data-anim-line
             class="absolute inset-y-0 left-0 h-full w-full origin-left bg-gradient-to-r from-current/50 via-current/25 to-transparent"

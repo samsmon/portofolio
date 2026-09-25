@@ -231,26 +231,26 @@
     use:portal
     transition:fade={{ duration: 150 }}
     class="fixed inset-0 z-[1000] flex items-start justify-center px-4 pt-[14vh] backdrop-blur-md"
-    style="background-color: var(--yorha-backdrop);"
+    style="background-color: var(--tactical-backdrop);"
     onclick={close}
     role="presentation"
   >
     <div
       class="animate-crt-on relative flex max-h-[62vh] w-full max-w-lg flex-col overflow-hidden rounded-none border font-sans"
-      style="background-color: var(--yorha-surface); border-color: var(--yorha-border); color: var(--yorha-text-primary);"
+      style="background-color: var(--tactical-surface); border-color: var(--tactical-border); color: var(--tactical-text-primary);"
       onclick={(e) => e.stopPropagation()}
       role="dialog"
       aria-modal="true"
       aria-label="Command palette"
       tabindex="-1"
     >
-      <span class="pointer-events-none absolute top-[-1px] left-[-1px] h-3 w-3 border-l-2 border-t-2 z-30" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-      <span class="pointer-events-none absolute top-[-1px] right-[-1px] h-3 w-3 border-r-2 border-t-2 z-30" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-      <span class="pointer-events-none absolute bottom-[-2px] left-[-1px] h-3 w-3 border-b-2 border-l-2 z-30" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
-      <span class="pointer-events-none absolute bottom-[-2px] right-[-1px] h-3 w-3 border-b-2 border-r-2 z-30" style="border-color: var(--yorha-accent);" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute top-[-1px] left-[-1px] h-3 w-3 border-l-2 border-t-2 z-30" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute top-[-1px] right-[-1px] h-3 w-3 border-r-2 border-t-2 z-30" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute bottom-[-2px] left-[-1px] h-3 w-3 border-b-2 border-l-2 z-30" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute bottom-[-2px] right-[-1px] h-3 w-3 border-b-2 border-r-2 z-30" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
 
-      <div data-m class="flex items-center gap-3 border-b px-4" style="border-color: var(--yorha-border); background-color: var(--yorha-bg);">
-        <span class="font-mono text-xs font-bold" style="color: var(--yorha-accent);" aria-hidden="true">&gt;_</span>
+      <div data-m class="flex items-center gap-3 border-b px-4" style="border-color: var(--tactical-border); background-color: var(--tactical-bg);">
+        <span class="font-mono text-xs font-bold" style="color: var(--tactical-accent);" aria-hidden="true">&gt;_</span>
         <input
           bind:this={input}
           bind:value={query}
@@ -258,7 +258,7 @@
           type="text"
           placeholder={typedPlaceholder}
           class="w-full rounded-none bg-transparent py-3.5 font-mono text-xs uppercase placeholder:normal-case focus:outline-none placeholder:opacity-50"
-          style="color: var(--yorha-text-primary);"
+          style="color: var(--tactical-text-primary);"
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
@@ -271,7 +271,7 @@
         data-lenis-prevent
       >
         {#if filtered.length === 0}
-          <p class="px-4 py-6 text-center text-xs" style="color: var(--yorha-text-muted);">
+          <p class="px-4 py-6 text-center text-xs" style="color: var(--tactical-text-muted);">
             Nothing matches “{query}”.
           </p>
         {/if}
@@ -279,7 +279,7 @@
           <p
             data-m
             class="px-4 pb-1 pt-3 font-mono text-label uppercase tracking-[0.22em]"
-            style="color: var(--yorha-text-muted);"
+            style="color: var(--tactical-text-muted);"
           >
             {label}
           </p>
@@ -293,13 +293,13 @@
               onpointermove={() => (sel = e.i)}
               class="flex w-full items-center gap-3 px-4 py-2 text-left transition-colors duration-150 rounded-none disabled:opacity-35 cursor-pointer"
               style={isSelected
-                ? 'background-color: var(--yorha-invert-bg); color: var(--yorha-invert-text);'
-                : 'color: var(--yorha-text-primary);'}
+                ? 'background-color: var(--tactical-invert-bg); color: var(--tactical-invert-text);'
+                : 'color: var(--tactical-text-primary);'}
             >
-              <span class="shrink-0 text-sm font-medium" style={isSelected ? 'color: var(--yorha-invert-text);' : 'color: var(--yorha-text-primary);'}>{e.label}</span>
-              <span class="truncate text-xs" style={isSelected ? 'color: var(--yorha-invert-text); opacity: 0.7;' : 'color: var(--yorha-text-muted);'}>{e.hint}</span>
+              <span class="shrink-0 text-sm font-medium" style={isSelected ? 'color: var(--tactical-invert-text);' : 'color: var(--tactical-text-primary);'}>{e.label}</span>
+              <span class="truncate text-xs" style={isSelected ? 'color: var(--tactical-invert-text); opacity: 0.7;' : 'color: var(--tactical-text-muted);'}>{e.hint}</span>
               {#if isSelected && !e.disabled}
-                <span class="ml-auto shrink-0 text-xs font-bold" aria-hidden="true" style="color: var(--yorha-invert-text);"
+                <span class="ml-auto shrink-0 text-xs font-bold" aria-hidden="true" style="color: var(--tactical-invert-text);"
                   >↵</span
                 >
               {/if}
@@ -311,10 +311,10 @@
       <div
         data-m
         class="flex items-center justify-between border-t px-4 py-2.5 font-mono text-label uppercase tracking-widest"
-        style="border-color: var(--yorha-border); color: var(--yorha-text-muted);"
+        style="border-color: var(--tactical-border); color: var(--tactical-text-muted);"
       >
         <span>↑↓ move · ↵ open · esc close</span>
-        <span style="color: var(--yorha-accent);">⌘K</span>
+        <span style="color: var(--tactical-accent);">⌘K</span>
       </div>
     </div>
   </div>

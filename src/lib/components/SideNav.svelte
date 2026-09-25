@@ -215,12 +215,12 @@
       'home'
         ? 'mb-1'
         : ''}"
-      style="color: var(--yorha-text-primary);"
+      style="color: var(--tactical-text-primary);"
     >
       {#if it.key === 'home'}
-        <span data-star class="inline-block text-xs leading-none font-mono" style="color: var(--yorha-accent);">✦</span>
+        <span data-star class="inline-block text-xs leading-none font-mono" style="color: var(--tactical-accent);">✦</span>
       {:else}
-        <span data-num class="overflow-hidden font-mono text-[0.85em]" style="color: var(--yorha-text-muted);">{it.num}</span>
+        <span data-num class="overflow-hidden font-mono text-[0.85em]" style="color: var(--tactical-text-muted);">{it.num}</span>
         <span data-label-wrap class="overflow-hidden"><span data-label>{it.label}</span></span>
       {/if}
     </a>

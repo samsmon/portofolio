@@ -2,7 +2,7 @@
 
 Personal portfolio, projects archive and engineering journal. Built with **SvelteKit 2 + Svelte 5**, **Threlte (Three.js)**, **Tailwind CSS v4**, **GSAP 3 + ScrollTrigger** and **Lenis**. Every route is prerendered, so the deployable artifact is a plain folder of HTML.
 
-The visual language is a YoRHa (NieR: Automata) inspired tactical HUD: true black or bunker cream, one accent colour, hairlines, corner reticles, and an interactive sky of the 88 IAU constellations behind the hero.
+The visual language is a tactical HUD: true black or bunker cream, one accent colour, hairlines, corner reticles, and an interactive sky of the 88 IAU constellations behind the hero.
 
 ```bash
 npm install
@@ -40,7 +40,7 @@ Editing content? Start with **[CONTENT_GUIDE.md](./CONTENT_GUIDE.md)**. Working 
 
 ## Design system in one screen
 
-- **Tokens** live in `src/app.css` as `--yorha-*` (site) and `--blog-*` (journal) variables, with a dark and a light set. Components use the variables, never raw hex.
+- **Tokens** live in `src/app.css` as `--tactical-*` (site) and `--blog-*` (journal) variables, with a dark and a light set. Components use the variables, never raw hex.
 - **Type**: three families only. Epilogue for headings, buttons and labels, Plus Jakarta Sans for reading text, Fira Code for mono labels and code. The smallest text size is 11px (`text-label`).
 - **Shape**: no rounded corners, no shadows, hairline borders, accent corner reticles on hover, a 3px cross grid as the page texture.
 - **Motion**: every GSAP call uses the vocabulary in `src/lib/motion.js` (`dur`, `ease`, `stagger`, `media`). Sections reveal once. Tweens live in `gsap.context` and are reverted on unmount.

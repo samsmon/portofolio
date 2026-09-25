@@ -109,11 +109,11 @@
         }
       }}
       class="group flex items-center gap-2 font-mono text-label uppercase tracking-[0.2em] opacity-70 hover:opacity-100 transition-opacity"
-      style="color: var(--yorha-text-primary);"
+      style="color: var(--tactical-text-primary);"
     >
-      <span class="sm:hidden border border-current/20 px-2 py-1 backdrop-blur-sm font-semibold tracking-wider" style="background-color: var(--yorha-surface);">Menu</span>
+      <span class="sm:hidden border border-current/20 px-2 py-1 backdrop-blur-sm font-semibold tracking-wider" style="background-color: var(--tactical-surface);">Menu</span>
       <span class="hidden sm:inline">Menu</span>
-      <span class="hidden sm:flex items-center border border-current/20 px-2 py-0.5 backdrop-blur-sm transition-colors group-hover:border-current/40" style="background-color: var(--yorha-surface);">
+      <span class="hidden sm:flex items-center border border-current/20 px-2 py-0.5 backdrop-blur-sm transition-colors group-hover:border-current/40" style="background-color: var(--tactical-surface);">
         <kbd class="font-mono">⌘K</kbd>
       </span>
     </button>

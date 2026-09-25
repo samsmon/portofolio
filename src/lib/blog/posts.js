@@ -252,7 +252,7 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
           <span class="truncate max-w-[240px] sm:max-w-md">${header || 'code'}</span>
           <div class="flex items-center gap-3">
             <span class="text-[10px] uppercase tracking-wider" style="color: var(--blog-text-muted); opacity: 0.7;">${language || 'code'}</span>
-            <button type="button" class="copy-btn text-[10px] uppercase tracking-wider transition-colors cursor-pointer border px-1.5 py-0.5 rounded-none yorha-invert-hover" style="border-color: var(--blog-border); color: var(--blog-text-muted); background-color: var(--blog-surface);" title="Copy code">Copy</button>
+            <button type="button" class="copy-btn text-[10px] uppercase tracking-wider transition-colors cursor-pointer border px-1.5 py-0.5 rounded-none tactical-invert-hover" style="border-color: var(--blog-border); color: var(--blog-text-muted); background-color: var(--blog-surface);" title="Copy code">Copy</button>
           </div>
         </div>
         <pre class="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed language-${mappedLang || 'none'}" style="color: var(--blog-code-text); background-color: var(--blog-code-bg);"><code>${formattedHtml}</code></pre>

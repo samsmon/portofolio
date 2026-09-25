@@ -57,22 +57,22 @@
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
   --measure: 65ch;
 
-  /* Default YoRHa Design Tokens: Dark (OLED Tactical) */
-  --yorha-bg: #000000;
-  --yorha-surface: #080808;
-  --yorha-surface-elevated: #0f0f0f;
-  --yorha-text-primary: #dcdacf;
-  --yorha-text-muted: #767569;
-  --yorha-text-faint: #44433e;
-  --yorha-border: #1e1e1e;
-  --yorha-border-subtle: rgba(255, 255, 255, 0.08);
-  --yorha-border-highlight: #45433d;
-  --yorha-accent: #34d399;
-  --yorha-accent-subtle: rgba(52, 211, 153, 0.12);
-  --yorha-accent-border: rgba(52, 211, 153, 0.35);
-  --yorha-invert-bg: #dcdacf;
-  --yorha-invert-text: #000000;
-  --yorha-backdrop: rgba(0, 0, 0, 0.88);
+  /* Default Tactical Design Tokens: Dark (OLED Tactical) */
+  --tactical-bg: #000000;
+  --tactical-surface: #080808;
+  --tactical-surface-elevated: #0f0f0f;
+  --tactical-text-primary: #dcdacf;
+  --tactical-text-muted: #767569;
+  --tactical-text-faint: #44433e;
+  --tactical-border: #1e1e1e;
+  --tactical-border-subtle: rgba(255, 255, 255, 0.08);
+  --tactical-border-highlight: #45433d;
+  --tactical-accent: #34d399;
+  --tactical-accent-subtle: rgba(52, 211, 153, 0.12);
+  --tactical-accent-border: rgba(52, 211, 153, 0.35);
+  --tactical-invert-bg: #dcdacf;
+  --tactical-invert-text: #000000;
+  --tactical-backdrop: rgba(0, 0, 0, 0.88);
   --hero-scrim: radial-gradient(ellipse 64% 48% at 34% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.42) 44%, transparent 72%);
 
   /* Blog Theme Mapping (OLED Black Mode) */
@@ -90,31 +90,31 @@
   --blog-card-hover: rgba(255, 255, 255, 0.03);
   --blog-input-bg: rgba(255, 255, 255, 0.04);
 
-  /* YoRHa Exact Cross Grid Token (Dark Mode Default) */
+  /* Tactical Exact Cross Grid Token (Dark Mode Default) */
   --cross-line: rgba(255, 255, 255, 0.07);
 }
 
-/* YoRHa Dark Mode / OLED Tactical */
+/* Tactical Dark Mode / OLED Tactical */
 :root[data-theme='dark'],
 [data-theme='dark'],
 :root[data-blog-theme='dark'],
 [data-blog-theme='dark'] {
   color-scheme: dark;
-  --yorha-bg: #000000;
-  --yorha-surface: #080808;
-  --yorha-surface-elevated: #0f0f0f;
-  --yorha-text-primary: #dcdacf;
-  --yorha-text-muted: #767569;
-  --yorha-text-faint: #44433e;
-  --yorha-border: #1e1e1e;
-  --yorha-border-subtle: rgba(255, 255, 255, 0.08);
-  --yorha-border-highlight: #45433d;
-  --yorha-accent: #34d399;
-  --yorha-accent-subtle: rgba(52, 211, 153, 0.12);
-  --yorha-accent-border: rgba(52, 211, 153, 0.35);
-  --yorha-invert-bg: #dcdacf;
-  --yorha-invert-text: #000000;
-  --yorha-backdrop: rgba(0, 0, 0, 0.88);
+  --tactical-bg: #000000;
+  --tactical-surface: #080808;
+  --tactical-surface-elevated: #0f0f0f;
+  --tactical-text-primary: #dcdacf;
+  --tactical-text-muted: #767569;
+  --tactical-text-faint: #44433e;
+  --tactical-border: #1e1e1e;
+  --tactical-border-subtle: rgba(255, 255, 255, 0.08);
+  --tactical-border-highlight: #45433d;
+  --tactical-accent: #34d399;
+  --tactical-accent-subtle: rgba(52, 211, 153, 0.12);
+  --tactical-accent-border: rgba(52, 211, 153, 0.35);
+  --tactical-invert-bg: #dcdacf;
+  --tactical-invert-text: #000000;
+  --tactical-backdrop: rgba(0, 0, 0, 0.88);
   --hero-scrim: radial-gradient(ellipse 64% 48% at 34% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.42) 44%, transparent 72%);
 
   --blog-bg: #000000;
@@ -133,31 +133,31 @@
   --blog-hover-border: rgba(220, 218, 207, 0.4);
   --blog-hover-top-line: rgba(220, 218, 207, 0.85);
 
-  /* YoRHa Exact Cross Grid Token (Dark Mode) */
+  /* Tactical Exact Cross Grid Token (Dark Mode) */
   --cross-line: rgba(255, 255, 255, 0.07);
 }
 
-/* YoRHa Light Mode / Bunker Archive */
+/* Tactical Light Mode / Bunker Archive */
 :root[data-theme='light'],
 [data-theme='light'],
 :root[data-blog-theme='sepia'],
 [data-blog-theme='sepia'] {
   color-scheme: light;
-  --yorha-bg: #d1d2c5;
-  --yorha-surface: #c5c6b8;
-  --yorha-surface-elevated: #bcbdad;
-  --yorha-text-primary: #454138;
-  --yorha-text-muted: #59564c;
-  --yorha-text-faint: #9c998d;
-  --yorha-border: #b4b5a6;
-  --yorha-border-subtle: rgba(69, 65, 56, 0.15);
-  --yorha-border-highlight: #8e8f80;
-  --yorha-accent: #c7634b;
-  --yorha-accent-subtle: rgba(199, 99, 75, 0.12);
-  --yorha-accent-border: rgba(199, 99, 75, 0.35);
-  --yorha-invert-bg: #454138;
-  --yorha-invert-text: #d1d2c5;
-  --yorha-backdrop: rgba(69, 65, 56, 0.55);
+  --tactical-bg: #d1d2c5;
+  --tactical-surface: #c5c6b8;
+  --tactical-surface-elevated: #bcbdad;
+  --tactical-text-primary: #454138;
+  --tactical-text-muted: #59564c;
+  --tactical-text-faint: #9c998d;
+  --tactical-border: #b4b5a6;
+  --tactical-border-subtle: rgba(69, 65, 56, 0.15);
+  --tactical-border-highlight: #8e8f80;
+  --tactical-accent: #c7634b;
+  --tactical-accent-subtle: rgba(199, 99, 75, 0.12);
+  --tactical-accent-border: rgba(199, 99, 75, 0.35);
+  --tactical-invert-bg: #454138;
+  --tactical-invert-text: #d1d2c5;
+  --tactical-backdrop: rgba(69, 65, 56, 0.55);
   --hero-scrim: none;
 
   --blog-bg: #d1d2c5;
@@ -176,7 +176,7 @@
   --blog-hover-border: #8e8f80;
   --blog-hover-top-line: #454138;
 
-  /* Light Mode (Krem YoRHa) */
+  /* Light Mode (Krem Tactical) */
   --cross-line: rgba(0, 0, 0, 0.06);
 }
 
@@ -184,10 +184,10 @@
    Pola Grid Persis Seperti Gambar (Exact Cross Grid - 3px)
    ========================================================================== */
 .exact-cross-grid,
-.yorha-pattern,
-.yorha-tech-bg {
+.tactical-pattern,
+.tactical-tech-bg {
   position: relative;
-  background-color: var(--yorha-bg) !important;
+  background-color: var(--tactical-bg) !important;
   background-size: 3px 3px, 3px 3px !important;
   background-position: center center !important;
   background-image: 
@@ -197,18 +197,18 @@
 
 /* Support attaching directly to <body> */
 body.exact-cross-grid,
-body.yorha-pattern,
-body.yorha-tech-bg {
+body.tactical-pattern,
+body.tactical-tech-bg {
   background-attachment: fixed, fixed !important;
 }
 
 /* Specific for Blog Post Reader: Radial Vignette Fade out over reading text */
-.yorha-tech-bg-reader {
+.tactical-tech-bg-reader {
   position: relative;
   background-color: var(--blog-bg);
 }
 
-.yorha-tech-bg-reader::before {
+.tactical-tech-bg-reader::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -223,16 +223,16 @@ body.yorha-tech-bg {
   -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, transparent 20%, rgba(0, 0, 0, 0.4) 55%, black 90%);
 }
 
-/* YoRHa Base Body & Smooth Transitions */
+/* Tactical Base Body & Smooth Transitions */
 body {
-  background-color: var(--yorha-bg);
-  color: var(--yorha-text-primary);
+  background-color: var(--tactical-bg);
+  color: var(--tactical-text-primary);
 }
 
 /* Keyboard focus is drawn as a reticle in the accent colour, everywhere. The
    native pointer is kept: a replaced cursor is the first thing to feel dated. */
 :focus-visible {
-  outline: 2px solid var(--yorha-accent);
+  outline: 2px solid var(--tactical-accent);
   outline-offset: 2px;
   border-radius: 0;
 }
@@ -246,14 +246,14 @@ body {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* YoRHa Menu Solid Block Invert Hover */
-.yorha-invert-hover {
+/* Tactical Menu Solid Block Invert Hover */
+.tactical-invert-hover {
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.yorha-invert-hover:hover {
-  background-color: var(--yorha-invert-bg) !important;
-  color: var(--yorha-invert-text) !important;
-  border-color: var(--yorha-invert-bg) !important;
+.tactical-invert-hover:hover {
+  background-color: var(--tactical-invert-bg) !important;
+  color: var(--tactical-invert-text) !important;
+  border-color: var(--tactical-invert-bg) !important;
 }
 
 /* ==========================================================================
@@ -442,7 +442,7 @@ body {
   margin: 0;
   padding: 0;
   /* Follows the theme, so overscroll areas never flash black on the light theme. */
-  background: var(--yorha-bg);
+  background: var(--tactical-bg);
 }
 
 /* Reading text is Plus Jakarta Sans. Headings, nav, buttons and table heads
@@ -475,8 +475,8 @@ th {
 }
 
 ::selection {
-  background: var(--yorha-invert-bg);
-  color: var(--yorha-invert-text);
+  background: var(--tactical-invert-bg);
+  color: var(--tactical-invert-text);
 }
 
 /* Thin scrollbar in the theme's own greys */
@@ -484,10 +484,10 @@ th {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--yorha-surface);
+  background: var(--tactical-surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--yorha-border-highlight);
+  background: var(--tactical-border-highlight);
 }
 
 @media (prefers-reduced-motion: reduce) {
