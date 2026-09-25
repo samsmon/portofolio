@@ -6,6 +6,11 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [Unreleased] - 2026-09-26
+
+### Added
+- **Gambar Arsitektur AWS Resmi, Batch Kedua (`static/assets/img/posts/resource/`):** 27 folder diagram dan screenshot resmi dari materi Canvas AWS re/Start (Monitoring and Security, Managing Resource Consumption, Automated and Repeatable Deployments, Database Services, serta lab minggu 1 seperti 11, 261, 262, 265, 266, 179, 189, 190, 191). Belum dirujuk post mana pun; disiapkan untuk toggle "Secret Source" di post yang akan dicocokkan nanti.
+
 ## [Unreleased] - 2026-09-25
 
 ### Added
