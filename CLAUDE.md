@@ -54,6 +54,28 @@ math: false, mermaid: true/false, published: true
 - Selalu grep em-dash di file yang baru dibuat/diedit sebelum lapor selesai,
   harus nol match: `grep -rn "—" src/posts/<file-baru>.md`
 
+## Gambar/ikon service AWS
+- Kalau post nampilin ikon service AWS (S3, EBS, EC2, dll), WAJIB pakai
+  ikon resmi dari AWS Architecture Icons (paket PNG yang di-download user
+  dari https://aws.amazon.com/architecture/icons/), bukan gambar bikinan
+  sendiri, emoji, atau ikon dari sumber lain.
+- Lokasi ikon: `static/assets/img/aws-icons/` (kalau belum ada, tanya user
+  dulu udah di-download ke mana). Pakai nama file asli dari paket AWS,
+  jangan di-rename sembarangan biar gampang dicari.
+- Kalau ikon service yang dibutuhin belum ada di folder itu, jangan
+  improvisasi, kasih tau user ikon mana yang kurang.
+- Screenshot slide/diagram arsitektur resmi AWS yang dikirim user itu
+  **golden resource** (nggak bisa didapet di tempat lain setelah kursus
+  selesai). WAJIB disimpan semua, jangan ada yang dibuang atau di-skip,
+  ke `static/assets/img/posts/resource/<nama-resource>/` dengan nama file
+  deskriptif, dan dirujuk di file resource `.md`-nya. Folder ini
+  gitignored (nggak ikut ke-deploy), dan materi AWS ber-copyright
+  ("may not be reproduced or redistributed" termasuk non-komersial).
+  Jadi di post: penjelasan utama tetap mermaid/prose bikinan sendiri
+  (boleh pakai ikon resmi AWS), diagram asli cuma boleh lewat toggle
+  "Secret Source" yang udah ada, dan teks lab/slide jangan disalin
+  mentah, tulis ulang pakai bahasa sendiri.
+
 ## Aturan akurasi tanggal (penting banget)
 Setiap post yang dikasih tanggal harus bisa diverifikasi dari transkrip hari
 itu. Kalau ragu topiknya bener-bener dibahas hari itu atau nggak, jangan

@@ -8,6 +8,7 @@ node_modules
 .DS_Store
 Thumbs.db
 
-# AWS resource drafts, cross-checked but not committed
+# AWS resource drafts, cross-checked but not committed. The official AWS
+# diagrams in static/assets/img/posts/resource/ ARE committed so the blog's
+# "Secret Source" toggle can show them on the live site.
 src/posts/resource
-static/assets/img/posts/resource

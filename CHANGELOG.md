@@ -6,6 +6,17 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [Unreleased] - 2026-09-25
+
+### Added
+- **Project "GDDL · Google Drive Downloader" (`lib/content/site.js`, `static/projects/gddl-*.png`):** project baru di daftar portofolio (backend Go concurrent + frontend Svelte 5, UI ala qBittorrent/IDM), lengkap dengan 2 screenshot galeri dan link repo `samsmon/gddl`.
+- **Gambar Arsitektur AWS Resmi Ikut Di-deploy (`.gitignore`, `static/assets/img/posts/resource/`):** folder gambar resource dikeluarkan dari `.gitignore` supaya toggle "Secret Source" di post Labs benar-benar menampilkan gambar di situs live (sebelumnya sejak commit `6e6555c` gambarnya tidak ikut ke-build, jadi toggle di live cuma nampilin gambar rusak). Termasuk diagram baru unit Storage and Archiving (cloud storage, EBS, instance store, EFS, S3, Glacier, Storage Gateway, Transfer Family/DataSync, lab 182, 183, 185). Draft teks `src/posts/resource/` tetap tidak di-commit.
+
+### Changed
+- **Stack Inspector Ditata Ulang (`lib/content/site.js`, `lib/components/Skills.svelte`):** bar "Proficiency, self-assessed" (persentase) diganti label "Operational Scope" berdasarkan badge (Daily Workflow / System Foundation / Production Deployed / Homelab Cluster) plus teks detail. Layer network dirapikan (MikroTik RouterOS dan VLANs diganti "DNS & Reverse Proxy Gateway"), layer aplikasi diganti nama jadi "application runtime & services" dengan Go (Golang) masuk sebagai APP-01, dan `deployedAt` tiap item diarahkan ke project nyata (GDDL, Yado, Malas, dll).
+- **Dev Server Abaikan Folder `build/` (`vite.config.js`):** `server.watch.ignored` ditambahkan supaya hasil `npm run build` tidak memicu reload dev server.
+- **Aturan Author Session (`CLAUDE.md`):** tambah aturan ikon service AWS resmi (Architecture Icons) dan perlakuan screenshot diagram AWS sebagai golden resource.
+
 ## [Unreleased] - 2026-09-21
 
 ### Changed

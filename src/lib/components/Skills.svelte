@@ -71,21 +71,16 @@
       </div>
     </div>
 
-    <div class="flex flex-col gap-1">
-      <div class="flex justify-between font-mono text-label" style="color: var(--yorha-text-muted);">
-        <span class="uppercase tracking-wider">Proficiency, self-assessed</span>
-        <span class="font-medium" style="color: var(--yorha-accent);">{tech.readiness}%</span>
+    <div class="flex flex-col gap-1.5 border-t pt-2.5" style="border-color: var(--yorha-border);">
+      <div class="flex items-center justify-between font-mono text-label">
+        <span class="uppercase tracking-wider" style="color: var(--yorha-text-muted);">Operational Scope</span>
+        <span class="font-medium uppercase tracking-wider px-1.5 py-0.2 border" style="border-color: var(--yorha-accent-border); background-color: var(--yorha-accent-subtle); color: var(--yorha-accent);">
+          {tech.badge === 'DAILY' ? 'Daily Workflow' : tech.badge === 'CORE' ? 'System Foundation' : tech.badge === 'PROD' ? 'Production Deployed' : 'Homelab Cluster'}
+        </span>
       </div>
-      <div
-        class="h-1.5 w-full overflow-hidden bg-current/10"
-        role="meter"
-        aria-label="Proficiency"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-valuenow={tech.readiness}
-      >
-        <div class="h-full transition-[width] duration-300" style="width: {tech.readiness}%; background-color: var(--yorha-accent);"></div>
-      </div>
+      <p class="text-caption leading-relaxed" style="color: var(--yorha-text-muted);">
+        {tech.detail}
+      </p>
     </div>
 
     <div class="flex flex-col gap-1 border-t pt-2.5" style="border-color: var(--yorha-border);">
@@ -215,7 +210,7 @@
           <div class="flex items-center gap-2">
             <span class="h-2 w-2 rounded-full" style="background-color: var(--yorha-accent);"></span>
             <span class="font-semibold tracking-wider">{activeTech.name}</span>
-            <span class="text-label" style="color: var(--yorha-accent);">{activeTech.readiness}%</span>
+            <span class="text-label border px-1 py-0.5 uppercase tracking-wider" style="border-color: var(--yorha-border); color: var(--yorha-accent);">{activeTech.badge}</span>
           </div>
           <span class="border px-1.5 py-0.5 text-label uppercase tracking-wider" style="border-color: var(--yorha-border);">Details ↗</span>
         </button>

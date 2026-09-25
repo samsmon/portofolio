@@ -198,16 +198,6 @@ export const stack = [
     items: [
       {
         id: 'NET-01',
-        name: 'MikroTik RouterOS',
-        badge: 'HOMELAB',
-        readiness: 93,
-        detail: 'Policy-based routing, firewall filter & NAT mangle, VLAN routing, PCQ bandwidth queues.',
-        role: 'Core routing backbone. Segregates internal subnets, manages WAN failover, and enforces ACLs.',
-        deployedAt: 'Core Network Gateway (MikroTik RouterBOARD / hEX series)',
-        command: '/ip/firewall/filter/print where chain=forward\n0  D ;;; defconf: forward established,related\n1    ;;; drop invalid connections\n2    ;;; allow isolated VLAN10 to internet only'
-      },
-      {
-        id: 'NET-02',
         name: 'WireGuard & Tailscale',
         badge: 'DAILY',
         readiness: 96,
@@ -217,7 +207,7 @@ export const stack = [
         command: '$ wg show\ninterface: wg0 [listening port: 51820]\npeer: 9kL7x... [latest handshake: 12 seconds ago] [tx: 14.8 GB, rx: 98.4 GB]'
       },
       {
-        id: 'NET-03',
+        id: 'NET-02',
         name: 'Cloudflare & Zero Trust',
         badge: 'PROD',
         readiness: 95,
@@ -227,69 +217,79 @@ export const stack = [
         command: '$ cloudflared tunnel run homelab-mesh\nConnector ID: a84f901c [Route: tunnel active, 4 connections healthy]'
       },
       {
-        id: 'NET-04',
-        name: 'VLANs & Subnetting',
+        id: 'NET-03',
+        name: 'DNS & Reverse Proxy Gateway',
         badge: 'CORE',
-        readiness: 91,
-        detail: '802.1Q tagged/untagged trunking, isolated IoT / Lab / Management subnets, inter-VLAN firewalls.',
-        role: 'Network segmentation ensuring compromised devices cannot access the core homelab or data tiers.',
-        deployedAt: 'Managed Gigabit Switches & RouterOS Trunk Ports',
-        command: '# Subnet Matrix:\nVLAN 10 [TRUSTED_LAN]  : 192.168.10.0/24\nVLAN 20 [HOMELAB_PROD] : 192.168.20.0/24\nVLAN 30 [IOT_ISOLATED] : 192.168.30.0/24 [NO_LAN_ACCESS]'
+        readiness: 93,
+        detail: 'Local split-horizon DNS, SSL wildcard termination, container host routing, automated cert renewal.',
+        role: 'Internal domain resolution and ingress routing ensuring homelab services resolve seamlessly over mesh or LAN.',
+        deployedAt: 'Nginx Proxy Manager, Homelab internal DNS resolvers',
+        command: '$ dig +short yado.internal @127.0.0.1\n192.168.1.100\n$ certbot certificates\nFound certificate: *.suryatmaja.dev (VALID: 88 days)'
       }
     ]
   },
   {
-    layer: 'application runtime',
+    layer: 'application runtime & services',
     code: '04',
     items: [
       {
         id: 'APP-01',
-        name: 'Laravel & PHP',
+        name: 'Go (Golang)',
         badge: 'CORE',
-        readiness: 96,
-        detail: 'Robust enterprise backends, background queue workers, Eloquent ORM, Sanctum auth.',
-        role: 'Primary web application framework. Handles complex relational models, jobs, and secure APIs.',
-        deployedAt: 'Client business platforms, custom SaaS portals',
-        command: '$ php artisan queue:work redis --tries=3\n[2026-09-09 11:45:01] Processing: App\\Jobs\\ProcessMediaArchive\n[2026-09-09 11:45:03] Processed:  App\\Jobs\\ProcessMediaArchive (2.18s)'
+        readiness: 94,
+        detail: 'High-concurrency backend services, lightweight goroutine workers, streaming HTTP, daemon architecture.',
+        role: 'Concurrent backend engine for high-throughput downloads, worker pools, and memory-safe system utilities.',
+        deployedAt: 'GDDL (Google Drive Downloader), concurrent download workers, file streaming relays',
+        command: '$ go test -race -v ./...\n=== RUN   TestConcurrentWorkerPool\n--- PASS: TestConcurrentWorkerPool (0.42s)\nPASS\nok      github.com/samsmon/gddl/backend 0.451s'
       },
       {
         id: 'APP-02',
-        name: 'PostgreSQL',
-        badge: 'PROD',
-        readiness: 93,
-        detail: 'Advanced relational schema design, indexes, CTEs, JSONB storage, WAL replication.',
-        role: 'Primary relational database for ACID compliance, heavy queries, and structured data integrity.',
-        deployedAt: 'Core database cluster across homelab and cloud instances',
-        command: '$ psql -U postgres -d production_db -c "SELECT version();"\nPostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc'
-      },
-      {
-        id: 'APP-03',
         name: 'SvelteKit & Svelte 5',
         badge: 'DAILY',
-        readiness: 95,
-        detail: 'Ultra-fast reactive frontends, Runes state primitives, SSR/SSG, zero-bundle overhead.',
-        role: 'Modern frontend architecture with compile-time reactivity, GSAP choreography, and fluid UI.',
-        deployedAt: 'This portfolio, personal tools, dynamic interactive client dashboards',
+        readiness: 96,
+        detail: 'Ultra-fast reactive frontends, Runes state primitives ($state, $derived), SSR/SSG, zero-bundle overhead.',
+        role: 'Primary frontend framework. Delivers desktop-grade web interfaces, snappy dashboards, and fluid interactions.',
+        deployedAt: 'GDDL Desktop Web, Yado Launcher, Malas Library, Homelab Dashboard, This Portfolio',
         command: '$ npm run build\n✓ built in 14.2s | adapter-auto: output verified, exit code 0'
       },
       {
+        id: 'APP-03',
+        name: 'Laravel & PHP',
+        badge: 'CORE',
+        readiness: 95,
+        detail: 'Robust enterprise backends, background queue workers, Eloquent ORM, Sanctum auth, double-entry accounting.',
+        role: 'Enterprise web applications, business logic processing, relational data models, and RESTful APIs.',
+        deployedAt: 'Laravel POS Accounting, HA Web Server AWS backend, custom SaaS platforms',
+        command: '$ php artisan queue:work redis --tries=3\n[2026-09-09 11:45:01] Processing: App\\Jobs\\ProcessMediaArchive\n[2026-09-09 11:45:03] Processed:  App\\Jobs\\ProcessMediaArchive (2.18s)'
+      },
+      {
         id: 'APP-04',
+        name: 'PostgreSQL',
+        badge: 'PROD',
+        readiness: 93,
+        detail: 'Advanced relational schema design, indexes, CTEs, JSONB storage, WAL replication, ACID compliance.',
+        role: 'Primary relational database for persistent catalogue data, OAuth2 session storage, and relational integrity.',
+        deployedAt: 'Malas Manga/LN Manager, SSO Yado Identity Provider, homelab databases',
+        command: '$ psql -U postgres -d production_db -c "SELECT version();"\nPostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc'
+      },
+      {
+        id: 'APP-05',
         name: 'Bun & Hono',
         badge: 'DAILY',
         readiness: 91,
         detail: 'Ultra-fast TypeScript runtime, lightweight edge API routes, WebSockets, sub-millisecond cold starts.',
-        role: 'High-performance microservices, fast tooling scripts, and realtime event dispatchers.',
-        deployedAt: 'Internal telemetry relays, real-time WebSocket backends',
+        role: 'High-performance microservices, real-time WebSocket room coordination, and fast automation scripts.',
+        deployedAt: 'Realtime Group Checklist, internal telemetry relays, WebSocket handlers',
         command: '$ bun run server.ts\n[Ready] Hono API running at http://0.0.0.0:3000 (1.4ms boot time)'
       },
       {
-        id: 'APP-05',
+        id: 'APP-06',
         name: 'Redis',
         badge: 'PROD',
         readiness: 90,
         detail: 'In-memory caching, pub/sub event broadcasting, session stores, distributed rate limiting.',
         role: 'Sub-millisecond data retrieval layer and queue broker for background job processing.',
-        deployedAt: 'Cache and queue backend for Laravel and microservices',
+        deployedAt: 'Cache and queue backend for Laravel, WebSocket relays, and microservices',
         command: '$ redis-cli PING && redis-cli INFO stats | grep total_commands\nPONG\ntotal_commands_processed: 1849204'
       }
     ]
@@ -300,6 +300,22 @@ export const stack = [
 // placeholder SVGs in static/projects/ for real screenshots (any ratio, they
 // get object-fit: cover). `detail` is an array of paragraphs.
 export const projects = [
+  {
+    slug: 'gddl',
+    title: 'GDDL · Google Drive Downloader',
+    kind: 'Desktop Web App',
+    year: '2026',
+    summary:
+      'High-performance self-hosted desktop download manager for Google Drive with a native qBittorrent & IDM-inspired web interface.',
+    detail: [
+      'A high-performance desktop download manager and daemon engineered with a concurrent Go backend and a responsive Svelte 5 (Runes) frontend, featuring a familiar qBittorrent and Internet Download Manager (IDM) layout.',
+      'Features parallel multi-worker goroutines, automated Google Drive virus-scan prompt bypass for large files (>100MB), smart folder downloads with on-the-fly ZIP compression, and SHA-256 integrity verification.',
+      'Includes conflict resolution (Keep both, Overwrite, or Re-monitor), real-time missing file detection, Google session cookie support for restricted files, Jellyfin-style storage browser with NAS/external drive detection, and optional headless Web UI authentication.'
+    ],
+    stack: ['Go', 'Svelte 5', 'Vite', 'Docker', 'REST API', 'Goroutines'],
+    images: ['/projects/gddl-1.png', '/projects/gddl-2.png'],
+    links: [{ label: 'Repo', href: 'https://github.com/samsmon/gddl' }]
+  },
   {
     slug: 'yado',
     title: 'Yado',
