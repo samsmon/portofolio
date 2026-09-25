@@ -427,7 +427,7 @@ export const projects = [
       'Stateless media uploads configured to stream directly to an Amazon S3 bucket with least-privilege IAM policies and multi-tier security groups.'
     ],
     stack: ['AWS EC2', 'Amazon RDS', 'Amazon S3', 'ALB', 'PHP', 'MySQL', 'Apache'],
-    images: ['/projects/placeholder-1.svg'],
+    images: ['/projects/ha-web-server-1.png', '/projects/ha-web-server-2.png'],
     links: [
       { label: 'Repo', href: 'https://github.com/samsmon/ha-webserver' },
       { label: 'Case Study', href: '/projects/ha-web-server-aws' }
@@ -446,7 +446,7 @@ export const projects = [
       'Deployed on an AWS EC2 instance connected through a secure Cloudflare Tunnel without opening public ingress ports.'
     ],
     stack: ['Bun', 'Hono', 'Alpine.js', 'WebSocket', 'AWS EC2', 'Cloudflare Tunnel'],
-    images: ['/projects/placeholder-2.svg'],
+    images: ['/projects/realtime-group-checklist-1.png', '/projects/realtime-group-checklist-2.png'],
     links: [
       { label: 'Case Study', href: '/projects/realtime-group-checklist' },
       { label: 'GitHub', href: 'https://github.com/samsmon/group-checklist' }
@@ -463,8 +463,8 @@ export const projects = [
       'Full point-of-sale workflow handling daily cashier sales, stock monitoring, and customer transaction receipts.',
       'Automated double-entry accounting engine creating general journal entries, ledger accounts, and balance sheet reports on transaction commit.'
     ],
-    stack: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS'],
-    images: ['/projects/placeholder-1.svg'],
+    stack: ['Laravel', 'PHP', 'MySQL', 'Bootstrap 5'],
+    images: ['/projects/laravel-pos-1.png', '/projects/laravel-pos-2.png'],
     links: [{ label: 'Repo', href: 'https://github.com/samsmon/laravel-pos-accounting' }]
   },
   {
@@ -479,7 +479,7 @@ export const projects = [
       'Supports balance inquiry, cash withdrawal, account deposit, and inter-account fund transfers with credential authentication.'
     ],
     stack: ['Java', 'OOP', 'CLI Architecture'],
-    images: ['/projects/placeholder-2.svg'],
+    images: ['/projects/atm-cli-1.png', '/projects/atm-cli-2.png'],
     links: [{ label: 'Repo', href: 'https://github.com/samsmon/oop-banking-cli' }]
   }
 ];

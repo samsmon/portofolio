@@ -6,6 +6,7 @@
   import { contact, projects } from '$lib/content/site.js';
   import { trivia } from '$lib/palette/trivia.js';
   import { prefersReducedMotion } from '$lib/utils/device.js';
+  import { theme } from '$lib/stores/theme.svelte.js';
 
   const reduce = prefersReducedMotion();
 
@@ -47,6 +48,45 @@
 
   const entries = $derived.by(() => {
     /** @type {any[]} */ const list = [];
+
+    // Quick Actions
+    list.push({
+      section: 'Quick Actions',
+      label: 'Download CV / Resume (PDF)',
+      hint: 'ATS-Compliant DevOps & Platform Engineer CV (2 Pages)',
+      run: () => {
+        close();
+        const a = document.createElement('a');
+        a.href = '/cv-suryatmaja.pdf';
+        a.download = 'Bakti_Surya_Atmaja_CV.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    });
+
+    list.push({
+      section: 'Quick Actions',
+      label: 'Copy Email Address',
+      hint: 'contact@suryatmaja.dev',
+      run: () => {
+        close();
+        if (navigator?.clipboard) {
+          navigator.clipboard.writeText('contact@suryatmaja.dev');
+        }
+      }
+    });
+
+    list.push({
+      section: 'Quick Actions',
+      label: 'Toggle Theme (Dark / Light)',
+      hint: 'Switch between tactical dark and tactical light theme',
+      run: () => {
+        close();
+        theme.toggle();
+      }
+    });
+
     for (const n of nav)
       list.push({
         section: 'Navigate',
