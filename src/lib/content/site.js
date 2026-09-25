@@ -237,9 +237,9 @@ export const stack = [
         name: 'Go (Golang)',
         badge: 'CORE',
         readiness: 94,
-        detail: 'High-concurrency backend services, lightweight goroutine workers, streaming HTTP, daemon architecture.',
-        role: 'Concurrent backend engine for high-throughput downloads, worker pools, and memory-safe system utilities.',
-        deployedAt: 'GDDL (Google Drive Downloader), concurrent download workers, file streaming relays',
+        detail: 'High-concurrency backend services, lightweight goroutine workers, Cloudflare WARP proxy integration, streaming HTTP.',
+        role: 'Concurrent backend engine for high-throughput downloads, worker pools, anti-throttle IP rotation, and memory-safe system daemons.',
+        deployedAt: 'GDDL (Google Drive & CDN Downloader), concurrent download workers, WARP proxy controller',
         command: '$ go test -race -v ./...\n=== RUN   TestConcurrentWorkerPool\n--- PASS: TestConcurrentWorkerPool (0.42s)\nPASS\nok      github.com/samsmon/gddl/backend 0.451s'
       },
       {
@@ -302,17 +302,18 @@ export const stack = [
 export const projects = [
   {
     slug: 'gddl',
-    title: 'GDDL · Google Drive Downloader',
+    title: 'GDDL · Google Drive & CDN Downloader',
     kind: 'Desktop Web App',
     year: '2026',
     summary:
-      'High-performance self-hosted desktop download manager for Google Drive with a native qBittorrent & IDM-inspired web interface.',
+      'High-performance self-hosted download manager for Google Drive & Discord CDN with native qBittorrent & IDM layout, Cloudflare WARP anti-throttle auto-bypass, and chunked transfers.',
     detail: [
-      'A high-performance desktop download manager and daemon engineered with a concurrent Go backend and a responsive Svelte 5 (Runes) frontend, featuring a familiar qBittorrent and Internet Download Manager (IDM) layout.',
-      'Features parallel multi-worker goroutines, automated Google Drive virus-scan prompt bypass for large files (>100MB), smart folder downloads with on-the-fly ZIP compression, and SHA-256 integrity verification.',
-      'Includes conflict resolution (Keep both, Overwrite, or Re-monitor), real-time missing file detection, Google session cookie support for restricted files, Jellyfin-style storage browser with NAS/external drive detection, and optional headless Web UI authentication.'
+      'A desktop download manager and daemon built with a concurrent Go backend and Svelte 5 (Runes) frontend, featuring a native qBittorrent and Internet Download Manager (IDM) interface with categorized queues (Unfinished, Finished, Sources).',
+      'Supports high-throughput multi-worker downloads for Google Drive and Discord CDN attachments with rate-limit protection, adaptive exponential backoff, request jitter pacing, and automatic link expiration detection.',
+      'Features intelligent Anti-Throttle & Cloudflare WARP auto-bypass: automatically detects ISP/CDN throttling or HTTP 429 rate limits, transparently activates a local WireGuard/WARP SOCKS5 proxy or custom proxy pool, and rotates egress IPs while reconnecting active chunk streams at the exact byte offset.',
+      'Includes virus-scan prompt bypass for large files (>100MB), smart folder downloads with on-the-fly ZIP compression, conflict resolution, Google session cookie pool, Jellyfin-style storage browser, and secure Web UI authentication.'
     ],
-    stack: ['Go', 'Svelte 5', 'Vite', 'Docker', 'REST API', 'Goroutines'],
+    stack: ['Go', 'Svelte 5', 'Cloudflare WARP', 'Vite', 'Docker', 'REST API', 'Goroutines', 'SSE'],
     images: ['/projects/gddl-1.png', '/projects/gddl-2.png'],
     links: [{ label: 'Repo', href: 'https://github.com/samsmon/gddl' }]
   },
