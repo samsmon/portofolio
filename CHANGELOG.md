@@ -6,6 +6,11 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [Unreleased] - 2026-09-27
+
+### Added
+- **Screenshot Resmi Lab 281 Monitor an EC2 Instance (`static/assets/img/posts/resource/monitor-ec2-instance-lab/`):** 3 screenshot (pilih metric CPUUtilization, konfigurasi alarm CloudWatch di atas 60%, output `stress`). Cuma ini yang ke-save beneran dari batch lab Ctrl+S; gambar lab lain ternyata halaman error session Vocareum. Belum dirujuk post mana pun; disiapkan untuk toggle "Secret Source".
+
 ## [Unreleased] - 2026-09-26
 
 ### Added
