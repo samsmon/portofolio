@@ -55,24 +55,28 @@ function extractSlug(path) {
   return match ? match[1] : filename;
 }
 
+// Journal timezone (WIB). Asia/Jakarta is a fixed UTC+7 with no DST.
+const WIB_OFFSET_MS = 7 * 60 * 60 * 1000;
+
 /**
- * Safely format date into YYYY-MM-DD.
+ * Format a front matter date as YYYY-MM-DD, keeping the calendar date the author wrote.
+ * "2026-09-14 00:00:00 +0700" returns its own date part; converting it through UTC
+ * would shift midnight WIB back to the previous day.
  */
-function formatDisplayDate(dateInput, fallbackSlug = '') {
-  if (!dateInput) {
-    const match = fallbackSlug.match(/^(\d{4}-\d{2}-\d{2})/);
-    return match ? match[1] : '';
-  }
-  try {
+function formatDisplayDate(dateInput, fallbackPath = '') {
+  const leading = typeof dateInput === 'string' && dateInput.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (leading) return leading[1];
+
+  // Date objects (or other parseable formats) no longer carry the written offset,
+  // so render them in WIB rather than UTC.
+  if (dateInput) {
     const d = new Date(dateInput);
-    if (isNaN(d.getTime())) {
-      const match = String(dateInput).match(/^(\d{4}-\d{2}-\d{2})/);
-      return match ? match[1] : String(dateInput);
-    }
-    return d.toISOString().split('T')[0];
-  } catch {
-    return String(dateInput);
+    if (!isNaN(d.getTime())) return new Date(d.getTime() + WIB_OFFSET_MS).toISOString().slice(0, 10);
   }
+
+  const fromFilename = fallbackPath.split('/').pop().match(/^(\d{4}-\d{2}-\d{2})/);
+  if (fromFilename) return fromFilename[1];
+  return dateInput ? String(dateInput) : '';
 }
 
 /**
@@ -335,7 +339,7 @@ export function getAllPosts() {
       path,
       title: data.title || slug,
       description: data.description || '',
-      date: formatDisplayDate(data.date, slug),
+      date: formatDisplayDate(data.date, path),
       rawDate: data.date,
       categories,
       tags,
@@ -392,7 +396,7 @@ export function getPostBySlug(slug) {
         slug,
         title: data.title || slug,
         description: data.description || '',
-        date: formatDisplayDate(data.date, slug),
+        date: formatDisplayDate(data.date, path),
         rawDate: data.date,
         categories: Array.isArray(data.categories) ? data.categories : [],
         tags: Array.isArray(data.tags) ? data.tags : [],

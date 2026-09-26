@@ -29,6 +29,12 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 - **Secret Source Minggu 4 (`src/posts/2026-08-26-migrasi-database-ke-rds-via-cli.md`):** 2 diagram arsitektur activity 179 (sebelum dan sesudah migrasi ke RDS).
 - **Koreksi post rightsizing (`src/posts/2026-09-07-cost-optimization-rightsizing-instance.md`):** t2.small ditulis 1 vCPU (sebelumnya 2 vCPU), dan penghematan disesuaikan dengan hitungan Pricing Calculator di lab ($35,50 ke $25,18, sekitar $10 per bulan).
 
+### Fixed
+- **[03:31 WIB] Tanggal Post Blog Mundur Sehari (`lib/blog/posts.js`):**
+  - Akar masalah: `formatDisplayDate` mengubah tanggal front matter jadi `Date` lalu memotong hasil `toISOString()`, yang selalu dalam UTC. `2026-09-14 00:00:00 +0700` jadi `2026-09-13T17:00:00Z`, sehingga 139 dari 143 post terbit (semua yang jamnya sebelum 07:00 WIB, atau 08:00 untuk post demo `+0800`) tampil sehari lebih awal di kartu `/blog`, header post, navigasi newer/older, recently updated, tab Archive, dan `<lastmod>` di `sitemap.xml`.
+  - Solusi: tanggal kalender diambil langsung dari awalan `YYYY-MM-DD` string front matter, jadi sesuai offset yang ditulis. Kalau nilainya objek `Date` (misalnya kalau schema YAML nanti mengurai timestamp) atau format lain, tanggal dirender di WIB (UTC+7), bukan UTC. Fallback terakhir ambil tanggal dari nama file; sebelumnya fallback ini nggak pernah jalan karena yang dioper slug yang tanggalnya sudah dibuang.
+  - Dampak: semua tanggal tampil sesuai front matter (dicek ke hasil build untuk 143 post terbit, header post dan sitemap, 0 selisih). Urutan post (`getPostTimestamp`) dan `article:published_time` (instan ISO UTC yang memang sudah benar) tidak berubah.
+
 ## [Unreleased] - 2026-09-26
 
 ### Added
