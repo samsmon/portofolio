@@ -35,6 +35,9 @@ flowchart TD
 
 **Perangkap paling umum**: milih kelas murah (IA) padahal datanya ternyata sering diakses, ujung-ujungnya malah lebih mahal gara-gara kena penalti traffic berkali-kali. Jadi salah strategi "biar hemat" malah jadi boros.
 
+![Storage class Amazon S3](/assets/img/posts/resource/storage-with-amazon-s3/s3-storage-classes.png)
+_Daftar storage class S3 dari yang paling sering diakses sampai arsip jangka panjang._
+
 ### Glacier di Dalam S3 (Beda dari Layanan Standalone)
 
 Selain 3 kelas di atas, ada juga varian Glacier yang integrasinya langsung di S3 (bukan service Glacier terpisah): **Instant Retrieval**, **Flexible Retrieval**, dan **Deep Archive**. Tiap tier ini beda banget di trade-off kecepatan retrieve vs harga:
@@ -45,9 +48,15 @@ Selain 3 kelas di atas, ada juga varian Glacier yang integrasinya langsung di S3
 | Glacier Flexible Retrieval | Menit sampai jam | Sedang |
 | Glacier Deep Archive | Sampai 2 hari | Paling murah |
 
+![Lifecycle policy Amazon S3](/assets/img/posts/resource/storage-with-amazon-s3/lifecycle-policies.png)
+_Contoh lifecycle: Standard ke Standard-IA setelah 30 hari, ke Glacier Flexible Retrieval setelah 60 hari, lalu dihapus setelah 1 tahun._
+
 ### S3 Intelligent-Tiering: Kalau Malas Mikir Pola Akses
 
 Kalau nggak yakin pola akses datanya bakal kayak gimana, ada **Intelligent-Tiering**: otomatis mindahin data antar tier berdasarkan pola akses yang dipelajari (pakai machine learning), tanpa perlu setting manual. Trade-off-nya: ada biaya monitoring per objek (dihitung per objek, bukan per ukuran data), jadi kalau objeknya banyak banget, biaya monitoring-nya juga bisa nambah.
+
+![Cara kerja S3 Intelligent-Tiering](/assets/img/posts/resource/storage-with-amazon-s3/intelligent-tiering-how-it-works.png)
+_Object otomatis pindah antar tier Frequent, Infrequent, dan Archive Instant Access sesuai pola aksesnya._
 
 ## Basic Concepts: Bucket, Object, Key
 
@@ -55,6 +64,9 @@ Kalau nggak yakin pola akses datanya bakal kayak gimana, ada **Intelligent-Tieri
 - **Object**: data + metadata + key, unit fundamental yang disimpan.
 - S3 itu **service-nya region**, tapi **penamaan bucket-nya global** (nggak boleh ada nama bucket yang sama di seluruh dunia, lintas akun sekalipun).
 - **Key**: identifier unik objek di dalam bucket, kalau ada "folder", itu sebenarnya bagian dari key (misal `department/report.pdf`), S3 nggak beneran punya folder fisik, itu cuma prefix di key-nya.
+
+![Akses object di Amazon S3](/assets/img/posts/resource/storage-with-amazon-s3/accessing-an-object.png)
+_Client kirim GET request lewat AWS CLI ke bucket, lalu object-nya dikembaliin._
 
 ## Versioning: Cegah Ketiban Tanpa Sadar
 
@@ -70,6 +82,9 @@ flowchart LR
 Begitu versioning aktif, delete nggak beneran ngehapus, cuma bikin **delete marker** (mirip Recycle Bin), objeknya masih ada tapi "disembunyikan". Buat balikin, tinggal ambil dari version ID lama.
 
 **Trade-off**: versioning itu gratis sebagai fitur, tapi makin banyak versi yang numpuk, makin banyak juga storage yang kepake (dan itu tetap dibayar, meski objeknya "ngumpet" sebagai delete marker). Solusinya: kombinasikan sama lifecycle policy buat auto-hapus versi lama setelah sekian hari.
+
+![Versioning di Amazon S3](/assets/img/posts/resource/storage-with-amazon-s3/versioning.png)
+_PUT ke photo.gif dengan versioning aktif nyimpen dua versi sekaligus (111111 dan 121212), bukan nimpa yang lama._
 
 ## Presigned URL: Share Data Tanpa Kasih Kredensial
 
@@ -89,6 +104,9 @@ Kalau website static hosting dan asset-nya (gambar, dll) disimpan di **bucket ya
 ## Event Notification
 
 Sama kayak yang udah dipraktekin di [lab file sharing vendor](/blog/s3-file-sharing-vendor-iam-event-notification): tiap ada kejadian di objek (create/delete), bisa trigger SNS, SQS, atau Lambda.
+
+![Event notification Amazon S3](/assets/img/posts/resource/storage-with-amazon-s3/event-notification.png)
+_Event di object (misal upload atau hapus) bisa ngirim pesan ke SQS, SNS, atau Lambda._
 
 ## Yang Perlu Diinget
 

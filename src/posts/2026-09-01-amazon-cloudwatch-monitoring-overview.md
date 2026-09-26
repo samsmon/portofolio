@@ -17,6 +17,9 @@ Dua pertanyaan yang harus selalu bisa dijawab dari monitoring: (1) apakah worklo
 
 Tanpa monitoring, banyak yang kejadian salah kaprah: nyewa VPS murah spek kecil (misal dual-core), terus dihajar traffic tinggi, jadinya lemot/down, padahal kalau ada monitoring dari awal, masalah kapasitasnya bisa ketauan sebelum jadi insiden.
 
+![Grafik CPUUtilization di CloudWatch](/assets/img/posts/resource/amazon-cloudwatch/use-aws-efficiently.png)
+_Contoh grafik CPUUtilization per instance, dasar buat mutusin resource udah efisien atau belum._
+
 ## Konsep Dasar CloudWatch
 
 ```mermaid
@@ -33,6 +36,9 @@ flowchart LR
 
 > Catatan: "CloudWatch Events" sekarang namanya berubah jadi **EventBridge**.
 
+![Apa itu Amazon CloudWatch](/assets/img/posts/resource/amazon-cloudwatch/what-is-cloudwatch.png)
+_Istilah kunci CloudWatch: metric, alarm, serta event berbasis kejadian dan berbasis waktu._
+
 ### Basic vs Detailed Monitoring
 
 - **Basic monitoring**: laporan tiap 5 menit, gratis (free tier).
@@ -47,6 +53,9 @@ Begitu alarm nyala, action-nya bisa macam-macam:
 - **Terminate/reboot/recover** instance.
 - **Scaling**: nambah atau ngurangin jumlah server.
 - **Notifikasi**: kirim email/SMS lewat SNS topic.
+
+![Action dari CloudWatch alarm](/assets/img/posts/resource/amazon-cloudwatch/cloudwatch-actions.png)
+_Alarm bisa bertindak ke EC2 (stop, terminate, reboot, recover), ke EC2 Auto Scaling (scale in atau out), atau kirim email lewat SNS._
 
 ## SES vs SNS: Beda Fungsi, Beda Harga
 
@@ -67,10 +76,16 @@ Untuk event-based billing, logikanya: **ada event, ada biaya**. Nggak ada event,
 - **Dimension**: kategori tambahan buat metric yang sama, misal metric CPU utilization bisa dibagi lagi per instance ID.
 - **Period**: interval waktu pengumpulan metric. Makin cepat periodenya (misal per detik), makin mahal biayanya.
 
+![Automatic dashboard CloudWatch](/assets/img/posts/resource/amazon-cloudwatch/automatic-dashboards.png)
+_Dashboard otomatis: ringkasan service dengan status alarm, alarm terbaru, dan link ke dashboard lintas service._
+
 ## Standard Metric vs Custom Metric
 
 - **Standard metric**: bawaan CloudWatch, otomatis ada begitu resource dibuat (CPU, network, dll). Bisa diakses lewat console, CLI, atau API, dan history-nya bisa disimpen sampe 15 bulan ke belakang (makin lama disimpen, makin mahal karena butuh storage).
 - **Custom metric**: metric yang kita definisiin sendiri, misal metric dari sisi aplikasi atau penggunaan RAM. RAM secara default **nggak** kelihatan di CloudWatch tanpa instalasi tambahan, butuh install **CloudWatch Agent** di instance-nya biar bisa baca dan publish metric RAM ke CloudWatch.
+
+![Contoh monitoring CloudWatch](/assets/img/posts/resource/amazon-cloudwatch/monitoring-example.png)
+_EC2 kirim CPU utilization (standard metric) dan memory utilization (custom metric). Alarm CPU-nya kirim email SNS ke sistem paging dan work item ke SQS._
 
 ## Monitoring buat Security
 

@@ -39,6 +39,9 @@ aws s3 ls s3://cafe-jakarta-88/image --human-readable    # ukuran lebih kebaca
 aws s3 ls s3://cafe-jakarta-88/image --human-readable --summarize  # + rangkuman total
 ```
 
+![Arsitektur lab Work with Amazon S3](/assets/img/posts/resource/work-with-amazon-s3-activity/architecture.png)
+_User mediacouser ngubah isi bucket café lewat console atau CLI Host, lalu bucket-nya publish event ke topic s3NotificationTopic._
+
 ## IAM Policy: Full Control tapi Dibatasin Ketat
 
 User IAM buat vendor (`media-co-user`) dibikin dengan policy custom yang **sangat spesifik**:
@@ -104,6 +107,9 @@ aws s3api put-bucket-notification-configuration \
 Setelah setup, tes upload foto baru dan delete foto lama, dua-duanya langsung masuk email notifikasi, lengkap sama detail siapa yang ngelakuin apa.
 
 > Kalau format email notifikasi-nya kurang rapi, bisa ditambahin Lambda di antara S3 dan SNS buat format ulang pesannya sebelum dikirim, tapi konsekuensinya bayar dua service sekaligus (Lambda + SNS) cuma buat urusan rapiin tampilan.
+
+![Arsitektur S3 café dengan notifikasi](/assets/img/posts/resource/working-with-amazon-s3-lab-intro/cafe-s3-architecture.png)
+_Event di bucket café dikirim ke s3NotificationTopic, yang lanjut ngirim email ke administrator._
 
 ## Yang Perlu Diinget
 

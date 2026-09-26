@@ -17,6 +17,9 @@ Tag itu **key-value pair** yang bisa ditempel ke hampir semua resource AWS. Fung
 
 **Tag itu gratis**, dan bisa nempel sampai **50 tag per resource**, jumlah tag nggak ngaruh ke harga resource-nya, jadi nggak ada alasan buat pelit ngasih tag.
 
+![Apa itu tag](/assets/img/posts/resource/tagging/what-is-a-tag.png)
+_Instance EC2 di dua VPC tanpa tag (cuma kelihatan instance ID) dibandingin dengan yang punya tag Name dan Environment._
+
 ## Kenapa Tanpa Tag Itu Bahaya
 
 ```mermaid
@@ -49,6 +52,9 @@ flowchart TD
     B -->|"Ya"| C["Resource berhasil dibuat"]
     B -->|"Tidak"| D["Ditolak"]
 ```
+
+![Wajibin tag lewat IAM policy](/assets/img/posts/resource/tagging/enforcing-tagging-with-iam.png)
+_Policy yang cuma ngizinin ec2:CreateVolume kalau request-nya bawa tag costcenter 115 dan department Accounting, tanpa tag key lain._
 
 ## Kegunaan Tag buat Automasi
 

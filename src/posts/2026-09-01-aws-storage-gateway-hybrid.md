@@ -31,6 +31,9 @@ flowchart LR
 
 Alurnya: aplikasi on-premises nembak protokol standar (NFS, SMB, atau iSCSI) ke **gateway** yang di-install sebagai VM (atau hardware appliance khusus dari AWS yang disewa harian, biasanya lebih mahal dibanding pake VM sendiri). Gateway ini yang jadi "pengepul" data, terus ngirim ke storage service AWS yang dituju lewat koneksi HTTPS (udah terenkripsi in-transit secara default).
 
+![Cara kerja Storage Gateway](/assets/img/posts/resource/aws-storage-gateway/how-storage-gateway-works.png)
+_Aplikasi on-premises pakai NFS/SMB, iSCSI, atau iSCSI VTL ke VM atau appliance Storage Gateway, yang nyambung ke service Storage Gateway dan storage AWS._
+
 ## 3 Tipe Storage Gateway
 
 | Tipe | Protokol | Fungsi |
@@ -39,17 +42,29 @@ Alurnya: aplikasi on-premises nembak protokol standar (NFS, SMB, atau iSCSI) ke 
 | **Volume Gateway** | iSCSI | Akses block storage sebagai volume, di-backup dalam bentuk snapshot EBS |
 | **Tape Gateway** | VTL (Virtual Tape Library) | Backup/archive jangka panjang, disimpen sebagai virtual tape di S3 Glacier |
 
+![Tipe-tipe Storage Gateway](/assets/img/posts/resource/aws-storage-gateway/storage-gateway-types.png)
+_S3 File Gateway, FSx File Gateway, Volume Gateway, dan Tape Gateway._
+
 ### File Gateway
 
 Cocok buat file sharing biasa: aplikasi nembak endpoint gateway pake NFS/SMB, data-nya diteruskan ke S3 standar.
+
+![S3 File Gateway](/assets/img/posts/resource/aws-storage-gateway/s3-file-gateway.png)
+_Aplikasi pakai NFS atau SMB ke S3 File Gateway, lewat HTTPS ke AWS, disimpan di S3 Standard dengan lifecycle ke Standard-IA dan Glacier Flexible Retrieval._
 
 ### Volume Gateway
 
 Data disimpen sebagai block storage (volume), dan tiap ada aktivitas di volume itu, otomatis trigger AWS Backup buat bikin **EBS snapshot**. Jadi kalau butuh snapshot tapi datanya di cloud, ini opsinya.
 
+![Volume Gateway](/assets/img/posts/resource/aws-storage-gateway/volume-gateway.png)
+_Aplikasi pakai iSCSI ke Volume Gateway, datanya disimpan di S3 dan di-backup lewat AWS Backup sebagai EBS snapshot._
+
 ### Tape Gateway
 
 Buat kebutuhan backup/archive jangka panjang, disimpan sebagai **VTL (Virtual Tape Library)** yang ujung-ujungnya masuk ke **S3 Glacier**. Analoginya kayak tape backup fisik (LTO) jaman dulu, tapi versi virtual. Kecepatannya lambat dan traffic-nya wajib data yang jarang diakses, tapi harganya murah banget.
+
+![Tape Gateway](/assets/img/posts/resource/aws-storage-gateway/tape-gateway.png)
+_Aplikasi backup pakai iSCSI-VTL ke Tape Gateway, tape virtualnya disimpan di S3, dan tape yang di-eject diarsip ke S3 Glacier Flexible Retrieval._
 
 ## Lifecycle Transition: Ngatur Biaya Otomatis
 

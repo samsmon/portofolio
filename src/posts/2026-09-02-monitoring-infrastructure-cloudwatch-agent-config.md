@@ -25,6 +25,9 @@ flowchart LR
 
 Package yang tersedia lewat dokumen ini ada 3 pilihan: **CloudWatch Agent**, **Enhanced Network Adapter (ENA) driver**, atau **AWS PV driver**. Dipilih CloudWatch Agent.
 
+![Install CloudWatch agent lewat Run Command](/assets/img/posts/resource/monitoring-infrastructure-lab/install-agent.png)
+_Systems Manager Run Command install CloudWatch agent ke EC2, dan agent-nya ngambil konfigurasi logging dari Parameter Store._
+
 ### Install vs Uninstall-and-Reinstall
 
 Ada 2 tipe instalasi: **in-place update** (langsung update di tempat, cocok buat aplikasi yang nggak berdampak ke OS/kernel, misal Zoom) vs **uninstall-and-reinstall** (hapus dulu bersih, baru install versi baru, lebih aman buat driver, karena driver sering "manja", kalau di-update di tempat suka korup atau blue screen).
@@ -62,9 +65,15 @@ flowchart LR
 
 Setelah error di-generate lebih dari 5 kali dalam satu menit, alarm nyala dan email masuk, isinya jumlah error yang beneran kejadian (misal 11 kali, ngelewatin threshold 5).
 
+![Alur CloudWatch Logs di lab](/assets/img/posts/resource/monitoring-infrastructure-lab/cloudwatch-logs.png)
+_Agent stream file log ke CloudWatch Logs, filter pattern bikin metric, lalu alarm CloudWatch kirim email lewat SNS._
+
 ## Task 4: Monitoring Sistem Metric (RAM, Disk)
 
 Metric bawaan CloudWatch **tanpa agent** nggak nyediain RAM dan disk usage. Setelah agent terinstall dan aktif, metric ini muncul di bagian **"CWAgent" custom namespace**, bukan di metric standar EC2 biasa. Dari sini bisa dicek: RAM kepake berapa persen, disk kepake berapa persen, dan seterusnya.
+
+![Alur CloudWatch metrics di lab](/assets/img/posts/resource/monitoring-infrastructure-lab/cloudwatch-metrics.png)
+_Agent kirim metric sistem ke CloudWatch, yang diolah jadi grafik, alarm, dan dashboard._
 
 ## Task 5: Real-Time Notification via EventBridge
 
@@ -77,6 +86,9 @@ flowchart LR
 ```
 
 Setelah instance dimatiin buat testing, email masuk hampir instan, isinya perubahan state (`stopped`) dan waktu kejadiannya.
+
+![Alur CloudWatch Events di lab](/assets/img/posts/resource/monitoring-infrastructure-lab/cloudwatch-events.png)
+_Perubahan state instance EC2 masuk ke CloudWatch Events, yang langsung trigger notifikasi SNS._
 
 ## Task 5 (Lanjutan): AWS Config buat Compliance
 

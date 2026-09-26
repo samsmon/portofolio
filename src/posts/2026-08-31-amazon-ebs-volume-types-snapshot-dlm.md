@@ -21,6 +21,9 @@ Ukurannya gampang dinaikin (tinggal resize, langsung), tapi kalau mau diturunin,
 
 EBS cuma cocok buat **EC2 instance** doang (bukan buat S3 atau service lain), dan meski RDS itu managed service, di baliknya tetap pakai EC2 + EBS juga.
 
+![Format cloud storage](/assets/img/posts/resource/cloud-storage-overview/cloud-storage-formats.png)
+_Tiga format penyimpanan di cloud: block (EBS, instance store), file (EFS, FSx), dan object (S3). EBS masuk kelompok block._
+
 ## Tipe-Tipe Volume EBS
 
 ### SSD-based (buat workload yang butuh IOPS tinggi)
@@ -51,6 +54,9 @@ flowchart LR
 ```
 
 Efeknya: snapshot jauh lebih efisien dari sisi storage dibanding full backup berulang-ulang. Datanya sendiri disimpan di S3 di balik layar, tapi makin banyak snapshot yang numpuk, makin tinggi juga biayanya, makanya butuh strategi retention (jangan nyimpen semua snapshot selamanya).
+
+![Snapshot EBS incremental](/assets/img/posts/resource/amazon-ebs/incremental-snapshots.png)
+_Snapshot pertama nyimpen semua block, snapshot berikutnya cuma nyimpen block yang berubah sejak snapshot sebelumnya._
 
 ## Kenapa Harus Matiin Instance Dulu Sebelum Snapshot
 

@@ -23,6 +23,9 @@ aws ec2 describe-instances \
   --query "Reservations[].Instances[].InstanceId"
 ```
 
+![Arsitektur lab Managing Resources with Tagging](/assets/img/posts/resource/tagging-lab/architecture.png)
+_Lab VPC 10.50.0.0/16: public subnet 10.50.0.0/24 berisi NAT instance dan Command host, private subnet 10.50.1.0/24 berisi tujuh instance yang di-tag._
+
 ### JMESPath: Query Presisi
 
 `--query` di AWS CLI pakai bahasa **JMESPath**, mirip cara kerja query di JSON. Semakin spesifik query-nya, semakin presisi hasilnya, nggak perlu scroll manual cari informasi di output yang panjang.
@@ -58,6 +61,9 @@ flowchart LR
 ```
 
 Script ini loop ke **semua region**, jadi walau resource-nya tersebar, satu command cukup buat handle semuanya.
+
+![Konsep stopinator script](/assets/img/posts/resource/cost-management-best-practices/stopinator-script.png)
+_Slide dari deck cost management: `stopinator stop [tags]` dan `stopinator start [tags]` buat matiin dan nyalain instance serta RDS sesuai tag, salah satu best practice ngirit biaya._
 
 ## Terminate Instance Tanpa Tag `environment`
 

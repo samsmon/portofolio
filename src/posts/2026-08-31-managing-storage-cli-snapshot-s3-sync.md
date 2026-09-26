@@ -15,6 +15,9 @@ Lab ini nyakup dua bagian besar: manajemen EBS snapshot via CLI (termasuk otomas
 
 ## Bagian 1: EBS Snapshot via CLI
 
+![Arsitektur lab Managing Storage](/assets/img/posts/resource/managing-storage-lab/architecture.png)
+_Command Host dan Processor di public subnet. Volume EBS milik Processor di-backup jadi snapshot, dan file-nya di-sync ke bucket S3._
+
 ### Cari Volume ID dan Instance ID
 
 ```bash

@@ -21,6 +21,9 @@ Prinsip dasar configuration management: walaupun ada 1000 server, konfigurasinya
 - **Ngurangin cost**: gampang identifikasi dan hapus resource yang nggak sesuai standar.
 - **Security enforcement**: policy keamanan diterapkan konsisten di semua layer, bukan cuma di sebagian server.
 
+![Teknologi buat konfigurasi EC2](/assets/img/posts/resource/configuration-management-in-the-cloud/technologies-for-configuring-ec2.png)
+_Pilihan cara konfigurasi instance: user data, AMI, framework konfigurasi dan deployment, AWS OpsWorks, dan AWS CloudFormation._
+
 ## Deploy Konfigurasi ke Instance yang Sedang Jalan
 
 Ada beberapa metode buat apply konfigurasi baru: **user data** (dijalanin sekali pas boot), **AMI matang** (semua udah dibungkus di image), atau **Patch Manager** di Systems Manager (buat automation dan run command berulang).
@@ -36,6 +39,9 @@ Ini yang menarik: banyak tools automation infrastruktur (Ansible, AWS OpsWorks/C
 | Puppet | Manifest |
 
 Semuanya intinya sama: file yang mendefinisikan konfigurasi apa yang harus diterapkan ke server, dan bisa dijalanin berulang-ulang secara konsisten.
+
+![Alur tools configuration management](/assets/img/posts/resource/configuration-management-in-the-cloud/configuration-management-tools.png)
+_Admin publish template ke source control dan package repository, server configuration management di AWS ngatur, lalu web server narik dan nerapin template-nya._
 
 ## Yang Perlu Diinget
 

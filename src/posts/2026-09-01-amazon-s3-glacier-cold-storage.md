@@ -15,6 +15,9 @@ published: true
 
 Glacier itu salah satu storage class S3, khusus didesain buat data **archival**: disimpan lama, tapi jarang banget diakses (misal 1-2 kali setahun, atau cuma buat kebutuhan audit). Trade-off-nya jelas: makin cepet kita bisa retrieve datanya, makin mahal biayanya. Di antara semua storage class S3, Glacier itu yang paling murah buat penyimpanan (storage cost), tapi paling mahal/lama kalau butuh ambil datanya balik.
 
+![Cara akses Amazon S3 Glacier](/assets/img/posts/resource/amazon-s3-glacier/how-to-access-glacier.png)
+_Glacier bisa diakses lewat Management Console, REST API, SDK Java atau .NET, dan lifecycle policy S3._
+
 ## 3 Tier Retrieval
 
 | Tier | Waktu Retrieve | Cocok Buat |
@@ -35,6 +38,9 @@ Terminologi Glacier beda dari S3 biasa, tapi konsepnya sama:
 | Object | **Archive** | Data itu sendiri (foto, video, dokumen) |
 
 Tiap archive punya URI unik: `https://<region-endpoint>/<account-id>/vaults/<vault-name>/archives/<archive-id>`. Bedanya sama S3 object, archive nggak punya nama file biasa, tapi **archive ID** yang di-generate otomatis.
+
+![Data model S3 Glacier](/assets/img/posts/resource/amazon-s3-glacier/data-model-concept-overview.png)
+_Data dari aplikasi masuk ke vault sebagai archive, diambil lewat job, dan notification configuration ngabarin kalau job-nya selesai._
 
 ## Job: Cara Ambil Data dari Glacier
 

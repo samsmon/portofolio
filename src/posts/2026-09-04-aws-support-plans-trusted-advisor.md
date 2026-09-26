@@ -23,6 +23,12 @@ Contoh temuan yang biasa: idle resource (RDS yang nggak dipake, load balancer ng
 
 Fitur basic (security checks kayak MFA, public snapshot, security group check) tersedia buat semua tier support. Tapi cost optimization checks yang lebih detail butuh minimal Business atau Enterprise support plan.
 
+![Apa itu AWS Trusted Advisor](/assets/img/posts/resource/cost-management-best-practices/what-is-trusted-advisor.png)
+_Scan infrastruktur terhadap best practice di lima kategori, lalu kasih rekomendasi plus link aksinya._
+
+![Dashboard Trusted Advisor](/assets/img/posts/resource/cost-management-best-practices/trusted-advisor-recommendations.png)
+_Jumlah temuan per kategori, dengan contoh check Underutilized Amazon EBS Volumes._
+
 ## Technical Account Manager (TAM)
 
 TAM itu semacam konsultan pribadi dari AWS langsung, bisa ditanya-tanya soal akun dan arsitektur. Tapi ini **mahal banget buat individu**: harga support plan Business itu minimal $100/bulan, dan kalau tagihan bulanannya $250, biayanya 3% dari itu (~$7.5), tapi ada minimum charge yang jauh lebih tinggi. Untuk Enterprise, minimum-nya sekitar $5.000/bulan.

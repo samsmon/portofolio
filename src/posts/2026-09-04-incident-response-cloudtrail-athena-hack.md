@@ -25,6 +25,12 @@ flowchart LR
 
 Ada beberapa jenis event yang bisa dicatat, masing-masing kena biaya terpisah: **management event** (operasi di akun), **data event** (aktivitas level objek, misal S3 get/put), **insight event** (deteksi anomali). Makin banyak jenis yang diaktifkan, makin mahal.
 
+![Arsitektur lab Working with CloudTrail](/assets/img/posts/resource/cloudtrail-activity/architecture.png)
+_Café Web Server di dalam security group, aktivitas AWS CLI-nya dicatat CloudTrail ke bucket S3, lalu di-query pakai Athena dari console._
+
+![Langkah bikin trail CloudTrail](/assets/img/posts/resource/aws-cloudtrail/configure-a-trail.png)
+_Urutan konfigurasi trail dari slide CloudTrail: configure, define, create, configure, turn on, add._
+
 ## Website Kena Hack
 
 Begitu CloudTrail selesai disetup, website tiba-tiba defaced, gambar produk berubah jadi gambar random dan ada pesan provokatif dari si penyerang.
@@ -48,6 +54,9 @@ Investigasi manual ini **melelahkan** karena data set-nya besar dan berantakan, 
 ```bash
 aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin
 ```
+
+![Contoh log entry CloudTrail](/assets/img/posts/resource/cloudtrail-activity/example-log-entry.png)
+_Satu entry buat panggilan DescribeVpcs dari IAM user: siapa, kapan, dari IP mana, dan API apa._
 
 ## Ganti Metode: Pakai Amazon Athena
 

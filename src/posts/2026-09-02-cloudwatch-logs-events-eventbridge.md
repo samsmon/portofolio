@@ -22,9 +22,15 @@ flowchart LR
     Rule["EventBridge Rule<br/>(kondisi)"] -->|"kejadian terpenuhi"| Target["Target<br/>(aksi: Lambda, SNS, Run Command, dll)"]
 ```
 
+![Rule CloudWatch Events](/assets/img/posts/resource/deep-dive-amazon-cloudwatch/cloudwatch-events-rule.png)
+_Contoh rule: event source EC2 Auto Scaling "EC2 Instance Launch Successful", target-nya SSM Run Command yang jalanin AWS-RunRemoteScript di instance baru._
+
 ## CloudWatch Logs: Kenapa Log Itu Harus "Suci"
 
 Log itu **barang bukti**, dan barang bukti nggak boleh dimodifikasi **apapun alasannya**, mau itu manager sekalipun. Prinsipnya sama kayak **zero trust** di security: jangan percaya apapun, termasuk log yang keliatan udah diedit dikit doang. Kalau log bisa diedit, kita nggak bisa lagi yakin itu original atau enggak, dan itu ngerusak fungsinya sebagai bukti buat diagnosa masalah.
+
+![Proses analisis log](/assets/img/posts/resource/deep-dive-amazon-cloudwatch/log-analysis-process.png)
+_Alur umum analisis log: configure, collect, analyze._
 
 ### Log Group: Ngumpulin Biar Nggak Berantakan
 
@@ -46,6 +52,9 @@ Buat baca log yang lebih presisi dan gampang, ada **CloudWatch Logs Insights**, 
 ### Contoh Kasus: Alert Error 404
 
 Bikin custom log filter dari web server Apache (`HTTP access log`): kalau ada error 404 muncul beberapa kali dalam satu menit, trigger notifikasi ke tim IT. Manfaatnya: tim IT jadi tahu real-time ada masalah, bukan baru sadar besoknya pas ditanya "tadi malam di-hack jam berapa?" dan nggak punya jawaban.
+
+![Alarm dari metric filter log](/assets/img/posts/resource/deep-dive-amazon-cloudwatch/alarms-on-log-filter-metrics.png)
+_Log group HttpAccessLog diolah jadi custom metric 404Count, dan alarm 404Count di atas batas bikin alert atau tiket ke IT support._
 
 ### Log Format: Baca Field-nya
 

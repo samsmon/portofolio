@@ -17,6 +17,21 @@ published: true
 - **Cost Explorer**: visualisasi dan analisa cost/usage over time, bisa dipakai buat prediksi tren cost ke depan, dan hasilnya bisa di-export ke CSV atau PDF buat presentasi ke manajemen.
 - **AWS Budgets**: setting batas budget, dan dikasih notifikasi kalau mendekati (misal 80%) atau melebihi threshold.
 
+![Tools cost management AWS](/assets/img/posts/resource/cost-management-best-practices/cost-management-tools.png)
+_Empat alat utama: billing dashboard, Cost Explorer, Budgets, dan CloudWatch._
+
+![AWS billing dashboard](/assets/img/posts/resource/cost-management-best-practices/billing-dashboard.png)
+_Ringkasan biaya bulan lalu, month-to-date, dan forecast, plus pengeluaran per service._
+
+![Halaman AWS Bills](/assets/img/posts/resource/cost-management-best-practices/aws-bills.png)
+_Total tagihan dipecah jadi biaya AWS Marketplace dan biaya service AWS, masing-masing dengan invoice-nya._
+
+![AWS Cost Explorer](/assets/img/posts/resource/cost-management-best-practices/cost-explorer.png)
+_Biaya bulanan per service selama 3 bulan terakhir dalam bentuk grafik batang bertumpuk._
+
+![AWS Cost and Usage Reports](/assets/img/posts/resource/cost-management-best-practices/cost-and-usage-reports.png)
+_Laporan paling detail: tiap baris punya product code, usage type, operation, AZ, jumlah pemakaian, dan deskripsinya._
+
 ## AWS Budgets Cuma Notifikasi, Bukan Circuit Breaker
 
 Ini poin penting yang sering disalahpahami: **AWS Budgets nggak otomatis mematikan atau menghapus resource** begitu limitnya kelewat. Fungsinya murni notifikasi (kayak alarm), bukan kill-switch. Kalau mau ada aksi otomatis pas budget kelewat, itu harus di-setup terpisah (misal lewat CloudWatch alarm + Lambda).
@@ -28,6 +43,9 @@ flowchart LR
 ```
 
 Strategi praktis: kalau budget perusahaan misalnya 10 juta, jangan setting AWS Budget-nya pas 10 juta, tapi sedikit di bawahnya (misal 9 juta), biar ada buffer sebelum beneran kelewat batas asli.
+
+![Alert AWS Budgets](/assets/img/posts/resource/cost-management-best-practices/aws-budgets-alert.png)
+_Contoh alert: biaya aktual udah lewat 80% dari budget ($400), dikirim ke 1 kontak. Cuma ngabarin, nggak ngerem apa-apa._
 
 ## CloudWatch Billing Alarm
 
@@ -45,6 +63,12 @@ Banyak perusahaan masih nganggep biaya IT sebagai beban, padahal harusnya diangg
 - **Managed service**: ngurangin cost of ownership (biaya maintenance, backup manual, dll).
 - **Trusted Advisor**: bisa nemuin idle resource yang tetep kena biaya walau nggak dipake (misal Elastic IP yang di-allocate tapi nggak ditempel ke resource apapun, tetap bayar).
 - **Cost Explorer + Tagging**: cari cost yang terasosiasi ke project/inisiatif tertentu berdasarkan tag.
+
+![Desain buat ngurangin biaya](/assets/img/posts/resource/cost-management-best-practices/designing-for-cost-reduction.png)
+_Budgets, right-sizing, serverless, managed service, dan Trusted Advisor._
+
+![Nyari dan ngilangin pemborosan](/assets/img/posts/resource/cost-management-best-practices/finding-waste.png)
+_Grafik CPU utilization CloudWatch dari instance yang hampir selalu nganggur, kandidat buat dikecilin atau dimatiin._
 
 ## Bukan Best Practice: Automation Pakai Lambda + Alarm buat Matiin Resource
 

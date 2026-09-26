@@ -39,6 +39,9 @@ flowchart LR
 
 User butuh IAM permission buat akses lewat Transfer Family, terus dari sisi client tinggal pake software FTP client biasa (misal WinSCP), masukin endpoint/hostname dan kredensial, dan bisa langsung transfer data ke S3 atau EFS. Setelah data nyampe, bisa diproses lebih lanjut: archive, analytics, machine learning, atau content distribution.
 
+![Cara kerja AWS Transfer Family](/assets/img/posts/resource/aws-transfer-family-and-migration/how-transfer-family-works.png)
+_Client kirim file lewat SFTP, FTPS, atau FTP (opsional lewat DNS Route 53), masuk ke S3 atau EFS, terus siap dipakai buat distribusi, arsip, analitik, sampai machine learning._
+
 ## AWS DataSync
 
 Kalau Transfer Family lebih ke arah "orang manual transfer file", **DataSync** itu buat **sinkronisasi otomatis** data antara on-premises dan AWS storage service, atau bahkan antar service AWS (misal S3 ke S3 lain, atau S3 ke EFS).
@@ -54,6 +57,9 @@ flowchart LR
 - Support protokol **NFS** dan **SMB**.
 - Bisa lewat internet publik (lebih murah, tapi lebih lambat) atau Direct Connect (lebih cepat, tapi mahal banget per kilometer fiber).
 - Dipake buat migrasi, archiving cold data, proteksi data, atau perpindahan data rutin buat cloud processing.
+
+![Cara kerja AWS DataSync](/assets/img/posts/resource/aws-transfer-family-and-migration/how-datasync-works.png)
+_File system di data center masuk lewat NFS atau SMB ke DataSync Agent, dikirim lewat Direct Connect atau internet, lalu disimpan di S3 atau EFS._
 
 ## Batasan Penting: Dua-duanya Bergantung Internet
 

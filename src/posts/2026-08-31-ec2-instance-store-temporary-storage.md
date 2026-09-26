@@ -24,6 +24,9 @@ flowchart LR
     A["Instance running,<br/>data tersimpan di Instance Store"] -->|"stop/restart/terminate"| B["Data HILANG total"]
 ```
 
+![Amazon EC2 instance store](/assets/img/posts/resource/instance-store/ec2-instance-store.png)
+_Instance A, B, dan C di satu host EC2, masing-masing dapat volume instance store sendiri yang nempel fisik di host itu._
+
 ## Nggak Semua Instance Type Punya Ini
 
 Instance Store itu **fitur bawaan spesifikasi instance tertentu**, bukan sesuatu yang bisa ditambah-kurangin sendiri. Kalau tipe instance-nya emang udah include Instance Store (misal `m5d`), ya otomatis dapet, size dan tipenya (SSD atau HDD) udah paket sesuai spesifikasi instance-nya, nggak bisa "minta diskon" kalau nggak butuh.
@@ -44,6 +47,9 @@ flowchart LR
 ```
 
 AWS nyediain contoh script buat mounting ini, tapi karena kebutuhan tiap orang beda, best practice-nya ambil referensi template itu terus **di-custom sendiri**, bukan asal copy-paste.
+
+![Cara kerja instance store](/assets/img/posts/resource/instance-store/how-instance-stores-work.png)
+_Volume instance store dipetakan sebagai ephemeral0, ephemeral1, dan seterusnya lewat block device mapping._
 
 ## Kapan Pakai Instance Store
 

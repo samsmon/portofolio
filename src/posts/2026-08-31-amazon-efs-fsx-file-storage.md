@@ -23,9 +23,15 @@ flowchart LR
     OnPrem["On-premises (Linux)"] -->|"NFS via endpoint"| EFS
 ```
 
+![Cara pakai Amazon EFS](/assets/img/posts/resource/amazon-efs/how-to-use-efs.png)
+_Dua instance di private subnet nge-mount file system yang sama lewat satu mount target._
+
 ### High Availability by Design
 
 EFS otomatis bikin **mount target** di tiap AZ yang dipilih (minimal 2 AZ direkomendasikan). Tiap AZ butuh 1 ENI buat mount-nya, jadi makin banyak AZ yang dicakup, makin banyak juga ENI yang dibayar, walaupun file system-nya sendiri belum ada data.
+
+![Arsitektur Amazon EFS](/assets/img/posts/resource/amazon-efs/efs-architecture.png)
+_Satu file system EFS dengan mount target di private subnet tiap Availability Zone, jadi instance di AZ manapun bisa akses data yang sama._
 
 ### Dynamic Elasticity
 

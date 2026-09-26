@@ -33,7 +33,7 @@ Aturan pentingnya:
 - **Subnet** scope-nya cuma **satu AZ**, nggak bisa nyebar ke banyak AZ.
 - Satu AZ bisa punya banyak subnet, tapi satu subnet cuma nempel ke satu AZ.
 
-Default per akun: 1 VPC per region, dengan soft limit sampai 5 VPC (bisa nambah lewat request ke AWS Support kalau butuh lebih, dengan tambahan biaya).
+Tiap region di akun baru udah dikasih 1 **default VPC**, dan kuota default-nya **5 VPC per region** (termasuk si default VPC itu). Kuota ini soft limit, bisa dinaikin lewat Service Quotas atau AWS Support, dan request kenaikannya **gratis**. Yang bikin bayar itu resource di dalamnya, bukan jumlah VPC-nya.
 
 ## Public vs Private Subnet
 

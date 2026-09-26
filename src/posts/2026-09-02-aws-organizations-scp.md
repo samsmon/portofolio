@@ -32,6 +32,9 @@ flowchart TD
     OU2 --> Account["Account"]
 ```
 
+![Diagram AWS Organizations](/assets/img/posts/resource/aws-organizations/organization-diagram.png)
+_Satu root dengan OU bertingkat, account di ujung-ujungnya, dan policy yang bisa ditempel ke OU atau account._
+
 ## SCP (Service Control Policy) dan Inheritance yang Bikin Bingung
 
 SCP itu policy-nya Organizations (setara IAM policy, tapi di level account/OU). Yang bikin ribet: SCP pakai konsep **inheritance**, dan aturan yang berlaku adalah yang **paling restriktif** di sepanjang hierarki, bukan yang paling akhir.
