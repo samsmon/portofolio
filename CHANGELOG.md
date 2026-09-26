@@ -11,6 +11,9 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 ### Added
 - **Screenshot Resmi Lab 281 Monitor an EC2 Instance (`static/assets/img/posts/resource/monitor-ec2-instance-lab/`):** 3 screenshot (pilih metric CPUUtilization, konfigurasi alarm CloudWatch di atas 60%, output `stress`). Cuma ini yang ke-save beneran dari batch lab Ctrl+S; gambar lab lain ternyata halaman error session Vocareum. Belum dirujuk post mana pun; disiapkan untuk toggle "Secret Source".
 
+### Changed
+- **Secret Source Minggu 1 AWS re/Start (`src/posts/`):** 15 gambar resmi yang udah ada di `static/assets/img/posts/resource/` dipasang sebagai toggle "Secret Source" di 4 post: `ec2-billing-traps-launch-lab` (1, lab 11), `vpc-subnet-az-public-private-elastic-ip` (5, lab 261 dan 262), `nat-gateway-network-troubleshooting-tools` (5, lab 265), `web-server-troubleshooting-systemctl-https` (4, lab 266). Screenshot navigasi console (menu, dropdown) sengaja nggak dipasang.
+
 ## [Unreleased] - 2026-09-26
 
 ### Added

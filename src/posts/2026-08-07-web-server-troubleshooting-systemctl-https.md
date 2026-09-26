@@ -15,6 +15,9 @@ Lab terakhir Week 1: web server nggak bisa diakses, dan tugasnya nyari tahu kena
 
 ## Masalah 1: Service Terinstall Tapi Nggak Jalan
 
+![Arsitektur customer di lab Troubleshooting a Network Issue](/assets/img/posts/resource/troubleshooting-network-issue-lab/customer-architecture.png)
+_VPC 10.0.0.0/16 dengan internet gateway, satu Linux instance di public subnet 10.0.10.0/24 di dalam security group. Targetnya: halaman test Apache kebuka dari browser._
+
 Aplikasi web server-nya (Apache/`httpd`) ternyata udah terinstall, tapi nggak jalan. Ceknya pake:
 
 ```bash
@@ -35,6 +38,12 @@ sudo systemctl start httpd
 
 Kalau cuma `start` tanpa `enable`, motor (service) bisa jalan sekarang, tapi begitu server-nya restart, service itu nggak otomatis nyala lagi, karena "kunci kontaknya" belum di-enable. Analogi ini yang paling gampang diinget buat ngerti kenapa dua command ini sama-sama perlu dijalankan.
 
+![Status httpd sebelum di-start](/assets/img/posts/resource/troubleshooting-network-issue-lab/httpd-inactive.png)
+_Kondisi awal: httpd udah ke-install tapi statusnya inactive._
+
+![Status httpd setelah di-start](/assets/img/posts/resource/troubleshooting-network-issue-lab/httpd-active.png)
+_Setelah `systemctl start`: statusnya `active (running)`, tapi perhatiin baris Loaded masih `disabled`. Itu persis kasus "starter tanpa kunci kontak", jalan sekarang tapi nggak nyala lagi pas reboot._
+
 ## Masalah 2: Port Belum Dibuka
 
 Setelah service-nya jalan tapi masih tetap nggak bisa diakses, urutan troubleshooting yang dipakai:
@@ -50,6 +59,9 @@ flowchart TD
 Cara ceknya: masuk ke tab Networking di instance buat tahu instance itu di-deploy di subnet mana, lalu telusuri satu-satu: subnet-nya bener, routing table udah ngarah ke IGW, NACL nggak ada masalah (`ALLOW ALL`), sampai akhirnya ketemu di **security group**, ternyata port 80 belum dibuka (cuma port 22 buat SSH yang kebuka).
 
 Setelah port 80 ditambahkan ke inbound rule, web server langsung bisa diakses.
+
+![Halaman test Apache setelah diperbaiki](/assets/img/posts/resource/troubleshooting-network-issue-lab/apache-test-page-2.png)
+_Hasil akhirnya: halaman Test Page bawaan Apache HTTP Server kebuka lewat IP public instance._
 
 ## Kenapa HTTPS Nggak Otomatis Kepake
 

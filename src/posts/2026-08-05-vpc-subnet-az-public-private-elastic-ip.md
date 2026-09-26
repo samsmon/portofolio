@@ -46,6 +46,15 @@ Prinsip pentingnya: **jangan pernah taruh database di public subnet**. Layer pal
 
 Skenario lab: dua instance (A dan B) dengan konfigurasi dan subnet yang sama persis, tapi instance A nggak bisa akses internet sementara B bisa. Setelah diinvestigasi, jawabannya sederhana: **instance A nggak punya IP public**. Apapun yang mau internetan wajib punya IP public, itu aturan dasarnya.
 
+![Arsitektur customer di lab Public and Private IP](/assets/img/posts/resource/public-private-ip-lab/customer-architecture.png)
+_Satu VPC dengan internet gateway, instance A dan B di public subnet yang sama, di Availability Zone 1._
+
+![Tab Networking instance A](/assets/img/posts/resource/public-private-ip-lab/instance-a-networking.png)
+_Instance A: kolom Public IPv4 kosong, cuma ada IP private 10.0.10.100._
+
+![Tab Networking instance B](/assets/img/posts/resource/public-private-ip-lab/instance-b-networking.png)
+_Instance B: punya IP public 54.71.89.239 plus IP private 10.0.10.166, VPC dan subnet-nya sama persis kayak A._
+
 Investigasi lanjutan soal remote SSH juga ngasih insight yang sama: SSH ke instance yang cuma punya IP private itu **bisa**, asalkan dilakukan dari dalam network yang sama (misal dari instance lain yang satu VPC), bukan dari luar. Jadi:
 
 - Mau remote dari luar (internet) ke instance → butuh IP public di instance tujuan.
@@ -65,11 +74,17 @@ flowchart LR
 - **Reboot**: instance-nya cuma "restart aplikasi", metadata dan network interface-nya tetep nyangkut, jadi IP public-nya nggak berubah.
 - **Stop lalu Start**: instance-nya bener-bener "dibongkar", pas start lagi dia dapet alokasi IP public baru dari pool AWS, sehingga IP-nya berubah.
 
+![Tab Networking di lab Static and Dynamic IP](/assets/img/posts/resource/static-dynamic-ip-lab/networking-tab.png)
+_Tempat nyatet IP public dan IP private (plus DNS name-nya) sebelum instance di-stop, buat dibandingin setelah di-start lagi._
+
 Sementara **IP private** itu selalu tetap, nggak peduli reboot atau stop, karena dia nempel ke network interface instance-nya yang tetap ada meskipun instance-nya mati. IP private ini ditentukan lewat mekanisme mirip DHCP reservation, semi-manual (kita tentuin rentang IP-nya, tapi assignment aktualnya otomatis).
 
 ## Elastic IP: Solusi buat IP Public yang Permanen
 
 Kalau butuh IP public yang nggak berubah-ubah (misal buat DNS record yang stabil), solusinya pake **Elastic IP**, IP public statis yang bisa "dicolok-lepas" (associate/disassociate) ke instance manapun sesuka hati.
+
+![Associate Elastic IP ke instance](/assets/img/posts/resource/static-dynamic-ip-lab/associate-eip-test-instance.png)
+_Elastic IP 54.244.33.245 dipasang ke test instance lewat Actions, Associate Elastic IP address._
 
 Poin pentingnya:
 - Kalau instance yang nempel Elastic IP di-delete, IP-nya **nggak ikut hilang**, cuma "kecabut", dan masih bisa dipasang lagi ke instance lain.

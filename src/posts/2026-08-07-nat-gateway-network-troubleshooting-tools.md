@@ -39,6 +39,9 @@ Pilihannya balik ke trade-off klasik: **murah tapi rapuh** vs **mahal tapi tahan
 
 Beberapa command line tools yang kepake buat diagnosa masalah koneksi, dari layer 3 ke layer 7:
 
+![OSI model dan hubungannya dengan troubleshooting](/assets/img/posts/resource/ip-troubleshooting-commands-lab/osi-troubleshooting.png)
+_Pemetaan dari lab: layer 3 pakai ping dan traceroute (IP), layer 4 pakai netstat, ss, telnet (TCP, UDP), layer 7 pakai curl (HTTP/S, SFTP, SSH)._
+
 ### ping
 
 Cek konektivitas dasar ke sebuah host, sekaligus ukur latency-nya:
@@ -49,6 +52,9 @@ ping 8.8.8.8
 
 Kalau host tidak merespons dalam waktu tertentu, hasilnya **request time out**. Beberapa layanan (kayak Tokopedia) sengaja menutup port ICMP supaya nggak bisa di-ping, salah satu alasannya buat menghindari traffic yang nggak perlu (dan biaya traffic yang menyertainya).
 
+![Output ping di lab](/assets/img/posts/resource/ip-troubleshooting-commands-lab/ping.png)
+_`ping 8.8.8.8 -c 5` dari EC2: 5 paket terkirim, 5 diterima, 0% packet loss, latency sekitar 7,8 ms._
+
 ### traceroute
 
 Menunjukkan **jalur** yang dilewati paket data dari sumber ke tujuan, lewat router mana aja:
@@ -58,6 +64,9 @@ traceroute google.com
 ```
 
 Berguna buat diagnosa "lambatnya di mana", apakah dari sisi ISP kita atau dari jaringan tujuan. Tanda `*` di hasil traceroute berarti router di titik itu nggak merespons (request time out), bukan berarti jalurnya putus total.
+
+![Output traceroute di lab](/assets/img/posts/resource/ip-troubleshooting-commands-lab/traceroute.png)
+_`traceroute 8.8.8.8` dari EC2 di us-west-2: 26 hop sampai dns.google, dan di hop 23 sampai 25 ada beberapa `*` tapi jalurnya tetap nyampe._
 
 ### netstat
 
@@ -80,6 +89,9 @@ telnet example.com 80
 
 Kalau berhasil connect, artinya port itu terbuka dan menerima koneksi. Keluar dari sesi telnet pakai `Ctrl + ]` lalu ketik `quit`.
 
+![Output telnet di lab](/assets/img/posts/resource/ip-troubleshooting-commands-lab/telnet.png)
+_Setelah install paket telnet, `telnet www.google.com 80` langsung "Connected", artinya port 80 di sana terbuka._
+
 ### curl
 
 Cek response dari sebuah aplikasi/website, termasuk proses handshake dan status code HTTP:
@@ -89,6 +101,9 @@ curl -v https://aws.com
 ```
 
 Berguna buat lihat detail response, termasuk kalau ada redirect (kode 3xx) sebelum akhirnya sampai ke response final (kode 2xx untuk sukses).
+
+![Output curl -v di lab](/assets/img/posts/resource/ip-troubleshooting-commands-lab/curl.png)
+_Potongan header response dari curl verbose: `HTTP/2 200`, plus header kayak cache-control, content-type, dan server._
 
 ## Yang Perlu Diinget
 

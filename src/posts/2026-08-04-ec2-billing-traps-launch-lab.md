@@ -27,6 +27,9 @@ flowchart TD
 
 Analogi yang kepake buat tiap komponen: VPC itu kayak data center milik sendiri, subnet itu rak di dalam data center itu, dan availability zone itu gedung data center yang berbeda-beda.
 
+![Skenario lab Introduction to Amazon EC2](/assets/img/posts/resource/intro-ec2-lab/lab-scenario.jpeg)
+_Satu EC2 web server di dalam security group, di satu Availability Zone. Di gambar masih tertulis "IIS Web Server" (sisa versi Windows lab ini), padahal yang di-install Apache di Amazon Linux._
+
 ## Jebakan 1: Spek Tinggi = Mahal, Beda Image = Beda Harga
 
 Dua faktor yang langsung ngefek ke harga instance: **instance type** (makin tinggi spek CPU/RAM, makin mahal) dan **pilihan image/AMI**. Amazon Linux itu paling murah, sementara Windows jauh lebih mahal karena harganya udah termasuk biaya lisensi OS-nya. Ubuntu Pro dan Red Hat juga lebih mahal dari Amazon Linux karena alasan yang sama.
