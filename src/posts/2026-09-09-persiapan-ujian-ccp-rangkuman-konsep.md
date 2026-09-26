@@ -19,11 +19,13 @@ Kalau ketemu soal "mana yang paling murah / paling hemat", urutannya (termurah k
 
 ```mermaid
 flowchart LR
-    RI["1. Reserved Instance"] --> Spot["2. Spot Instance"]
-    Spot --> OD["3. On-Demand"]
+    Spot["1. Spot Instance"] --> RI["2. Reserved Instance"]
+    RI --> OD["3. On-Demand"]
     OD --> DI["4. Dedicated Instance"]
     DI --> DH["5. Dedicated Host"]
 ```
+
+Spot paling murah (hemat sampai 90% dari On-Demand), tapi bisa ditarik AWS kapan aja. Reserved Instance di urutan kedua (hemat sampai 72%), tapi harus komit 1 atau 3 tahun.
 
 ### Kapan Pakai Yang Mana
 
@@ -31,7 +33,7 @@ flowchart LR
 |---|---|
 | **Reserved Instance (RI)** | Udah tau workload-nya dan durasinya (misal butuh 3 server selama 1 tahun). Kayak reservasi restoran, harus tau kebutuhan di depan. Kalau nggak kepake penuh, tetep bayar penuh. |
 | **On-Demand** | Kebutuhan jangka pendek. Per jam mahal, jangan dipakai buat beban 24/7. |
-| **Spot Instance** | Kapasitas RI orang lain yang lagi nggak kepake, dijual murah (hemat sampai 90%). **Jangan taro database di spot** (bisa di-reclaim sewaktu-waktu). |
+| **Spot Instance** | Kapasitas EC2 AWS yang lagi nganggur, dijual paling murah (hemat sampai 90%). **Jangan taro database di spot** (bisa di-reclaim sewaktu-waktu dengan peringatan 2 menit). |
 | **Dedicated Instance** | Hardware nggak di-share sama customer lain. |
 | **Dedicated Host** | Wajib kalau ada masalah **software licensing yang terikat ke physical server** (CPU-bound, contoh Oracle). Kalau soal nyebut "physical server" atau "software licensing" → jawabannya Dedicated Host, bukan Dedicated Instance. |
 
@@ -48,7 +50,7 @@ flowchart TD
     B --> C["Lapis 3: Spot Instance<br/>(opsi terakhir, kalau masih kurang)"]
 ```
 
-Sisa RI yang nggak kepake bisa dijual ke **RI Marketplace** (legal), atau jadi pool spot buat orang lain.
+Sisa RI Standard yang nggak kepake bisa dijual ke **RI Marketplace** (legal).
 
 ## IAM: Roles Nggak Bisa Nempel ke Group
 
@@ -104,7 +106,7 @@ Amazon OpenSearch itu fork dari Elasticsearch, **cara kerjanya sama aja** (searc
 
 ## Yang Perlu Diinget
 
-- Urutan pricing termurah: RI → Spot → On-Demand → Dedicated Instance → Dedicated Host.
+- Urutan pricing termurah: Spot → RI → On-Demand → Dedicated Instance → Dedicated Host.
 - "Physical server" / "software licensing" di soal → Dedicated Host.
 - IAM Role nggak bisa nempel ke Group, cuma Policy yang bisa.
 - Security Group itu VPC-scoped, EBS/subnet itu AZ-scoped, IAM itu global.
