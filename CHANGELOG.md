@@ -8,7 +8,11 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ## [Unreleased] - 2026-09-27
 
+### Added
+- **URL state tab Home blog (`routes/(site)/blog/+page.svelte`):** search, quick filter, dan nomor page sekarang ada di URL (`/blog?q=lambda&filter=aws&page=2`), jadi bisa di-share dan back dari post balik ke page yang sama. Ditulis pakai `replaceState` (search di-debounce 300ms dan di-flush sebelum pindah halaman), jadi ganti page atau ngetik nggak nambah entri history. Nilai yang nggak valid (filter nggak dikenal, page kelewat) dikoreksi ke `all` dan page terakhir.
+
 ### Fixed
+- **Back selalu balik ke atas halaman (`routes/(site)/+layout.svelte`):** `onNavigate` maksa scroll ke atas di setiap navigasi, termasuk back/forward, jadi posisi scroll yang disimpan SvelteKit selalu ketimpa. Sekarang reset ke atas cuma buat navigasi baru; back/forward balik ke posisi terakhir.
 - **Diagram lightbox kosong (`lib/components/DiagramLightbox.svelte`):** SVG mermaid (`width="100%"` tanpa height) collapse jadi 0x0 di dalam wadah yang ukurannya ngikutin isi, jadi expand diagram cuma nampilin bingkai kosong. Sekarang SVG ngisi canvas penuh dan rasionya dijaga `viewBox`.
 - **Page ikut ke-scroll di lightbox (`DiagramLightbox.svelte`, `ImageLightbox.svelte`):** `onwheel` di Svelte 5 dipasang passive, jadi `preventDefault()` diabaikan. Wheel sekarang pakai listener non-passive di seluruh overlay dan Lenis di-stop selama viewer kebuka (cuma di-start lagi kalau viewer yang nge-stop, biar nggak bentrok sama `ProjectModal`). Di diagram, scroll cuma nge-zoom.
 

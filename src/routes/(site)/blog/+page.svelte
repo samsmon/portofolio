@@ -1,7 +1,7 @@
 <script>
   import { onMount, tick } from 'svelte';
   import { page } from '$app/state';
-  import { pushState } from '$app/navigation';
+  import { beforeNavigate, pushState, replaceState } from '$app/navigation';
   import { gsap } from 'gsap';
   import { ease, dur, stagger } from '$lib/motion.js';
   import { prefersReducedMotion } from '$lib/utils/device.js';
@@ -63,6 +63,7 @@
     for (const [k, v] of Object.entries(params)) if (v) url.searchParams.set(k, v);
     pushState(url.pathname + url.search, {});
     search = url.search;
+    readHomeState(url.searchParams);
     scrollToPanel();
   }
 
@@ -82,7 +83,10 @@
   ];
 
   // ---------------------------------------------------------------------------
-  // Home tab: search, quick filter, pagination (local state, not worth a URL).
+  // Home tab: search, quick filter, pagination. Mirrored into `?q=`, `?filter=`
+  // and `?page=` with replaceState, so opening a post and pressing back lands
+  // on the same filtered page without every keystroke or page flip becoming
+  // its own history entry.
   // ---------------------------------------------------------------------------
   let searchQuery = $state('');
   let homeFilterTag = $state('all');
@@ -112,15 +116,62 @@
     return filteredHomePosts.slice(start, start + POSTS_PER_PAGE);
   });
 
-  $effect(() => {
-    searchQuery;
-    homeFilterTag;
-    currentPage = 1;
+  const topTags = $derived(['all', ...data.tagsWithCount.slice(0, 8).map((t) => t.name.toLowerCase())]);
+
+  /** Adopt the home state from the query string, correcting invalid values. */
+  function readHomeState(params) {
+    searchQuery = params.get('q') ?? '';
+    const f = (params.get('filter') ?? 'all').toLowerCase();
+    homeFilterTag = topTags.includes(f) ? f : 'all';
+    const p = Number.parseInt(params.get('page') ?? '1', 10);
+    // totalPages is derived from the query and filter just set above.
+    currentPage = Number.isFinite(p) ? Math.min(Math.max(1, p), totalPages) : 1;
+  }
+
+  let urlSyncTimer;
+
+  /** Write the home state back to the URL without adding a history entry. */
+  function writeHomeState({ debounce = false } = {}) {
+    clearTimeout(urlSyncTimer);
+    urlSyncTimer = undefined;
+    const write = () => {
+      urlSyncTimer = undefined;
+      if (activeTab !== 'home') return;
+      const url = new URL(window.location.href);
+      url.search = '';
+      const q = searchQuery.trim();
+      if (q) url.searchParams.set('q', q);
+      if (homeFilterTag !== 'all') url.searchParams.set('filter', homeFilterTag);
+      if (currentPage > 1) url.searchParams.set('page', String(currentPage));
+      if (url.search === window.location.search) return;
+      replaceState(url.pathname + url.search, page.state);
+      search = url.search;
+    };
+    if (debounce) urlSyncTimer = setTimeout(write, 300);
+    else write();
+  }
+
+  // Leaving mid-debounce (typing, then opening a post): flush the pending sync
+  // while this page's history entry is still current, so back restores it.
+  beforeNavigate(() => {
+    if (urlSyncTimer) writeHomeState();
   });
+
+  function onSearchInput() {
+    currentPage = 1;
+    writeHomeState({ debounce: true });
+  }
+
+  function clearSearch() {
+    searchQuery = '';
+    currentPage = 1;
+    writeHomeState();
+  }
 
   function goToPage(p) {
     if (p < 1 || p > totalPages || p === currentPage) return;
     currentPage = p;
+    writeHomeState();
     scrollToPanel();
   }
 
@@ -128,9 +179,8 @@
     if (homeFilterTag === tag) return;
     homeFilterTag = tag;
     currentPage = 1;
+    writeHomeState();
   }
-
-  const topTags = $derived(['all', ...data.tagsWithCount.slice(0, 8).map((t) => t.name.toLowerCase())]);
 
   // ---------------------------------------------------------------------------
   // Category and tag views
@@ -165,10 +215,14 @@
   // ---------------------------------------------------------------------------
   onMount(() => {
     search = window.location.search;
+    readHomeState(new URLSearchParams(search));
     window.__lenis?.start();
     ctx = gsap.context(() => {});
 
-    const onPop = () => (search = window.location.search);
+    const onPop = () => {
+      search = window.location.search;
+      readHomeState(new URLSearchParams(search));
+    };
     window.addEventListener('popstate', onPop);
 
     function onKey(e) {
@@ -180,6 +234,8 @@
     }
     window.addEventListener('keydown', onKey);
     return () => {
+      // A pending search sync must not rewrite the URL of the next page.
+      clearTimeout(urlSyncTimer);
       window.removeEventListener('popstate', onPop);
       window.removeEventListener('keydown', onKey);
       ctx?.revert();
@@ -419,6 +475,7 @@
                   bind:this={searchInput}
                   type="search"
                   bind:value={searchQuery}
+                  oninput={onSearchInput}
                   placeholder="Search by title, topic or tech stack"
                   class="w-full rounded-none border px-3.5 py-2.5 font-mono text-base transition-colors sm:text-sm"
                   style="background-color: var(--blog-surface); border-color: var(--blog-border); color: var(--blog-text-primary);"
@@ -426,7 +483,7 @@
                 {#if searchQuery}
                   <button
                     type="button"
-                    onclick={() => (searchQuery = '')}
+                    onclick={clearSearch}
                     class="absolute right-3 top-2.5 cursor-pointer font-mono text-label uppercase hover:underline"
                     style="color: var(--blog-text-muted);"
                   >

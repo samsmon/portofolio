@@ -20,9 +20,15 @@
   );
 
   onNavigate((navigation) => {
+    // Back and forward must land where the visitor left off: SvelteKit restores
+    // the saved scroll position itself, so only fresh navigations reset to top.
+    const resetScroll = navigation.type !== 'popstate';
+
     if (!document.startViewTransition) {
-      window.scrollTo(0, 0);
-      window.__lenis?.scrollTo(0, { immediate: true });
+      if (resetScroll) {
+        window.scrollTo(0, 0);
+        window.__lenis?.scrollTo(0, { immediate: true });
+      }
       return;
     }
 
@@ -32,8 +38,10 @@
           resolve();
           await navigation.complete;
         } finally {
-          window.scrollTo(0, 0);
-          window.__lenis?.scrollTo(0, { immediate: true });
+          if (resetScroll) {
+            window.scrollTo(0, 0);
+            window.__lenis?.scrollTo(0, { immediate: true });
+          }
         }
       });
       // A transition is skipped by the browser when the tab is hidden or a
