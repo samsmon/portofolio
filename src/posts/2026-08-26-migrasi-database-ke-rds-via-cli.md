@@ -25,6 +25,12 @@ flowchart LR
     end
 ```
 
+![Arsitektur awal activity 179](/assets/img/posts/resource/migrate-to-rds-activity/starting-architecture.png)
+_Cafe VPC 10.200.0.0/20, di public subnet ada CLI Host dan CafeInstance yang ngejalanin app café plus database MariaDB lokal cafe_db._
+
+![Arsitektur akhir activity 179](/assets/img/posts/resource/migrate-to-rds-activity/final-architecture.png)
+_App café di CafeInstance sekarang pakai CafeDBInstance (RDS MariaDB) di private subnet di balik CafeDatabaseSG. Dua private subnet di dua AZ digabung jadi CafeDB Subnet Group._
+
 ## Alur Migrasinya
 
 ```mermaid

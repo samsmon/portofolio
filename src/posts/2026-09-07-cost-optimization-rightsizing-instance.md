@@ -47,10 +47,10 @@ Setelah instance nyala lagi dengan spek baru, website café dites, dan berjalan 
 
 Estimasi biaya dihitung pake [AWS Pricing Calculator](https://calculator.aws), yang enaknya nggak perlu bayar buat sekadar estimasi:
 
-- **Before**: `t2.small` (2 vCPU, 2 GB RAM) + EBS 40 GB (20 GB buat OS, 20 GB buat database yang sekarang udah nggak dipake).
+- **Before**: `t2.small` (1 vCPU, 2 GiB RAM) + EBS 40 GB (20 GB buat OS, 20 GB buat database yang sekarang udah nggak dipake).
 - **After**: `t2.micro` + EBS 20 GB.
 
-Hasilnya: penghematan sekitar **$9 per bulan untuk satu server**. Kelihatan kecil, tapi kalau dikali 10 atau 100 server dengan pola yang sama, jadi signifikan.
+Hasilnya: dari $35,50 jadi $25,18 per bulan, jadi hemat sekitar **$10 per bulan untuk satu server** (sekitar $124 setahun). Kelihatan kecil, tapi kalau dikali 10 atau 100 server dengan pola yang sama, jadi signifikan.
 
 ![Estimasi biaya sebelum optimasi](/assets/img/posts/resource/optimize-utilization-activity/pricing-before.png)
 _Sebelum: EC2 $20,79 per bulan plus RDS MariaDB $14,71, total $35,50 per bulan atau $426 setahun._
