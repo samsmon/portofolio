@@ -22,7 +22,7 @@ Cara bacanya:
 3. **Glosarium** di bagian bawah buat ngecek istilah yang lupa.
 4. Mau detail? Klik link di kolom "Baca lagi", langsung ke post aslinya.
 
-Buat persiapan ujian yang disusun ngikutin exam guide resmi per domain, ada dua post pendamping: [Persiapan Lengkap Ujian CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02) dan [Persiapan Lengkap Ujian AI Practitioner](/blog/persiapan-lengkap-ujian-aws-ai-practitioner-aif-c01).
+Buat persiapan ujian yang disusun ngikutin exam guide resmi per domain, ada dua post pendamping: [Persiapan Lengkap Ujian CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02) dan [Persiapan Lengkap Ujian AI Practitioner](/blog/persiapan-lengkap-ujian-aws-ai-practitioner-aif-c01). Buat ngafalin service satu per satu, ada [Kamus Service AWS](/blog/kamus-service-aws-fungsi-dan-kegunaannya) yang isinya 150-an service lengkap sama kegunaannya.
 
 > Kalau kolom "Baca lagi" nunjuk ke post [jebakan soal CCP](/blog/jebakan-soal-ccp-mock-exam-week-7), artinya service itu cuma muncul pas mock exam, nggak ada materi atau lab khususnya di kelas. Yang ditandai "exam guide" malah sama sekali nggak dibahas, tapi masuk daftar service resmi ujian.
 {: .prompt-tip }
@@ -264,7 +264,7 @@ Tiga jenis storage: **object** (S3, file utuh plus metadata), **block** (EBS, ka
 | **EFS** | File | File share buat Linux (NFS) | banyak EC2 akses barengan, multi-AZ, elastis | [EFS dan FSx](/blog/amazon-efs-fsx-file-storage) |
 | **FSx** | File | File system managed: Windows File Server (SMB), Lustre (HPC), NetApp ONTAP, OpenZFS | Windows, HPC | [EFS dan FSx](/blog/amazon-efs-fsx-file-storage) |
 | **Storage Gateway** | Hybrid | Jembatan storage on-premises ke cloud | hybrid storage, File/Volume/Tape Gateway | [Storage Gateway](/blog/aws-storage-gateway-hybrid) |
-| **Snow Family** | Transfer offline | Migrasi data raksasa lewat perangkat fisik | internet lambat, data petabyte, Snowball Edge bisa jalanin EC2 | [Snow Family](/blog/aws-snow-family-offline-transfer) |
+| **Snow Family** | Transfer offline | Migrasi data raksasa lewat perangkat fisik, udah nggak bisa dipesan customer baru sejak 7 November 2025 | internet lambat, data petabyte, Snowball Edge bisa jalanin EC2 | [Snow Family](/blog/aws-snow-family-offline-transfer) |
 | **DataSync** | Transfer online | Sinkronisasi data otomatis ke AWS | sinkron berkala lewat internet | [DataSync](/blog/aws-transfer-family-datasync) |
 | **Transfer Family** | Transfer online | SFTP, FTPS, FTP managed ke S3/EFS | partner kirim file pakai FTP | [Transfer Family](/blog/aws-transfer-family-datasync) |
 | **AWS Backup** | Backup | Backup terpusat banyak service | kebijakan backup lintas service | [jebakan soal](/blog/jebakan-soal-ccp-mock-exam-week-7) |
@@ -596,12 +596,15 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 
 ## Glosarium A sampai Z
 
+Istilah yang dipakai di post ini, di [kamus service AWS](/blog/kamus-service-aws-fungsi-dan-kegunaannya), dan di dua post persiapan ujian. Kalau nemu kata yang asing di salah satu post itu, cari di sini (Ctrl+F).
+
 ### A sampai C
 
 - **Access key**: pasangan ID dan secret buat akses AWS lewat CLI atau SDK. Secret cuma bisa dilihat sekali pas dibikin.
 - **ACU (Aurora Capacity Unit)**: satuan kapasitas Aurora Serverless, gabungan CPU dan RAM.
 - **Agentic AI**: AI yang nggak cuma jawab, tapi bisa ngerencanain langkah, pakai tools, dan ambil aksi sendiri.
 - **AMI (Amazon Machine Image)**: template buat launch EC2, isinya OS plus software. Scope-nya region.
+- **Anycast**: satu alamat IP yang sama diumumin dari banyak lokasi, user otomatis diarahin ke lokasi terdekat. Dipakai AWS Global Accelerator.
 - **API**: cara program ngobrol sama program lain lewat request dan response.
 - **ARN (Amazon Resource Name)**: "alamat" unik tiap resource AWS.
 - **Asymmetric key**: sepasang kunci, public key buat enkripsi, private key buat dekripsi.
@@ -609,8 +612,10 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Auto Scaling group**: kumpulan instance yang jumlahnya naik-turun otomatis antara min dan max.
 - **Availability Zone (AZ)**: satu atau lebih data center terisolasi di dalam region.
 - **Bastion host**: server di public subnet yang jadi satu-satunya pintu SSH ke private subnet.
+- **BI (Business Intelligence)**: ngolah data bisnis jadi laporan dan dashboard buat bantu ambil keputusan (Amazon Quick Sight).
 - **Bias (data)**: data yang nggak mewakili kondisi sebenarnya, bikin model berat sebelah.
 - **Block storage**: storage yang dibagi jadi blok kayak hard disk (EBS, instance store).
+- **Blue/green deployment**: versi baru (green) disiapin di samping versi lama (blue), terus traffic dipindah sekaligus. Kalau ada masalah, tinggal balik ke blue.
 - **Bucket**: wadah objek di S3. Namanya unik secara global.
 - **BYOL (Bring Your Own License)**: pakai lisensi software yang udah dibeli sendiri di AWS.
 - **CDN (Content Delivery Network)**: jaringan server cache di dekat user (CloudFront).
@@ -620,12 +625,15 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **CI/CD**: continuous integration dan continuous delivery, alur otomatis dari commit kode sampe deploy.
 - **CIA triad**: confidentiality, integrity, availability. Tiga pilar security.
 - **CIDR**: notasi rentang IP, contoh `10.0.0.0/16`. Angka di belakang garis miring makin besar, rentangnya makin kecil.
+- **Clickstream**: jejak klik dan aktivitas user di website atau aplikasi, biasanya dialirin real-time buat dianalisa (Kinesis).
 - **Clustering**: ngelompokin data tanpa label berdasarkan kemiripan.
 - **Consolidated billing**: satu tagihan buat banyak account di Organizations.
 - **Container**: paket aplikasi plus dependensinya yang jalan di atas satu OS bareng container lain.
 - **Context engineering**: ngatur apa aja yang masuk ke context window model biar relevan dan hemat token.
 - **Context window**: batas jumlah token yang bisa "diingat" model dalam satu kali proses.
 - **Cosine similarity**: cara ngukur kemiripan dua vector dari sudutnya.
+- **Crawler**: fitur AWS Glue yang otomatis nyari data dan nyatet strukturnya (skema) ke Data Catalog.
+- **CVE (Common Vulnerabilities and Exposures)**: nomor ID standar buat kerentanan software yang udah diketahui publik. Inspector nyari CVE di resource kita.
 
 ### D sampai F
 
@@ -638,8 +646,10 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Diffusion model**: model generatif yang bikin gambar dari noise acak yang dibersihin bertahap.
 - **Disaster recovery (DR)**: strategi mulihin sistem setelah bencana besar.
 - **Drift**: di CloudFormation, kondisi resource yang udah nggak sama dengan template karena diedit manual. Di ML, performa model yang turun karena data di dunia nyata berubah.
+- **Durability**: seberapa kecil kemungkinan data hilang. S3 punya durability 99,999999999%. Beda sama availability, yang ngukur seberapa sering data bisa diakses.
 - **Edge location**: titik cache dekat user buat CloudFront dan Route 53.
 - **Egress / ingress**: traffic keluar / masuk. Ingress ke AWS gratis, egress ke internet bayar.
+- **Elastic (di nama service)**: tanda resource-nya bisa digedein, dikecilin, atau dipindah sesuai kebutuhan. Contohnya Elastic Compute Cloud (EC2), Elastic IP, Elastic Load Balancing, Elastic Beanstalk.
 - **Elasticity**: kemampuan nambah dan ngurangin resource otomatis sesuai beban.
 - **Embedding**: proses ngubah teks, gambar, atau data lain jadi vector.
 - **Encryption at rest / in transit**: enkripsi data yang lagi disimpan / lagi dikirim.
@@ -648,8 +658,10 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Explicit deny**: rule deny yang ditulis jelas di policy. Selalu menang lawan allow.
 - **FaaS (Function as a Service)**: nulis fungsi doang, server diurus penyedia (Lambda).
 - **Failover**: pindah otomatis ke cadangan pas yang utama rusak.
+- **Fan-out**: satu pesan disebar ke banyak penerima sekaligus, misal satu notifikasi SNS diterusin ke beberapa antrean SQS dan Lambda.
 - **Fault tolerance**: tetep jalan dengan performa penuh walau ada komponen yang rusak.
 - **Feature engineering**: ngolah data mentah jadi fitur yang siap dipakai model.
+- **Federasi (federated identity)**: login ke AWS pakai identitas dari sistem lain (Active Directory perusahaan, Google) tanpa bikin IAM user baru.
 - **Few-shot / zero-shot prompting**: kasih beberapa contoh / tanpa contoh di prompt.
 - **Fine-tuning**: training lanjutan model yang udah jadi pakai data spesifik, bobot modelnya berubah.
 - **Foundation model (FM)**: model raksasa hasil pretraining yang bisa dipakai buat banyak tugas.
@@ -659,20 +671,26 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Generalisasi**: kemampuan model jawab bener pas ketemu data yang belum pernah dilihat.
 - **Generative AI**: AI yang bisa bikin konten baru: teks, gambar, audio, video, kode.
 - **GIGO**: garbage in, garbage out. Data sampah menghasilkan model sampah.
-- **Guardrail**: filter di depan dan belakang LLM buat ngeblok input dan output berbahaya.
+- **GraphQL**: bahasa query API yang ngebolehin client minta data persis yang dibutuhin dalam satu request. Di AWS lewat AppSync.
+- **Guardrail**: di AI, filter di depan dan belakang LLM buat ngeblok input dan output berbahaya (Bedrock Guardrails). Di Control Tower, aturan preventive dan detective yang otomatis dipasang ke semua account (sekarang disebut controls).
 - **Hallucination**: model ngasih jawaban yang kedengeran yakin tapi salah atau ngarang.
 - **High availability (HA)**: sistem tetep bisa diakses walau ada yang rusak, biasanya pakai multi-AZ.
 - **Horizontal scaling**: nambah jumlah server (scale out/in).
+- **HPC (High Performance Computing)**: komputasi berat yang butuh banyak server kerja bareng, misal simulasi ilmiah atau render (FSx for Lustre, AWS Batch).
 - **HPO / HPT**: hyperparameter optimization / tuning, nyari setting algoritma terbaik.
+- **HSM (Hardware Security Module)**: perangkat keras khusus buat nyimpen dan ngolah kunci enkripsi dengan aman (CloudHSM).
+- **Hub-and-spoke**: pola jaringan dengan satu pusat (hub) yang nyambung ke banyak cabang (spoke), kayak Transit Gateway.
 - **Hybrid cloud**: sebagian infrastruktur di cloud, sebagian on-premises.
 - **IaaS**: infrastructure as a service. Sewa server mentah, OS ke atas diurus sendiri (EC2).
 - **IaC (Infrastructure as Code)**: infrastruktur didefinisiin pakai template atau kode (CloudFormation, CDK).
 - **Implicit deny**: default IAM. Kalau nggak ada yang ngizinin, otomatis ditolak.
 - **Inference**: proses model ngeluarin prediksi atau jawaban dari input baru.
+- **Instance**: satu virtual machine EC2. Spesifikasinya ditentuin sama instance type (misal `t3.micro`).
 - **Instance profile**: "wadah" yang nempelin IAM role ke EC2.
 - **Instance store**: disk sementara yang nempel fisik ke host EC2, datanya hilang pas stop.
 - **Intrinsic function**: fungsi bawaan CloudFormation kayak `!Ref`, `!GetAtt`, `!Select`.
 - **IOPS**: jumlah operasi baca-tulis per detik, ukuran performa disk.
+- **ISV (Independent Software Vendor)**: perusahaan yang bikin dan jual software, bagian dari AWS Partner Network. Produknya biasa dijual di AWS Marketplace.
 
 ### J sampai M
 
@@ -681,26 +699,32 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Key pair**: pasangan kunci SSH buat login ke EC2 Linux.
 - **Knowledge base**: kumpulan dokumen yang jadi "contekan" model di RAG.
 - **Knowledge cut-off**: tanggal terakhir data training model.
+- **Landing zone**: lingkungan multi-account AWS yang udah disiapin rapi dan aman dari awal (account, OU, aturan, logging), bisa dibikin otomatis pakai Control Tower.
 - **Latency**: jeda waktu dari request sampe response.
 - **Launch template**: bungkusan setting buat launch instance (AMI, tipe, security group, user data).
+- **Layer 4 / layer 7**: lapisan di model jaringan OSI. Layer 4 ngurus koneksi TCP/UDP dan port (Network Load Balancer), layer 7 ngerti isi request aplikasi kayak URL dan header HTTP (Application Load Balancer, WAF).
 - **Least privilege**: kasih izin seminimal mungkin yang cukup buat kerja.
 - **Lifecycle hook**: jeda di Auto Scaling buat jalanin aksi custom sebelum instance masuk layanan atau dimatiin.
 - **Lifecycle policy**: aturan otomatis mindahin atau hapus objek S3 berdasarkan umur.
 - **LLM (Large Language Model)**: foundation model yang spesialis teks.
 - **Loose coupling**: komponen saling terhubung tapi nggak saling bergantung langsung.
+- **Managed service**: service yang infrastrukturnya (server, patch, backup, scaling) diurus AWS, kita tinggal pakai. Makin managed, makin sedikit tanggung jawab kita di shared responsibility model.
 - **MCP (Model Context Protocol)**: protokol standar terbuka buat nyambungin model atau agent AI ke tools dan sumber data luar.
 - **MFA (multi-factor authentication)**: login pakai dua faktor, misal password plus kode dari aplikasi.
 - **Microservice**: aplikasi dipecah jadi service-service kecil yang bisa di-deploy sendiri-sendiri.
 - **Multi-AZ**: resource disebar ke beberapa AZ biar tahan kalau satu AZ mati.
 - **Multimodal**: model yang bisa nerima atau ngeluarin lebih dari satu jenis data (teks, gambar, suara).
+- **Multi-tenant / single-tenant**: hardware atau resource dipakai bareng banyak customer / dipakai satu customer doang (misal CloudHSM, Dedicated Host).
 
 ### N sampai P
 
 - **NACL (Network ACL)**: firewall level subnet, stateless, bisa allow dan deny.
 - **NAT gateway**: jalur keluar ke internet buat private subnet.
+- **NFS / SMB / iSCSI**: protokol buat akses storage lewat jaringan. NFS buat file di Linux (EFS), SMB buat file di Windows (FSx for Windows File Server), iSCSI buat block storage (Volume Gateway).
 - **NoSQL**: database non-relasional yang skemanya fleksibel (DynamoDB).
 - **Object storage**: storage yang nyimpen file sebagai objek utuh plus metadata dan key (S3).
 - **OLTP / OLAP**: database transaksi harian / database analitik.
+- **On-demand**: resource bisa dipakai kapan aja tanpa pesen di depan. Di harga EC2, On-Demand artinya bayar per pemakaian tanpa komitmen.
 - **On-premises**: infrastruktur di data center sendiri.
 - **OU (Organizational Unit)**: grup account di dalam Organizations.
 - **Overfitting**: model ngapalin data training, jelek di data baru.
@@ -713,6 +737,8 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **Principal**: siapa yang diizinin atau ditolak di policy.
 - **Prompt engineering**: nyusun instruksi ke model biar jawabannya sesuai kebutuhan.
 - **Prompt injection**: nyusupin instruksi jahat ke input biar model ngelanggar aturan aslinya.
+- **Provisioning**: proses nyiapin atau bikin resource (server, database, jaringan) biar siap dipakai.
+- **Pub/sub (publish/subscribe)**: pola pesan di mana pengirim (publisher) kirim ke satu topic, dan semua yang langganan (subscriber) nerima salinannya. Contohnya SNS.
 
 ### Q sampai S
 
@@ -732,6 +758,7 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **RPO / RTO**: berapa banyak data yang boleh hilang / berapa lama sistem boleh down pas bencana.
 - **SaaS**: software as a service. Tinggal pakai.
 - **Savings Plans**: diskon dengan komitmen nominal per jam selama 1 atau 3 tahun.
+- **Scalability**: kemampuan sistem nangani beban yang makin besar dengan nambah resource. Beda tipis sama elasticity: scalability soal bisa tumbuh, elasticity soal otomatis naik-turun sesuai beban.
 - **SCP (Service Control Policy)**: batas maksimal permission buat account di Organizations.
 - **Security group**: firewall level instance, stateful, cuma allow.
 - **Serverless**: server tetep ada, tapi sepenuhnya diurus AWS. Bayar sesuai pemakaian.
@@ -739,18 +766,23 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **SLA**: janji tingkat layanan, biasanya dalam persen uptime.
 - **Snapshot**: backup EBS di satu titik waktu. Yang pertama full, berikutnya incremental.
 - **Spot Instance**: kapasitas EC2 nganggur yang dijual murah, bisa ditarik kapan aja.
+- **SQL injection / XSS**: serangan lewat input aplikasi. SQL injection nyelipin perintah SQL biar database ngejalanin perintah penyerang, XSS (cross-site scripting) nyelipin script jahat biar kejalan di browser korban. Dua-duanya dilawan pakai WAF.
+- **SSO (Single Sign-On)**: sekali login bisa masuk ke banyak account atau aplikasi. Di AWS lewat IAM Identity Center.
 - **Stack**: kumpulan resource hasil deploy satu template CloudFormation.
 - **Stateful / stateless**: inget koneksi (response otomatis diizinin) / nggak inget (dua arah harus diatur).
 - **Supervised learning**: belajar dari data berlabel.
 - **Symmetric key**: satu kunci buat enkripsi dan dekripsi.
+- **System integrator (SI)**: perusahaan konsultan yang bantu implementasi dan integrasi sistem di AWS, bagian dari AWS Partner Network.
 
 ### T sampai Z
 
 - **Tag**: label key-value di resource, gratis, buat identifikasi, otomasi, dan pecah biaya.
+- **TAM (Technical Account Manager)**: kontak teknis khusus dari AWS yang bantu arsitektur dan operasional, didapet di support plan Enterprise ke atas.
 - **Target group**: kumpulan target (instance, IP, Lambda) di belakang load balancer.
 - **TCO (Total Cost of Ownership)**: total biaya kepemilikan, dipake buat bandingin on-premises vs cloud.
 - **Temperature**: parameter inference yang ngatur seberapa acak jawaban model.
 - **Throttling**: ngerem jumlah request biar sistem nggak tumbang.
+- **Throughput**: jumlah data atau request yang bisa diproses per satuan waktu, misal MB per detik atau request per detik.
 - **Token**: potongan teks yang diproses model, dasar tagihan AI.
 - **Top-p / top-k**: parameter inference yang ngebatesin kandidat kata yang dipertimbangkan model.
 - **Transformer**: arsitektur neural network di balik LLM.
@@ -766,6 +798,7 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - **VPC endpoint**: akses service AWS dari VPC tanpa lewat internet.
 - **VPC peering**: koneksi langsung antar 2 VPC, nggak transitif.
 - **Warmup**: masa tunggu instance baru di Auto Scaling sebelum metric-nya dihitung.
+- **Workload**: sekumpulan resource dan kode yang bareng-bareng ngejalanin satu fungsi bisnis, misal satu aplikasi e-commerce lengkap sama database-nya.
 - **WORM**: write once read many, data yang nggak bisa diubah (S3 Object Lock, Glacier Vault Lock).
 - **Zero spend budget**: budget $0 di AWS Budgets, langsung ngasih tau begitu ada biaya sekecil apapun.
 
@@ -776,7 +809,7 @@ Fitur SageMaker yang disebut di kelas: **Ground Truth** (labeling data), **JumpS
 - Shared responsibility geser tergantung service: makin managed, makin banyak yang diurus AWS.
 - Harga EC2 termurah: Spot, lalu Savings Plans/RI, lalu On-Demand, lalu Dedicated.
 - Buat AI: bedain SageMaker AI (bikin model sendiri) vs Bedrock (pakai foundation model), dan prompt engineering vs RAG vs fine-tuning.
-- Lanjut ke post persiapan [CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02) dan [AI Practitioner](/blog/persiapan-lengkap-ujian-aws-ai-practitioner-aif-c01) buat checklist per domain ujian.
+- Lanjut ke post persiapan [CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02) dan [AI Practitioner](/blog/persiapan-lengkap-ujian-aws-ai-practitioner-aif-c01) buat checklist per domain ujian, dan [Kamus Service AWS](/blog/kamus-service-aws-fungsi-dan-kegunaannya) buat ngafalin service.
 
 ## Referensi Resmi
 

@@ -15,7 +15,7 @@ Voucher ujian dari re/Start udah di tangan, dan pesan instruktur jelas: **langsu
 
 Bedanya sama [rangkuman lengkap re/Start](/blog/rangkuman-aws-restart-ccp-ai-practitioner): rangkuman itu disusun per kategori service (apa yang dipelajari), sedangkan post ini disusun ngikutin **exam guide resmi CLF-C02**, per domain dan per task statement (apa yang diuji). Tiap poin ada link ke post aslinya kalau mau baca detail. Materi yang ada di exam guide tapi **nggak dibahas di kelas** juga aku tulis, biar nggak kaget pas ujian.
 
-Pasangannya: [post jebakan soal dari 4 hari mock exam](/blog/jebakan-soal-ccp-mock-exam-week-7) dan [rangkuman konsep CCP](/blog/persiapan-ujian-ccp-rangkuman-konsep).
+Pasangannya: [post jebakan soal dari 4 hari mock exam](/blog/jebakan-soal-ccp-mock-exam-week-7), [rangkuman konsep CCP](/blog/persiapan-ujian-ccp-rangkuman-konsep), dan [kamus service AWS](/blog/kamus-service-aws-fungsi-dan-kegunaannya). Nemu istilah yang asing? Cek [glosarium](/blog/rangkuman-aws-restart-ccp-ai-practitioner#glosarium-a-sampai-z).
 
 ## Kenalan Sama Ujiannya
 

@@ -15,7 +15,7 @@ Materi AI di re/Start itu cuma 3 hari teori ([9](/blog/aws-restart-week6-hari-3-
 
 Jadi post ini kerjanya dua: **nyambungin** materi kelas ke tiap task statement exam guide, dan **nambal** yang belum dibahas. Bagian yang nggak ada di kelas aku tandain "tambahan di luar kelas" biar jelas mana yang harus dipelajarin dari nol.
 
-Saran instruktur: **beresin CCP dulu**, baru AI Practitioner. Banyak konsep dasar (IAM, S3, shared responsibility, pricing) kepake di dua-duanya. Pasangan post ini: [rangkuman lengkap re/Start](/blog/rangkuman-aws-restart-ccp-ai-practitioner) dan [persiapan CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02).
+Saran instruktur: **beresin CCP dulu**, baru AI Practitioner. Banyak konsep dasar (IAM, S3, shared responsibility, pricing) kepake di dua-duanya. Pasangan post ini: [rangkuman lengkap re/Start](/blog/rangkuman-aws-restart-ccp-ai-practitioner), [persiapan CCP](/blog/persiapan-lengkap-ujian-aws-cloud-practitioner-clf-c02), dan [kamus service AWS](/blog/kamus-service-aws-fungsi-dan-kegunaannya). Istilah AI kayak token, embedding, RAG, atau fine-tuning ada penjelasan singkatnya di [glosarium](/blog/rangkuman-aws-restart-ccp-ai-practitioner#glosarium-a-sampai-z).
 
 ## Kenalan Sama Ujiannya
 
