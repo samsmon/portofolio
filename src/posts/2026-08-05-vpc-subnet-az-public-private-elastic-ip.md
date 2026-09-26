@@ -88,12 +88,13 @@ _Elastic IP 54.244.33.245 dipasang ke test instance lewat Actions, Associate Ela
 
 Poin pentingnya:
 - Kalau instance yang nempel Elastic IP di-delete, IP-nya **nggak ikut hilang**, cuma "kecabut", dan masih bisa dipasang lagi ke instance lain.
-- Elastic IP itu **berbayar**, dan justru dikenain biaya kalau **nggak dipakai** (nggak nempel ke instance manapun), bukan cuma pas dipakai. Ini beda dari IP public dinamis yang gratis.
+- Elastic IP itu **berbayar**, termasuk pas **nggak dipakai** (nggak nempel ke instance manapun). Jadi kalau udah nggak butuh, jangan cuma di-disassociate, tapi di-**release**.
+- Update soal biaya: sejak Februari 2024, AWS nagih **semua IPv4 public**, termasuk IP public dinamis yang auto-assign, sekitar $0,005 per jam per IP (kurang lebih $3,6 per bulan). Jadi IP public dinamis juga udah nggak gratis. Pengecualiannya cuma kuota free tier 750 jam per bulan di 12 bulan pertama akun.
 
 | | IP Public Dinamis (default) | Elastic IP (statis) |
 |---|---|---|
 | Berubah saat stop/start? | Ya, dapat IP baru | Tidak, tetap sama |
-| Biaya | Gratis | Berbayar, bahkan saat idle nggak dipakai |
+| Biaya | Berbayar selama nempel ke instance (sejak Feb 2024), hilang sendiri pas instance di-stop | Berbayar terus selama dialokasikan, dipakai atau idle, sampai di-release |
 | Cocok buat | Instance yang IP-nya nggak krusial dicatat di tempat lain | Server yang butuh IP tetap (DNS, whitelist firewall eksternal, dst) |
 
 ## Yang Perlu Diinget
@@ -102,7 +103,7 @@ Poin pentingnya:
 - Jangan pernah taruh database di public subnet, itu prinsip dasar desain arsitektur yang aman.
 - SSH ke instance tanpa IP public tetap bisa, asal dilakukan dari dalam network yang sama pakai IP private.
 - Reboot instance nggak mengubah IP public, tapi stop-lalu-start pasti dapat IP public baru.
-- Elastic IP itu solusi buat IP public permanen, tapi berbayar bahkan saat idle, beda dari IP dinamis default yang gratis.
+- Elastic IP itu solusi buat IP public permanen, tapi berbayar bahkan saat idle. IP public dinamis juga berbayar sejak Februari 2024, bedanya dia ikut hilang pas instance di-stop.
 
 ## Referensi Resmi
 

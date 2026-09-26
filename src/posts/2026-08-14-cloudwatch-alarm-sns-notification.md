@@ -62,6 +62,12 @@ Notification: pilih SNS topic yang udah dibikin
 
 Alarm ini bakal berubah status jadi **ALARM** begitu CPU rata-rata dalam periode 1 menit itu ngelewatin 60%, dan begitu status berubah, SNS otomatis ngirim notifikasi ke semua subscriber.
 
+![Pilih metric CPUUtilization](/assets/img/posts/resource/monitor-ec2-instance-lab/cpu-metric-select.png)
+_Daftar Per-Instance Metrics buat instance "Stress Test", yang dicentang CPUUtilization, di antara StatusCheckFailed, NetworkPacketsIn/Out, dan NetworkIn._
+
+![Konfigurasi alarm CPU di atas 60 persen](/assets/img/posts/resource/monitor-ec2-instance-lab/alarm-config.png)
+_Namespace AWS/EC2, statistic Average, period 1 minute, threshold Static, Greater than 60. Garis merah di grafik itu batasnya, alarm bunyi begitu garis biru nembus ke atasnya._
+
 ## Stress Test: Buktiin Alarm-nya Jalan
 
 Biar alarm-nya beneran kepicu, CPU instance dipaksa naik pake tools `stress`:
@@ -72,6 +78,9 @@ stress --cpu 8 --timeout 600
 ```
 
 Command ini bikin 8 proses yang sengaja ngebebanin CPU selama 600 detik (10 menit). Setelah beberapa saat, alarm status berubah dari `OK` ke `In alarm`, dan email notifikasi beneran masuk ke inbox.
+
+![Output stress test di lab](/assets/img/posts/resource/monitor-ec2-instance-lab/stress-test-output.png)
+_Versi di instruksi lab: `sudo stress --cpu 10 -v --timeout 400s`, yang nge-fork 10 worker hogcpu. Angkanya beda dari yang di atas, tapi efeknya sama, CPU dipaksa mentok 100%._
 
 ## Bukan Real-Time
 

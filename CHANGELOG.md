@@ -13,6 +13,8 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ### Changed
 - **Secret Source Minggu 1 AWS re/Start (`src/posts/`):** 15 gambar resmi yang udah ada di `static/assets/img/posts/resource/` dipasang sebagai toggle "Secret Source" di 4 post: `ec2-billing-traps-launch-lab` (1, lab 11), `vpc-subnet-az-public-private-elastic-ip` (5, lab 261 dan 262), `nat-gateway-network-troubleshooting-tools` (5, lab 265), `web-server-troubleshooting-systemctl-https` (4, lab 266). Screenshot navigasi console (menu, dropdown) sengaja nggak dipasang.
+- **Secret Source Minggu 2 AWS re/Start (`src/posts/2026-08-14-cloudwatch-alarm-sns-notification.md`):** 3 screenshot lab 281 (pilih metric, konfigurasi alarm, output stress) dipasang. Post Minggu 2 lainnya belum bisa dikasih gambar karena gambar lab database dan security rusak (error session Vocareum).
+- **Koreksi biaya IPv4 (`src/posts/2026-08-05-vpc-subnet-az-public-private-elastic-ip.md`):** IP public dinamis nggak lagi ditulis gratis; sejak Februari 2024 AWS nagih semua IPv4 public (sekitar $0,005 per jam), plus catatan release Elastic IP yang nganggur.
 
 ## [Unreleased] - 2026-09-26
 
