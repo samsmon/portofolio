@@ -17,6 +17,15 @@ Kalau bikin resource manual (klik-klik di console) satu-satu, itu capek dan rawa
 
 Tantangan deployment cloud tanpa IaC: rollout ke banyak lokasi dengan setting sama, rollback kalau ada error, dokumentasi yang gampang lolos nggak ke-update, dan strategi update di live server.
 
+![Tantangan deployment di cloud](/assets/img/posts/resource/aws-cloudformation/cloud-deployment-challenges.png)
+_Tujuh masalah klasik kalau infrastruktur dibangun manual, yang jadi alasan IaC dibutuhin._
+
+![Resource provisioning](/assets/img/posts/resource/infrastructure-as-code/resource-provisioning.png)
+_Provisioning resource sebagai proses yang bisa diulang, dikerjain pakai AWS CloudFormation._
+
+![Configuration management](/assets/img/posts/resource/infrastructure-as-code/configuration-management.png)
+_Perubahan bertahap di instance yang udah jalan, dikerjain pakai AWS Systems Manager dan AWS OpsWorks for Chef Automate._
+
 ## JSON: Bahasa Deklaratif buat CloudFormation
 
 JSON (JavaScript Object Notation) itu **bukan bahasa pemrograman**, tapi format buat notasi objek (key-value). Sering disalahpahami sebagai "bahasa pemrogramannya JavaScript" padahal beda konsep.
@@ -35,6 +44,12 @@ Struktur dasarnya: `{}` (brace/kurung kurawal) sebagai kontainer objek, `[]` (br
 
 **Kelebihan JSON**: ringan, gampang di-parsing, cocok banget buat API. **Kekurangan**: banyak tanda kurung dan kutip, jadi capek dibaca/ditulis manual, apalagi buat template infrastruktur yang panjang.
 
+![Representasi data tabel ke JSON](/assets/img/posts/resource/json-and-yaml/representation-of-data.png)
+_Tabel siswa, lokasi, dan olahraga favorit ditulis ulang jadi array of objects di JSON._
+
+![Contoh array di JSON](/assets/img/posts/resource/json-and-yaml/json-arrays-dessert.png)
+_Kue cokelat dengan bahan tambahan mint dan blueberry, disimpan sebagai array di dalam object._
+
 ## YAML: Alternatif yang Lebih Enak Dibaca
 
 YAML (YAML Ain't Markup Language) itu format serialisasi data lain, tujuannya jauh lebih human-readable dibanding JSON.
@@ -49,6 +64,9 @@ cake:
 **Kelebihan YAML**: minim tanda kurung, list pakai tanda hypen (`-`), string nggak perlu diberi tanda kutip (kecuali kasus tertentu). **Kekurangan**: sensitif banget sama indentasi (spasi vs tab), salah indentasi dikit langsung error, mirip sensitivitasnya sama Python.
 
 Standar umum: pakai **2 spasi** buat indentasi (bukan tab). Ini alasan kenapa CloudFormation template kebanyakan orang lebih milih YAML dibanding JSON, karena lebih gampang dibaca dan ditulis meskipun secara fungsi sama-sama bisa dipake.
+
+![YAML dibanding JSON](/assets/img/posts/resource/json-and-yaml/yaml-versus-json.png)
+_Kelebihan masing-masing format dari slide._
 
 ## Yang Perlu Diinget
 

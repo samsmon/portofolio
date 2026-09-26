@@ -26,6 +26,9 @@ flowchart TD
     E --> F["Root cause: typo 'http' bukan 'httpd'"]
 ```
 
+![Arsitektur activity 191](/assets/img/posts/resource/troubleshoot-cloudformation-activity/architecture.png)
+_Client SSH ke CLI Host, yang pakai AWS CLI dan template CloudFormation buat bikin stack berisi Lab VPC, security group, Web Server EC2 dengan Apache, dan bucket S3._
+
 ### Cara Nyari Root Cause
 
 1. **`describe-stack-events`**, cari event dengan status `CREATE_FAILED`, ternyata yang gagal itu resource `WaitCondition`.
@@ -34,6 +37,9 @@ flowchart TD
 4. Ketemu baris: `yum install http` → `nothing to do` (paket bernama `http` nggak ada, harusnya `httpd`).
 
 **Root cause**: typo di user data, nulis `http` padahal harusnya `httpd` (paket Apache). Satu huruf doang, tapi bikin seluruh stack gagal.
+
+![Urutan troubleshooting CloudFormation](/assets/img/posts/resource/troubleshooting-cloudformation/troubleshooting-approach.png)
+_Mulai dari CloudFormation Troubleshooting Guide, terus baca pesan error, baru turun ke file log._
 
 ### Fix dan Redeploy
 

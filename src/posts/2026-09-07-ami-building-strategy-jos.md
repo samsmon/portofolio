@@ -27,6 +27,12 @@ flowchart LR
 
 Hybrid AMI ada di tengah: OS + runtime udah matang, tapi aplikasinya dipisah dan di-deploy terpisah.
 
+![Custom AMI sebagai base configuration](/assets/img/posts/resource/ami-building-strategy/custom-amis-base-configuration.png)
+_Install tools internal dan paket security di instance yang jalan, bikin AMI dari situ, terus launch instance baru dari AMI itu plus user data._
+
+![Konfigurasi instance saat boot](/assets/img/posts/resource/ami-building-strategy/configure-at-boot-time.png)
+_Spektrum dari full AMI, dua jenis hybrid AMI, sampai JeOS AMI: makin ke kanan makin fleksibel, tapi makin banyak yang dikonfigurasi pas boot._
+
 ## Kenapa AMI Nggak Gratis
 
 Bikin AMI itu **berbayar**, karena di baliknya nyimpen snapshot di S3. Makin gede image-nya (misal 8 GB, 20 GB), makin gede juga biayanya per bulan. Makanya penting punya strategi retention buat hapus AMI lama yang udah nggak dipake.
@@ -42,6 +48,9 @@ Buat bikin AMI Windows, ada proses **Sysprep** (System Preparation), semacam "dr
 ## Launch Template: Recap
 
 Launch template itu paket konfigurasi (AMI, instance type, subnet, key pair, dll) yang dipake berulang buat launch instance konsisten. Bisa punya banyak versi, dan salah satu versi bisa di-set jadi **default** (biasanya versi yang udah paling matang/stabil, biar nggak bikin masalah pas production).
+
+![Versi launch template](/assets/img/posts/resource/ec2-launch-templates/launch-template-versions.png)
+_Versi 1 pakai t2.micro, ami-1a2b, subnet-1111, key-pair-1. Versi 2 nambah sg-2222. Versi 3 ganti ke t2.medium, ami-3c4d, dan sg-3333._
 
 ## Yang Perlu Diinget
 

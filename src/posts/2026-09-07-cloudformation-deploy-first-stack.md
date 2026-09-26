@@ -25,6 +25,12 @@ flowchart LR
     Stack -->|"delete"| Deleted["Semua resource terhapus"]
 ```
 
+![Apa itu AWS CloudFormation](/assets/img/posts/resource/aws-cloudformation/aws-cloudformation.png)
+_CloudFormation memodelkan dan nge-provision infrastruktur lewat template, stack, dan change set._
+
+![Terminologi CloudFormation](/assets/img/posts/resource/aws-cloudformation/terminology.png)
+_Template dipakai buat create, update, atau delete stack, dan stack itu yang create, update, atau delete resource AWS-nya (DynamoDB, instance, RDS di VPC, S3, Glacier)._
+
 ## Anatomi Template
 
 - **Parameters**: variabel input yang bisa diubah tiap deploy/update (misal CIDR block, key pair name).
@@ -59,6 +65,9 @@ Resources:
       VpcId: !Ref LabVPC
 ```
 
+![Struktur template CloudFormation](/assets/img/posts/resource/aws-cloudformation/template-structure.png)
+_Bagian Parameters, Mappings, Resources (termasuk EC2 instance, CloudFormation Init, WaitCondition dan handle-nya), dan Outputs._
+
 ### `!Ref`: Reference, Bukan Hardcode
 
 `!Ref` dipake buat ngerefer ke parameter atau resource lain di template. Efeknya: kalau nilai parameter diubah, semua tempat yang ngerefer ke situ otomatis ikut berubah, nggak perlu edit manual di banyak tempat (soft-coding).
@@ -73,6 +82,9 @@ Lewat console: **CloudFormation → Create Stack → upload template → isi par
 
 Setelah stack `CREATE_COMPLETE`, semua resource yang dibuat otomatis dapet **tag CloudFormation** (nama stack-nya), jadi gampang dibedain mana resource yang dibuat manual vs lewat CloudFormation.
 
+![Stack task 1 lab 190](/assets/img/posts/resource/cloudformation-automation-lab/task1-vpc.png)
+_Lab VPC 10.0.0.0/16 dengan public subnet 10.0.0.0/24, internet gateway, dan public route table (local plus 0.0.0.0/0 ke IGW)._
+
 ## Update Stack: Nambah Resource
 
 Kalau butuh nambah resource (misal S3 bucket), template-nya di-edit (tambahin resource baru), terus **update stack** dengan template baru itu. Ada 2 opsi: langsung update, atau lewat change set dulu buat preview perubahannya.
@@ -82,6 +94,9 @@ flowchart LR
     Template1["Template v1<br/>(VPC + IGW + SG)"] -->|"deploy"| Stack1["Stack CREATE_COMPLETE"]
     Template2["Template v2<br/>(+ S3 bucket)"] -->|"update stack"| Stack2["Stack UPDATE_COMPLETE"]
 ```
+
+![Change set CloudFormation](/assets/img/posts/resource/aws-cloudformation/change-sets.png)
+_Bikin change set dari stack asli, cek isinya dulu, boleh bikin lebih dari satu, baru di-execute buat update stack._
 
 ## Nambah EC2 Instance: Pakai Parameter Store buat AMI ID
 

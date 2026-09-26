@@ -17,6 +17,9 @@ Lanjutan dari [lab CloudFormation pertama](/blog/cloudformation-deploy-first-sta
 
 Selain `Default`, parameter bisa punya `AllowedValues`, daftar nilai yang **cuma boleh** dipilih dari situ, selain itu error. Ini berguna buat batasin input biar nggak sembarangan (misal instance type cuma boleh `t2.micro` atau `t3.micro`, nggak boleh yang lain).
 
+![Definisi parameter di template](/assets/img/posts/resource/aws-cloudformation/define-parameters.png)
+_Contoh parameter VPCCIDR lengkap dengan Description, Type, Default, dan AllowedValues._
+
 ## Intrinsic Function: Lebih dari Sekadar `Ref`
 
 `Ref` itu salah satu **intrinsic function** (fungsi bawaan CloudFormation), tapi ada banyak lagi:

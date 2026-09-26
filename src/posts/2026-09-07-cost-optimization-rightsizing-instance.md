@@ -22,6 +22,9 @@ flowchart LR
     Before["t2.small<br/>(web server + database lokal)"] -->|"database migrasi ke RDS"| After["t2.micro<br/>(web server doang)"]
 ```
 
+![Sebelum dan sesudah optimasi](/assets/img/posts/resource/optimize-utilization-activity/architecture.png)
+_CafeInstance awalnya T2 small berisi app café plus database MariaDB lokal. Setelah database dipindah ke RDS, instance-nya diturunin jadi T2 micro._
+
 ## Langkah Rightsizing
 
 1. **Stop service database** dan **uninstall** MariaDB dari instance (kalau di real case, harus dipastikan datanya udah beres di-backup/migrasi dulu sebelum uninstall).
@@ -48,6 +51,12 @@ Estimasi biaya dihitung pake [AWS Pricing Calculator](https://calculator.aws), y
 - **After**: `t2.micro` + EBS 20 GB.
 
 Hasilnya: penghematan sekitar **$9 per bulan untuk satu server**. Kelihatan kecil, tapi kalau dikali 10 atau 100 server dengan pola yang sama, jadi signifikan.
+
+![Estimasi biaya sebelum optimasi](/assets/img/posts/resource/optimize-utilization-activity/pricing-before.png)
+_Sebelum: EC2 $20,79 per bulan plus RDS MariaDB $14,71, total $35,50 per bulan atau $426 setahun._
+
+![Estimasi biaya setelah optimasi](/assets/img/posts/resource/optimize-utilization-activity/pricing-after.png)
+_Sesudah: EC2 turun jadi $10,47, RDS tetap $14,71, total $25,18 per bulan atau $302,14 setahun._
 
 ## Kenapa Ini Penting buat Karier
 
