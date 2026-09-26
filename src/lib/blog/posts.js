@@ -191,10 +191,16 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
     const rawCode = text || '';
     const language = (lang || '').trim().toLowerCase();
 
-    // If it's a mermaid diagram, output a container for mermaid.js
+    // If it's a mermaid diagram, output a container for mermaid.js with expand control
     if (language === 'mermaid') {
       const escapedDiagram = escapeHtml(rawCode);
-      return `<div class="mermaid-diagram my-8 overflow-x-auto rounded-lg border p-6 text-center" style="border-color: var(--blog-border); background-color: var(--blog-code-bg);">
+      return `<div class="mermaid-diagram group relative my-8 overflow-x-auto rounded-lg border p-6 text-center cursor-zoom-in transition-all duration-200" style="border-color: var(--blog-border); background-color: var(--blog-code-bg);" title="Click to expand diagram">
+        <div class="pointer-events-none absolute right-3 top-3 flex items-center gap-1.5 rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-wider opacity-60 transition-opacity group-hover:opacity-100" style="border-color: var(--blog-border); background-color: var(--blog-surface); color: var(--blog-text-muted);">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          </svg>
+          <span>Expand</span>
+        </div>
         <div class="mermaid" data-diagram="${escapedDiagram}">${escapedDiagram}</div>
       </div>`;
     }
@@ -280,7 +286,7 @@ function createRenderer(mediaSubpath = '', tocCollector = []) {
     }
     const titleAttr = title ? `title="${title}"` : '';
     const altAttr = text ? `alt="${text}"` : '';
-    const imgTag = `<img src="${cleanHref}" ${altAttr} ${titleAttr} loading="lazy" decoding="async" class="mx-auto rounded-lg border border-white/10 max-h-[550px] w-auto object-contain" />`;
+    const imgTag = `<img src="${cleanHref}" ${altAttr} ${titleAttr} loading="lazy" decoding="async" class="mx-auto rounded-lg border border-white/10 max-h-[550px] w-auto object-contain cursor-zoom-in transition-all duration-200 hover:brightness-110 hover:border-white/30" />`;
     const captionTag = text ? `<figcaption class="mt-2.5 text-center font-mono text-[11px] text-ash-2">${text}</figcaption>` : '';
 
     const isOfficialSource = /\/assets\/img\/posts\/resource\//.test(cleanHref);

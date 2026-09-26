@@ -9,6 +9,8 @@
   import { portal } from '$lib/actions/portal.js';
   import { blogTheme } from '$lib/blog/blogTheme.js';
   import { identity } from '$lib/content/site.js';
+  import ImageLightbox from '$lib/components/ImageLightbox.svelte';
+  import DiagramLightbox from '$lib/components/DiagramLightbox.svelte';
 
   let { data } = $props();
   const post = $derived(data.post);
@@ -29,6 +31,37 @@
   const olderPost = $derived(data.olderPost);
 
   let isMobileTocOpen = $state(false);
+
+  // Lightbox modal state for blog images and mermaid diagrams
+  let lightboxImages = $state([]);
+  let lightboxIndex = $state(0);
+  let lightboxAlt = $state('');
+  let isImageLightboxOpen = $state(false);
+
+  let activeDiagramSvg = $state('');
+  let activeDiagramTitle = $state('');
+  let isDiagramLightboxOpen = $state(false);
+
+  function openImageModal(images, index = 0, alt = '') {
+    lightboxImages = images;
+    lightboxIndex = index;
+    lightboxAlt = alt;
+    isImageLightboxOpen = true;
+  }
+
+  function closeImageModal() {
+    isImageLightboxOpen = false;
+  }
+
+  function openDiagramModal(svg, title = 'SYSTEM_ARCHITECTURE') {
+    activeDiagramSvg = svg;
+    activeDiagramTitle = title;
+    isDiagramLightboxOpen = true;
+  }
+
+  function closeDiagramModal() {
+    isDiagramLightboxOpen = false;
+  }
 
   // Table of contents & ScrollSpy state
   let activeHeading = $state('');
@@ -280,6 +313,47 @@
 
     // 7. Render mermaid diagrams for the active article
     await renderMermaid($blogTheme);
+
+    // 8. Attach click listeners to images and mermaid diagrams for interactive lightbox
+    const proseEl = document.querySelector('.blog-prose');
+    if (proseEl) {
+      // Find all content images in the article
+      const contentImages = Array.from(proseEl.querySelectorAll('img')).map((img) => img.src);
+
+      proseEl.onclick = (e) => {
+        const target = e.target;
+        if (!target) return;
+
+        // Image click check
+        const clickedImg = target.closest('img');
+        if (clickedImg && proseEl.contains(clickedImg)) {
+          // Ignore small icons or avatars if any
+          const src = clickedImg.getAttribute('src');
+          if (src) {
+            const idx = contentImages.indexOf(clickedImg.src);
+            openImageModal(
+              contentImages.length > 0 ? contentImages : [src],
+              idx >= 0 ? idx : 0,
+              clickedImg.getAttribute('alt') || ''
+            );
+            return;
+          }
+        }
+
+        // Mermaid diagram click check
+        const diagramEl = target.closest('.mermaid-diagram');
+        if (diagramEl && proseEl.contains(diagramEl)) {
+          const svgEl = diagramEl.querySelector('.mermaid svg');
+          if (svgEl) {
+            const svgMarkup = svgEl.outerHTML;
+            const headingBefore = diagramEl.previousElementSibling?.matches('h1, h2, h3, h4')
+              ? diagramEl.previousElementSibling.textContent?.trim()
+              : 'SYSTEM_ARCHITECTURE';
+            openDiagramModal(svgMarkup, headingBefore || 'SYSTEM_ARCHITECTURE');
+          }
+        }
+      };
+    }
   }
 
   // Reactive effect: runs on initial load AND whenever user navigates to another post (newer/older/recent)
@@ -879,6 +953,23 @@
       </nav>
     </div>
   </div>
+{/if}
+
+{#if isImageLightboxOpen && lightboxImages.length > 0}
+  <ImageLightbox
+    images={lightboxImages}
+    index={lightboxIndex}
+    alt={lightboxAlt}
+    onClose={closeImageModal}
+  />
+{/if}
+
+{#if isDiagramLightboxOpen && activeDiagramSvg}
+  <DiagramLightbox
+    svg={activeDiagramSvg}
+    title={activeDiagramTitle}
+    onClose={closeDiagramModal}
+  />
 {/if}
 
 <style>
