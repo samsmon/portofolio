@@ -11,7 +11,12 @@
   const reduce = prefersReducedMotion();
 
   let current = $state(index);
+  // Intrinsic size of the shown image, used to scale small screenshots up to
+  // the screen instead of leaving them at their tiny native size.
+  let naturalWidth = $state(0);
+  let naturalHeight = $state(0);
   /** @type {HTMLElement} */ let closeBtn;
+  /** @type {HTMLElement} */ let overlay;
   let restoreFocus;
 
   function close() {
@@ -42,7 +47,17 @@
   onMount(() => {
     restoreFocus = document.activeElement;
     tick().then(() => closeBtn?.focus());
+    // Freeze the page behind the viewer; Svelte's `onwheel` is passive, so the
+    // wheel is blocked with a manual non-passive listener.
+    // A host modal (ProjectModal) may have stopped Lenis already; only restart
+    // it if this viewer was the one that stopped it.
+    const blockWheel = (e) => e.preventDefault();
+    const ownsLenis = window.__lenis && !window.__lenis.isStopped;
+    if (ownsLenis) window.__lenis.stop();
+    overlay.addEventListener('wheel', blockWheel, { passive: false });
     return () => {
+      overlay.removeEventListener('wheel', blockWheel);
+      if (ownsLenis) window.__lenis?.start();
       /** @type {HTMLElement} */ (restoreFocus)?.focus?.();
     };
   });
@@ -51,6 +66,7 @@
 <svelte:window onkeydown={key} />
 
 <div
+  bind:this={overlay}
   use:portal
   transition:fade={{ duration: reduce ? 0 : 150 }}
   class="fixed inset-0 z-[1000] flex items-center justify-center overflow-hidden p-4 sm:p-10 backdrop-blur-md"
@@ -113,7 +129,38 @@
       <span class="pointer-events-none absolute -top-px -right-px h-3 w-3 border-r-2 border-t-2 z-20" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
       <span class="pointer-events-none absolute -bottom-px -left-px h-3 w-3 border-b-2 border-l-2 z-20" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
       <span class="pointer-events-none absolute -bottom-px -right-px h-3 w-3 border-b-2 border-r-2 z-20" style="border-color: var(--tactical-accent);" aria-hidden="true"></span>
-      <img src={images[current]} alt={alt} class="block max-h-[80vh] max-w-full w-auto h-auto object-contain" />
+      <img
+        src={images[current]}
+        {alt}
+        bind:naturalWidth
+        bind:naturalHeight
+        class="fit-screen block h-auto object-contain"
+        style:--ratio={naturalWidth && naturalHeight ? naturalWidth / naturalHeight : null}
+      />
     </div>
   {/key}
 </div>
+
+<style>
+  /* Until the image reports its size, just keep it inside the screen. */
+  .fit-screen {
+    --fit-w: calc(100vw - 2.5rem);
+    width: auto;
+    max-width: var(--fit-w);
+    max-height: 80vh;
+  }
+
+  /* Known aspect ratio: grow (or shrink) to the largest size that fits both
+     axes, so small screenshots are enlarged instead of staying tiny. */
+  .fit-screen[style*='--ratio'] {
+    width: min(var(--fit-w), calc(80vh * var(--ratio)));
+    max-height: none;
+  }
+
+  @media (min-width: 640px) {
+    /* Room for the prev/next buttons and the wider sm padding. */
+    .fit-screen {
+      --fit-w: calc(100vw - 9rem);
+    }
+  }
+</style>

@@ -8,6 +8,14 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ## [Unreleased] - 2026-09-27
 
+### Fixed
+- **Diagram lightbox kosong (`lib/components/DiagramLightbox.svelte`):** SVG mermaid (`width="100%"` tanpa height) collapse jadi 0x0 di dalam wadah yang ukurannya ngikutin isi, jadi expand diagram cuma nampilin bingkai kosong. Sekarang SVG ngisi canvas penuh dan rasionya dijaga `viewBox`.
+- **Page ikut ke-scroll di lightbox (`DiagramLightbox.svelte`, `ImageLightbox.svelte`):** `onwheel` di Svelte 5 dipasang passive, jadi `preventDefault()` diabaikan. Wheel sekarang pakai listener non-passive di seluruh overlay dan Lenis di-stop selama viewer kebuka (cuma di-start lagi kalau viewer yang nge-stop, biar nggak bentrok sama `ProjectModal`). Di diagram, scroll cuma nge-zoom.
+
+### Changed
+- **Diagram lightbox bisa di-touch (`DiagramLightbox.svelte`):** drag pakai pointer events (mouse dan touch), plus pinch-to-zoom dua jari. Sebelumnya cuma mouse, dan tombol zoom disembunyiin di mobile, jadi di HP diagram nggak bisa di-zoom sama sekali.
+- **Gambar lightbox auto fit layar (`ImageLightbox.svelte`):** gambar di-scale ke ukuran terbesar yang muat di layar (lebar atau 80vh) dengan rasio tetap, termasuk gambar kecil yang sebelumnya tetap tampil kecil.
+
 ### Added
 - **Post AWS re/Start Minggu 7 (`src/posts/`):** 7 post dari transkrip 14 sampai 17 September: journal 14 Sep (review service AI, lab SageMaker, latihan soal), materi service AI yang wajib hafal (Lex, Textract, Rekognition, Polly, Transcribe, Comprehend, SageMaker AI vs Bedrock), lab 316 SageMaker XGBoost, journal mock exam CCP 15, 16, 17 Sep, dan materi rangkuman jebakan soal CCP (termasuk catatan kilat pribadi selama pelatihan). Transkrip 18 September nggak ada, jadi belum ada post hari terakhir.
 
