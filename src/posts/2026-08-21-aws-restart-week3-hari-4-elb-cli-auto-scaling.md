@@ -17,6 +17,8 @@ Lanjut ke lab yang katanya "agak berat", bikin Auto Scaling Group dari nol. Alur
 
 Yang paling nempel: instance yang dikelola Auto Scaling Group itu ternyata nggak butuh public IP sendiri sama sekali, karena semua akses masuk lewat load balancer, jadi hemat biaya IP dinamis per-instance.
 
+Konsep Auto Scaling yang lebih lengkap (launch template, lifecycle hooks, cara menghindari thrashing) aku rangkum di [post EC2 Auto Scaling](/blog/ec2-auto-scaling).
+
 Ditutup dengan preview kalau materi selanjutnya bakal masuk perbandingan scaling dynamic vs predictive, katanya nunggu minggu depan.
 
 ## Catatan Sampingan

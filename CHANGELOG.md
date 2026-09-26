@@ -9,6 +9,14 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 ## [Unreleased] - 2026-09-27
 
 ### Added
+- **Post AWS re/Start Minggu 7 (`src/posts/`):** 7 post dari transkrip 14 sampai 17 September: journal 14 Sep (review service AI, lab SageMaker, latihan soal), materi service AI yang wajib hafal (Lex, Textract, Rekognition, Polly, Transcribe, Comprehend, SageMaker AI vs Bedrock), lab 316 SageMaker XGBoost, journal mock exam CCP 15, 16, 17 Sep, dan materi rangkuman jebakan soal CCP (termasuk catatan kilat pribadi selama pelatihan). Transkrip 18 September nggak ada, jadi belum ada post hari terakhir.
+
+### Changed
+- **EC2 Auto Scaling dikeluarin dari HOLD (`src/posts/2026-08-21-ec2-auto-scaling.md`):** tanggal placeholder `2026-08-00` jadi 21 Agustus sesuai jadwal resmi kelas, dipublish, dengan catatan bahwa lifecycle hooks dan thrashing dirangkum dari materi kursus. Journal 21 Agustus ditambah link ke post ini.
+- **Taksonomi AI (`src/posts/2026-09-09-ai-ml-deep-learning-generative-ai-taksonomi.md`):** jenis foundation model dijabarin jadi tabel output (LLM teks, Stable Diffusion gambar/video, multimodal).
+- **Journal 11 September:** deskripsi "tutup minggu terakhir program" diganti "tutup minggu keenam", karena program ternyata 7 minggu.
+
+### Added
 - **Screenshot Resmi Lab 281 Monitor an EC2 Instance (`static/assets/img/posts/resource/monitor-ec2-instance-lab/`):** 3 screenshot (pilih metric CPUUtilization, konfigurasi alarm CloudWatch di atas 60%, output `stress`). Cuma ini yang ke-save beneran dari batch lab Ctrl+S; gambar lab lain ternyata halaman error session Vocareum. Belum dirujuk post mana pun; disiapkan untuk toggle "Secret Source".
 
 ### Changed

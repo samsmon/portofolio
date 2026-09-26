@@ -1,6 +1,6 @@
 ---
 title: "AWS re/Start Week 6 Hari 5: Materi AI Hari Ketiga"
-description: "Hari ketiga materi AI, tutup minggu terakhir program dengan bahasan arsitektur LLM, dari transkrip yang kualitasnya kurang bagus."
+description: "Hari ketiga materi AI, tutup minggu keenam dengan bahasan arsitektur LLM, dari transkrip yang kualitasnya kurang bagus."
 author: samsmon
 date: 2026-09-11 00:00:00 +0700
 categories: [AWS re/Start, Journal]

@@ -45,7 +45,13 @@ Dulu data science pakai bahasa **R**, sekarang geser ke **Python**. Terus muncul
 - AI / ML / Deep Learning → output-nya **model**.
 - Generative AI / Agentic AI → output-nya **Foundation Model (FM)**.
 
-Bedanya: model biasa ukurannya kecil (dulu 600 MB aja udah canggih), Foundation Model ukurannya gede banget (ada yang 9 GB, 13 GB, bahkan model frontier bisa sampe hitungan TB). Jenis FM banyak: **LLM** (Large Language Model), **Stable Diffusion** (buat gambar), dll.
+Bedanya: model biasa ukurannya kecil (dulu 600 MB aja udah canggih), Foundation Model ukurannya gede banget (ada yang 9 GB, 13 GB, bahkan model frontier bisa sampe hitungan TB). Jenis FM banyak, dibedain dari output-nya:
+
+| Jenis | Output |
+|---|---|
+| **LLM** (Large Language Model) | teks |
+| **Stable Diffusion** (model difusi) | gambar, video |
+| **Multimodal model** | campuran: teks, gambar, video |
 
 ## Alur Dasar Machine Learning
 
